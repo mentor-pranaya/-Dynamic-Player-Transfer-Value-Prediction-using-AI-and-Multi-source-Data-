@@ -1,0 +1,5 @@
+Day-1
+
+
+Today I successfully completed the data collection phase. I gathered player performance datasets from Futbin.com, FBref.com, and StatsBomb Open Data. These sources provide a good mix of detailed match statistics, historical records, and additional performance indicators 
+
