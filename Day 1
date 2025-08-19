@@ -1,0 +1,17 @@
+Day 1 Progress Report
+1. Perfect Data Illusion
+Today we discussed the concept of Perfect Data Illusion.
+
+It happens when data looks "too clean" or "too perfect" compared to real-world data.
+
+Real-world data usually contains missing values, noise, and outliers.
+
+
+2. Exploring Data
+Today I was exploring the StatsBomb Football Data from Kaggle.
+
+StatsBomb provides one of the largest open datasets for football analytics.
+
+It contains detailed event data (passes, shots, tackles, dribbles) as well as match data (teams, players, results).
+
+The dataset is very detailed, covering multiple leagues and competitions.
