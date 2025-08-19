@@ -1,0 +1,50 @@
+## Data Collection Plan for TransferIQ Project
+
+This document outlines the detailed process for collecting the four types of data required for the TransferIQ machine learning model, as specified in the project plan.
+
+### 1. Player Performance Data
+- **Objective:** To gather detailed in-game statistics for football players.
+- **Primary Source:** StatsBomb Open Data. This source provides free, professional-grade event data from various football competitions.
+- **Collection Method:**
+    1.  **Utilize the 'statsbombpy' Python Library:** This is the most efficient method to programmatically access the data.
+    2.  **Installation:** Begin by installing the library in your Python environment using the command: `pip install statsbombpy`.
+    3.  **Data Retrieval Steps:**
+        - Import the library in your script.
+        - Fetch a list of available competitions to identify the ones relevant to your analysis.
+        - From a chosen competition, retrieve the list of all matches.
+        - For each match, pull the detailed event data. This will include every pass, shot, tackle, and other actions by players, along with coordinates on the pitch.
+        - Store the retrieved data, likely in a pandas DataFrame, for easy cleaning and feature engineering later.
+
+### 2. Market Value Data
+- **Objective:** To collect historical and current market value estimates for players.
+- **Primary Source:** The website Transfermarkt.com.
+- **Collection Method:** Web Scraping. This involves writing a script to automate the extraction of data directly from the website.
+    1.  **Required Python Libraries:** `Requests` (for making HTTP requests to the website) and `BeautifulSoup4` (for parsing the HTML response). Install them using `pip install requests beautifulsoup4`.
+    2.  **Scraping Steps:**
+        - Compile a list of URLs for the players you are analyzing on Transfermarkt.
+        - Use the `requests.get(url)` function to download the HTML content of a player's page.
+        - Create a `BeautifulSoup` object from the page's content.
+        - Use your web browser's developer tools (right-click -> Inspect) to identify the specific HTML tags and classes that contain the market value information.
+        - Write code to find these specific elements within the `BeautifulSoup` object and extract the text or value.
+        - Loop through your list of player URLs to gather data for all players.
+    3.  **Ethical Considerations:** Always check the website's `robots.txt` file first. Implement delays (`time.sleep()`) between your requests to avoid overwhelming the website's server.
+
+### 3. Social Media Sentiment Data
+- **Objective:** To quantify public opinion and sentiment towards players from social media.
+- **Primary Source:** Twitter (now X), via its official API.
+- **Collection Method:** Using the Twitter API with a Python wrapper library.
+    1.  **Prerequisites:** Apply for a Twitter Developer Account to get your API keys and access tokens. These credentials are required to authenticate your requests.
+    2.  **Required Python Library:** `Tweepy`. This library simplifies the process of authenticating and making requests to the Twitter API. Install it using `pip install tweepy`.
+    3.  **Data Retrieval Steps:**
+        - Authenticate with the Twitter API in your script using your developer keys.
+        - Use Tweepy's search functionality to find tweets that mention a player's name, Twitter handle, or relevant hashtags (e.g., "#Messi").
+        - Collect the text content from these tweets and store them. It's often useful to also collect metadata like date, likes, and retweets.
+        - This raw text data will later be processed using Natural Language Processing (NLP) libraries like VADER or TextBlob to determine its sentiment.
+
+### 4. Injury Data
+- **Objective:** To compile a history of player injuries, including type and duration.
+- **Primary Source:** No single source is specified; requires searching "relevant sources." Websites like Transfermarkt (injury tab on player profiles) or sports news outlets are good candidates.
+- **Collection Method:** Primarily Web Scraping, with a secondary option of searching for existing datasets.
+    1.  **Web Scraping:** The process is identical to the one used for market value data. You would identify a reliable source that archives injury histories and write a scraper to extract this information (e.g., injury type, date of injury, expected return, games missed).
+    2.  **Search for Datasets:** Before starting a complex scraping job, search on data science platforms like Kaggle. Other researchers may have already compiled and shared such a dataset, which can save significant time and effort.
+    3.  **Challenges:** This data may be less structured than the others, so the cleaning and preprocessing step will be particularly important here.
