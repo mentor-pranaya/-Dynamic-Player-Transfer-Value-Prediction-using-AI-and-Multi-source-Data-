@@ -1,0 +1,15 @@
+Daily Progress Report – Abhay Raj – 18/08/25
+
+1) GitHub Setup:
+- Accepted GitHub invitation shared by mentor.
+- Successfully created my personal branch with name "abhay_raj".
+- Added a text file (day1_update.txt) in my branch as instructed.
+
+2) Data Collection Exploration:
+- Explored potential sources for player performance and transfer market data.
+- Identified StatsBomb Open Data and Transfermarkt as primary resources.
+- Looked into possibilities of using Twitter API for social media sentiment analysis.
+
+3) Challenges Encountered:
+- Still need to begin structured data collection from identified sources.
+- Twitter API setup may require additional configuration and authentication.
