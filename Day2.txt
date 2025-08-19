@@ -1,0 +1,20 @@
+
+TransferIQ Project 
+
+Date:2025-08-18
+
+Tasks Completed Today:
+
+StatsBomb Open Data (GitHub Repository)
+	-Downloaded the complete StatsBomb Open Data ZIP file from the official GitHub repository.
+	-Extracted and stored datasets locally for further use.
+	-Verified the folder structure and availability of key JSON files:
+	competitions.json (competitions & seasons metadata)
+	matches/ (match-level details)
+	lineups/ (player participation and squads)
+	events/ (event-level data such as passes, shots, fouls, pressures)
+	three-sixty/ (freeze-frame positioning data for events)
+Transfermarkt Data
+	-Downloaded datasets from Transfermarkt (ZIP file).
+	-Stored the dataset locally for later preprocessing and analysis.
+	-Verified that files were successfully extracted and accessible.
