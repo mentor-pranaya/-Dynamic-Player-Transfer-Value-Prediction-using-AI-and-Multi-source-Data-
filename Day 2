@@ -1,0 +1,20 @@
+1) Discussed Huge Data in Context of Project and Model
+
+Huge data is relative, not absolute. It depends on the complexity of the problem and the requirements of the ML model.
+
+In this project, huge data means:
+
+* A large number of players across multiple leagues and seasons.
+* High-dimensional attributes (performance stats, age, position, injuries, etc.).
+
+In this project’s context:
+
+Huge data = sufficient quantity + variety + quality of player-related records.
+
+Tasks Completed Today:
+
+-StatsBomb Open Data
+-Downloaded the complete StatsBomb Open Data ZIP file from the official GitHub repository.
+-Verified the folder structure and availability of key JSON files.
+
+2) Further Data Exploration
