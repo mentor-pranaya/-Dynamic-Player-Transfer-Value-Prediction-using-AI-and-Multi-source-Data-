@@ -1,0 +1,10 @@
+18 August 2025:
+  Explored various data sorces
+  Downloaded data from
+  https://github.com/statsbomb/open-data
+
+19 August 2025:
+  Working on python script to scrape data using BS Library.
+
+20 August 2025:
+  Still working on python script to scrape data
