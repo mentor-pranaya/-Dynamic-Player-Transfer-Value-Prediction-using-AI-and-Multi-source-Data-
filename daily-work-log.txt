@@ -1,0 +1,19 @@
+18 August 2025:
+
+I explored the StatsBomb Open Data from various sources available on GitHub. 
+I went through the datasets related to player performance, match events, and competitions. 
+I checked how the data is structured (JSON format) and understood the type of information available such as passes,
+ shots, goals, and other performance metrics. I also practiced loading the data into Python using pandas for further analysis. 
+ This exploration gave me a clear idea of how to use StatsBomb data for building player performance features in the project.
+
+19 August 2025:
+
+* Collected player performance data.
+* Used GitHub as the source to access and manage the dataset.
+* Verified the dataset structure for further analysis and processing.
+
+20 August 2025:
+
+*Explored Transfermarkt data related to player market values.
+*Understood how market value trends change over time for players.
+*Preparing this data for integration with performance datasets
