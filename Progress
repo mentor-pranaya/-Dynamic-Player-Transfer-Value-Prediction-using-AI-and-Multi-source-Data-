@@ -1,0 +1,45 @@
+Day 1 Progress Report
+1. Perfect Data Illusion (18.08.2025)
+
+Today we discussed the concept of Perfect Data Illusion.
+
+It happens when data looks "too clean" or "too perfect" compared to real-world data.
+
+Real-world data usually contains missing values, noise, and outliers.
+
+
+2. Exploring Data
+
+Today I was exploring the StatsBomb Football Data from Kaggle.
+
+StatsBomb provides one of the largest open datasets for football analytics.
+
+It contains detailed event data (passes, shots, tackles, dribbles) as well as match data (teams, players, results).
+
+The dataset is very detailed, covering multiple leagues and competitions.
+
+
+Day 2 Progress (19.08.2025)
+1) Discussed Huge Data in Context of Project and Model
+
+Huge data is relative, not absolute. It depends on the complexity of the problem and the requirements of the ML model.
+
+In this project, huge data means:
+
+* A large number of players across multiple leagues and seasons.
+* High-dimensional attributes (performance stats, age, position, injuries, etc.).
+
+In this project’s context:
+
+Huge data = sufficient quantity + variety + quality of player-related records.
+
+Tasks Completed Today:
+
+-StatsBomb Open Data
+-Downloaded the complete StatsBomb Open Data ZIP file from the official GitHub repository.
+-Verified the folder structure and availability of key JSON files.
+
+2) Further Data Exploration
+
+
+Day 3 Progress (20.08.2025)
