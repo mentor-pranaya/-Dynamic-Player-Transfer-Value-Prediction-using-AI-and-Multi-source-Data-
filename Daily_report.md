@@ -10,7 +10,7 @@ Date: 18/08/2025
 
 2. GitHub Setup
 - Joined the GitHub repository using mentor’s invitation.
-- Created my personal branch `Abhay_raj`.
+- Created my personal branch `Abhay-raj`.
 - Added a text file for daily updates.
 
 3. Data Collection Exploration
