@@ -1,5 +1,3 @@
-Daily Progress Report – Abhay Raj
-Infosys Springboard Virtual Internship 6.0
 -------------------------------------------
 
 # Day 1 Progress Report
@@ -12,7 +10,7 @@ Date: 18/08/2025
 
 2. GitHub Setup
 - Joined the GitHub repository using mentor’s invitation.
-- Created my personal branch `abhay_raj`.
+- Created my personal branch `Abhay_raj`.
 - Added a text file for daily updates.
 
 3. Data Collection Exploration
@@ -20,11 +18,7 @@ Date: 18/08/2025
 - Looked into Transfermarkt for player market value data.
 - Searched initial sources for injury-related data.
 
-4. Challenges
-- Extracting structured data from Transfermarkt still needs more work.
-- Injury data sources not finalized yet.
-
-5. Tomorrow’s Question
+4. Tomorrow’s Question
 - What is "huge data" in machine learning?
 - Is it absolute (millions of rows, GBs) or relative to the model/problem?
 - Could small datasets also be “huge” depending on context?
@@ -45,11 +39,7 @@ Date: 19/08/2025
 - Continued exploring StatsBomb Open Data.
 - Reviewed Transfermarkt for player market values.
 
-3. Challenges
-- Injury dataset sources still unclear.
-- Market value extraction needs structured approach.
-
-4. Tomorrow’s Question
+3. Tomorrow’s Question
 - Suppose data comes from a single source (one device/location/group).  
 - Is it reliable for a general model?  
 - What risks arise if trained only on this source?  
@@ -72,11 +62,7 @@ Date: 20/08/2025
 - Continued exploring StatsBomb datasets.
 - Analyzed Transfermarkt structure for market values.
 
-3. Challenges
-- Still need to find a reliable injury dataset.
-- Transfermarkt extraction requires more formatting effort.
-
-4. Tomorrow’s Question
+3. Tomorrow’s Question
 - Which is more valuable for training ML models?  
   a) Large but narrow dataset (similar examples).  
   b) Smaller but diverse dataset (edge cases, variations).  
