@@ -43,3 +43,11 @@ Tasks Completed Today:
 
 
 Day 3 Progress (20.08.2025)
+Continued exploring StatsBomb datasets.
+ Transfermarkt Data
+	Downloaded player transfer datasets from Transfermarkt (ZIP format).
+	Extracted files and placed them in local directories for preprocessing.
+	Verified accessibility of all extracted files.
+
+
+Day 4 Progress (21.08.2025)
