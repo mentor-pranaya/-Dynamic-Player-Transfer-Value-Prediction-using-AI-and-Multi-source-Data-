@@ -1,0 +1,27 @@
+Day 1 Report:
+
+1. What is Perfect Data Illusion -
+It happens when data looks “too clean” or “too perfect” compared to real-world data.
+In Real-world data we usually have missing values , noise , and outliers .
+
+2. Will it be a “ good/bad sign ” to have a perfectly  clean data?
+     It is actually a “ bad sign “ because:
+Lack of real-world variability , which makes models fail to generalize.
+If someone uses that model , answer can be wrong .
+It will fail in masking Critical Issues as model is not trained on real world data.
+
+3. Creating a New Branch on GitHub :
+I created a new branch with my name “ Nishant-Gupta ”.
+In this branch i will update my mentor with what work have i completed .
+
+4. Data Exploration : 
+Explored “ the StatsBomb Football Data ” - From Kaggle , it is one of the largest providers of open datasets for football analytics .
+Aim - it is for “Event data” (passes , shots , tackles , dribbles ) and “Match data”(teams , players , results ).
+It is a huge dataset and handling it will be a bit of problem.
+Explored “ Market Value Data “ : Transfermarkt data from kaggle and downloaded the dataset provided .
+Aim - Collect historical player values , transfers , and progression trends.
+
+5. Question for the next day -
+i .  “ What is Huge Data ? “ 
+ii.  “ Should it be defined as an absolute Value ?  “ 
+iii. “ Does it depend on project requirements and resources ? “ 
