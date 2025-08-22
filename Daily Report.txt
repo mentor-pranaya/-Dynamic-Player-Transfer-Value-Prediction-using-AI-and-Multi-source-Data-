@@ -1,0 +1,56 @@
+Day-1
+
+
+Today I successfully completed the data collection phase. I gathered player performance datasets from Futbin.com, FBref.com, and StatsBomb Open Data. These sources provide a good mix of detailed match statistics, historical records, and additional performance indicators 
+
+Day-2
+
+
+TransferIQ Project 
+
+Date:2025-08-18
+
+Tasks Completed Today:
+
+StatsBomb Open Data (GitHub Repository)
+	-Downloaded the complete StatsBomb Open Data ZIP file from the official GitHub repository.
+	-Extracted and stored datasets locally for further use.
+	-Verified the folder structure and availability of key JSON files:
+	competitions.json (competitions & seasons metadata)
+	matches/ (match-level details)
+	lineups/ (player participation and squads)
+	events/ (event-level data such as passes, shots, fouls, pressures)
+	three-sixty/ (freeze-frame positioning data for events)
+Transfermarkt Data
+	-Downloaded datasets from Transfermarkt (ZIP file).
+	-Stored the dataset locally for later preprocessing and analysis.
+	-Verified that files were successfully extracted and accessible.
+Day-3
+
+
+1) Combined Dataset Creation:
+- Successfully merged data from Futbin (players data from futbin.csv) and Top5 Players (top5-players24-25.xlsx).
+- Identified 'similar players' (players common in both datasets) and placed them at the top of the combined file.
+- Remaining players (only in Futbin or only in Top5) were added continuously below.
+
+2) Final Dataset Columns:
+- Player Performance & Match Data (from Futbin)
+- Market Value & Financial Data (from Top5)
+- Sentiment & Popularity (placeholder column, to be filled later)
+- Injury & Fitness Data (placeholder column)
+- Advanced Analytics (placeholder column)
+
+3) Output:
+- Generated a combined CSV file `TransferIQ_Combined_Players.csv` containing structured information for further analysis.
+    - Ensured that similar players were given first preference in row ordering.
+
+Day-4
+
+
+Today, I successfully completed data scraping for players' sentiment analysis using both the Twitter API and Reddit. The collected data will now help in performing detailed sentiment evaluation and comparison across platforms.
+
+Day-5
+
+
+Today, I am working on collecting and analyzing players' injury history data to integrate it with the existing sentiment analysis.
+
