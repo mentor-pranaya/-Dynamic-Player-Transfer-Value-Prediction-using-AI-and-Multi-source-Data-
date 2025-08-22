@@ -14,6 +14,14 @@ I checked how the data is structured (JSON format) and understood the type of in
 
 20 August 2025:
 
-*Explored Transfermarkt data related to player market values.
-*Understood how market value trends change over time for players.
-*Preparing this data for integration with performance datasets
+* Explored Transfermarkt data related to player market values.
+* Understood how market value trends change over time for players.
+* Preparing this data for integration with performance datasets.
+
+21 August 2025:
+
+Working on python and their liberaries to scrapting data.
+
+22 August 2025:
+
+Exploring Twitter api and scraping the data.
