@@ -1,0 +1,70 @@
+====================================
+ DATASET DESCRIPTION - WEEK 1
+====================================
+
+1) FIFA Player Dataset (players_22.csv)
+------------------------------------
+Source: Kaggle (FIFA 22 Official Dataset)
+
+Shape: 18,979 rows × 104 columns
+
+Key Features:
+- short_name: Player’s short name
+- age: Age of player
+- height_cm, weight_kg: Physical attributes
+- nationality_name: Nationality
+- club_name: Club
+- overall: Overall FIFA rating (0-99)
+- potential: Potential FIFA rating (0-99)
+- value_eur: Market value (in Euros)
+- wage_eur: Weekly wage (in Euros)
+- player_positions: List of positions
+- preferred_foot: Left/Right
+- passing, shooting, dribbling, defending, pace, etc.: Player skill stats
+
+Notes:
+- Some columns have missing values (e.g., contract info, release clause).
+- Columns 25 and 108 had mixed datatypes, fixed using `low_memory=False`.
+
+------------------------------------
+
+2) Sentiment Dataset (top10_players_tweets.csv)
+------------------------------------
+Source: Twitter API (Tweepy)
+
+Shape: 200 rows × 5 columns (collected for top 10 players)
+
+Features:
+- player: Player name used in search
+- query_used: Search query string
+- tweet_id: Unique tweet ID
+- text: Tweet text
+- created_at: Timestamp of tweet
+- lang: Language of tweet (English filtered)
+
+Notes:
+- Collected 20 recent tweets per player.
+- Retweets excluded, English only.
+
+------------------------------------
+
+3) Injury Dataset (EPL injuries.csv)
+------------------------------------
+Source: Kaggle (Premier League Injuries, scraped from Transfermarkt)
+
+Shape: ~5,000 rows × 6 columns
+
+Features:
+- player_name: Player name
+- club: Club name
+- injury_type: Type of injury
+- from_date: Start date of injury
+- to_date: End date of injury
+- days_missed: Duration of injury in days
+- games_missed: Number of games missed
+
+Notes:
+- Covers EPL players only (not all FIFA players).
+- Some missing values for minor injuries.
+
+====================================
