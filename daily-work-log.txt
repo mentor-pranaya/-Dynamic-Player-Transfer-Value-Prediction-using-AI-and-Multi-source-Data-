@@ -1,4 +1,4 @@
-18 August 2025:
+--> 18 August 2025:
 
 I explored the StatsBomb Open Data from various sources available on GitHub. 
 I went through the datasets related to player performance, match events, and competitions. 
@@ -6,22 +6,46 @@ I checked how the data is structured (JSON format) and understood the type of in
  shots, goals, and other performance metrics. I also practiced loading the data into Python using pandas for further analysis. 
  This exploration gave me a clear idea of how to use StatsBomb data for building player performance features in the project.
 
-19 August 2025:
+--> 19 August 2025:
 
 * Collected player performance data.
 * Used GitHub as the source to access and manage the dataset.
 * Verified the dataset structure for further analysis and processing.
 
-20 August 2025:
+--> 20 August 2025:
 
 * Explored Transfermarkt data related to player market values.
 * Understood how market value trends change over time for players.
 * Preparing this data for integration with performance datasets.
 
-21 August 2025:
+--> 21 August 2025:
 
 Working on python and their liberaries to scrapting data.
 
-22 August 2025:
+--> 22 August 2025:
 
 Exploring Twitter api and scraping the data.
+
+--> 23 August 2025:
+
+Task Completed:
+
+• Finished the data collection phase of the project.
+• Collected player performance data from StatsBomb Open Data (2025 season).
+• Gathered market value data for players from the latest Kaggle dataset (2025).
+• Collected injury history data from Kaggle (covering years 2020–2023).
+• Verified that all datasets were downloaded, stored properly, and are ready for cleaning and preprocessing.
+
+Outcome:
+
+Now I have three key datasets:
+
+1. Performance data (2025) – detailed player stats.
+2. Market value data (2025) – current transfer market values.
+3. Injury data (2020–2023) – historical injury records.
+
+
+
+
+
+
