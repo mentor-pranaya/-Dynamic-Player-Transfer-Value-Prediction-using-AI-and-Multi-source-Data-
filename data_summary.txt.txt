@@ -1,0 +1,20 @@
+File: data_summary.txt
+------------------------------------------------------------------
+Here is a summary of the four key data files collected for the project.
+
+1.  **Filename**: la_liga_2015-2016_all_events.csv
+    * **Details**: Contains raw, event-level data for every match in the La Liga 2015/2016 season. Each row represents a single action on the pitch (e.g., a pass, shot, tackle) by a player.
+    * **Source**: StatsBomb
+
+2.  **Filename**: laliga_2015_market_values.csv
+    * **Details**: Contains the names and historical market values (specifically from the 2015/2016 season) for players in that La Liga season.
+    * **Source**: Transfermarkt
+
+3.  **Filename**: top_players_tweets.csv
+    * **Details**: Contains recent tweets (including text, like/retweet counts, and creation date) that mention the top 10 most valuable players from the La Liga 2015/2016 season.
+    * **Source**: Twitter API
+
+4.  **Filename**: top_10_players_injury_data_2015_2016.csv
+    * **Details**: Contains the injury history (injury type, start date, end date, and duration) for the top 10 most valuable players, filtered specifically for incidents that occurred during the 2015/2016 season.
+    * **Source**: Transfermarkt
+------------------------------------------------------------------
