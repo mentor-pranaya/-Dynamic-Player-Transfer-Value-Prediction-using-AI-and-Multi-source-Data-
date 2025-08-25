@@ -1,4 +1,4 @@
-Day 1 Report:
+Day 1 Report (18 August 2025 ):
 
 1. What is Perfect Data Illusion -
 It happens when data looks “too clean” or “too perfect” compared to real-world data.
@@ -25,3 +25,58 @@ Aim - Collect historical player values , transfers , and progression trends.
 i .  “ What is Huge Data ? “ 
 ii.  “ Should it be defined as an absolute Value ?  “ 
 iii. “ Does it depend on project requirements and resources ? “ 
+
+=========================================================================================================================
+
+Day 2 Report (19 August 2025 ):
+1. Discussed Last session's question :
+i . What is Huge Data  ->  Data which is of huge velocity , variety and volume that it becomes too difficult for the system to process and analayze it .
+ii. It should never be defined as an absolute value rather it is a relative value . 
+iii. yes ,  it depends on project requirements and resources . for small project that can be handled on the system wherease large projects requires extra hardware
+
+2. Data Exploration :
+Again went to Transfermarkt and thought of scraping the website's data for better and updated data for my project.
+collected injury data dataset from kaggle and it was not sufficient , then surfed internet for better options
+Didn't knew anything about twitter sentiment analysis and how to do it , so downloaded the dataset available on kaggle 
+
+3. Question for the next day :
+Is data from a single source reliable for building a general model?
+What are the risks of training a model exclusively on this data?
+How will the model behave in the real world with diverse data?
+What's a better approach to data collection?
+
+
+=========================================================================================================================
+
+Day 3 Report (20 August 2025 ):
+1. Previous session's questions:
+Data From Single source : No, data from single source is not relaible for building a reliable model , the data will not represent the whole world
+Risks : The main risk is of overfitting and lack of generalization . 
+Real world Beahviour : The model will perform poorly in real world and will be unreliable as it is not trained on more data .
+Better Approach : Diversify the data collection. 
+
+2 . Data Exploration:
+Today i created a developer account on twitter developer platform and received my api key and bearer token for social media sentiment analysis.
+
+3. Question for the next day:
+If you are collecting data for training a machine learning model, which do you think is more valuable:
+Having a large amount of data from a narrow distribution (all very similar examples), or
+Having a smaller but more diverse dataset that covers edge cases and variations?
+Can a model trained on a huge but homogeneous dataset actually perform worse than a model trained on fewer but more varied samples?
+
+=========================================================================================================================
+
+Day 4 Report ( 21 August 2025 ):
+1. Previous session's questions:
+Diverse Data is better for generalizing the model and a better choice , it makes our model more adaptible to the narrow/edge cases
+Large Data with narrow distribution will lead to poor generalization and overfit the model to repeated patterns
+Yes , the model trained on a huge but homogeneous dataset actually perform worse than a model trained on fewer but more varied samples
+
+
+2. Question for the next day:
+
+
+
+=========================================================================================================================
+
+Day 5 Report ( 22 August 2025 ):
