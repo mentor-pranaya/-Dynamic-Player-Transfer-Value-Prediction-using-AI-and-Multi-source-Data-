@@ -57,3 +57,9 @@ Explored “ Market Value Data “ : Transfermarkt data from kaggle and download
 Day 5 Progress (22.08.2025)
 I collected the Sentiment Analysis and then i explored it 
 Also after that I started working on Twitter api
+Now, I am working on collecting and analyzing players' injury history data to integrate it with the existing sentiment analysis.
+I am left with the Twitter API part as it has some limit sort of thing.
+
+
+Day 6 Progress (25.08.2025)
+Today, I have successfully completed data scraping for players sentiment analysis using both the Twitter API. The collected data will now help in performing detailed sentiment evaluation and comparison across platforms.
