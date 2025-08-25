@@ -1,0 +1,8 @@
+.idea/
+.venv/
+# Excluding data folder due to large data size
+data/
+processed_data/
+!data/.gitkeep
+# Temporarly excluding Scripts
+scripts/

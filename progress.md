@@ -75,3 +75,29 @@
 
 ### Data Exploration
 - Explored **Injury Data**: Historical player injury records.
+
+
+# Day 5 Progress
+
+## Tasks Completed
+1. **Exploring Sentiment Data Sources**
+   - Looked into **Twitter API** and other possible APIs for capturing player sentiment from social media.  
+   - Plan: integrate later once performance, injury, and market data pipeline is stable.  
+
+2. **Data Collection Completed**
+   - **StatsBomb data** (events, lineups, matches, three-sixty, competitions).  
+   - **Transfermarkt data** (players, player valuations, transfers, appearances, clubs).  
+   - **Injury dataset** (historical player injury records).  
+
+3. **Mentor Task**
+   - Mentor asked to maintain a new file: **`dataset_info.md`** documenting sources and formats.  
+
+---
+
+## Mentor’s Question  
+
+### Q1: What strategies would you use while collecting data, not just later in preprocessing, to ensure your dataset is representative yet not misleading?
+
+---
+
+### Q2: Can you think of a scenario where artificially balancing the dataset might actually hurt the model’s real-world performance?
