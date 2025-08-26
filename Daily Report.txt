@@ -54,3 +54,7 @@ Day-5
 
 Today, I am working on collecting and analyzing players' injury history data to integrate it with the existing sentiment analysis.
 
+Day-6
+
+Today,I started working on the data cleaning and feature engineering 
+And done with data collection part from several sources
