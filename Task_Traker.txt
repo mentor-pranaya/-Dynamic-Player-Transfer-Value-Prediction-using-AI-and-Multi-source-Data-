@@ -8,3 +8,8 @@
 
 20 August 2025:
   Still working on python script to scrape data
+26 August 2025:
+  Completed testing first script transfermarkt_premier-league_initial.py for web scrping
+  Created new script transfermarkt_loop.py to loop through pagination of table to add all the players from given set of Leagues.
+  Working on script transfermarkt_all_competitions.py to loop through all the competitions, continent wise, followed by league 
+     wise and finally players records.
