@@ -11,5 +11,15 @@
 26 August 2025:
   Completed testing first script transfermarkt_premier-league_initial.py for web scrping
   Created new script transfermarkt_loop.py to loop through pagination of table to add all the players from given set of Leagues.
-  Working on script transfermarkt_all_competitions.py to loop through all the competitions, continent wise, followed by league 
-     wise and finally players records.
+  Completed scraping following URLs for data:
+  https://www.transfermarkt.com/premier-league/marktwerte/wettbewerb/GB1
+  https://www.transfermarkt.com/laliga/marktwerte/wettbewerb/ES1
+  https://www.transfermarkt.com/bundesliga/marktwerte/wettbewerb/L1
+  https://www.transfermarkt.com/serie-a/marktwerte/wettbewerb/IT1
+  https://www.transfermarkt.com/ligue-1/marktwerte/wettbewerb/FR1
+  https://www.transfermarkt.com/eredivisie/marktwerte/wettbewerb/NL1
+  https://www.transfermarkt.com/super-lig/marktwerte/wettbewerb/TR1
+  https://www.transfermarkt.com/saudi-professional-league/marktwerte/wettbewerb/SA1
+  https://www.transfermarkt.com/uefa-champions-league/marktwerte/pokalwettbewerb/CL
+  https://www.transfermarkt.com/europa-league/marktwerte/pokalwettbewerb/EL
+  https://www.transfermarkt.com/uefa-europa-conference-league/marktwerte/pokalwettbewerb/UCOL
