@@ -23,3 +23,6 @@
   https://www.transfermarkt.com/uefa-champions-league/marktwerte/pokalwettbewerb/CL
   https://www.transfermarkt.com/europa-league/marktwerte/pokalwettbewerb/EL
   https://www.transfermarkt.com/uefa-europa-conference-league/marktwerte/pokalwettbewerb/UCOL
+  ----------------------------------------------------------------------------------------------------------
+  Total Players Scraped Across All Competitions: 1550
+  ----------------------------------------------------------------------------------------------------------
