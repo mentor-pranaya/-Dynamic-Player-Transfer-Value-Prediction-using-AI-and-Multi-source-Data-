@@ -1,0 +1,73 @@
+Daily Progress Report- Samarth Sukumar - 18/08/25
+
+1) StatsBomb Open Data (GitHub Repository) :
+
+-Successfully downloaded datasets from the official StatsBomb Open Data GitHub
+
+-Reviewed and explored the following categories of data:
+
+	-Competitions & Seasons (competitions.json) – metadata regarding available competitions and seasons.
+
+	-Matches (matches/) – match-level details including competition ID, season ID, participating teams, and scores.
+
+	-Lineups (lineups/) – player participation information including squads, positions, and substitutions.
+
+	-Events (events/) – detailed, event-level information for each match (shots, passes, pressures, fouls, etc.).
+
+	-Three-Sixty Data (three-sixty/) – freeze-frame player positioning data around selected match events.
+
+-All files are provided in JSON format and their structure was verified.
+
+2) Transfermarkt Market Value Data :
+
+-Initiated efforts to collect player market value history data from Transfermarkt.
+
+-Investigated how player profile pages contain market value timelines embedded in JavaScript objects.
+
+-Understood that extracting this data requires correctly identifying player IDs and parsing embedded scripts to obtain date–value pairs.
+
+-Was not yet able to implement a complete extraction successfully; this task remains in progress.
+
+CHALLENGES ENCOUNTERED :
+
+
+-  Encountered difficulties in extracting structured market value data from Transfermarkt due to the complexity of parsing embedded JavaScript and mapping players to their respective Transfermarkt IDs.
+
+Daily Progress Report- Samarth Sukumar - 19/08/25
+
+Tasks Completed:
+
+-Worked on implementing a robust Transfermarkt web scraping script to collect market value history for all players in the English Premier League (2023/24 season).
+
+-Integrated the following improvements into the scraper:
+
+	-Retry logic to handle temporary server blocks (503 errors).
+
+	-User-Agent rotation to mimic different browsers and reduce chances of being blocked.
+
+	-Slower request delays to scrape politely and avoid server overload.
+
+	-Resume functionality so scraping can continue from the last saved player in case of interruption.
+
+-Ran initial tests of the scraper.
+
+	-Successfully retrieved data for several players.
+
+	-Observed that some players return 404 errors (indicating no market value history exists on Transfermarkt).
+
+	-Confirmed that the code skips such players and continues scraping the rest without crashing.
+
+Current Output:
+
+-Data is being saved into the file:
+
+	data_raw/transfermarkt/EPL_2023_24_market_values.csv
+
+
+-Contains player-wise market value histories including date, value, age, and club information.
+
+Challenges Faced:
+
+-Encountered 503 Service Unavailable errors due to Transfermarkt blocking repeated requests. This was mitigated with retry logic, delays, and rotating headers.
+
+-Some players (especially youth/lesser-known ones) have no available market value data, leading to 404 errors. These are being safely skipped.
