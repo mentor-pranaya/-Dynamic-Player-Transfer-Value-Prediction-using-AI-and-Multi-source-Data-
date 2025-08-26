@@ -16,7 +16,13 @@ competitions = {
     "La Liga": "https://www.transfermarkt.com/primera-division/marktwerte/wettbewerb/ES1",
     "Bundesliga": "https://www.transfermarkt.com/bundesliga/marktwerte/wettbewerb/L1",
     "Serie A": "https://www.transfermarkt.com/serie-a/marktwerte/wettbewerb/IT1",
-    "Ligue 1": "https://www.transfermarkt.com/ligue-1/marktwerte/wettbewerb/FR1"
+    "Ligue 1": "https://www.transfermarkt.com/ligue-1/marktwerte/wettbewerb/FR1",
+    "Eredivisie": "https://www.transfermarkt.com/eredivisie/marktwerte/wettbewerb/NL1",
+    "Super Ligue": "https://www.transfermarkt.com/super-lig/marktwerte/wettbewerb/TR1",
+    "Saudi Professional Ligue": "https://www.transfermarkt.com/saudi-professional-league/marktwerte/wettbewerb/SA1",
+    "UEFA champions Ligue": "https://www.transfermarkt.com/uefa-champions-league/marktwerte/pokalwettbewerb/CL",
+    "Europa Ligue": "https://www.transfermarkt.com/europa-league/marktwerte/pokalwettbewerb/EL",
+    "UEFA Europa Conference League": "https://www.transfermarkt.com/uefa-europa-conference-league/marktwerte/pokalwettbewerb/UCOL"
 }
 
 # -----------------------------------------
