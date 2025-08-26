@@ -1,0 +1,19 @@
+1 . StatsBomb openData : 
+Downloaded from : Kaggle 
+format of file  : JSON
+Description: It is exclusively known for highly detailed information about Passes , Shots , Tackles , Dribbles and other on field activities
+Used to analyze player's performance data
+
+
+2 . Tranfermrkt Value Dataset:
+
+
+3 . Players injury data :
+
+
+
+4. Social media sentiment analysis:
+used reddit's api for collecting information that is available on social media.
+at First , planned of using twitter api but dropped that idea as there was a limit set on searching and was not really impactful for the project
+Downloaded a dataset available on kaggle
+format : CSV 
