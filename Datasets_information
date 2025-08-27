@@ -6,11 +6,18 @@ Used to analyze player's performance data
 
 
 2 . Tranfermrkt Value Dataset:
+Downloaded from : Kaggle
+format of file : CSV
+This file contains transfer records that includes player market value , transfer fees , in which they are in , and contract details.
+Also includes many columns like player_id which will be beneficial for connectivity , and many more useful columns
 
 
-3 . Players injury data :
 
-
+3 . Players injury Dataset :
+Downloaded from : Kaggle
+format for file : CSV
+This file contains players injury data.
+This also includes player_id column to have a connectivity in all datasets to keep a record of injuries
 
 4. Social media sentiment analysis:
 used reddit's api for collecting information that is available on social media.
