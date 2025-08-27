@@ -1,0 +1,26 @@
+📂 Datasets Collected
+
+
+1. Player Performance Data
+
+Source: StatsBomb Open Data (GitHub)
+Details: Contains match-level player stats (goals, assists, passes, shots, etc.) for 2025.
+Usage: Used for feature engineering of player performance metrics.
+
+2. Market Value Data
+
+Source: Kaggle (Football/Soccer player market value dataset, 2025).
+Details: Includes player transfer market values and historical value trends.
+Usage: Target variable for prediction models.
+
+3. Injury Data
+
+Source: Kaggle (Football player injury dataset, 2020–2023).
+Details: Player injury history, duration of injuries, and missed matches.
+Usage: Added as risk factors affecting player valuation.
+
+4. Sentiment Analysis Data
+
+Source: Kaggle (Twitter sentiment analysis dataset on football players).
+Details: Preprocessed sentiment scores (positive, neutral, negative) from tweets mentioning players.
+Usage: Reflects public/media perception, influencing player market value.
