@@ -1,0 +1,13 @@
+I have successfully collected data collection Part:
+
+I have collected Players’ general data from Transfermarkt,
+
+And Sentiment analysis data from Reddit,
+
+And Injury history data from Transfermarkt.
+
+Right now, I have structured all these datasets in CSV format. I’m in the stage of merging them 
+
+and preparing them for preprocessing. After that, I will move to the modeling part for 
+
+predicting player transfer values.
