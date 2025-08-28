@@ -1,4 +1,4 @@
-#StatsBomb 
+#StatsBomb : 
 
 
 import pandas as pd
@@ -89,3 +89,221 @@ plt.title(f"Top 10 Players by Shots in Match {first_match_id}")
 plt.ylabel("Shots")
 plt.xticks(rotation=45)
 plt.show()
+
+
+
+#Transfermrkt : 
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import os
+
+def search_for_player_url(player_name, headers):
+    """Searches Transfermarkt and returns the URL of the top search result."""
+    search_query = player_name.replace(' ', '+')
+    search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
+    
+    try:
+        response = requests.get(search_url, headers=headers)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        player_table = soup.find('table', class_='items')
+        if player_table:
+            first_result_cell = player_table.find('td', class_='hauptlink')
+            if first_result_cell:
+                player_link = first_result_cell.find('a')
+                if player_link and 'href' in player_link.attrs:
+                    return "https://www.transfermarkt.com" + player_link['href']
+    except requests.exceptions.RequestException as e:
+        print(f"Error during search: {e}")
+    return None
+
+def scrape_market_value(player_url, headers):
+    """Scrapes the name and market value from a player's profile."""
+    try:
+        response = requests.get(player_url, headers=headers)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # --- UPDATED SELECTORS ---
+        # Find player name directly from the page's main h1 tag
+        player_name_element = soup.find('h1', class_='data-header__headline-wrapper')
+        # Find market value from its specific link wrapper
+        value_element = soup.find('a', class_='data-header__market-value-wrapper')
+        
+        # Clean the player name text to remove the jersey number
+        player_name = ' '.join(player_name_element.text.strip().split()[1:]) if player_name_element else 'Unknown Player'
+        market_value = value_element.text.strip().split()[0] if value_element else 'Not Found'
+        
+        return {"Player": player_name, "Market Value": market_value}
+    except requests.exceptions.RequestException as e:
+        print(f"Error scraping market value: {e}")
+    return None
+
+if __name__ == "__main__":
+    name = input("Enter the full name of the player to find their market value: ")
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    
+    print(f"\nSearching for {name}...")
+    player_url = search_for_player_url(name, headers)
+    
+    if player_url:
+        print(f"Found player profile: {player_url}")
+        player_data = scrape_market_value(player_url, headers)
+        
+        if player_data:
+            df = pd.DataFrame([player_data])
+            file_path = 'market_values.csv'
+            
+            # Append to the CSV if it exists, otherwise create it
+            df.to_csv(file_path, mode='a', header=not os.path.exists(file_path), index=False)
+            print(f"\nSuccessfully saved market value data to {file_path}")
+            print(df)
+    else:
+        print(f"Could not find a profile for {name}.")
+
+
+
+
+#Injury data : 
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import os
+
+def search_for_player_url(player_name, headers):
+    """Searches Transfermarkt and returns the URL of the top search result."""
+    search_query = player_name.replace(' ', '+')
+    search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
+    
+    try:
+        response = requests.get(search_url, headers=headers)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        player_table = soup.find('table', class_='items')
+        if player_table:
+            first_result_cell = player_table.find('td', class_='hauptlink')
+            if first_result_cell:
+                player_link = first_result_cell.find('a')
+                if player_link and 'href' in player_link.attrs:
+                    return "https://www.transfermarkt.com" + player_link['href']
+    except requests.exceptions.RequestException as e:
+        print(f"Error during search: {e}")
+    return None
+
+def scrape_injury_history(player_url, headers):
+    """Scrapes the full injury history from a player's profile."""
+    try:
+        # Go directly to the injury page
+        injury_url = player_url.replace('/profil/', '/verletzungen/')
+        response = requests.get(injury_url, headers=headers)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Get the player's name for the DataFrame
+        player_name_element = soup.find('h1', class_='data-header__headline-wrapper')
+        player_name = ' '.join(player_name_element.text.strip().split()[1:]) if player_name_element else 'Unknown Player'
+
+        injuries = []
+        # Find the table containing the injury data
+        injury_table = soup.find('div', class_='responsive-table')
+        if injury_table:
+            # Loop through each row in the table (skipping the header)
+            for row in injury_table.find_all('tr')[1:]:
+                cols = row.find_all('td')
+                if len(cols) > 4:
+                    # For each injury, we add the player's name
+                    injury_data = {
+                        "Player": player_name,
+                        "Season": cols[0].text.strip(),
+                        "Injury": cols[1].text.strip(),
+                        "From": cols[2].text.strip(),
+                        "Until": cols[3].text.strip(),
+                        "Days Missed": cols[4].text.strip()
+                    }
+                    injuries.append(injury_data)
+        
+        # If player has no recorded injuries, create one row stating that
+        if not injuries:
+             injuries.append({
+                "Player": player_name, "Season": "N/A", "Injury": "No recorded injuries",
+                "From": "N/A", "Until": "N/A", "Days Missed": "N/A"
+            })
+            
+        return pd.DataFrame(injuries)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error scraping injury data: {e}")
+        return pd.DataFrame() # Return an empty DataFrame on error
+
+if __name__ == "__main__":
+    name = input("Enter the full name of the player to find their injury history: ")
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    
+    print(f"\nSearching for {name}...")
+    player_url = search_for_player_url(name, headers)
+    
+    if player_url:
+        print(f"Found player profile: {player_url}")
+        injury_df = scrape_injury_history(player_url, headers)
+        
+        if not injury_df.empty:
+            file_path = 'injury_history.csv'
+            
+            # Append to the CSV if it exists, otherwise create it
+            injury_df.to_csv(file_path, mode='a', header=not os.path.exists(file_path), index=False)
+            print(f"\nSuccessfully saved injury history to {file_path}")
+            print(injury_df)
+    else:
+        print(f"Could not find a profile for {name}.")
+
+
+# social media analysis ( using reddit ) :
+
+import praw
+import pandas as pd
+import os
+
+# --- Good Practice: Create a 'data' folder if it doesn't exist ---
+if not os.path.exists('data'):
+    os.makedirs('data')
+
+# --- Initialize PRAW with your credentials ---
+reddit = praw.Reddit(
+    client_id = "##############" , 
+    client_secret = "#################",
+    user_agent="TransferIQ Scraper by u/YourUsername"
+)
+
+# --- Search for submissions in a specific subreddit ---
+subreddit = reddit.subreddit("soccer")
+player_name = "Kylian Mbappe"
+submissions_data = []
+
+# Search for the top posts this month containing the player's name
+for submission in subreddit.search(query=player_name, sort="top", time_filter="month", limit=10):
+    title = submission.title
+    score = submission.score
+    
+    submission.comments.replace_more(limit=0)
+    comments = [comment.body for comment in submission.comments.list()[:5]]
+    
+    submissions_data.append({
+        "Name" : player_name ,
+        "title": title,
+        "score": score,
+        "comments": comments
+    })
+
+# --- Convert the collected data to a DataFrame ---
+df = pd.DataFrame(submissions_data)
+
+# --- NEW: Save the DataFrame to a CSV file ---
+file_path = '/Users/nishantgupta/Downloads/Internship Dataset/reddit_soccer_data.csv'
+df.to_csv(file_path, mode = 'a' ,  index=False)
+
+print(f"Successfully saved Reddit data to {file_path}") 
