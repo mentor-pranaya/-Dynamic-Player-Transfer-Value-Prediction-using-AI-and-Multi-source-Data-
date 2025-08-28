@@ -31,22 +31,22 @@ def main():
 
     # Save
     out.to_csv(FINAL_WITH_S, index=False)
-    logging.info(f"✅ Saved merged dataset: {FINAL_WITH_S}")
+    logging.info(f"Saved merged dataset: {FINAL_WITH_S}")
 
     # Log merge stats
     sentiment_cols = [c for c in out.columns if c.startswith("reddit_")]
     if sentiment_cols:
         merged_count = out[sentiment_cols[0]].notna().sum()
-        logging.info(f"ℹ️ Sentiment data merged for {merged_count}/{len(out)} player-seasons")
+        logging.info(f"Sentiment data merged for {merged_count}/{len(out)} player-seasons")
 
     # Warn about unmatched sentiment rows
     missing = se[~se[["player_name","season"]].apply(tuple, 1).isin(
                 df[["player_name","season"]].apply(tuple, 1))]
     if not missing.empty:
-        logging.warning(f"⚠️ {len(missing)} sentiment rows did not match any player-season in final_data")
+        logging.warning(f" {len(missing)} sentiment rows did not match any player-season in final_data")
 
     # Show preview
-    logging.info("🔎 Preview of merged data:")
+    logging.info("Preview of merged data:")
     logging.info(out.head(5).to_string())
 
 if __name__ == "__main__":

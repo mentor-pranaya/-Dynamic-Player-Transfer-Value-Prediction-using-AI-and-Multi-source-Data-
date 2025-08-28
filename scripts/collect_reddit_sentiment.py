@@ -39,7 +39,7 @@ except LookupError:
     nltk.download("vader_lexicon")
 
 sia = SentimentIntensityAnalyzer()
-logging.info("✅ VADER SentimentIntensityAnalyzer ready.")
+logging.info("VADER SentimentIntensityAnalyzer ready.")
 
 # ---- Reddit ----
 load_dotenv()
@@ -135,7 +135,7 @@ def collect_for_player_season(player_name: str, season: int, subreddit_multi) ->
             break  # success
         except Exception as e:
             msg = str(e)
-            logging.warning(f"⚠️ Error {player_name} {season} attempt {attempt+1}: {msg}")
+            logging.warning(f"Error {player_name} {season} attempt {attempt+1}: {msg}")
             backoff_sleep(attempt)
 
     total_used = pos + neu + neg
@@ -234,7 +234,7 @@ def main():
                 subset=["player_name","season"], keep="last"
             )
         out.to_csv(OUT_SENTIMENT, index=False)
-        logging.info(f"✅ Saved Reddit sentiment to: {OUT_SENTIMENT}")
+        logging.info(f"Saved Reddit sentiment to: {OUT_SENTIMENT}")
         logging.info(out.head().to_string())
 
 if __name__ == "__main__":

@@ -37,7 +37,7 @@ matches_df = pd.DataFrame([
 
 # Process lineups → build player dictionary
 lineups_list = []
-player_lookup = {}  # NEW: player_id → player_name
+player_lookup = {}
 
 for file in glob(os.path.join(PATH_LINEUPS, "*.json")):
     with open(file, "r", encoding="utf-8") as f:
@@ -99,7 +99,7 @@ for json_file in glob(os.path.join(PATH_EVENTS, "*.json")):
         player_name = player_lookup.get(player_id, f"Unknown_{player_id}")
 
         events_list.append({
-            "player_name": player_name,   # USE NAME instead of ID
+            "player_name": player_name,
             "match_id": match_id,
             "event_type": safe_get(e, ["type", "name"]),
             "minute": e.get("minute"),
@@ -133,7 +133,7 @@ for json_file in glob(os.path.join(PATH_EVENTS, "*.json")):
         (df_chunk["pass_assisted_shot_id"].notnull())
     )
 
-    # Aggregate per chunk → group by player_name instead of player_id
+    # Aggregate per chunk → group by player_name
     agg_chunk = df_chunk.groupby(["player_name", "season"]).agg(
         total_goals=pd.NamedAgg(column="is_goal", aggfunc="sum"),
         total_assists=pd.NamedAgg(column="is_assist", aggfunc="sum"),
