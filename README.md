@@ -41,3 +41,9 @@ Day-5
 
 
 I am working on collecting and analyzing players' injury history data to integrate it with the existing sentiment analysis.
+
+club_name	player_name	position	injury_type	injury_start	injury_end
+Manchester City	Erling Haaland	Centre-Forward	None	None	None
+Chelsea FC	Wesley Fofana	Centre-Back	ACL tear	2025-05-01	2026-01-01
+Arsenal FC	Bukayo Saka	Right Winger	None	None	None
+Liverpool FC	Virgil van Dijk	Centre-Back	Hamstring strain	2025-07-15	2025-08-20
