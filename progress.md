@@ -1,6 +1,6 @@
 # Progress Report
 
-## Day 1
+## Day 1 (WEEK-1)
 ### Perfect Data Illusion
 - Discussed the concept of **Perfect Data Illusion**.
 - Real-world data usually has missing values, noise, and outliers.
@@ -101,3 +101,29 @@
 ---
 
 ### Q2: Can you think of a scenario where artificially balancing the dataset might actually hurt the model’s real-world performance?
+
+---
+
+## Day-1 (WEEK-2)
+### Work Done:
+1. Started working on processing the collected data for preparation.
+2. Mentor advised to put all code and related scripts on GitHub.
+
+### Daily Question:
+**Q:** What are the different techniques used to treat the missing data? How to choose which techniques to use?  
+
+---
+
+## Day-2
+### Work Done:
+1. Attempted to fetch data using Twitter API but faced limitations in access and rate restrictions.  
+2. Switched to Reddit API as an alternative source for sentiment/engagement analysis.  
+3. Worked on finalizing the **final_data.csv** which will serve as the main feed to the ML model.
+
+### Daily Question:
+**Q:** What are the different techniques used to treat the missing data? How to choose which techniques to use?
+
+---
+
+## Day-3 (Holiday)
+Marked as a holiday due to **Ganesh Chaturthi**.

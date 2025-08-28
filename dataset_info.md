@@ -48,11 +48,11 @@
 ---
 
 ### 2.4 Social Media Sentiment
-- **Source:** Twitter API
-- **Format:** JSON/CSV (after processing)
+- **Source:** Reddit API  
+- **Format:** CSV (after processing)  
 - **Description:**  
-  - Captures public sentiment regarding players through tweets and social media mentions.  
+  - Captures public sentiment regarding players through Reddit discussions and posts.  
   - Sentiment analysis performed to categorize mentions as positive, negative, or neutral.  
 - **Usage in Project:**  
   - Generates sentiment-related features for each player, such as `average_sentiment_score` or `volume_of_mentions`.  
-  - Adds a social factor influencing transfer market perception and potential value.
+  - Adds a social factor influencing transfer market perception and potential value.  

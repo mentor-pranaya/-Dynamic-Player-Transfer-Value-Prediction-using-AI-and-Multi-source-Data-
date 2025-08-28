@@ -1,8 +1,10 @@
 .idea/
 .venv/
+# Ignore environment variable files
+.env
 # Excluding data folder due to large data size
 data/
 processed_data/
 !data/.gitkeep
-# Temporarly excluding Scripts
+# Temporarly excluding Scripts(once done with data preprocessing push all the scripts used at once)
 scripts/
