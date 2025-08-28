@@ -1,1 +1,91 @@
+#StatsBomb 
 
+
+import pandas as pd
+from statsbombpy import sb
+import os
+import time
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# -----------------------------------------
+# STEP 1: AUTOMATED DATA COLLECTION FOR ALL MATCHES
+# -----------------------------------------
+
+# --- Setup: Create a folder to save the event files ---
+events_folder = "data/world_cup_events"
+if not os.path.exists(events_folder):
+    os.makedirs(events_folder)
+
+# --- Get all matches for the competition ---
+world_cup_matches = pd.DataFrame(sb.matches(competition_id=43, season_id=106))
+print(f"Found {len(world_cup_matches)} matches for the competition.")
+
+# --- Loop through each match to get its event data ---
+for index, row in world_cup_matches.iterrows():
+    match_id = row['match_id']
+    file_path = f"{events_folder}/match_{match_id}_events.csv"
+
+    # Check if the file already exists before downloading
+    if not os.path.exists(file_path):
+        print(f"Fetching event data for match_id: {match_id}...")
+        try:
+            events = pd.DataFrame(sb.events(match_id=match_id))
+            events.to_csv(file_path, index=False)
+            print(f"   -> Saved data to {file_path}")
+        except Exception as e:
+            print(f"   -> Could not fetch data for match {match_id}. Error: {e}")
+        time.sleep(1)
+    else:
+        print(f"Skipping match_id: {match_id} (file already exists).")
+
+print("\nProcess complete. All available event data has been downloaded.")
+
+# -----------------------------------------
+# STEP 2: EDA ON THE FIRST MATCH
+# -----------------------------------------
+print("\n--- Starting EDA on the first match ---")
+
+# Get the ID of the first match to load its corresponding file
+first_match_id = world_cup_matches.loc[0, "match_id"]
+first_match_file = f"{events_folder}/match_{first_match_id}_events.csv"
+
+# Load the event data for the first match from the CSV file
+events = pd.read_csv(first_match_file)
+
+# 2.1: View general information about the dataset
+print("\nEvents Data Info:")
+events.info()
+
+# 2.2: Check for missing values
+print("\nMissing values in each column:")
+print(events.isnull().sum())
+
+# 2.3: Analyze event types
+event_counts = events["type"].value_counts()
+print("\nEvent Type Counts:")
+print(event_counts.head())
+
+# Plot top 10 event types
+plt.figure(figsize=(10, 5))
+sns.barplot(x=event_counts.index[:10], y=event_counts.values[:10])
+plt.title(f"Top 10 Event Types in Match {first_match_id}")
+plt.ylabel("Count")
+plt.xticks(rotation=45)
+plt.show()
+
+# 2.4: Focus on Player Performance - Shots Taken
+shots = events[events["type"] == "Shot"]
+print("\nShots Data Sample (Player, Team, Outcome):")
+print(shots[["player", "team", "shot_outcome"]].head())
+
+# Count number of shots per player
+shots_per_player = shots["player"].value_counts().head(10)
+
+# Visualize top 10 players by shots
+plt.figure(figsize=(8, 5))
+sns.barplot(x=shots_per_player.index, y=shots_per_player.values)
+plt.title(f"Top 10 Players by Shots in Match {first_match_id}")
+plt.ylabel("Shots")
+plt.xticks(rotation=45)
+plt.show()
