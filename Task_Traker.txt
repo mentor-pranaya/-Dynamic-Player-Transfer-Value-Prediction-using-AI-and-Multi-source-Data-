@@ -29,3 +29,5 @@
 27 Aug 2025:
   Downloaded Player Injuries and Team Performance Dataset from Kaggle:
       This dataset investigates the impact of player injuries on team performance across seven Premier League clubs from 2019         to 2023, including Tottenham, Aston Villa, Brighton, Arsenal, Brentford, Everton, Burnley, and Manchester City. The            dataset contains over 600 injury records, offering insights into how player absences influence match results and               individual performance metrics.
+28 Aug 2025:
+   Working on MySQL DB to import various dataset records for easy quering, matching and cleaning of records.
