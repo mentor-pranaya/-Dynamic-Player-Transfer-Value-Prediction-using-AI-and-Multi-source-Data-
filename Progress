@@ -1,0 +1,29 @@
+Data collection has been done working on data cleaning.
+import pandas as pd
+
+# Load the three CSV files
+try:
+    df_market_value = pd.read_csv('Market value data.csv')
+    df_sentiment = pd.read_csv('Sentiment analysis.csv')
+    df_injury = pd.read_csv('Injury data.csv')
+
+    # Display information about each DataFrame
+    print("--- Market Value Data ---")
+    print(df_market_value.info())
+    print("\n--- Market Value Data (First 5 rows) ---")
+    print(df_market_value.head().to_markdown(index=False, numalign="left", stralign="left"))
+
+    print("\n\n--- Sentiment Analysis Data ---")
+    print(df_sentiment.info())
+    print("\n--- Sentiment Analysis Data (First 5 rows) ---")
+    print(df_sentiment.head().to_markdown(index=False, numalign="left", stralign="left"))
+
+    print("\n\n--- Injury Data ---")
+    print(df_injury.info())
+    print("\n--- Injury Data (First 5 rows) ---")
+    print(df_injury.head().to_markdown(index=False, numalign="left", stralign="left"))
+
+except FileNotFoundError as e:
+    print(f"Error: One or more files not found. {e}")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
