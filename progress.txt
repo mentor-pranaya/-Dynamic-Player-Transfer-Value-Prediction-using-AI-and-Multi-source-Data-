@@ -1,0 +1,56 @@
+18 August 2025:
+I explored the StatsBomb Open Data from various sources available on GitHub.
+I went through the datasets related to player performance, match events, and competitions.
+I checked how the data is structured (JSON format) and understood the type of information available
+This exploration gave me a clear idea of how to use StatsBomb data for building player performance
+features in the project
+This gave me clarity on how to extract and build useful player performance features for the project.
+
+19 August:
+Collected player performance data for analysis.
+Used GitHub as the main source to access and manage the datasets
+Checked and verified the structure of the data to make sure it’s ready for processing
+
+20 August:
+
+Collected player performance data from the StatsBomb Open Data repository.
+Used GitHub to access and organize the dataset.
+Reviewed the structure of the data to make sure it’s ready for analysis
+
+21 August:
+
+Spent time working with Python and relevant libraries to scrape dataSpent time working with 
+Python and relevant libraries to scrape data for the project
+
+22 August:
+Exploring Sentiment Data Sources
+
+Looked into Twitter API and other possible APIs for capturing player sentiment from social media.
+Plan: integrate later once performance, injury, and market data pipeline is stable.
+Data Collection Completed
+
+StatsBomb data (events, lineups, matches, three-sixty, competitions).
+Transfermarkt data (players, player valuations, transfers, appearances, clubs).
+Injury dataset (historical player injury records).
+
+25 August:
+Started working on processing the collected data for preparation.
+Mentor advised to put all code and related scripts on GitHub.
+
+26 August:
+
+Attempted to fetch data using Twitter API but faced limitations in access and rate restrictions.
+Switched to Reddit API as an alternative source for sentiment/engagement analysis.
+Worked on finalizing the final_data.csv which will serve as the main feed to the ML model.
+
+27 August:
+Holiday due to ganesh chaturthi
+
+28 August:
+Working on MySQL DB to import various dataset records for easy quering, matching and cleaning of records.
+   Created database "AIProject" on localhost
+   importing statsbomb data to mysql databbase
+ 
+29 August:
+
+    Working on python script to import data to mysql
