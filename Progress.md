@@ -1,0 +1,77 @@
+Day 1 Progress Report
+1. Perfect Data Illusion (18.08.2025)
+
+Today we discussed the concept of Perfect Data Illusion.
+
+It happens when data looks "too clean" or "too perfect" compared to real-world data.
+
+Real-world data usually contains missing values, noise, and outliers.
+
+
+2. Exploring Data
+
+Today I was exploring the StatsBomb Football Data from Kaggle.
+
+StatsBomb provides one of the largest open datasets for football analytics.
+
+It contains detailed event data (passes, shots, tackles, dribbles) as well as match data (teams, players, results).
+
+The dataset is very detailed, covering multiple leagues and competitions.
+
+
+Day 2 Progress (19.08.2025)
+1) Discussed Huge Data in Context of Project and Model
+
+Huge data is relative, not absolute. It depends on the complexity of the problem and the requirements of the ML model.
+
+In this project, huge data means:
+
+* A large number of players across multiple leagues and seasons.
+* High-dimensional attributes (performance stats, age, position, injuries, etc.).
+
+In this project’s context:
+
+Huge data = sufficient quantity + variety + quality of player-related records.
+
+Tasks Completed Today:
+
+-StatsBomb Open Data
+-Downloaded the complete StatsBomb Open Data ZIP file from the official GitHub repository.
+-Verified the folder structure and availability of key JSON files.
+
+2) Further Data Exploration
+
+
+Day 3 Progress (20.08.2025)
+Continued exploring StatsBomb datasets.
+ Transfermarkt Data
+	Downloaded player transfer datasets from Transfermarkt (ZIP format).
+	Extracted files and placed them in local directories for preprocessing.
+	Verified accessibility of all extracted files.
+
+
+Day 4 Progress (21.08.2025)
+Explored “ Market Value Data “ : Transfermarkt data from kaggle and downloaded the dataset provided and then I did the data scraping.
+
+
+Day 5 Progress (22.08.2025)
+I collected the Sentiment Analysis and then i explored it 
+Also after that I started working on Twitter api
+Now, I am working on collecting and analyzing players' injury history data to integrate it with the existing sentiment analysis.
+I am left with the Twitter API part as it has some limit sort of thing.
+
+
+Day 6 Progress (25.08.2025)
+Today, I have successfully completed data scraping for players sentiment analysis using both the Twitter API. The collected data will now help in performing detailed sentiment evaluation and comparison across platforms.
+
+
+Day 7 Progress (26.08.2025)
+I have started data cleaning and i will complete the Twitter API work by today as only some part of it is left.
+
+
+Day 8 Progress (28.08.2025)
+Currently I am working on Data Cleaning and it will take some time rest the data collection part is done.
+
+
+Day 9 Progress (29.08.2025)
+Data collection has been done working on data cleaning.
