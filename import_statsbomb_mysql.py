@@ -9,7 +9,7 @@ import mysql.connector
 db = mysql.connector.connect(
     host="localhost",
     user="himanshu",     
-    password="yahoonet",  
+    password="***",  
     database="AIProject"
 )
 
@@ -17,10 +17,12 @@ cursor = db.cursor()
 
 # ------------------------------
 # Create a sample table (for Events data)
+# added file_name column to keep track of number of files processed and file relevancy.
 # ------------------------------
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS events (
+CREATE TABLE IF NOT EXISTS events1 (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    file_name varchar(100),
     match_id INT,
     index_no INT,
     period INT,
@@ -58,21 +60,22 @@ for file in os.listdir(base_path):
             location = event.get("location") if event.get("location") else [0, 0]
 
             records.append([
-                match_id, i, period, timestamp, event_type,
+                match_id, i, f"{file}", period, timestamp, event_type,
                 player, team, location[0], location[1]
             ])
             #print(match_id, i, period, timestamp, event_type,player, team, location[0], location[1])
         df = pd.DataFrame(records, columns=[
-            "match_id", "index_no", "period", "timestamp", "type",
+            "match_id", "index_no","file_name", "period", "timestamp", "type",
             "player", "team", "location_x", "location_y"
         ])
         print(df)
         # Insert into MySQL row by row
+        #added filename column to keep track of number of files processed and file relevancy.   
         for _, row in df.iterrows():
             cursor.execute("""
-                INSERT INTO events
-                (match_id, index_no, period, timestamp, type, player, team, location_x, location_y)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                INSERT INTO events1
+                (match_id, index_no,file_name,  period, timestamp, type, player, team, location_x, location_y)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """, tuple(row))
 
         db.commit()
