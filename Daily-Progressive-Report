@@ -73,10 +73,33 @@ Large Data with narrow distribution will lead to poor generalization and overfit
 Yes , the model trained on a huge but homogeneous dataset actually perform worse than a model trained on fewer but more varied samples
 
 
-2. Question for the next day:
-
-
-
 =========================================================================================================================
 
 Day 5 Report ( 22 August 2025 ):
+worked on api and bearer token that i got from twitter developer platform , which in the end was not very helpful.
+so, was surfing internet for better approach.
+Created a 'Daily-Progress-Report' file in my branch on github to give the track of my work to my mentor
+
+=========================================================================================================================
+week 2 - Data Cleaning and Pre-processing
+Day 1:
+Got to know about Statsbomb python library and its functionalities , which in turn was very helpful as handling downloaded datasets was a very big task
+have to start data cleaning of all the datasets that i am using for my project
+
+
+==========================================================================================================================
+
+Day 2:
+Started cleaning Transfermrkt data and StatsBomb open data 
+switched to Reddit api for social media and sentiment analysis part and started collecting data from there and saving all of it in csv file
+Created a new file 'Code_for_data_extraction' to upload the code that i used for data retrieval and cleaning
+ 
+==========================================================================================================================
+Day 3 : Holiday
+
+collected more data for sentiment alaysis
+
+==========================================================================================================================
+
+Day 4 : 
+Cleaned player injury data and updated everything on github
