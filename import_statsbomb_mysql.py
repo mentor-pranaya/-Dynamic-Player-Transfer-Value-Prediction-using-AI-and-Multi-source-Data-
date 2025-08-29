@@ -8,8 +8,8 @@ import mysql.connector
 # ------------------------------
 db = mysql.connector.connect(
     host="localhost",
-    user="root",     
-    password="##",  
+    user="himanshu",     
+    password="yahoonet",  
     database="AIProject"
 )
 
@@ -45,7 +45,7 @@ for file in os.listdir(base_path):
 
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-
+            #print(data)
         # Convert JSON into pandas DataFrame (flatten only required fields)
         records = []
         for i, event in enumerate(data):
@@ -55,18 +55,18 @@ for file in os.listdir(base_path):
             event_type = event.get("type", {}).get("name")
             player = event.get("player", {}).get("name")
             team = event.get("team", {}).get("name")
-            location = event.get("location") if event.get("location") else [None, None]
+            location = event.get("location") if event.get("location") else [0, 0]
 
             records.append([
                 match_id, i, period, timestamp, event_type,
                 player, team, location[0], location[1]
             ])
-
+            #print(match_id, i, period, timestamp, event_type,player, team, location[0], location[1])
         df = pd.DataFrame(records, columns=[
             "match_id", "index_no", "period", "timestamp", "type",
             "player", "team", "location_x", "location_y"
         ])
-
+        print(df)
         # Insert into MySQL row by row
         for _, row in df.iterrows():
             cursor.execute("""
@@ -84,4 +84,3 @@ for file in os.listdir(base_path):
 cursor.close()
 db.close()
 print("✅ Import completed successfully!")
-
