@@ -127,3 +127,31 @@
 
 ## Day-3 (Holiday)
 Marked as a holiday due to **Ganesh Chaturthi**.
+
+---
+
+## Day-4
+- Completed fetching **Reddit sentiments** using VADER.  
+- Merged sentiment scores with `final_data.csv` → produced **`final_data_with_sentiment.csv`**.  
+- Outcome: enriched base dataset with fan/community sentiment signals.
+
+---
+
+## Day-5
+- Loaded **`final_data_with_sentiment.csv`** for feature engineering.  
+- Performed preprocessing and feature engineering steps:
+  - Numeric scaling, categorical encoding, sentiment integration.  
+  - Created **rolling seasonal trend features** (1 & 3 seasons).  
+  - Built **injury decay scores** (recent injuries weigh more).  
+  - Added **contract buckets** based on `days_to_contract_end`.  
+  - Constructed **sentiment × performance interaction terms**.  
+  - Removed **76 high-correlation features** to avoid redundancy.  
+- Saved **`features_augmented.parquet`** as the final feature set.  
+- Outcome: obtained a clean, enriched dataset (1272 rows × 226 features) ready to feed into modeling.
+
+---
+
+**Artifacts produced so far**
+- `final_data_with_sentiment.csv`
+- `features_augmented.parquet`
+- `high_corr_drop_candidates.csv` (audit list of dropped features)
