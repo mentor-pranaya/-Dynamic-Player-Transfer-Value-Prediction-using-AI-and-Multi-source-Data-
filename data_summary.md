@@ -1,0 +1,64 @@
+# Data Collection Plan
+
+### 1. Player Performance Data
+- **Purpose:** Obtain detailed match statistics for football players.  
+- **Source:** *StatsBomb Open Data* – a free, professional-grade dataset covering various competitions.  
+- **Approach:**  
+  1. **Used the `statsbombpy` Python library** – the most convenient way to directly access StatsBomb data.  
+  2. **Setup:** Install with `pip install statsbombpy`.  
+  3. **Steps for Extraction:**  
+     - Import the library.  
+     - List all available competitions to decide which ones to analyze.  
+     - Select a competition and fetch the corresponding match list.  
+     - For each match, download the event-level data (e.g., passes, shots, tackles, including pitch coordinates).  
+     - Save the collected data to enable downstream cleaning and feature engineering.  
+
+---
+
+### 2. Market Value Data
+- **Purpose:** Gather both historical and current player market valuations.  
+- **Source:** *Transfermarkt.com*.  
+- **Approach:** Web scraping using Python.  
+  1. **Required Libraries:** `requests` for HTTP calls and `BeautifulSoup4` for parsing HTML. Install via: `pip install requests beautifulsoup4`.  
+  2. **Scraping Workflow:**  
+     - Build a list of URLs pointing to player profile pages on Transfermarkt.  
+     - Fetch page content using `requests.get(url)`.  
+     - Create a `BeautifulSoup` object from the downloaded HTML.  
+     - With browser dev tools (Inspect Element), locate HTML tags and classes containing the market value info.  
+     - Extract the values from the parsed object.  
+     - Loop over all player URLs to collect values systematically.  
+  3. **Ethical Practices:** Review `robots.txt` before scraping, and include pauses (`time.sleep()`) between requests to avoid stressing the server.  
+
+---
+
+### 3. Social Media Sentiment Data
+- **Purpose:** Measure public opinion and sentiment about players from social media discussions.  
+- **Main Source:** *Twitter (X)* through its official API.  
+- **Approach:** Using Python with the Twitter API.  
+  1. **Setup Requirements:** Obtain a Twitter Developer Account and generate API keys and tokens for authentication.  
+  2. **Library to Use:** `Tweepy`, which simplifies API calls. Install with `pip install tweepy`.  
+  3. **Data Collection Steps:**  
+     - Authenticate the script with API credentials.  
+     - Query tweets mentioning the player’s name, handle.  
+     - Collect tweet text along with metadata (date, likes, retweets).  
+     - Storing the raw text for later NLP-based sentiment scoring (e.g. using VADER).  
+
+---
+
+### 4. Injury Data
+- **Purpose:** Build a dataset of player injury histories, including type, severity, and duration.  
+- **Main Sources:** Transfermarkt’s *injury tab* on player profiles.  
+- **Approach:** Combination of scraping and dataset search.  
+  1. **Web Scraping:** Similar to the Transfermarkt market value workflow. Identify a reliable site that tracks injuries and extract details such as injury type, start/end dates, expected return, and matches missed.  
+  2. **Searching for Datasets:** Before implementing scrapers, check platforms like Kaggle for precompiled injury datasets.  
+  3. **Challenges:** Injury data is often unstructured and inconsistent, making preprocessing and cleaning especially critical.
+
+---
+
+### 2.4 Social Media Sentiment
+- **Source:** Reddit API  
+- **Description:**  
+  - Captures public sentiment regarding players through Reddit discussions and posts.  
+  - Sentiment analysis performed to categorize mentions as positive, negative, or neutral.  
+- **Usage in Project:**  
+  - Generates sentiment-related features for each player, such as `average_sentiment_score` or `volume_of_mentions`.  
