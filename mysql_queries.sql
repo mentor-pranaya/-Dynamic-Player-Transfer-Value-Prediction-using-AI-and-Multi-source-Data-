@@ -10,4 +10,4 @@ desc events1;
 select * from events1;
 select count(*) as NetCnt from events1 union
 select count(*) as NoLocationCnt from events1 where location_x=0;
-select count(*) as FileCnt from (select count(*) as FileRecCnt from events1 group by file_name) as t;
+select count(*) as FileCnt, 3464-count(*) as FileCntRem from (select count(*) as FileRecCnt from events1 group by file_name) as t;
