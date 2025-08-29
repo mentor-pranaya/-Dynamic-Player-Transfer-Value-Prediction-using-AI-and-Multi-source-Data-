@@ -35,4 +35,4 @@
    importing statsbomb data to mysql databbase
 29 Aug 2025:
     Working on python script to import data to mysql
-   
+    Stopped data import to add file_name column to data being imported from json to mysql for cross referencing.
