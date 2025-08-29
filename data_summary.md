@@ -55,7 +55,7 @@
 
 ---
 
-### 2.4 Social Media Sentiment
+### 5. Social Media Sentiment
 - **Source:** Reddit API  
 - **Description:**  
   - Captures public sentiment regarding players through Reddit discussions and posts.  
