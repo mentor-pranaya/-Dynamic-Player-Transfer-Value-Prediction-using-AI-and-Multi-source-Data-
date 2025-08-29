@@ -51,4 +51,16 @@
 - **Approach:** Combination of scraping and dataset search.  
   1. **Web Scraping:** Similar to the Transfermarkt market value workflow. Identify a reliable site that tracks injuries and extract details such as injury type, start/end dates, expected return, and matches missed.  
   2. **Searching for Datasets:** Before implementing scrapers, check platforms like Kaggle for precompiled injury datasets, which could save effort.  
-  3. **Challenges:** Injury data is often unstructured and inconsistent, making preprocessing and cleaning especially critical.  
+  3. **Challenges:** Injury data is often unstructured and inconsistent, making preprocessing and cleaning especially critical.
+
+---
+
+### 2.4 Social Media Sentiment
+- **Source:** Reddit API  
+- **Format:** CSV (after processing)  
+- **Description:**  
+  - Captures public sentiment regarding players through Reddit discussions and posts.  
+  - Sentiment analysis performed to categorize mentions as positive, negative, or neutral.  
+- **Usage in Project:**  
+  - Generates sentiment-related features for each player, such as `average_sentiment_score` or `volume_of_mentions`.  
+  - Adds a social factor influencing transfer market perception and potential value.  
