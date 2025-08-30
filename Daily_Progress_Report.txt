@@ -71,3 +71,105 @@ Challenges Faced:
 -Encountered 503 Service Unavailable errors due to Transfermarkt blocking repeated requests. This was mitigated with retry logic, delays, and rotating headers.
 
 -Some players (especially youth/lesser-known ones) have no available market value data, leading to 404 errors. These are being safely skipped.
+
+Daily Progress Report - Samarth Sukumar - 20/9/25
+
+Tasks Completed:
+
+- Continued running code for web scraping transfermarkt website.
+
+Current Output:
+
+- Data continues to be saved into the above file
+
+Challenges Faced:
+- Code didn't run when laptop went idle or went to sleep, I thought it would run in the background and left it.
+- Code was taking too long to complete.
+
+Daily Progress Report - Samarth Sukumar - 21/9/25
+
+Tasks Completed:
+
+- Continued running code for web scraping transfermarkt website.
+- Found a fix to the slow problem happening before.
+
+Daily Progress Report - Samarth Sukumar - 22/9/25
+
+Tasks Completed:
+
+- Code to web scrape completed
+- The output wasn't as desired so started working on new code for web scraping
+
+Current output:
+
+- Data is now being stored into the file:
+		epl_players_basic_info_23_24.csv
+
+Challenges Faced:
+
+- The output of the first code wasn't desired.
+- Should have noticed before but the code wasn't able to fetch the right details.
+- The code gave a lot of errors but it kept skipping it smoothly and hence only player id and player name was in the csv file and other values were NULL.
+
+Daily Progress Report - Samarth Sukumar - 22/9/25
+
+Task Completed:
+
+- Tried some new code to get desired web scraping outputs.
+
+Challenges Faced:
+
+- A lot of the versions of the code had similar problems of not being able to read the data properly.
+
+Daily Progress Report - Samarth Sukumar - 25/9/25
+
+Task Completed:
+
+- Tried multiple variations of the code and finally got the desired output.
+
+Challenges Faced:
+
+- The problem with every other code was that it was using an invalid link and so couldn't fetch any data and hence skipping all the players and giving null values
+
+
+Daily Progress Report - Samarth Sukumar - 26/9/25
+
+Task Completed:
+
+- Repeated the process to get data from other clubs for more players
+- Statrted working on sentiment analysis data from a social media platform
+
+Challenges Faced:
+
+- Twitter/X api had a cap on how many tweets one could scrape, so had to find another alternative to get the desired data.
+
+Daily Progress Report - Samarth Sukumar - 27/9/25
+
+Task Completed:
+
+- Finished writing code for sentiment analysis data from a social media platform using their api .
+- Iterated through the csv files of players collected from transfermarkt to search for tweets based on the names in those files.
+
+Challenges Faced:
+
+- Took a long time for the code to complete since it was pulling a lot of data per player and there were a lot of players
+- Used Reddit api instead of twitter/X since it didn't have a limit to how many comments you could scrape.
+
+Daily Progress Report - Samarth Sukumar - 28/9/25
+
+Task Completed:
+
+- Started Data Cleaning process on the data obtained from transfermarkt 
+
+Challenges Faced:
+
+- By mistake dropped the column "player_name", since i was trying to change the name from latin ( it was giving giberish letters ) to english.
+
+Daily Progress Report - Samarth Sukumar - 29/9/25
+
+Task Completed:
+
+- Finished data cleaning of all the data web scraped.
+- wrote code to do preliminary sentiment analysis from the data scraped from reddit.
+
+
