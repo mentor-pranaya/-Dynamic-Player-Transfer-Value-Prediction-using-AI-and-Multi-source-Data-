@@ -1,5 +1,6 @@
 import pandas as pd
 import mysql.connector
+import math
 from datetime import datetime
 
 # ------------------------------
@@ -12,7 +13,6 @@ db = mysql.connector.connect(
     database="AIProject"
 )
 cursor = db.cursor()
-USE AIProject;
 
 # Transfermarkt Player Market Values
 cursor.execute(""" CREATE TABLE IF NOT EXISTS transfermrkt (
@@ -90,7 +90,7 @@ def parse_market_value(value):
 # ------------------------------
 # Import Transfermarkt Market Values
 # ------------------------------
-market_file = "/home/gubsend/Infosys Springboard/open-data-master/market_values_all_competitions.csv"
+market_file = "/home/gubsend/Infosys Springboard/market_values_all_competitions.csv"
 df_market = pd.read_csv(market_file)
 
 # Convert market value to numeric
@@ -108,13 +108,13 @@ print(f"✅ Imported {len(df_market)} rows into transfermrkt")
 # ------------------------------
 # Import Player Injuries Impact
 # ------------------------------
-injuries_file = "/home/gubsend/Infosys Springboard/open-data-master/player_injuries_impact.csv"
+injuries_file = "/home/gubsend/Infosys Springboard/player_injuries_impact.csv"
 df_injuries = pd.read_csv(injuries_file)
 
 # Convert dates safely
 def parse_date(d):
     if pd.isna(d) or d == "N.A.":
-        return None
+        return 0
     try:
         return datetime.strptime(d.strip('"'), "%b %d, %Y").date()
     except:
@@ -126,9 +126,33 @@ df_injuries["Date of return"] = df_injuries["Date of return"].apply(parse_date)
 # Insert into MySQL
 cols = df_injuries.columns.tolist()
 placeholders = ",".join(["%s"] * len(cols))
-query = f"INSERT INTO player_injuries_impact ({','.join(c.lower().replace(' ', '_') for c in cols)}) VALUES ({placeholders})"
 
+# ------------------------------
+# Clean Numeric Columns
+# ------------------------------
+numeric_cols = [c for c in df_injuries.columns if "gd" in c.lower() or c.lower() == "age" or "fifa rating" in c.lower()]
+
+def safe_int(x):
+    try:
+        if pd.isna(x) or math.isnan(x) or str(x).strip().upper() == "N.A.":
+            return 0
+        return int(x)
+    except:
+        return 0
+
+for col in numeric_cols:
+    df_injuries[col] = df_injuries[col].apply(safe_int)
+
+# ------------------------------
+# Insert into MySQL
+# ------------------------------
+cols = df_injuries.columns.tolist()
+placeholders = ",".join(["%s"] * len(cols))
+#print(f"INSERT INTO player_injuries_impact ({','.join(c.lower().replace(' ', '_') for c in cols)}) VALUES ({placeholders})")
+query = f"INSERT INTO player_injuries_impact ({','.join(c.lower().replace(' ', '_') for c in cols)}) VALUES ({placeholders})"
+#print(query)
 for _, row in df_injuries.iterrows():
+    #print(row)
     cursor.execute(query, tuple(row))
 
 db.commit()
@@ -139,4 +163,3 @@ print(f"✅ Imported {len(df_injuries)} rows into player_injuries_impact")
 # ------------------------------
 cursor.close()
 db.close()
-
