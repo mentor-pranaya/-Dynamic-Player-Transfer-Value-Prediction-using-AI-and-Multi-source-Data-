@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS market_values_trfrmrkt (
     competition_id INT,
     market_value BIGINT,
     snapshot_date DATETIME DEFAULT current_timestamp, 
-    FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE,
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
-    FOREIGN KEY (competition_id) REFERENCES competitions(id) ON DELETE CASCADE);
+    FOREIGN KEY (player_id) REFERENCES players_trfrmrkt(id) ON DELETE CASCADE,
+    FOREIGN KEY (club_id) REFERENCES clubs_trfrmrkt(id) ON DELETE CASCADE,
+    FOREIGN KEY (competition_id) REFERENCES competitions_trfrmrkt(id) ON DELETE CASCADE);
 -- Compare avg rating before vs after injury
 SELECT p.name,
        AVG(CASE WHEN m.phase='before' THEN m.player_rating END) AS avg_before,
