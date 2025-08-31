@@ -5,13 +5,6 @@ Today I successfully completed the data collection phase. I gathered player perf
 
 Day-2
 
-
-TransferIQ Project 
-
-Date:2025-08-18
-
-Tasks Completed Today:
-
 StatsBomb Open Data (GitHub Repository)
 	-Downloaded the complete StatsBomb Open Data ZIP file from the official GitHub repository.
 	-Extracted and stored datasets locally for further use.
@@ -42,7 +35,7 @@ Day-3
 
 3) Output:
 - Generated a combined CSV file `TransferIQ_Combined_Players.csv` containing structured information for further analysis.
-    - Ensured that similar players were given first preference in row ordering.
+- Ensured that similar players were given first preference in row ordering.
 
 Day-4
 
@@ -58,3 +51,17 @@ Day-6
 
 Today,I started working on the data cleaning and feature engineering 
 And done with data collection part from several sources
+
+Day-7
+
+Done with data cleaing process of data set and sentimental analysis 
+and started working on master players list
+
+Day-8
+
+Data cleaning is completed for data set,sentimental analysis,injury history files
+started making of master list
+
+Day-9
+
+master list completed and cleaning process also completed,working on sql part.
