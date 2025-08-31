@@ -1,0 +1,26 @@
+
+name: transferiq
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pandas
+  - scikit-learn
+  - xgboost
+  - lightgbm
+  - pytorch
+  - matplotlib
+  - jupyterlab
+  - mlflow
+  - optuna
+  - shap
+  - nltk
+  - pip:
+      - tweepy
+      - vaderSentiment
+      - sentence-transformers
+      - beautifulsoup4
+      - requests
+      - captum

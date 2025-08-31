@@ -1,0 +1,17 @@
+
+# Data and models
+/data/
+/models/
+/.venv
+.env
+__pycache__/
+.ipynb_checkpoints
+*.pyc
+*.pkl
+*.h5
+*.ckpt
+.DS_Store
+*.log
+mlruns/
+.wandb/
+reports/slides/*.pptx
