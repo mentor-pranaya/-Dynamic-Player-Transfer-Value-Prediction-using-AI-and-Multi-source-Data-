@@ -39,3 +39,6 @@
 30th Aug 2025: 
   Completed importing 3464 files from events folder from StatsBomb data
   Total rows imported : 12188949
+31th Aug 2025:
+  Created new script to import statsbomb data, along with lineup data from events json files
+  Created batch update file to create a new events table for every 100 files, that could be merged later into 1 table as inserting in single file was taking long time.
