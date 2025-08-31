@@ -1,6 +1,7 @@
 create database AIProject;
 use AIProject;
 show tables;
+SHOW VARIABLES LIKE 'datadir';
 /*desc events;
 select * from events;
 select count(*) as NetCnt from events union
@@ -17,7 +18,13 @@ select count(*) from (select distinct(file_name) from events1) as t;
 SELECT TABLE_NAME AS `Table`, ROUND(((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024), 2) AS `Size (MB)`
 FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'AIProject'; -- AND TABLE_NAME = 'your_table_name';
 select * from events1 where player is not null;
-drop table eventsNew;
-drop table lineups;
+/*drop table if exists eventsNew;
+drop table if exists eventsNew1;
+drop table if exists eventsNew100;
+drop table if exists lineups;*/
 select * from eventsNew;
 select * from lineups;
+select count(*) from (select distinct(file_name) from eventsNew) as t;
+select count(distinct(file_name)) from eventsNew;
+select count(*) from transfermrkt;
+show variables like 'innodb_buffer%';
