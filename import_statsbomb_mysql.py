@@ -1,89 +1,30 @@
-import os
-import json
-import pandas as pd
-import mysql.connector
-
-# ------------------------------
-# Database Connection Setup
-# ------------------------------
-db = mysql.connector.connect(
-    host="localhost",
-    user="himanshu",     
-    password="***",  
-    database="AIProject"
-)
-
-cursor = db.cursor()
-
-# ------------------------------
-# Create a sample table (for Events data)
-# added file_name column to keep track of number of files processed and file relevancy.
-# ------------------------------
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS events1 (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    file_name varchar(100),
-    match_id INT,
-    index_no INT,
-    period INT,
-    timestamp VARCHAR(20),
-    type VARCHAR(100),
-    player VARCHAR(100),
-    team VARCHAR(100),
-    location_x FLOAT,
-    location_y FLOAT
-);
-""")
-
-# ------------------------------
-# Path to StatsBomb open data
-# ------------------------------
-base_path = "/home/gubsend/Infosys Springboard/open-data-master/data/events"
-
-# Loop through JSON files in events folder
-for file in os.listdir(base_path):
-    if file.endswith(".json"):
-        file_path = os.path.join(base_path, file)
-
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            #print(data)
-        # Convert JSON into pandas DataFrame (flatten only required fields)
-        records = []
-        for i, event in enumerate(data):
-            match_id = event.get("match_id")
-            period = event.get("period")
-            timestamp = event.get("timestamp")
-            event_type = event.get("type", {}).get("name")
-            player = event.get("player", {}).get("name")
-            team = event.get("team", {}).get("name")
-            location = event.get("location") if event.get("location") else [0, 0]
-
-            records.append([
-                match_id, i, f"{file}", period, timestamp, event_type,
-                player, team, location[0], location[1]
-            ])
-            #print(match_id, i, period, timestamp, event_type,player, team, location[0], location[1])
-        df = pd.DataFrame(records, columns=[
-            "match_id", "index_no","file_name", "period", "timestamp", "type",
-            "player", "team", "location_x", "location_y"
-        ])
-        print(df)
-        # Insert into MySQL row by row
-        #added filename column to keep track of number of files processed and file relevancy.   
-        for _, row in df.iterrows():
-            cursor.execute("""
-                INSERT INTO events1
-                (match_id, index_no,file_name,  period, timestamp, type, player, team, location_x, location_y)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """, tuple(row))
-
-        db.commit()
-        print(f"Inserted {len(df)} rows from {file}")
-
-# ------------------------------
-# Close connection
-# ------------------------------
-cursor.close()
-db.close()
-print("✅ Import completed successfully!")
+create database AIProject;
+use AIProject;
+show tables;
+SHOW VARIABLES LIKE 'datadir';
+/*desc events;
+select * from events;
+select count(*) as NetCnt from events union
+select count(*) as NoLocationCnt from events where location_x=0;
+Created new table events1 with file_name column*/
+desc events1;
+select * from events1;
+select count(*) as NetCnt from events1 union
+select count(*) as NoLocationCnt from events1 where location_x=0;
+select count(*) as FileCnt, 3464-count(*) as FileCntRem from (;
+select count(*) as FileRecCnt from events1 group by file_name;
+) as t;
+select count(*) from (select distinct(file_name) from events1) as t;
+SELECT TABLE_NAME AS `Table`, ROUND(((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024), 2) AS `Size (MB)`
+FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'AIProject'; -- AND TABLE_NAME = 'your_table_name';
+select * from events1 where player is not null;
+/*drop table if exists eventsNew;
+drop table if exists eventsNew1;
+drop table if exists eventsNew100;
+drop table if exists lineups;*/
+select * from eventsNew;
+select * from lineups;
+select count(*) from (select distinct(file_name) from eventsNew) as t;
+select count(distinct(file_name)) from eventsNew;
+select count(*) from transfermrkt;
+show variables like 'innodb_buffer%';
