@@ -45,3 +45,9 @@
   Imported Transfermrkt and Injury data to MySQL
   Imported teams, players, lineup_positions, player_cards from "Lineups" data folder
   Imported Normalized data from Transfermrkt to players_trfrmrkt, clubs_trfrmrkt, competitions_trfrmrkt, market_values_trfrmrkt
+
+1st Sep 2025:
+  Sentiment analysis: Tried multithreading to capture data from multiple platforms. Failed repeatedly with multiple options to analyze Twitter data, along with Reddit and Medium
+  Seperated the three social media data collection logic.
+  Reddit data is being uploaded to MySQL 
+
