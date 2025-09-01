@@ -1,0 +1,57 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+# 1. Load Example Data
+performance_df = pd.read_csv("player_performance.csv")
+market_df = pd.read_csv("market_values.csv")
+injury_df = pd.read_csv("injury_data.csv")
+social_df = pd.read_csv("social_media.csv")
+
+# 2. Data Cleaning
+# Handle missing values
+imputer = SimpleImputer(strategy="mean")
+performance_df.iloc[:, 1:] = imputer.fit_transform(performance_df.iloc[:, 1:])
+
+# Remove duplicates
+performance_df = performance_df.drop_duplicates()
+
+# Standardize column names
+performance_df.columns = [col.lower().strip() for col in performance_df.columns]
+
+# 3. Feature Engineering
+# Rolling average of performance (last 5 games)
+performance_df["rolling_avg_rating"] = performance_df.groupby("player_id")["rating"].transform(lambda x: x.rolling(5, min_periods=1).mean())
+
+# Injury risk metric
+injury_risk = injury_df.groupby("player_id").apply(lambda x: len(x)/x["season"].nunique())
+injury_risk = injury_risk.reset_index().rename(columns={0: "injury_risk"})
+
+# Merge injury risk into performance data
+performance_df = performance_df.merge(injury_risk, on="player_id", how="left")
+
+# Contract feature (remaining duration in months)
+market_df["contract_remaining"] = (pd.to_datetime(market_df["contract_end"]) - pd.to_datetime(market_df["date"])).dt.days // 30
+
+# 4. Preprocessing
+# Scale numerical data
+scaler = MinMaxScaler()
+performance_df[["rating", "rolling_avg_rating"]] = scaler.fit_transform(performance_df[["rating", "rolling_avg_rating"]])
+
+# One-hot encode categorical features
+encoder = OneHotEncoder(sparse=False)
+encoded_positions = encoder.fit_transform(performance_df[["position"]])
+encoded_positions_df = pd.DataFrame(encoded_positions, columns=encoder.get_feature_names_out(["position"]))
+performance_df = pd.concat([performance_df, encoded_positions_df], axis=1)
+
+# 5. Sentiment Analysis
+analyzer = SentimentIntensityAnalyzer()
+social_df["sentiment_score"] = social_df["tweet"].apply(lambda x: analyzer.polarity_scores(str(x))["compound"])
+
+# Aggregate sentiment per player
+sentiment_features = social_df.groupby("player_id")["sentiment_score"].mean().reset_index()
+
+# Merge with performance dataset
+final_df = performance_df.merge(sentiment_features, on="player_id", how="left")
