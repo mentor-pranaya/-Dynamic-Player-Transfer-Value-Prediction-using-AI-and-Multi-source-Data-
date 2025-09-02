@@ -50,4 +50,6 @@
   Sentiment analysis: Tried multithreading to capture data from multiple platforms. Failed repeatedly with multiple options to analyze Twitter data, along with Reddit and Medium
   Seperated the three social media data collection logic.
   Reddit data is being uploaded to MySQL 
-
+2nd Sept 2025:
+  Completed Reddit sentiment analysis 
+  Merging all events data (created different tables earlier for each 100 files of 3464 files from StatsBomb data for faster processing) 
