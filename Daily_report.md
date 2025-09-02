@@ -1,7 +1,9 @@
--------------------------------------------
+
+# WEEK 1
+
 
 # Day 1 Progress Report
-Date: 18/08/2025
+Date: 18/08/2025 (Monday)
 
 1. Perfect Data Illusion
 - Discussed the concept of Perfect Data Illusion.
@@ -26,7 +28,7 @@ Date: 18/08/2025
 --------------------------------------------------
 
 # Day 2 Progress Report
-Date: 19/08/2025
+Date: 19/08/2025 (Tuesday)
 
 1. Meeting Minutes (Recap from Mentor’s Mail)
 - Agenda: Data Collection
@@ -49,7 +51,7 @@ Date: 19/08/2025
 --------------------------------------------------
 
 # Day 3 Progress Report
-Date: 20/08/2025
+Date: 20/08/2025 (Wednesday)
 
 1. Meeting Minutes (Recap from Mentor’s Mail)
 - Agenda: Data Collection
@@ -71,7 +73,7 @@ Date: 20/08/2025
 --------------------------------------------------
 
 # Day 4 Progress Report
-Date: 21/08/2025
+Date: 21/08/2025 (Thursday)
 
 1. Meeting Minutes (Recap from Mentor’s Mail)
 - Agenda: Data Collection.
@@ -92,7 +94,7 @@ Date: 21/08/2025
 --------------------------------------------------
 
 # Day 5 Progress Report
-Date: 22/08/2025
+Date: 22/08/2025 (Friday)
 
 1. Daily Work
 - Explored **social sentiment data sources** (Twitter API, alternatives).
@@ -105,11 +107,13 @@ Date: 22/08/2025
 2. Mentor’s Questions
 - What strategies would you use during data collection to ensure representativeness without making data misleading?
 - Can you think of scenarios where artificially balancing the dataset may hurt model performance?
+---------------
 
---------------------------------------------------
+# WEEK 2
+
 
 # Day 6 Progress Report
-Date: 25/08/2025
+Date: 25/08/2025 (Monday)
 
 1. Daily Work
 - Started **processing the collected data** for preparation.
@@ -122,7 +126,7 @@ Date: 25/08/2025
 --------------------------------------------------
 
 # Day 7 Progress Report
-Date: 26/08/2025
+Date: 26/08/2025 (Tuesday)
 
 1. Daily Work
 - Attempted to fetch data from **Twitter API**, but faced restrictions (rate limits, access issues).
@@ -135,8 +139,69 @@ Date: 26/08/2025
 --------------------------------------------------
 
 # Day 8 Progress Report
-Date: 27/08/2025
+Date: 27/08/2025 (Wednesday)
 
 - Marked as **Holiday (Ganesh Chaturthi)**.
+
+--------------------------------------------------
+
+# Day 9 Progress Report
+Date: 28/08/2025 (Thursday)
+
+1. Daily Work
+- Resumed after holiday.
+- Continued work on **data preparation pipeline** for the ML model.
+- Cleaned and standardized collected datasets (StatsBomb, Transfermarkt, injury records).
+- Started aligning player IDs across different sources to ensure consistency.
+- Reviewed sentiment data collection approach (Twitter + Reddit) for feasibility.
+
+--------------------------------------------------
+
+# Day 10 Progress Report
+Date: 29/08/2025 (Friday)
+
+1. Meeting Minutes (MoM Recap)
+- Agenda: Data Cleaning and Feature Engineering.
+- Discussed updating GitHub with all Python scripts, daily progress, and dataset details.
+- Emphasis on completing data collection, cleaning, and feature engineering by end of day.
+
+2. Daily Work
+- Updated GitHub repository with all Python files and dataset documentation.
+- Continued work on **data collection module**.
+- Started **data cleaning** and **feature engineering** tasks.
+- Began exploring handling of **outliers**:
+  - Noted that some outliers align with real-world scenarios.
+  - Considered whether to remove them or retain for model realism.
+- Reviewed strategy for handling **columns with both missing values and outliers**.
+
+3. Tomorrow’s Question
+- If your dataset contains outliers that reflect real-world behavior, should you remove them or keep them? Why?
+- In columns with both missing values and outliers, which should be addressed first? Why?
+------------
+
+# WEEK 3
+
+
+# Day 11 Progress Report
+Date: 01/09/2025 (Monday)
+
+1. Meeting Minutes (MoM Recap)
+- Agenda: Advanced Feature Engineering and Sentiment Analysis.
+- Discussed updating GitHub with all scripts and dataset progress.
+- Focus for the week: **advanced feature engineering** and **sentiment analysis**.
+
+2. Daily Work
+- Continued **advanced feature engineering** on the collected datasets.
+- Started integrating **sentiment analysis** pipeline for social media data (Twitter + Reddit).
+- Reviewed **data cleaning, preprocessing, EDA, and feature engineering**:
+  - Clarified differences between these terms:
+    - **Cleaning:** Handling missing values, duplicates, and errors.
+    - **Preprocessing:** Transforming raw data into model-ready format.
+    - **EDA (Exploratory Data Analysis):** Understanding patterns, distributions, and correlations.
+    - **Feature Engineering:** Creating meaningful features from raw data to improve model performance.
+
+3. Tomorrow’s Question
+- How do cleaning, preprocessing, EDA, and feature engineering differ, and why is each step important in the ML workflow?
+- When integrating sentiment analysis features, how can you ensure they align correctly with player data from other sources?
 
 --------------------------------------------------
