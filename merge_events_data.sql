@@ -1,0 +1,43 @@
+use AIProject;
+/*drop table reddit_sentiments;
+drop table medium_sentiments;
+drop table twitter_sentiments;*/
+/* select count(*) from reddit_sentiments;
+desc eventsNew1;*/
+-- added referece to desitnation table so that script could be resumed upon faliure, without duplicates error
+insert into eventsNew1 select * FROM eventsNew100 where id not in (select id from eventsNew1);
+insert into eventsNew1 select * FROM eventsNew1000 where id not in (select id from eventsNew1);
+-- select count(*) FROM eventsNew1300 where id not in (select id from eventsNew1);
+insert into eventsNew1 select * FROM eventsNew1100 where id not in (select id from eventsNew1);
+insert into eventsNew1 select * FROM eventsNew1200 where id not in (select id from eventsNew1);
+insert into eventsNew1 select * FROM eventsNew1300 where id not in (select id from eventsNew1);
+insert into eventsNew1 select * FROM eventsNew1400 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew1500 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew1600 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew1700 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew1800 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew1900 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew200 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2000 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2100 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2200 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2300 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2400 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2500 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2600 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2700 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2800 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew2900 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew300 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew3000 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew3100 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew3200 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew3300 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew3400 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew3464 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew400 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew500 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew600 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew700 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew800 where id not in (select id from eventsNew1);
+ insert into eventsNew1 select * FROM eventsNew900 where id not in (select id from eventsNew1);
