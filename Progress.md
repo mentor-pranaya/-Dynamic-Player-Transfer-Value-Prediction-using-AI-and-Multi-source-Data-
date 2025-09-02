@@ -75,3 +75,11 @@ Currently I am working on Data Cleaning and it will take some time rest the data
 
 Day 9 Progress (29.08.2025)
 Data collection has been done working on data cleaning.
+
+
+Day 10 Progress (01.09.2025)
+Data cleaning has been finished now i am working with data preprocessing.
+
+
+Day 11 Progress (02.09.2025)
+Today, I am working with data preprocessing as there was some error so I couldn't finish it after that I will first look in feature engineering and then start it.
