@@ -65,3 +65,28 @@ started making of master list
 Day-9
 
 master list completed and cleaning process also completed,working on sql part.
+
+Day-10
+
+Started feature engineering on master_list_final.csv.
+Generated additional features such as:
+age_experience
+contract_risk
+total_days_missed
+Handled missing values in numeric and categorical columns.
+Preliminary data validation completed for feature consistency.
+
+Day-11
+Finalized feature engineering for the master list.
+Cleaned numeric and categorical features fully.
+Prepared final dataset for modeling: master_list_final_features.csv.
+Ensured all placeholders for sentiment, injury, and performance metrics are in place.
+
+Day-12
+Implemented Random Forest (RF) regression model to predict market_value_in_eur.
+Performed train/test split.
+Model trained and evaluated:
+MSE and R² score calculated.
+Saved model: rf_model.pkl
+Generated predictions CSV: rf_predictions.csv
+Extracted feature importances and saved to feature_importances.csv.
