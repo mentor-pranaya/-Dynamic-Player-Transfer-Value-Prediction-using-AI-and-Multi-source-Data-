@@ -2,7 +2,7 @@
 # WEEK 1
 
 
-# Day 1 Progress Report
+# Day 1 
 Date: 18/08/2025 (Monday)
 
 1. Perfect Data Illusion
@@ -27,7 +27,7 @@ Date: 18/08/2025 (Monday)
 
 --------------------------------------------------
 
-# Day 2 Progress Report
+# Day 2 
 Date: 19/08/2025 (Tuesday)
 
 1. Meeting Minutes (Recap from Mentor’s Mail)
@@ -50,7 +50,7 @@ Date: 19/08/2025 (Tuesday)
 
 --------------------------------------------------
 
-# Day 3 Progress Report
+# Day 3 
 Date: 20/08/2025 (Wednesday)
 
 1. Meeting Minutes (Recap from Mentor’s Mail)
@@ -72,7 +72,7 @@ Date: 20/08/2025 (Wednesday)
 
 --------------------------------------------------
 
-# Day 4 Progress Report
+# Day 4 
 Date: 21/08/2025 (Thursday)
 
 1. Meeting Minutes (Recap from Mentor’s Mail)
@@ -93,7 +93,7 @@ Date: 21/08/2025 (Thursday)
 
 --------------------------------------------------
 
-# Day 5 Progress Report
+# Day 5 
 Date: 22/08/2025 (Friday)
 
 1. Daily Work
@@ -112,7 +112,7 @@ Date: 22/08/2025 (Friday)
 # WEEK 2
 
 
-# Day 6 Progress Report
+# Day 6 
 Date: 25/08/2025 (Monday)
 
 1. Daily Work
@@ -125,7 +125,7 @@ Date: 25/08/2025 (Monday)
 
 --------------------------------------------------
 
-# Day 7 Progress Report
+# Day 7 
 Date: 26/08/2025 (Tuesday)
 
 1. Daily Work
@@ -138,14 +138,14 @@ Date: 26/08/2025 (Tuesday)
 
 --------------------------------------------------
 
-# Day 8 Progress Report
+# Day 8 
 Date: 27/08/2025 (Wednesday)
 
 - Marked as **Holiday (Ganesh Chaturthi)**.
 
 --------------------------------------------------
 
-# Day 9 Progress Report
+# Day 9 
 Date: 28/08/2025 (Thursday)
 
 1. Daily Work
@@ -157,7 +157,7 @@ Date: 28/08/2025 (Thursday)
 
 --------------------------------------------------
 
-# Day 10 Progress Report
+# Day 10 
 Date: 29/08/2025 (Friday)
 
 1. Meeting Minutes (MoM Recap)
@@ -182,7 +182,7 @@ Date: 29/08/2025 (Friday)
 # WEEK 3
 
 
-# Day 11 Progress Report
+# Day 11
 Date: 01/09/2025 (Monday)
 
 1. Meeting Minutes (MoM Recap)
@@ -205,3 +205,31 @@ Date: 01/09/2025 (Monday)
 - When integrating sentiment analysis features, how can you ensure they align correctly with player data from other sources?
 
 --------------------------------------------------
+
+# Day 12 
+**Date:** 02/09/2025  
+
+### Daily Work
+- Worked on structuring the feature engineering module in Python.  
+- Explored feature scaling techniques (Standardization vs Normalization).  
+- Updated GitHub with cleaned dataset and preprocessing scripts.  
+
+---
+
+# Day 13 Progress Report
+**Date:** 03/09/2025  
+
+### Meeting Minutes (Recap from Mentor’s Mail)
+- **Agenda:** Feature Engineering and Sentiment Analysis.  
+- Discussed about outliers and when to treat missing values vs. outliers.  
+- Mentor asked to complete feature engineering and sentiment analysis part.  
+
+### Daily Work
+- Implemented handling of outliers using IQR and Z-score methods.  
+- Started correlation analysis between features.  
+- Committed progress and updated GitHub repository.  
+
+### Tomorrow’s Question
+- What is multicollinearity? Is it always required to remove one of the columns or can we keep it?  
+- What is correlation?  
+
