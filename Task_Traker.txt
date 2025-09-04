@@ -53,3 +53,5 @@
 2nd Sept 2025:
   Completed Reddit sentiment analysis 
   Merging all events data (created different tables earlier for each 100 files of 3464 files from StatsBomb data for faster processing) 
+4th Sept 2025:
+  Added the final schema (db_structure.sql) to git repository
