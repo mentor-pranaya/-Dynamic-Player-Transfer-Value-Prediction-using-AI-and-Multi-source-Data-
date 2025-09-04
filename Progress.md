@@ -83,3 +83,12 @@ Data cleaning has been finished now i am working with data preprocessing.
 
 Day 11 Progress (02.09.2025)
 Today, I am working with data preprocessing as there was some error so I couldn't finish it after that I will first look in feature engineering and then start it.
+
+
+Day 12 Progress (03.09.2025)
+Data preprocessing has been completed now I will start with feature engineering.
+
+
+Day 13 Progress (04.09.2025)
+Todayy I'll start feature engineering after i complete feature engineering i will upload files on github.
+
