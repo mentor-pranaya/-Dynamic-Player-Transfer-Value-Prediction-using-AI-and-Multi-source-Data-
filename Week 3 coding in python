@@ -1,0 +1,25 @@
+# --- 1. Advanced performance trends ---
+performance_df["trend_10"] = performance_df.groupby("player")["rating"].transform(lambda x: x.rolling(10, min_periods=1).mean())
+performance_df["form_variability"] = performance_df.groupby("player")["rating"].transform(lambda x: x.rolling(5, min_periods=1).std())
+
+# --- 2. Injury impact ---
+injury_df["injury_impact"] = injury_df["days_out"] / (injury_df["days_out"].max() + 1)
+
+# Merge injury impact into player dataset
+player_df = performance_df.merge(injury_df[["player", "injury_impact"]], on="player", how="left")
+
+# --- 3. Sentiment analysis refinement ---
+# Convert sentiment scores into categorical features
+social_df["sentiment_category"] = pd.cut(
+    social_df["sentiment_score"],
+    bins=[-1, -0.05, 0.05, 1],
+    labels=["Negative", "Neutral", "Positive"]
+)
+
+# Aggregate sentiment per player
+sentiment_features = social_df.groupby("player")["sentiment_score"].agg(["mean", "std"]).reset_index()
+sentiment_features.rename(columns={"mean": "avg_sentiment", "std": "sentiment_volatility"}, inplace=True)
+
+# --- 4. Final feature set ---
+final_features = player_df.merge(sentiment_features, on="player", how="left")
+print(final_features.head())
