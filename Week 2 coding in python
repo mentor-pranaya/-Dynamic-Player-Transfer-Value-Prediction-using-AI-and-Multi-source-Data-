@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
+
+# Download VADER if first time
+nltk.download('vader_lexicon')
+
+# Load datasets (example paths)
+performance_df = pd.read_csv("player_performance.csv")
+market_df = pd.read_csv("market_values.csv")
+injury_df = pd.read_csv("injuries.csv")
+social_df = pd.read_csv("twitter_data.csv")
+
+# --- 1. Handle missing values & duplicates ---
+performance_df.drop_duplicates(inplace=True)
+performance_df.fillna(performance_df.mean(numeric_only=True), inplace=True)
+
+# --- 2. Feature engineering ---
+performance_df["performance_trend"] = performance_df.groupby("player")["rating"].transform(lambda x: x.rolling(5, min_periods=1).mean())
+injury_df["injury_risk"] = injury_df.groupby("player")["days_out"].transform("mean")
+market_df["contract_duration"] = market_df["contract_end"] - market_df["contract_start"]
+
+# --- 3. Scaling & Encoding ---
+num_cols = ["age", "goals", "assists", "performance_trend", "injury_risk"]
+cat_cols = ["position", "club"]
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), num_cols),
+        ('cat', OneHotEncoder(handle_unknown="ignore"), cat_cols)
+    ]
+)
+
+# Apply preprocessing
+X_processed = preprocessor.fit_transform(performance_df)
+
+# --- 4. Sentiment Analysis ---
+sia = SentimentIntensityAnalyzer()
+social_df["sentiment_score"] = social_df["tweet"].apply(lambda x: sia.polarity_scores(str(x))["compound"])
+
+print("✅ Week 2 Preprocessing Completed")
