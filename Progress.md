@@ -92,3 +92,6 @@ Data preprocessing has been completed now I will start with feature engineering.
 Day 13 Progress (04.09.2025)
 Todayy I'll start feature engineering after i complete feature engineering i will upload files on github.
 
+
+Day 14 Progress (05.09.2025)
+I am currently working on Feature Engineering it will be done with one to two days.
