@@ -155,3 +155,61 @@ Marked as a holiday due to **Ganesh Chaturthi**.
 - `final_data_with_sentiment.csv`
 - `features_augmented.parquet`
 - `high_corr_drop_candidates.csv` (audit list of dropped features)
+
+---
+
+## Day-1(WEEK-3)
+**Tasks:**
+1. Performed EDA on the featured data.  
+
+**Questions:**
+- You detect outliers in your dataset, but they seem to align with real-world scenarios. Do you remove them? Why or why not?  
+  - Outliers that represent genuine variations in real-world behavior should not be removed, as they may contain valuable information. They are only removed if they are errors, noise, or data entry mistakes.  
+
+- If your dataset has both missing values and outliers in the same column, what would you handle first and why?  
+  - Missing values are handled first because imputation methods might depend on the data distribution. Removing/adjusting outliers before fixing missing values can bias the imputation process.  
+
+---
+
+## Day-2
+**Tasks:**
+1. Found more valuable features in the raw dataset and re-created the featured dataset with additional columns.  
+
+**Questions:**
+- We use the terms cleaning, pre-processing, EDA, and feature engineering — do they mean the same or different? Why or why not?  
+  - They are related but not the same:  
+    - **Cleaning**: Removing inconsistencies, duplicates, or incorrect values.  
+    - **Pre-processing**: Transforming raw data into a usable form (scaling, encoding, imputing).  
+    - **EDA (Exploratory Data Analysis)**: Understanding patterns, trends, and relationships in data.  
+    - **Feature Engineering**: Creating new features or modifying existing ones to improve model performance.  
+
+---
+
+## Day-3
+**Tasks:**
+1. Performed advanced EDA on the newly featured dataset to prepare data for LSTM models.  
+
+**Questions:**
+- What is multicollinearity? Is it always required to remove one of the columns or keeping the column is good?  
+  - **Multicollinearity** occurs when two or more features are highly correlated, leading to redundancy and unstable model coefficients.  
+  - It is not always required to remove columns; tree-based models can handle it, but linear models may suffer. Decision depends on the model type and performance impact.  
+
+- What is correlation?  
+  - **Correlation** measures the linear relationship between two variables (ranges from -1 to +1). Positive correlation means they increase together, negative means one decreases as the other increases, and zero means no linear relation.  
+
+---
+
+## Day-4
+**Tasks:**
+1. Prepared univariate and multivariate models for experimentation.  
+
+---
+
+## Day-5
+**Tasks:**
+1. Implemented encoder-decoder LSTM and saved all deliverables.  
+
+**Questions:**
+- How to handle imbalanced data?   
+
+- What is PCA and LDA?   

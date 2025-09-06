@@ -9,7 +9,10 @@ processed_data/
 # sentiment - vader_lexicon.zip
 sentiment/
 # Feature engineering files
-Data_Featuring/feature_pipeline.joblib
-Data_Featuring/features.parquet
-Data_Featuring/features_augmented.parquet
-Data_Featuring/high_corr_drop_candidates.csv
+Data_Featuring/features_clean.csv
+Data_Featuring/features_raw.parquet
+Data_Featuring/features_scaled.parquet
+Data_Featuring/scaler.joblib
+
+# models
+models/
