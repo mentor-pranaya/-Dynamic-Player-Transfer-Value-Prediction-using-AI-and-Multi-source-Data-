@@ -1,3 +1,23 @@
+# Create a raw data folder (if not already exists)
+!mkdir -p ./data/raw/
+
+# Download StatsBomb dataset from Kaggle
+!kaggle datasets download -d saurabhshahane/statsbomb-football-data -p ./data/raw/
+
+# Unzip the downloaded file into a subfolder
+!unzip -q ./data/raw/statsbomb-football-data.zip -d ./data/raw/statsbomb/
+
+import os
+
+statsbomb_files = os.listdir("./data/raw/statsbomb/")
+print("Files in StatsBomb dataset:", statsbomb_files)
+
+data_path = "./data/raw/statsbomb/data/"
+for root, dirs, files in os.walk(data_path):
+    print("Path:", root)
+    print("Files:", files[:10])  # show only first 10 files in each folder
+    print("-"*50)
+
 import pandas as pd
 import json
 
@@ -81,5 +101,6 @@ comp_match_counts = competitions.groupby('competition_name').size().sort_values(
 comp_match_counts.plot(kind="barh", figsize=(8,4), color="teal")
 plt.title("Top Competitions by Dataset Coverage")
 plt.show()
+
 
 
