@@ -41,7 +41,7 @@
     Working on python script to import data to mysql
     Stopped data import to add file_name column to data being imported from json to mysql for cross referencing.
 
-**30th Aug 2025: **
+**30th Aug 2025:**
   Completed importing 3464 files from events folder from StatsBomb data
   Total rows imported : 12188949
 
