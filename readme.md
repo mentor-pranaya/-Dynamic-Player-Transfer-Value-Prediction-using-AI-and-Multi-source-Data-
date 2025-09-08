@@ -1,4 +1,4 @@
-**18 August 2025:**
+7**18 August 2025:**
   Explored various data sorces
   Downloaded data from
   https://github.com/statsbomb/open-data
@@ -69,3 +69,6 @@
   
 **8th Sep 2025**
   Improved GIT structure
+  Player injury data file has too few matches 
+  Updated transfermarkt scraping script to fetch player id from site
+  Scraping transfermarkt for injury data
