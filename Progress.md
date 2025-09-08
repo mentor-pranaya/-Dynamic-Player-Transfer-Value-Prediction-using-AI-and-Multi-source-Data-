@@ -95,3 +95,7 @@ Todayy I'll start feature engineering after i complete feature engineering i wil
 
 Day 14 Progress (05.09.2025)
 I am currently working on Feature Engineering it will be done with one to two days.
+
+
+Day 15 Progress (08.09.2025)
+Completed data preprocessing and feature engineering now I will start with data modelling.
