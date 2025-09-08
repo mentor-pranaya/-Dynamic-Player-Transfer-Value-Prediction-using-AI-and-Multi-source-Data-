@@ -312,3 +312,30 @@ CREATE TABLE `twitter_sentiments` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `tweet_id` (`tweet_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS player_injuries_trfrmrkt (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    player_id INT NOT NULL,
+    transfermarkt_id INT NOT NULL,
+    injury TEXT,
+    start_date DATE,
+    end_date DATE,
+    games_missed INT,
+    days_out INT,
+    competition VARCHAR(200),
+    FOREIGN KEY (player_id) REFERENCES players_trfrmrkt(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS player_transfer_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    player_id INT,
+    transfermarkt_id INT,
+    season VARCHAR(20),
+    transfer_date DATE,
+    club_left VARCHAR(200),
+    club_joined VARCHAR(200),
+    market_value VARCHAR(50),
+    fee BIGINT DEFAULT 0,
+    reason VARCHAR(200) DEFAULT NULL,
+    FOREIGN KEY (player_id) REFERENCES players_trfrmrkt(id) ON DELETE CASCADE
+);
