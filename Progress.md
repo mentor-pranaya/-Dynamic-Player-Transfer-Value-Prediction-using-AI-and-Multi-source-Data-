@@ -99,3 +99,11 @@ I am currently working on Feature Engineering it will be done with one to two da
 
 Day 15 Progress (08.09.2025)
 Completed data preprocessing and feature engineering now I will start with data modelling.
+
+
+Day 16 Progress (09.09.2025)
+Today I started Data Modelling sentiment analysis is also done.
+
+
+Day 17 Progress (10.09.2025)
+I am working on Data Modelling as I am doing it for the first time so it will take some time for me to complete.
