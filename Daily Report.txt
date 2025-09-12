@@ -90,3 +90,15 @@ MSE and R² score calculated.
 Saved model: rf_model.pkl
 Generated predictions CSV: rf_predictions.csv
 Extracted feature importances and saved to feature_importances.csv.
+
+Day-13
+Performed exploratory data analysis (EDA). Created correlation heatmaps to see how features relate to market value, checked for multicollinearity, and visualized data distributions with histograms, scatterplots, and boxplots.
+
+Day-14
+Applied dimensionality reduction techniques. Used PCA to reduce redundant numeric features and LDA to help separate player positions based on classification. Compared explained variance and decided on the number of components to keep.
+
+Day-15
+Tested additional models including Linear Regression as a baseline and XGBoost for more advanced modeling. Compared their performance against Random Forest using RMSE, MAE, and R² metrics. Documented the results.
+
+Day-16
+Built a complete prediction pipeline in Python that handles preprocessing (scaling and encoding), automatic feature selection, and outputs transfer value predictions for new player data.
