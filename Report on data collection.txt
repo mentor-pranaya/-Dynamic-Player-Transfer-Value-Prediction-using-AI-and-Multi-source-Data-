@@ -1,13 +1,43 @@
-I have successfully collected data collection Part:
+Data Collection
 
-I have collected Players’ general data from Transfermarkt,
+I collected data from several key sources to build a comprehensive player dataset:
 
-And Sentiment analysis data from Reddit,
+Players’ General Data: Gathered from Transfermarkt, including player profiles, attributes, and statistics.
+Sentiment Analysis Data: Extracted from Reddit posts and discussions, then processed into sentiment scores to capture public opinion.
+Injury History Data: Also sourced from Transfermarkt, detailing players’ injury records.
+All datasets were exported and saved as CSV files to keep everything organized and ready for further processing.
 
-And Injury history data from Transfermarkt.
+Data Preprocessing & Feature Engineering
 
-Right now, I have structured all these datasets in CSV format. I’m in the stage of merging them 
+I merged the raw CSV files into a single master dataset named master_list.csv. To clean and prepare the data, I developed and ran several custom scripts:
 
-and preparing them for preprocessing. After that, I will move to the modeling part for 
+MissVal.py: Handled missing values.
+UltraComList.py: Merged complete player lists from different sources.
+UltraInj.py: Processed injury history data.
+UltraSen.py: Integrated sentiment scores from Reddit.
+UltraMaster.py: Combined all data into the final master dataset.
+The cleaned and feature-engineered dataset was saved as master_list_final_features.csv, which I used for model training.
 
-predicting player transfer values.
+Exploratory Data Analysis (EDA)
+
+Using the EDA.py script, I explored the data to understand player distributions, injury trends, and the influence of sentiment. I also identified outliers and extreme values, normalizing them to ensure the data was well-prepared for modeling.
+
+Model Training
+
+I developed and trained two machine learning models on the processed dataset:
+
+1. Random Forest Model
+
+Implemented with scikit-learn in random_forest.py.
+This ensemble model captures complex, non-linear relationships in the data.
+Trained on master_list_final_features.csv.
+Saved the trained model as:
+📂 models/random_forest_model.pkl
+2. Neural Network Model
+
+Built using TensorFlow and Keras in neural_net_model.py.
+Architecture: feed-forward neural network with multiple dense layers.
+Optimizer: Adam
+Loss function: Mean Squared Error (MSE)
+Saved as:
+models/neural_net_model.keras
