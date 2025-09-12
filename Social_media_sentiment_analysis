@@ -1,0 +1,164 @@
+
+# new code for scraping
+
+'''
+# File: collect_reddit_data.py
+# Reads player names from the StatsBomb summary file and scrapes Reddit for posts about them.
+
+import pandas as pd
+import praw
+import os
+import time
+
+# --- 1. SETUP ---
+# Path to your processed StatsBomb data
+PLAYER_DATA_FILE = r"/Users/nishantgupta/Desktop/Internship Project/complete_statsbomb_data.csv"
+# Path for the new Reddit data
+OUTPUT_FOLDER = r"/Users/nishantgupta/Desktop/Internship Project"
+OUTPUT_CSV = os.path.join(OUTPUT_FOLDER, "reddit_sentiment_data.csv")
+
+# --- NEW: Create the output folder if it doesn't exist ---
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+# --- IMPORTANT: PASTE YOUR REDDIT API CREDENTIALS HERE ---
+REDDIT_CLIENT_ID = "KhujfKNKFdqCloWr4PTXag"
+REDDIT_CLIENT_SECRET = "J-klWqsbgow4_osdQseriv1Gsrmg2w"
+REDDIT_USER_AGENT = "TransferIQ Scraper v1.0 by YourUsername"
+
+# --- 2. READ PLAYER NAMES FROM YOUR STATSBOMB FILE ---
+try:
+    df_players = pd.read_csv(PLAYER_DATA_FILE)
+    # Get a unique list of player names to search for
+    player_names = df_players['player_name'].unique()
+    print(f"Found {len(player_names)} unique players to search for on Reddit.")
+except FileNotFoundError:
+    print(f"Error: The file '{PLAYER_DATA_FILE}' was not found.")
+    print("Please make sure you have run the StatsBomb processing script first.")
+    exit()
+
+# --- 3. SETUP REDDIT API CONNECTION ---
+try:
+    reddit = praw.Reddit(
+        client_id=REDDIT_CLIENT_ID,
+        client_secret=REDDIT_CLIENT_SECRET,
+        user_agent=REDDIT_USER_AGENT
+    )
+    print("Successfully connected to Reddit API.")
+except Exception as e:
+    print(f"Error connecting to Reddit API: {e}")
+    exit()
+
+# --- 4. SCRAPE REDDIT FOR EACH PLAYER ---
+all_reddit_data = []
+subreddit_to_search = reddit.subreddit("soccer") # You can change this to another subreddit if you like
+
+# Loop through each player name
+for i, name in enumerate(player_names):
+    print(f"({i+1}/{len(player_names)}) Searching for posts about: {name}...")
+    try:
+        # Search for top posts in the last year mentioning the player's name
+        for submission in subreddit_to_search.search(query=f'"{name}"', sort="top", time_filter="year", limit=5):
+            # Fetch the top comments from the submission
+            submission.comments.replace_more(limit=0) # Loads all top-level comments
+            top_comments = [comment.body for comment in submission.comments.list()[:5]]
+            
+            # Combine all text for sentiment analysis
+            all_text = submission.title + " " + " ".join(top_comments)
+            
+            all_reddit_data.append({
+                "player_name": name,
+                "post_title": submission.title,
+                "post_score": submission.score,
+                "combined_text": all_text
+            })
+        
+        # Be respectful to the API and avoid getting rate-limited
+        time.sleep(1)
+
+    except Exception as e:
+        print(f"  -> An error occurred while searching for {name}: {e}")
+        time.sleep(1)
+
+# --- 5. SAVE ALL COLLECTED DATA TO A SINGLE CSV FILE ---
+if all_reddit_data:
+    df_reddit = pd.DataFrame(all_reddit_data)
+    
+    # Use append mode to allow running the script multiple times to build the dataset
+    df_reddit.to_csv(OUTPUT_CSV, mode='a', header=not os.path.exists(OUTPUT_CSV), index=False)
+    
+    print("\n" + "="*50)
+    print(f"Scraping complete. All data saved to '{OUTPUT_CSV}'")
+    print("="*50)
+    print("\n--- Data Preview ---")
+    print(df_reddit.head())
+else:
+    print("\nNo Reddit data was collected.")  
+
+'''
+
+# cleaning and feature analysis
+
+import pandas as pd
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+def analyze_reddit_sentiment(input_file):
+    """
+    Performs sentiment analysis on the collected Reddit data, generates scores,
+    and aggregates them by player.
+    """
+    try:
+        print(f"Reading Reddit data from '{input_file}'...")
+        df = pd.read_csv(input_file)
+    except FileNotFoundError:
+        print(f"Error: The file '{input_file}' was not found.")
+        return
+
+    # --- 1. PERFORM SENTIMENT ANALYSIS ---
+    print("Analyzing sentiment for each post... (This may take a moment)")
+    
+    # Initialize the VADER sentiment analyzer, which is great for social media text
+    analyzer = SentimentIntensityAnalyzer()
+
+    # Create a new column 'sentiment_score'.
+    # We apply the analyzer to the 'combined_text' of each row.
+    # The 'compound' score is a single, useful metric from -1 (negative) to +1 (positive).
+    # We use str(text) to handle any potential non-string data gracefully.
+    df['sentiment_score'] = df['combined_text'].apply(
+        lambda text: analyzer.polarity_scores(str(text))['compound']
+    )
+
+    # Save the detailed results with scores for each post
+    detailed_output_file = "reddit_sentiment_with_scores.csv"
+    df.to_csv(detailed_output_file, index=False)
+    print(f"\nSaved detailed sentiment scores to '{detailed_output_file}'")
+
+
+    # --- 2. AGGREGATE SENTIMENT BY PLAYER ---
+    print("\nAggregating sentiment scores for each player...")
+
+    # Group the data by player and calculate the average sentiment and number of posts
+    player_sentiment = df.groupby('player_name')['sentiment_score'].agg(
+        average_sentiment='mean',
+        post_count='count'
+    ).reset_index()
+
+    # Sort by the number of posts to see which players have the most data
+    player_sentiment = player_sentiment.sort_values(by='post_count', ascending=False)
+    
+    # --- 3. SAVE THE AGGREGATED RESULTS ---
+    summary_output_file = "player_sentiment_summary.csv"
+    player_sentiment.to_csv(summary_output_file, index=False)
+
+    print("\n" + "="*50)
+    print(f"Sentiment analysis complete.")
+    print(f"Final player sentiment summary saved to '{summary_output_file}'")
+    print("="*50)
+    
+    print("\n--- Player Sentiment Summary Preview ---")
+    print(player_sentiment.head())
+
+
+if __name__ == "__main__":
+    # The Reddit data file you uploaded
+    reddit_data_file = "/Users/nishantgupta/Desktop/Internship Project/reddit_sentiment_data.csv"
+    analyze_reddit_sentiment(reddit_data_file)
