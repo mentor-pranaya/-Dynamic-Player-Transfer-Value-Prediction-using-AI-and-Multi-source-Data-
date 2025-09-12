@@ -1,6 +1,72 @@
-#StatsBomb : 
+'''
+import pandas as pd
+from statsbombpy import sb
+import os
 
 
+# Get the complete list of all available competitions and seasons
+df_all_data = pd.DataFrame(sb.competitions())
+
+
+#File path in which i want my data to be stored
+id_file_path = "/Users/nishantgupta/Downloads/Internship Dataset/id_data(StatsBomb).csv"
+df_all_data.to_csv(id_file_path , index=False)
+
+print(f"Successfully saved match data to {id_file_path}")
+
+
+
+# 1. Get a list of all available competitions to find the ID you need
+competitions = sb.competitions()
+print("Available Competitions:")
+print(competitions[['competition_id', 'season_id', 'competition_name', 'season_name']])
+
+# The FIFA World Cup 2022 (competition_id=43, season_id=106)
+
+# 2. Get all matches for that competition
+# The library fetches and combines the data for you.
+world_cup_matches = sb.matches(competition_id=43, season_id=106)
+
+# 3. Load it into a pandas DataFrame for analysis
+df_matches = pd.DataFrame(world_cup_matches)
+
+print("\nAll Matches from FIFA World Cup 2022:")
+print(df_matches[['match_id', 'home_team', 'away_team', 'match_date']].head())
+
+# Each match has a unique match_id. We'll pick the first match from our matches dataset.
+match_id = world_cup_matches.loc[0, "match_id"]  # Access the first match_id
+events = sb.events(match_id=match_id)  # Fetch all events (passes, shots, fouls, etc.) for that match
+
+# Display first few rows of events data
+print("\nEvents dataset sample:")
+print(events.head())
+
+# Save raw events dataset for this match (deliverable for Week 1)
+events.to_csv(f"match_{match_id}_events.csv", index=False)
+
+
+# Exploring the dataset
+print("\n Events Data Info: ")
+print(events.info())
+
+
+print("\n Missing values in each coloumns: ")
+print(events.isnull().sum())
+
+counting_events = events["type"].value_counts()
+print("\n Event Type counts: ")
+print(counting_events)
+
+
+# Player performance - pass taken
+passes = events[events["type"] == "Pass"]
+print("\nPasses Data Sample (Player, Team, Outcome):")
+print(passes[["player" , "team" , "pass_outcome"]].head())
+
+'''
+
+
+'''
 import pandas as pd
 from statsbombpy import sb
 import os
@@ -89,221 +155,164 @@ plt.title(f"Top 10 Players by Shots in Match {first_match_id}")
 plt.ylabel("Shots")
 plt.xticks(rotation=45)
 plt.show()
+'''
 
 
+# extra
+'''
+# File: add_player_ids.py
+# This script adds a 'player_id' column to the existing performance summary CSV.
 
-#Transfermrkt : 
-
-import requests
-from bs4 import BeautifulSoup
 import pandas as pd
 import os
+import json
+from glob import glob
 
-def search_for_player_url(player_name, headers):
-    """Searches Transfermarkt and returns the URL of the top search result."""
-    search_query = player_name.replace(' ', '+')
-    search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
+# --- 1. SETUP PATHS ---
+# !!! IMPORTANT: CHANGE THIS PATH TO POINT TO YOUR STATSBOMB 'open-data' FOLDER !!!
+BASE_PATH = r"/Users/nishantgupta/Desktop/Internship Project/StatsBomb open data/data"
+PROCESSED_DATA_FOLDER = r"/Users/nishantgupta/Desktop/Internship Project"
+PLAYER_SUMMARY_FILE = os.path.join(PROCESSED_DATA_FOLDER, "complete_statsbomb_data.csv")
+
+# Path to the raw lineup data
+PATH_LINEUPS = os.path.join(BASE_PATH, "lineups")
+
+# --- 2. CHECK IF THE SUMMARY FILE EXISTS ---
+if not os.path.exists(PLAYER_SUMMARY_FILE):
+    print(f"Error: The file '{PLAYER_SUMMARY_FILE}' was not found.")
+    print("Please make sure you have run the main processing script first.")
+    exit()
+
+# --- 3. CREATE A PLAYER NAME TO ID MAPPING ---
+print("Processing lineup files to create a player name-to-ID map...")
+player_name_to_id_map = {}
+# Loop through all lineup files
+for file in glob(os.path.join(PATH_LINEUPS, "*.json")):
+    with open(file, "r", encoding="utf-8") as f:
+        lineups_data = json.load(f)
+        for team in lineups_data:
+            for player in team["lineup"]:
+                player_id = player.get("player_id")
+                player_name = player.get("player_name")
+                # Store the mapping, it will handle duplicates automatically
+                if player_id and player_name:
+                    player_name_to_id_map[player_name] = player_id
+
+print(f"Created a map for {len(player_name_to_id_map)} unique player names.")
+
+# --- 4. LOAD, UPDATE, AND SAVE THE CSV ---
+print(f"Loading data from '{PLAYER_SUMMARY_FILE}'...")
+df = pd.read_csv(PLAYER_SUMMARY_FILE)
+
+# Create the new 'player_id' column by mapping the 'player_name' column
+df['player_id'] = df['player_name'].map(player_name_to_id_map)
+
+# Reorder columns to have 'player_id' near the front
+cols = ['player_id'] + [col for col in df.columns if col != 'player_id']
+df = df[cols]
+
+# Save the updated DataFrame back to the same file
+df.to_csv(PLAYER_SUMMARY_FILE, index=False)
+
+print("\n" + "="*50)
+print(f"Successfully updated '{PLAYER_SUMMARY_FILE}' with a 'player_id' column.")
+print("="*50)
+print("\n--- Updated Data Preview ---")
+print(df.head())
+'''
+
+
+#Data Cleaning and feature engineering
+import pandas as pd
+import numpy as np
+
+def clean_and_engineer_features(input_file):
+    """
+    This script performs data cleaning and feature engineering on the aggregated
+    StatsBomb player performance data.
+    """
+    try:
+        print(f"Reading data from '{input_file}'...")
+        df = pd.read_csv(input_file)
+    except FileNotFoundError:
+        print(f"Error: The file '{input_file}' was not found.")
+        return
+
+    # --- 1. DATA CLEANING ---
+    print("\n--- Starting Data Cleaning ---")
     
-    try:
-        response = requests.get(search_url, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        player_table = soup.find('table', class_='items')
-        if player_table:
-            first_result_cell = player_table.find('td', class_='hauptlink')
-            if first_result_cell:
-                player_link = first_result_cell.find('a')
-                if player_link and 'href' in player_link.attrs:
-                    return "https://www.transfermarkt.com" + player_link['href']
-    except requests.exceptions.RequestException as e:
-        print(f"Error during search: {e}")
-    return None
+    # a) Check for and handle missing values
+    # For this dataset, a missing value in a performance metric likely means zero.
+    numeric_cols = ['goals', 'assists', 'shots', 'total_xG', 'matches_played']
+    for col in numeric_cols:
+        df[col] = df[col].fillna(0)
+    print("Handled missing values by filling with 0.")
 
-def scrape_market_value(player_url, headers):
-    """Scrapes the name and market value from a player's profile."""
-    try:
-        response = requests.get(player_url, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # --- UPDATED SELECTORS ---
-        # Find player name directly from the page's main h1 tag
-        player_name_element = soup.find('h1', class_='data-header__headline-wrapper')
-        # Find market value from its specific link wrapper
-        value_element = soup.find('a', class_='data-header__market-value-wrapper')
-        
-        # Clean the player name text to remove the jersey number
-        player_name = ' '.join(player_name_element.text.strip().split()[1:]) if player_name_element else 'Unknown Player'
-        market_value = value_element.text.strip().split()[0] if value_element else 'Not Found'
-        
-        return {"Player": player_name, "Market Value": market_value}
-    except requests.exceptions.RequestException as e:
-        print(f"Error scraping market value: {e}")
-    return None
+    # b) Correct data types
+    df['player_id'] = df['player_id'].astype(int)
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col])
+    print("Corrected data types for key columns.")
+
+    # --- 2. BASIC FEATURE ENGINEERING ---
+    print("\n--- Starting Basic Feature Engineering ---")
+
+    # a) Calculate per-match statistics for better comparison across players
+    # Using np.divide to handle division by zero gracefully (results in NaN)
+    df['goals_per_match'] = np.divide(df['goals'], df['matches_played'])
+    df['assists_per_match'] = np.divide(df['assists'], df['matches_played'])
+    df['shots_per_match'] = np.divide(df['shots'], df['matches_played'])
+    df['xG_per_match'] = np.divide(df['total_xG'], df['matches_played'])
+    
+    # b) Calculate efficiency metrics
+    df['goal_conversion_rate'] = np.divide(df['goals'], df['shots'])
+    
+    # c) Calculate performance relative to expectation (xG)
+    # This shows if a player is overperforming or underperforming their chances.
+    df['xG_performance'] = df['goals'] - df['total_xG']
+
+    # Fill any potential NaN values from division by zero with 0
+    df.fillna(0, inplace=True)
+    print("Created new features: per-match stats, conversion rate, and xG performance.")
+
+    # --- 3. ADVANCED FEATURE ENGINEERING (PERFORMANCE TRENDS) ---
+    print("\n--- Starting Advanced Feature Engineering ---")
+
+    # To calculate trends, we need to compare a player's stats to their previous season.
+    # a) First, sort the data by player and season to ensure correct ordering.
+    # The 'season_name' needs to be sorted chronologically (e.g., '2015/2016' before '2016/2017')
+    df_sorted = df.sort_values(by=['player_name', 'season_name'])
+
+    # b) Group by player and get the stats from the previous season using .shift()
+    shifted_cols = {}
+    for col in ['goals', 'assists', 'shots', 'total_xG', 'matches_played']:
+        shifted_cols[f'prev_season_{col}'] = df_sorted.groupby('player_name')[col].shift(1)
+    
+    df_trends = pd.concat([df_sorted, pd.DataFrame(shifted_cols)], axis=1)
+
+    # c) Calculate year-over-year (YoY) change
+    # This captures a player's performance trajectory (improving, declining, or stable)
+    df_trends['goals_yoy_change'] = df_trends['goals'] - df_trends['prev_season_goals']
+    df_trends['assists_yoy_change'] = df_trends['assists'] - df_trends['prev_season_assists']
+
+    # Fill NaN values for the first season of each player with 0
+    df_trends.fillna(0, inplace=True)
+    print("Created new features for year-over-year performance trends.")
+    
+    # --- 4. SAVE THE FINAL, ENRICHED DATASET ---
+    output_file = "player_performance_engineered.csv"
+    df_trends.to_csv(output_file, index=False)
+
+    print("\n" + "="*50)
+    print(f"Data cleaning and feature engineering complete.")
+    print(f"Final dataset saved to '{output_file}'")
+    print("="*50)
+    
+    print("\n--- Final Data Preview (with new features) ---")
+    print(df_trends.head())
+
 
 if __name__ == "__main__":
-    name = input("Enter the full name of the player to find their market value: ")
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    
-    print(f"\nSearching for {name}...")
-    player_url = search_for_player_url(name, headers)
-    
-    if player_url:
-        print(f"Found player profile: {player_url}")
-        player_data = scrape_market_value(player_url, headers)
-        
-        if player_data:
-            df = pd.DataFrame([player_data])
-            file_path = 'market_values.csv'
-            
-            # Append to the CSV if it exists, otherwise create it
-            df.to_csv(file_path, mode='a', header=not os.path.exists(file_path), index=False)
-            print(f"\nSuccessfully saved market value data to {file_path}")
-            print(df)
-    else:
-        print(f"Could not find a profile for {name}.")
-
-
-
-
-#Injury data : 
-
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import os
-
-def search_for_player_url(player_name, headers):
-    """Searches Transfermarkt and returns the URL of the top search result."""
-    search_query = player_name.replace(' ', '+')
-    search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
-    
-    try:
-        response = requests.get(search_url, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        player_table = soup.find('table', class_='items')
-        if player_table:
-            first_result_cell = player_table.find('td', class_='hauptlink')
-            if first_result_cell:
-                player_link = first_result_cell.find('a')
-                if player_link and 'href' in player_link.attrs:
-                    return "https://www.transfermarkt.com" + player_link['href']
-    except requests.exceptions.RequestException as e:
-        print(f"Error during search: {e}")
-    return None
-
-def scrape_injury_history(player_url, headers):
-    """Scrapes the full injury history from a player's profile."""
-    try:
-        # Go directly to the injury page
-        injury_url = player_url.replace('/profil/', '/verletzungen/')
-        response = requests.get(injury_url, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # Get the player's name for the DataFrame
-        player_name_element = soup.find('h1', class_='data-header__headline-wrapper')
-        player_name = ' '.join(player_name_element.text.strip().split()[1:]) if player_name_element else 'Unknown Player'
-
-        injuries = []
-        # Find the table containing the injury data
-        injury_table = soup.find('div', class_='responsive-table')
-        if injury_table:
-            # Loop through each row in the table (skipping the header)
-            for row in injury_table.find_all('tr')[1:]:
-                cols = row.find_all('td')
-                if len(cols) > 4:
-                    # For each injury, we add the player's name
-                    injury_data = {
-                        "Player": player_name,
-                        "Season": cols[0].text.strip(),
-                        "Injury": cols[1].text.strip(),
-                        "From": cols[2].text.strip(),
-                        "Until": cols[3].text.strip(),
-                        "Days Missed": cols[4].text.strip()
-                    }
-                    injuries.append(injury_data)
-        
-        # If player has no recorded injuries, create one row stating that
-        if not injuries:
-             injuries.append({
-                "Player": player_name, "Season": "N/A", "Injury": "No recorded injuries",
-                "From": "N/A", "Until": "N/A", "Days Missed": "N/A"
-            })
-            
-        return pd.DataFrame(injuries)
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error scraping injury data: {e}")
-        return pd.DataFrame() # Return an empty DataFrame on error
-
-if __name__ == "__main__":
-    name = input("Enter the full name of the player to find their injury history: ")
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    
-    print(f"\nSearching for {name}...")
-    player_url = search_for_player_url(name, headers)
-    
-    if player_url:
-        print(f"Found player profile: {player_url}")
-        injury_df = scrape_injury_history(player_url, headers)
-        
-        if not injury_df.empty:
-            file_path = 'injury_history.csv'
-            
-            # Append to the CSV if it exists, otherwise create it
-            injury_df.to_csv(file_path, mode='a', header=not os.path.exists(file_path), index=False)
-            print(f"\nSuccessfully saved injury history to {file_path}")
-            print(injury_df)
-    else:
-        print(f"Could not find a profile for {name}.")
-
-
-# social media analysis ( using reddit ) :
-
-import praw
-import pandas as pd
-import os
-
-# --- Good Practice: Create a 'data' folder if it doesn't exist ---
-if not os.path.exists('data'):
-    os.makedirs('data')
-
-# --- Initialize PRAW with your credentials ---
-reddit = praw.Reddit(
-    client_id = "##############" , 
-    client_secret = "#################",
-    user_agent="TransferIQ Scraper by u/YourUsername"
-)
-
-# --- Search for submissions in a specific subreddit ---
-subreddit = reddit.subreddit("soccer")
-player_name = "Kylian Mbappe"
-submissions_data = []
-
-# Search for the top posts this month containing the player's name
-for submission in subreddit.search(query=player_name, sort="top", time_filter="month", limit=10):
-    title = submission.title
-    score = submission.score
-    
-    submission.comments.replace_more(limit=0)
-    comments = [comment.body for comment in submission.comments.list()[:5]]
-    
-    submissions_data.append({
-        "Name" : player_name ,
-        "title": title,
-        "score": score,
-        "comments": comments
-    })
-
-# --- Convert the collected data to a DataFrame ---
-df = pd.DataFrame(submissions_data)
-
-# --- NEW: Save the DataFrame to a CSV file ---
-file_path = '/Users/nishantgupta/Downloads/Internship Dataset/reddit_soccer_data.csv'
-df.to_csv(file_path, mode = 'a' ,  index=False)
-
-print(f"Successfully saved Reddit data to {file_path}") 
+    # The file you uploaded from the previous step
+    statsbomb_summary_file = "/Users/nishantgupta/Desktop/Internship Project/complete_statsbomb_data.csv"
+    clean_and_engineer_features(statsbomb_summary_file)
