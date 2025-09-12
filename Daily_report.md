@@ -231,5 +231,74 @@ Date: 01/09/2025 (Monday)
 
 ### Tomorrow’s Question
 - What is multicollinearity? Is it always required to remove one of the columns or can we keep it?  
-- What is correlation?  
+- What is correlation?
 
+  ---
+
+# Day 16 Progress Report
+**Date:** 04/09/2025  
+
+### Daily Work
+- Continued correlation analysis and visualized feature relationships using heatmaps.  
+- Implemented encoding for categorical variables (One-Hot Encoding and Label Encoding).  
+- Pushed updated preprocessing scripts to GitHub.  
+
+---
+
+# Day 17 Progress Report
+**Date:** 05/09/2025  
+
+### Daily Work
+- Completed feature engineering (handled skewness using log transformation).  
+- Performed feature selection using correlation thresholding.  
+- Updated `dataset_info.md` with final feature descriptions.  
+- Began initial **Exploratory Data Analysis (EDA)** visualizations (distributions, boxplots, pairplots).  
+
+---
+
+# Day 18 Progress Report
+**Date:** 08/09/2025  
+
+### Daily Work
+- Finalized **EDA** report (insights on player market values, injury impact, sentiment trends).  
+- Started designing univariate LSTM model for time-series prediction.  
+- Set up train-test split for temporal data.  
+
+---
+
+# Day 19 Progress Report
+**Date:** 09/09/2025  
+
+### Meeting Minutes (Recap from Mentor’s Mail)
+- **Agenda:** Feature Engineering and Sentiment Analysis  
+- Update the GitHub with all the Python files and progress.  
+- Complete the work on data cleaning and feature engineering.  
+- If preprocessing is complete, start with the modelling.  
+
+### Daily Work
+- Completed preprocessing and feature engineering module.  
+- Implemented and trained first **Univariate LSTM model** for player market value prediction.  
+- Evaluated performance using RMSE and MAE metrics.  
+
+### Tomorrow’s Question
+- What is PCA and LDA?  
+
+---
+
+# Day 20 Progress Report
+**Date:** 10/09/2025  
+
+### Meeting Minutes (Recap from Mentor’s Mail)
+- **Agenda:** Feature Engineering and Sentiment Analysis  
+- Discussed PCA basics and clarified:
+  - Why PCA is used.  
+  - Whether PCA can be applied before statistical analysis.  
+  - Variance concepts (applied on features, not datapoints).  
+
+### Daily Work
+- Developed **Multivariate LSTM model** including multiple features (player stats, injuries, sentiment score).  
+- Compared model performance against univariate version.  
+- Documented results and updated `modelling_progress.md`.  
+
+### Tomorrow’s Question
+- Deep dive into PCA and LDA.  
