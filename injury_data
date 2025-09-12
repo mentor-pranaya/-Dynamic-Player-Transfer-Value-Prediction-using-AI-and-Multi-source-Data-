@@ -1,0 +1,198 @@
+'''
+import pandas as pd
+
+player_injury_df = pd.read_csv('/Users/nishantgupta/Downloads/Internship Dataset/Injury data.csv')
+print("\n --------------------------------------Player Injury Data -----------------------------------------------")
+print(player_injury_df.head())
+print("\n")
+player_injury_df.info()
+print("\n")
+print(player_injury_df.describe())
+
+'''
+
+'''
+# File: bulk_injury_scraper_final.py
+# This script scrapes injury data for ALL players in your summary file
+# and can be safely stopped and restarted.
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import os
+import time
+import random
+
+def search_for_player_url(player_name, headers):
+    """Searches Transfermarkt and returns the URL of the top search result."""
+    search_query = player_name.replace(' ', '+')
+    search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
+    
+    try:
+        response = requests.get(search_url, headers=headers, timeout=20)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        player_table = soup.find('table', class_='items')
+        if player_table:
+            first_result_cell = player_table.find('td', class_='hauptlink')
+            if first_result_cell:
+                player_link = first_result_cell.find('a')
+                if player_link and 'href' in player_link.attrs:
+                    return "https://www.transfermarkt.com" + player_link['href']
+    except requests.exceptions.RequestException:
+        pass
+    return None
+
+def scrape_injury_history(player_url, player_name_from_file, headers):
+    """Scrapes the full injury history from a player's profile."""
+    try:
+        injury_url = player_url.replace('/profil/', '/verletzungen/')
+        response = requests.get(injury_url, headers=headers, timeout=20)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        injuries = []
+        injury_table = soup.find('div', class_='responsive-table')
+        if injury_table:
+            for row in injury_table.find_all('tr')[1:]:
+                cols = row.find_all('td')
+                if len(cols) > 4:
+                    injuries.append({
+                        "Player": player_name_from_file, "Season": cols[0].text.strip(),
+                        "Injury": cols[1].text.strip(), "From": cols[2].text.strip(),
+                        "Until": cols[3].text.strip(), "Days Missed": cols[4].text.strip()
+                    })
+        
+        if not injuries:
+             injuries.append({
+                "Player": player_name_from_file, "Season": "N/A", "Injury": "No recorded injuries",
+                "From": "N/A", "Until": "N/A", "Days Missed": "N/A"
+            })
+            
+        return pd.DataFrame(injuries)
+
+    except requests.exceptions.RequestException:
+        return pd.DataFrame()
+
+if __name__ == "__main__":
+    PLAYER_LIST_FILE = "/Users/nishantgupta/Desktop/Internship Project/complete_statsbomb_data.csv"
+    OUTPUT_FILE = "/Users/nishantgupta/Desktop/Internship Project/all_players_injury_history.csv"
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
+    try:
+        df_players = pd.read_csv(PLAYER_LIST_FILE)
+        # --- THIS NOW USES THE ENTIRE LIST OF PLAYERS ---
+        player_names_to_scrape = df_players['player_name'].unique()
+        print(f"Found {len(player_names_to_scrape)} unique players to process.")
+    except FileNotFoundError:
+        print(f"Error: The file '{PLAYER_LIST_FILE}' was not found.")
+        exit()
+
+    processed_players = set()
+    if os.path.exists(OUTPUT_FILE):
+        df_existing = pd.read_csv(OUTPUT_FILE)
+        processed_players = set(df_existing['Player'].unique())
+        print(f"Found {len(processed_players)} players already in the output file. They will be skipped.")
+
+    total_players = len(player_names_to_scrape)
+
+    for i, name in enumerate(player_names_to_scrape):
+        
+        if name in processed_players:
+            # This part is now handled by the logic above, but we can keep it as a quick check
+            continue
+
+        print(f"Processing ({i+1}/{total_players}): {name}...")
+        
+        player_url = search_for_player_url(name, headers)
+        
+        if player_url:
+            injury_df = scrape_injury_history(player_url, name, headers)
+            if not injury_df.empty:
+                injury_df.to_csv(OUTPUT_FILE, mode='a', header=not os.path.exists(OUTPUT_FILE), index=False)
+                print(f"  -> Data for {name} saved.")
+        else:
+            print(f"  -> Could not find '{name}' on Transfermarkt. Skipping.")
+        
+        delay = random.uniform(5, 15)
+        print(f"   ...waiting for {delay:.1f} seconds...")
+        time.sleep(delay)
+
+    print("\n" + "="*50)
+    print(f"Process complete. All injury data saved to '{OUTPUT_FILE}'")
+    print("="*50) 
+
+    
+'''
+
+# Data Cleaning and feature engineering
+
+import pandas as pd
+import os
+
+def engineer_injury_features(input_file):
+    """
+    Reads the raw injury history log and engineers aggregated features
+    to summarize each player's injury profile.
+    """
+    try:
+        print(f"Reading raw injury data from '{input_file}'...")
+        df = pd.read_csv(input_file)
+    except FileNotFoundError:
+        print(f"Error: The file '{input_file}' was not found.")
+        return
+
+    print("Cleaning data and engineering new features...")
+
+    # --- 1. DATA CLEANING ---
+    # a) Remove rows where there are no recorded injuries
+    df_cleaned = df[df['Injury'] != 'No recorded injuries'].copy()
+
+    # b) Clean the 'Days Missed' column and convert it to a number.
+    # It currently has text like "11 days". We need to extract the number.
+    # We use .str.extract('(\d+)') to get the digits and convert to a numeric type.
+    # 'errors='coerce'' will turn any non-numeric values into NaN (Not a Number).
+    df_cleaned['days_missed_numeric'] = pd.to_numeric(
+        df_cleaned['Days Missed'].str.extract('(\d+)', expand=False),
+        errors='coerce'
+    )
+    # Fill any resulting missing values with 0
+    df_cleaned['days_missed_numeric'].fillna(0, inplace=True)
+
+
+    # --- 2. FEATURE ENGINEERING ---
+    # Now we aggregate the cleaned data to create summary statistics for each player.
+    
+    # a) Group the data by player
+    # b) Use .agg() to calculate multiple new features at once:
+    #    - total_days_missed: The sum of all days missed.
+    #    - injury_count: The total number of separate injuries.
+    #    - avg_days_per_injury: The average duration of an injury.
+    injury_summary = df_cleaned.groupby('Player').agg(
+        total_days_missed=('days_missed_numeric', 'sum'),
+        injury_count=('Injury', 'count'),
+        avg_days_per_injury=('days_missed_numeric', 'mean')
+    ).reset_index()
+
+    # Round the average to make it cleaner
+    injury_summary['avg_days_per_injury'] = injury_summary['avg_days_per_injury'].round(1)
+
+
+    # --- 3. SAVE THE FINAL SUMMARY FILE ---
+    output_file = "/Users/nishantgupta/Desktop/Internship Project/player_injury_summary.csv"
+    injury_summary.to_csv(output_file, index=False)
+
+    print("\n" + "="*50)
+    print(f"Feature engineering complete.")
+    print(f"Final player injury summary saved to '{output_file}'")
+    print("="*50)
+    
+    print("\n--- Player Injury Summary Preview ---")
+    print(injury_summary.head())
+
+
+if __name__ == "__main__":
+    # The file you uploaded with the raw injury log
+    raw_injury_file = "/Users/nishantgupta/Desktop/Internship Project/all_players_injury_history.csv"
+    engineer_injury_features(raw_injury_file)
