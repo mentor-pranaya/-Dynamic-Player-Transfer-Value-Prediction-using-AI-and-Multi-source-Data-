@@ -1,0 +1,125 @@
+# Sentiment Analysis
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from textblob import TextBlob
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
+
+# Download VADER lexicon
+nltk.download('vader_lexicon')
+
+# Load datasets
+tweets_df = pd.read_csv('/content/tweets_with_sentiment.csv')
+transfer_df = pd.read_csv('/content/Feature Engineering/player_valuations_featured.csv')
+injury_df = pd.read_csv('/content/Injury_data.csv')
+
+# Preview datasets
+print(tweets_df.head())
+print(transfer_df.head())
+print(injury_df.head())
+
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+sid = SentimentIntensityAnalyzer()
+
+# Calculate sentiment scores
+tweets_df['sentiment_compound'] = tweets_df['tweet'].apply(lambda x: sid.polarity_scores(str(x))['compound'])
+tweets_df['sentiment_polarity'] = tweets_df['tweet'].apply(lambda x: TextBlob(str(x)).sentiment.polarity)
+
+# Convert tweet_date to datetime
+tweets_df['date_created'] = pd.to_datetime(tweets_df['date_created'])
+
+last_date = tweets_df['date_created'].max()
+window_start = last_date - pd.Timedelta(days=30)
+
+recent_tweets = tweets_df[tweets_df['date_created'] >= window_start]
+
+# Since player_name is not in tweet dataset, we'll aggregate globally per time
+sentiment_features = recent_tweets.agg({
+    'sentiment_compound': ['mean', 'std', 'min', 'max'],
+    'sentiment_polarity': ['mean', 'std']
+}).reset_index()
+
+# Convert aggregated data to a DataFrame
+sentiment_features = pd.DataFrame({
+    'compound_mean': [sentiment_features.loc[0, 'sentiment_compound']],
+    'compound_std': [sentiment_features.loc[1, 'sentiment_compound']],
+    'compound_min': [sentiment_features.loc[2, 'sentiment_compound']],
+    'compound_max': [sentiment_features.loc[3, 'sentiment_compound']],
+    'polarity_mean': [sentiment_features.loc[0, 'sentiment_polarity']],
+    'polarity_std': [sentiment_features.loc[1, 'sentiment_polarity']]
+})
+
+print(sentiment_features)
+
+# Convert start_year to datetime (assuming January 1 of that year)
+injury_df['start_year'] = pd.to_datetime(injury_df['start_year'], format='%Y')
+
+# Aggregate injury data per player_id2
+injury_features = injury_df.groupby('p_id2').agg({
+    'season_days_injured': 'sum',
+    'total_days_injured': 'max',
+    'season_minutes_played': 'sum',
+    'season_games_played': 'sum',
+    'season_matches_in_squad': 'sum',
+    'cumulative_days_injured': 'max',
+    'minutes_per_game_prev_seasons': 'mean',
+    'avg_days_injured_prev_seasons': 'mean',
+    'avg_games_per_season_prev_seasons': 'mean',
+    'bmi': 'mean',
+    'significant_injury_prev_season': 'max'
+}).reset_index()
+
+print(injury_features.head())
+
+
+# Calculate goals per game and assists per game
+transfer_df['goals_per_game'] = transfer_df['goals'] / transfer_df['minutes_played'].replace(0, np.nan) * 90
+transfer_df['assists_per_game'] = transfer_df['assists'] / transfer_df['minutes_played'].replace(0, np.nan) * 90
+
+# Fill infinite values with 0
+transfer_df.fillna(0, inplace=True)
+
+print(transfer_df[['player_id', 'goals_per_game', 'assists_per_game']].head())
+
+
+# Convert IDs to string type
+transfer_df['player_id'] = transfer_df['player_id'].astype(str)
+injury_features['p_id2'] = injury_features['p_id2'].astype(str)
+
+# Perform merge
+merged_df = transfer_df.merge(injury_features, left_on='player_id', right_on='p_id2', how='left')
+
+# Fill missing injury data with 0
+merged_df.fillna({
+    'season_days_injured': 0,
+    'total_days_injured': 0,
+    'season_minutes_played': 0,
+    'season_games_played': 0,
+    'season_matches_in_squad': 0,
+    'cumulative_days_injured': 0,
+    'minutes_per_game_prev_seasons': 0,
+    'avg_days_injured_prev_seasons': 0,
+    'avg_games_per_season_prev_seasons': 0,
+    'bmi': 0,
+    'significant_injury_prev_season': 0
+}, inplace=True)
+
+# Append global sentiment features to all rows
+for col in sentiment_features.columns:
+    merged_df[col] = sentiment_features[col][0]
+
+print(merged_df.head())
+
+merged_df.to_csv('/content/Sentiment_Analysis/final_featured_dataset.csv', index=False)
+
+plt.scatter(merged_df['compound_mean'], merged_df['market_value_in_eur'], alpha=0.6)
+plt.xlabel('Average Sentiment Compound Score (Last 30 Days)')
+plt.ylabel('Market Value (€)')
+plt.title('Sentiment vs Market Value')
+plt.grid(True)
+plt.show()
+
+correlation = merged_df['compound_mean'].corr(merged_df['market_value_in_eur'])
+print(f"Correlation between global sentiment and player market value: {correlation:.3f}")
