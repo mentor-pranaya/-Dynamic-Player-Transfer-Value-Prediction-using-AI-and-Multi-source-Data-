@@ -233,7 +233,7 @@ Date: 01/09/2025 (Monday)
 - What is multicollinearity? Is it always required to remove one of the columns or can we keep it?  
 - What is correlation?
 
-  ---
+---
 
 # Day 16 Progress Report
 **Date:** 04/09/2025  
