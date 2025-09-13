@@ -3,13 +3,13 @@
 
   Downloaded data from
   https://github.com/statsbomb/open-data
-
+----------------------------------------------------------------------------------------------------------
 **19 August 2025:**
   Working on python script to scrape data using BS Library.
-
+----------------------------------------------------------------------------------------------------------
 **20 August 2025:**
   Still working on python script to scrape data
-  
+----------------------------------------------------------------------------------------------------------  
 **26 August 2025:**
   Completed testing first script transfermarkt_premier-league_initial.py for web scrping
 
@@ -35,23 +35,23 @@
   Downloaded Player Injuries and Team Performance Dataset from Kaggle:
 
       This dataset investigates the impact of player injuries on team performance across seven Premier League clubs from 2019 to 2023, including Tottenham, Aston Villa, Brighton, Arsenal, Brentford, Everton, Burnley, and Manchester City. The dataset contains over 600 injury records, offering insights into how player absences influence match results and individual performance metrics.
-
+----------------------------------------------------------------------------------------------------------
 **28 Aug 2025:**
    Working on MySQL DB to import various dataset records for easy quering, matching and cleaning of records.
 
    Created database "AIProject" on localhost
    importing statsbomb data to mysql database
-
+----------------------------------------------------------------------------------------------------------
 **29 Aug 2025:**
     Working on python script to import data to mysql
 
     Stopped data import to add file_name column to data being imported from json to mysql for cross referencing.
-
+----------------------------------------------------------------------------------------------------------
 **30th Aug 2025:**
   Completed importing 3464 files from events folder from StatsBomb data
 
   Total rows imported : 12188949
-
+----------------------------------------------------------------------------------------------------------
 **31th Aug 2025:**
   Created new script to import statsbomb data, along with lineup data from events json files
 
@@ -62,25 +62,25 @@
   Imported teams, players, lineup_positions, player_cards from "Lineups" data folder
 
   Imported Normalized data from Transfermrkt to players_trfrmrkt, clubs_trfrmrkt, competitions_trfrmrkt, market_values_trfrmrkt
-
+----------------------------------------------------------------------------------------------------------
 **1st Sep 2025:**
   Sentiment analysis: Tried multithreading to capture data from multiple platforms. Failed repeatedly with multiple options to analyze Twitter data, along with Reddit and Medium
   
   Seperated the three social media data collection logic.
   
   Reddit data is being uploaded to MySQL 
-
+----------------------------------------------------------------------------------------------------------
 **2nd Sept 2025:**
   Completed Reddit sentiment analysis 
 
   Merging all events data (created different tables earlier for each 100 files of 3464 files from StatsBomb data for faster processing) 
-
+----------------------------------------------------------------------------------------------------------
 **4th Sept 2025:**
   Added the final schema (db_structure.sql) to git repository
-
+----------------------------------------------------------------------------------------------------------
 **5th - 7th Sep 2025**
   Worked on new mapping scripts to improve mapping between statsbomb, transfermrkt and injury data
-  
+----------------------------------------------------------------------------------------------------------  
 **8th Sep 2025**
   Improved GIT structure
 
@@ -91,12 +91,12 @@
   Scraping transfermarkt for injury data
 
   Also adding player transfer history data via scraping from player profile page on transfermarkt 
-
+----------------------------------------------------------------------------------------------------------
 **9th to 12th September 2025:**
   Worked on data cleaning 
   
   while cleaning, transfermarkt injuries scraped data was found to be inconsistent.
 
   Rescraped injuries data, with pagination support and formating for multipage support
-
+----------------------------------------------------------------------------------------------------------
 **13th September 2025:**
