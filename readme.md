@@ -1,4 +1,4 @@
-7**18 August 2025:**
+**18 August 2025:**
   Explored various data sorces
 
   Downloaded data from
@@ -97,6 +97,6 @@
   
   while cleaning, transfermarkt injuries scraped data was found to be inconsistent.
 
-  Rescraped injuries data, with pagination support and formating
+  Rescraped injuries data, with pagination support and formating for multipage support
 
 **13th September 2025:**
