@@ -117,7 +117,7 @@
   
   while cleaning, transfermarkt injuries scraped data was found to be inconsistent.
 
-  Rescraped injuries data, with pagination support and formating for multipage support
+  Rescraped injuries data, with pagination support and formating for multipage injury data from trasnfermarkt
 
 **13th September 2025:**
 ----------------------------------------------------------------------------------------------------------  
