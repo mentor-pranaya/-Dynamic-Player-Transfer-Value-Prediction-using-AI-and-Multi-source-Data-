@@ -91,3 +91,12 @@
   Scraping transfermarkt for injury data
 
   Also adding player transfer history data via scraping from player profile page on transfermarkt 
+
+**9th to 12th September 2025:**
+  Worked on data cleaning 
+  
+  while cleaning, transfermarkt injuries scraped data was found to be inconsistent.
+
+  Rescraped injuries data, with pagination support and formating
+
+**13th September 2025:**
