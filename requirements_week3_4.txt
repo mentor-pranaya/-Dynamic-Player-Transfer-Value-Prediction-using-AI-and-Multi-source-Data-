@@ -1,0 +1,21 @@
+# Additional requirements for Milestone 3: Weeks 3-4
+# Advanced Feature Engineering and Sentiment Analysis
+
+# Sentiment Analysis Libraries
+vaderSentiment>=3.3.2
+textblob>=0.17.1
+nltk>=3.8.1
+
+# Data Processing (if not already installed)
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.1.0
+
+# Optional: For better text processing
+spacy>=3.4.0
+
+# Optional: For advanced sentiment analysis
+transformers>=4.20.0
+torch>=1.12.0
+
+# Note: Install with: pip install -r requirements_week3_4.txt
