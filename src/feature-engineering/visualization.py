@@ -1,13 +1,3 @@
-
-#7
-Great 🚀 Let’s build a **Python visualization script** to query the database and create dashboards.
-We’ll use **Pandas + Matplotlib + Seaborn** for now (can extend to Plotly/Dash later if you want an interactive dashboard).
-
----
-
-## 📊 Python Dashboard Visualization Script
-
-```python
 import mysql.connector
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -22,6 +12,14 @@ db_cfg = dict(
     password="yahoonet",
     database="AIProject"
 )
+"""
+    1. Queries the top 500 players by composite score.
+    2. Creates 3 charts:
+
+   Bar chart → Top 20 players overall.
+   Boxplot → Top 10 per competition (distribution view).
+   Scatterplot → Injury Score vs Market Value (colored by competition).
+"""
 
 def get_dashboard_data():
     query = """
@@ -97,19 +95,3 @@ if __name__ == "__main__":
     df = get_dashboard_data()
     print(df.head(10))  # preview
     visualize(df)
-```
-
----
-
-## 📈 What this does:
-
-1. Queries the **top 500 players** by composite score.
-2. Creates **3 charts**:
-
-   * **Bar chart** → Top 20 players overall.
-   * **Boxplot** → Top 10 per competition (distribution view).
-   * **Scatterplot** → Injury Score vs Market Value (colored by competition).
-
----
-
-👉 Do you want me to extend this into a **streamlit app** (interactive dashboard in browser with filters for club, competition, etc.) or keep it in Jupyter/Matplotlib for now?
