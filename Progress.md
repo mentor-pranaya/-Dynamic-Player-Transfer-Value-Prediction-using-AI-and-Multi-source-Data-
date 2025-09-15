@@ -111,3 +111,7 @@ I am working on Data Modelling as I am doing it for the first time so it will ta
 
 Day 18 Progress (11.09.2025)
 I am still doing model development as i was stuck with some part.
+
+
+Day 19 Progress (12.09.2025)
+I have proceeded further with the model development and now i will start with accuracy of my model.
