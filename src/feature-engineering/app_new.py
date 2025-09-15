@@ -17,6 +17,12 @@ db_cfg = dict(
 """
     #9
     track how a player’s market value changes relative to injury events and sentiment shifts.
+    click a player name and instantly see how **injuries impacted their value!
+    Player Trendlines section.
+    Line chart of market value over time**.
+    Injury events shown as red shaded regions (date\_of\_injury → date\_of\_return).
+    Injury names displayed as vertical annotations.
+
 """
 @st.cache_data
 def get_dashboard_data():
@@ -177,19 +183,4 @@ if player_choice:
         ax.set_title(f"Market Value vs Injuries: {player_choice}")
         ax.set_ylabel("Market Value (€)")
         st.pyplot(fig)
-```
 
----
-
-## ✨ What’s New
-
-* **Player Trendlines** section.
-* Line chart of **market value over time**.
-* **Injury events** shown as red shaded regions (date\_of\_injury → date\_of\_return).
-* Injury names displayed as vertical annotations.
-
----
-
-⚡ Now you can click a **player name** and instantly see how **injuries impacted their value**!
-
-Would you like me to also **overlay sentiment trends (Reddit/Twitter)** for the player alongside market value?
