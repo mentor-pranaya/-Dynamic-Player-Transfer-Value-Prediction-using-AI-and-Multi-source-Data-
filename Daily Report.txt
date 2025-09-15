@@ -102,3 +102,5 @@ Tested additional models including Linear Regression as a baseline and XGBoost f
 
 Day-16
 Built a complete prediction pipeline in Python that handles preprocessing (scaling and encoding), automatic feature selection, and outputs transfer value predictions for new player data.
+Day-17
+I implemented a univariate LSTM model using TensorFlow/Keras to analyze the historical trend of market values. The model focused only on past transfer values to predict future ones. This provided a baseline for how well time-series information alone could explain transfer value changes.
