@@ -118,5 +118,6 @@ I have proceeded further with the model development and now i will start with un
 
 
 Day 20 Progress (15.09.2025)
-Now i have started doing hypertuning of my model.
+After LSTM Model is completed i will work on Multivariate LSTM Model.
+
 
