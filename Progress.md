@@ -115,3 +115,7 @@ I am still doing model development as i was stuck with some part.
 
 Day 19 Progress (12.09.2025)
 I have proceeded further with the model development and now i will start with accuracy of my model.
+
+
+Day 20 Progress (15.09.2025)
+Now i have started doing hypertuning of my model.
