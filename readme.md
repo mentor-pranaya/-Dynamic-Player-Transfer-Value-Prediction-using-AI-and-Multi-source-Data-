@@ -119,5 +119,8 @@
 
   Rescraped injuries data, with pagination support and formating for multipage injury data from trasnfermarkt
 
-**13th September 2025:**
+**13th - 15th September 2025:**
 ----------------------------------------------------------------------------------------------------------  
+  Created scripts for feature merging
+  
+  Working on visualizations for further feature engineering
