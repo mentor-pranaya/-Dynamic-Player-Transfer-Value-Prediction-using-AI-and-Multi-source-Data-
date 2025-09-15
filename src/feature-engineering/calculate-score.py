@@ -18,6 +18,18 @@ cursor = db.cursor(dictionary=True)
     1. Pulls required inputs (injuries, sentiments, market value).
     2. Computes **Injury Score, Sentiment Score, Availability Score, Value Score, Composite Score**.
     3. Updates the `player_features` table.
+    
+CREATE TABLE IF NOT EXISTS player_features (
+       mapping_id INT PRIMARY KEY,
+       composite_score FLOAT,
+       injury_score FLOAT,
+       sentiment_score FLOAT,
+       availability_score FLOAT,
+       value_score FLOAT,
+       FOREIGN KEY (mapping_id) REFERENCES player_mapping(id) ON DELETE CASCADE
+   );
+
+it will **fill/update composite scores for all players**.
 """
 
 # ------------------------
@@ -120,29 +132,3 @@ for m in mappings:
 cursor.close()
 db.close()
 print("✅ Composite scores updated in player_features")
-```
-
----
-
-## 🔹 Next Step
-
-Before running:
-
-1. Make sure you have a **`player_features` table** (linked to `player_mapping`).
-
-   ```sql
-   CREATE TABLE IF NOT EXISTS player_features (
-       mapping_id INT PRIMARY KEY,
-       composite_score FLOAT,
-       injury_score FLOAT,
-       sentiment_score FLOAT,
-       availability_score FLOAT,
-       value_score FLOAT,
-       FOREIGN KEY (mapping_id) REFERENCES player_mapping(id) ON DELETE CASCADE
-   );
-   ```
-2. Run the script → it will **fill/update composite scores for all players**.
-
----
-
-👉 Do you want me to also create a **dashboard query** (SQL) so you can rank top players by this score and join with club + competition info?
