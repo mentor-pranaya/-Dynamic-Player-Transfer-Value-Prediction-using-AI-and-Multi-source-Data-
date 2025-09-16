@@ -129,7 +129,7 @@
 ----------------------------------------------------------------------------------------------------------  
   Created fresh new script for scraping player transfers from trasnfermarkt
   
-  Used selemium to scrape data from 
+  Using selemium to scrape data from 
   
     https://www.transfermarkt.com/spieler/transfers/spieler/{player_id}
   
