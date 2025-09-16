@@ -34,7 +34,7 @@ def scrape_transfer_history(player_id, transfermarkt_id):
     print(url)
     # Wait for and click consent banner
     try:
-        consent_button = WebDriverWait(driver, 10).until(
+        consent_button = WebDriverWait(driver, 30).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button.accept-all.sp_choice_type_11"))
         )
         consent_button.click()
@@ -44,7 +44,7 @@ def scrape_transfer_history(player_id, transfermarkt_id):
 
     # Wait for transfer history grid
     try:
-        WebDriverWait(driver, 15).until(
+        WebDriverWait(driver, 30).until(
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div.tm-player-transfer-history-grid"))
         )
     except Exception as e:
@@ -96,7 +96,7 @@ def scrape_transfer_history(player_id, transfermarkt_id):
 
 def main():
     # Example: fetch all players needing transfers
-    cursor.execute("SELECT id, transfermarkt_id FROM players_trfrmrkt WHERE transfermarkt_id IS NOT NULL order by transfermarkt_id")
+    cursor.execute("SELECT id, transfermarkt_id FROM players_trfrmrkt WHERE transfermarkt_id not in (select distinct transfermarkt_id from player_transfer_history ) and transfermarkt_id IS NOT NULL order by transfermarkt_id")
     players = cursor.fetchall()
     cur_player_count = 1
     for pid, tm_id in players:
