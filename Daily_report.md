@@ -216,7 +216,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-# Day 13 Progress Report
+# Day 13 
 **Date:** 03/09/2025  
 
 ### Meeting Minutes (Recap from Mentor’s Mail)
@@ -235,7 +235,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-# Day 16 Progress Report
+# Day 14 
 **Date:** 04/09/2025  
 
 ### Daily Work
@@ -245,7 +245,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-# Day 17 Progress Report
+# Day 15 
 **Date:** 05/09/2025  
 
 ### Daily Work
@@ -256,7 +256,10 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-# Day 18 Progress Report
+# WEEK 4
+
+
+# Day 16 
 **Date:** 08/09/2025  
 
 ### Daily Work
@@ -266,7 +269,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-# Day 19 Progress Report
+# Day 17 
 **Date:** 09/09/2025  
 
 ### Meeting Minutes (Recap from Mentor’s Mail)
@@ -285,7 +288,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-# Day 20 Progress Report
+# Day 18 
 **Date:** 10/09/2025  
 
 ### Meeting Minutes (Recap from Mentor’s Mail)
@@ -301,4 +304,69 @@ Date: 01/09/2025 (Monday)
 - Documented results and updated `modelling_progress.md`.  
 
 ### Tomorrow’s Question
-- Deep dive into PCA and LDA.  
+- Deep dive into PCA and LDA.
+---
+# Day 19 Progress Report
+**Date:** 11/09/2025  
+
+### Daily Work
+- Continued work on **PCA and LDA deep dive** as per mentor's instructions.  
+- Implemented PCA on feature set to compare dimensionality reduction results.  
+- Analyzed explained variance ratio to decide optimal number of components.  
+- Pushed updated PCA implementation script to GitHub.  
+
+---
+
+# Day 20
+**Date:** 12/09/2025  
+
+### Meeting Minutes (Recap from Mentor’s Mail)
+- **Agenda:** Complete Feature Engineering and Sentiment Analysis  
+- Discussed orthogonal decomposition, eigen decomposition, and their relationship to PCA.  
+- Discussed LDA and compared its use case with PCA.  
+- Mentor instructed to complete all pending preprocessing and sentiment analysis tasks by today.  
+
+### Daily Work
+- Finalized **feature engineering and sentiment analysis** module.  
+- Cleaned and merged all datasets into the final training-ready CSV.  
+- Verified missing value handling post-merge and pushed final dataset to GitHub.  
+
+### Tomorrow’s Question
+- What is the difference between normalization and standardization? When would you use each?  
+- What is overfitting vs underfitting? How do you prevent overfitting?  
+
+--------
+
+# WEEK 5
+
+---
+# Day 21 
+**Date:** 15/09/2025  
+
+### Daily Work
+- Began **LSTM model development** (Univariate version).  
+- Trained on historical player market value data and evaluated results.  
+- Experimented with window sizes and batch sizes to tune training process.
+  
+---
+
+# Day 22 
+**Date:** 16/09/2025  
+
+### Meeting Minutes (Recap from Mentor’s Mail)
+- **Agenda:** Work on Univariate and Multivariate LSTM  
+- Mentor emphasized completing data cleaning, preprocessing, feature engineering, and sentiment analysis.  
+- Discussed doubts related to LSTM architecture and multi-step forecasting.  
+
+### Daily Work
+- Completed **Multivariate LSTM** development.  
+- Tuned hyperparameters (layers, neurons, dropout rate) to improve model performance.  
+- Implemented **Encoder–Decoder LSTM** for multi-step forecasting.  
+- Compared results across Univariate, Multivariate, and Encoder–Decoder models and finalized the best performing architecture.  
+- **Milestone 4: LSTM Development ✅ Completed! 🎉**  
+
+### Tomorrow’s Question
+- What is the difference between normalization and standardization? When would you use each?  
+- What is overfitting vs underfitting? How do you prevent overfitting?  
+- Architecture of LSTM.  
+
