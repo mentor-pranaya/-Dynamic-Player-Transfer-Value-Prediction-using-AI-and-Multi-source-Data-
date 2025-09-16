@@ -124,3 +124,14 @@
   Created scripts for feature merging
   
   Working on visualizations for further feature engineering
+
+**16th September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Created fresh new script for scraping player transfers from trasnfermarkt
+  
+  Used selemium to scrape data from 
+  
+    https://www.transfermarkt.com/spieler/transfers/spieler/{player_id}
+  
+  in loop, using new script scrape_trfr_record_new.py
+  
