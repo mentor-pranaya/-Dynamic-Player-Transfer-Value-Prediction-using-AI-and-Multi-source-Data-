@@ -135,3 +135,10 @@
   
   in loop, using new script scrape_trfr_record_new.py
   
+**17th September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  updated scraping script to scroll and retry on not finding the transfer grid, as the code sometimes fails before the grid loads
+
+  Also found that the lazy load script would not let the grid load at times, till the page is scrolled till the grid, added scroll
+  
+  
