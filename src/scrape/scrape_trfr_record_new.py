@@ -34,7 +34,7 @@ def scrape_transfer_history(player_id, transfermarkt_id):
     print(url)
     # Wait for and click consent banner
     try:
-        consent_button = WebDriverWait(driver, 30).until(
+        consent_button = WebDriverWait(driver, 15).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button.accept-all.sp_choice_type_11"))
         )
         consent_button.click()
@@ -42,14 +42,31 @@ def scrape_transfer_history(player_id, transfermarkt_id):
     except Exception as e:
         print("Consent already accepted or not found:", e)
 
-    # Wait for transfer history grid
-    try:
-        WebDriverWait(driver, 30).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div.tm-player-transfer-history-grid"))
-        )
-    except Exception as e:
-        print("Transfer grid not found:", e)
+    # Wait for transfer history grid with retry
+    #updated scraping script to scroll and retry on not finding the transfer grid, as the code sometimes fails before the grid loads
+
+    #Also found that the lazy load script would not let the grid load at times, till the page is scrolled till the grid, added scroll
+    grid_found = False
+    for attempt in range(5):  # try up to 5 times (the script was failing sometimes, before the grid appeared)
+        try:
+            driver.execute_script(f"window.scrollTo(0, {attempt*800});")
+            time.sleep(2)  # let JS load content
+            
+            WebDriverWait(driver, 15).until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div.tm-player-transfer-history-grid"))
+            )
+            grid_found = True
+            print(f"Transfer grid loaded on attempt {attempt+1}")
+            break
+        except Exception as e:
+            print(f"Attempt {attempt+1}: Transfer grid not found yet. Retrying...")
+            time.sleep(3)  # small wait before retry
+            # driver.refresh()
+
+    if not grid_found:
+        print("Transfer grid not found after 5 attempts. Skipping.")
         return
+
 
     # Find all rows (they’re in div.tm-player-transfer-history-grid > div.grid)
     rows = driver.find_elements(By.CSS_SELECTOR, "div.tm-player-transfer-history-grid")
