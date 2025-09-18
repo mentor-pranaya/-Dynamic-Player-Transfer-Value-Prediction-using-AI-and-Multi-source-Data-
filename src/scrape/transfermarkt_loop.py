@@ -1,8 +1,3 @@
-# -----------------------------------------
-# STEP 0: Install Required Libraries
-# -----------------------------------------
-# !pip install requests beautifulsoup4 pandas
-
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -99,9 +94,9 @@ def scrape_competition(base_url, competition_name):
             market_value = value_tag.text.strip() if value_tag else None
 
             # Club Name
-            club_tag = row.find("td", {"class": "zentriert"}).find_next("img")
+            club_tag = row.find("td", {"class": "zentriert"}).find_next("a").find_next("img", {"class": ""})
             club_name = club_tag["alt"] if club_tag else None
-            
+            print(club_name)
             if player_name and market_value:
                 all_players.append(player_name)
                 all_values.append(market_value)
@@ -146,5 +141,5 @@ print("\nFinal Dataset Summary:")
 print(df.head(20))
 print(f"\nTotal Players Scraped Across All Competitions: {len(df)}")
 
-df.to_csv("market_values_all_competitions_new.csv", index=False)
-print("\nSaved to market_values_all_competitions_new.csv")
+df.to_csv("market_values_all_competitions_new18Sep.csv", index=False)
+print("\nSaved to market_values_all_competitions_new18Sep.csv")
