@@ -127,3 +127,7 @@ I am currently working on LSTM model as it has some issues which I'll fix within
 
 Day 22 Progress (17.09.2025)
 LSTM model has been completed now I am working on Multivariate LSTM Model.
+
+
+Day 23 Progress (18.09.2025)
+Current working on Multivariate LSTM Model and i will be finishing it till the end of this week.
