@@ -27,7 +27,28 @@ options = webdriver.ChromeOptions()
 options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(options=options)
+def clean_fee(fee_text):
+    """Cleans and converts transfer fee text to a numeric value or reason."""
+    fee = 0
+    reason = "-"
+    if re.search(r"[0-9]", fee_text):  # if contains digits, treat as money
+        fee = fee_text  
+        # Convert to number (€, m, k parsing possible)
+        try:
+            if fee.endswith("m"):
+                fee = int(float(fee.replace("€", "").replace("m", "").strip()) * 1_000_000)
+            elif fee.endswith("k"):
+                fee = int(float(fee.replace("€", "").replace("k", "").strip()) * 1_000)
+            else:
+                fee = int(fee.replace("€", "").replace(",", "").strip())
+        except:
+            fee = 0
+    else:
+        reason = fee_text
 
+    #cleaned = fee_text.replace("€", "").replace("m", "000000").replace("k", "000").replace(",", "").strip()
+    #print(f"Cleaned fee: {fee}, reason: {reason}")
+    return fee, reason
 def scrape_transfer_history(player_id, transfermarkt_id):
     url = f"https://www.transfermarkt.com/spieler/transfers/spieler/{transfermarkt_id}"
     driver.get(url)
@@ -84,8 +105,11 @@ def scrape_transfer_history(player_id, transfermarkt_id):
             club_left = cells[2].text.strip()
             club_joined = cells[3].text.strip()  # index may vary depending on layout
             mv = cells[4].text.strip()
+            amt_mv,txt_mv=clean_fee(mv)
             fee_text = cells[5].text.strip()
-
+            amt_fee,txt_fee=clean_fee(fee_text)
+            fee, reason = amt_fee, txt_fee
+            """
             # Handle fee / reason split
             fee = 0.0
             reason = "-"
@@ -98,14 +122,14 @@ def scrape_transfer_history(player_id, transfermarkt_id):
                     fee = 0.0
             else:
                 reason = fee_text
-
+            """
             # insert into DB
             cursor.execute("""
                 INSERT INTO player_transfer_history
-                (player_id, transfermarkt_id, season, transfer_date, club_left, club_joined, market_value, fee, reason)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """, (player_id, transfermarkt_id, season, transfer_date, club_left, club_joined, mv, fee, reason))
-            print(f"-->Inserted transfer: {season}, Date: {transfer_date}, {club_left} -> {club_joined}, Fee: {fee}, Reason: {reason}")
+                (player_id, transfermarkt_id, season, transfer_date, club_left, club_joined, mv_raw, market_value, fee_raw, fee, reason)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """, (player_id, transfermarkt_id, season, transfer_date, club_left, club_joined, mv, amt_mv,fee_text, fee, reason))
+            print(f"-->Inserted transfer: {season}, Date: {transfer_date}, {club_left} -> {club_joined}, MV: {mv} / {amt_mv}, Fee: {fee_text} / {fee}, Reason: {reason}")
         except Exception as e:
             print("Error parsing row:", e)
 
