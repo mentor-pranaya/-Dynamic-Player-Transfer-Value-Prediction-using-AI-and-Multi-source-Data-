@@ -49,7 +49,7 @@ def scrape_transfer_history(player_id, transfermarkt_id):
     grid_found = False
     for attempt in range(5):  # try up to 5 times (the script was failing sometimes, before the grid appeared)
         try:
-            driver.execute_script(f"window.scrollTo(0, {attempt*800});")
+            driver.execute_script(f"window.scrollTo(0, {(attempt+1)*800});")
             time.sleep(2)  # let JS load content
             
             WebDriverWait(driver, 15).until(
@@ -118,7 +118,7 @@ def main():
     cur_player_count = 1
     for pid, tm_id in players:
         scrape_transfer_history(pid, tm_id)
-        print(f"Processed player {cur_player_count}/{len(players)} (ID: {pid})")
+        print(f"Processed player {cur_player_count}/{len(players)}, {len(players)-cur_player_count} Remaining (ID: {pid})")
         cur_player_count += 1
         time.sleep(2)  # polite delay
 
