@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+import re
+
 
 # ---------------------------
 # DB Connection
@@ -24,7 +26,7 @@ options = webdriver.ChromeOptions()
 
 #options.add_argument("--headless=new") 
 # had to click on accept button manually once, so removing headless for now
-options.add_argument("--disable-gpu")
+#options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(options=options)
 def clean_fee(fee_text):
@@ -54,15 +56,18 @@ def scrape_transfer_history(player_id, transfermarkt_id):
     driver.get(url)
     print(url)
     # Wait for and click consent banner
+    """
+    clicking the consent button once manually, so commenting this out for now
+    had to reactivate because of site blocking access otherwise"""
     try:
-        consent_button = WebDriverWait(driver, 15).until(
+        consent_button = WebDriverWait(driver, 11).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button.accept-all.sp_choice_type_11"))
         )
         consent_button.click()
         print("Clicked consent.")
     except Exception as e:
         print("Consent already accepted or not found:", e)
-
+    
     # Wait for transfer history grid with retry
     #updated scraping script to scroll and retry on not finding the transfer grid, as the code sometimes fails before the grid loads
 
@@ -73,7 +78,7 @@ def scrape_transfer_history(player_id, transfermarkt_id):
             driver.execute_script(f"window.scrollTo(0, {(attempt+1)*800});")
             time.sleep(2)  # let JS load content
             
-            WebDriverWait(driver, 15).until(
+            WebDriverWait(driver, 10).until(
                 EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div.tm-player-transfer-history-grid"))
             )
             grid_found = True
