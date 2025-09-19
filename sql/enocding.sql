@@ -1,3 +1,10 @@
+create user 'himanshu@localhost' identified by 'yahoonet';
+grant all privileges on *.* to 'himanshu@localhost';
+flush privileges;
+
+ALTER USER 'himanshu@localhost' IDENTIFIED WITH mysql_native_password BY 'yahoonet';
+FLUSH PRIVILEGES;
+
 update player_injuries_trfrmrkt set games_missed=0 where games_missed is null;
 alter table player_transfer_history add column mv_raw varchar(50) after market_value;
 alter table player_transfer_history add column fee_raw varchar(50) after fee;
