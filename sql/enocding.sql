@@ -2,7 +2,6 @@ update player_injuries_trfrmrkt set games_missed=0 where games_missed is null;
 alter table player_transfer_history add column mv_raw varchar(50) after market_value;
 alter table player_transfer_history add column fee_raw varchar(50) after fee;
 create table player_transfer_history_18sep select * from player_transfer_history;
-delete from player_transfer_history;
 delete from clubs_trfrmrkt;
 ALTER TABLE clubs_trfrmrkt AUTO_INCREMENT = 1;
 insert into clubs_trfrmrkt (name) (select distinct club from transfermrkt_new18sep order by club);
