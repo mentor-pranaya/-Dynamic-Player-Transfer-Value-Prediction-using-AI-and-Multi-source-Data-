@@ -21,7 +21,7 @@ logging.basicConfig(
 # ---------------------------
 db = mysql.connector.connect(
     host="localhost",
-    user="himanshu",
+    user="root",
     password="yahoonet",
     database="AIProject"
 )
@@ -88,7 +88,15 @@ def scrape_injuries(transfermarkt_id):
             injury_name = cols[1].get_text(strip=True)
             print(cols[0].get_text(strip=True),cols[1].get_text(strip=True),cols[2].get_text(strip=True),cols[3].get_text(strip=True),cols[4].get_text(strip=True),cols[5].get_text(strip=True))
             start_date = pd.to_datetime(cols[2].get_text(strip=True), dayfirst=True, errors="coerce")
-            end_date = pd.to_datetime(cols[3].get_text(strip=True), dayfirst=True, errors="coerce")
+            try:
+                end_date = pd.to_datetime(cols[3].get_text(strip=True), dayfirst=True)
+            except:
+                end_date = '1990-01-01'  # placeholder for ongoing injuries
+            print(injury_name, start_date, end_date)
+            if pd.isna(end_date):
+                end_date = '1990-01-01'  # placeholder for ongoing injuries
+            print(injury_name, start_date, end_date)
+             # Days out and games missed
             days_out = None
             games_missed = None
             
@@ -114,7 +122,7 @@ def scrape_injuries(transfermarkt_id):
 
 
             #competition = cols[5]
-            #print((injury_name, start_date, end_date, days_out, games_missed, clubs_text))
+            print((injury_name, start_date, end_date, days_out, games_missed, clubs_text))
             injuries.append((injury_name, start_date, end_date, days_out, games_missed, clubs_text))
         
             #print(injuries)
@@ -128,6 +136,7 @@ def scrape_injuries(transfermarkt_id):
 
 def save_injuries(player_id, transfermarkt_id, injuries):
     for inj in injuries:
+        print(inj)
         cursor.execute("""
             INSERT INTO player_injuries_trfrmrkt
             (player_id, transfermarkt_id, injury, start_date, end_date, days_out, games_missed, competition)
@@ -253,3 +262,4 @@ if __name__ == "__main__":
     main()
     cursor.close()
     db.close()
+
