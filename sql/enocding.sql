@@ -19,3 +19,5 @@ select count(*) from transfermrkt_new18sep where clubid is null;
 select count(*) from transfermrkt_new18sep where compid is null;
 
 select count(*), transfermarkt_id from players_trfrmrkt group by transfermarkt_id having count(*)>1;
+-- scrape reddit for newly added players:
+SELECT DISTINCT player FROM transfermrkt_new18sep where player not in (SELECT DISTINCT player FROM transfermrkt);
