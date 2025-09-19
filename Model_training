@@ -1,0 +1,150 @@
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
+import os
+
+def create_sequences(data, feature_cols, target_col, sequence_length=3):
+    """
+    Transforms the player data into sequences for the LSTM model.
+    For each player, we create sequences of 'sequence_length' seasons.
+    """
+    X, y = [], []
+    # Group by player_id to handle each player's career as a separate timeline
+    for player_id, group in data.groupby('player_id'):
+        # Ensure the data is sorted by season for chronological order
+        player_seasons_features = group.sort_values('season_name')[feature_cols].values
+        player_seasons_target = group.sort_values('season_name')[target_col].values
+        
+        if len(player_seasons_features) > sequence_length:
+            for i in range(len(player_seasons_features) - sequence_length):
+                # The sequence of features (X) is the data from the past N seasons
+                sequence = player_seasons_features[i:i + sequence_length]
+                # The target (y) is the market value of the following season
+                target = player_seasons_target[i + sequence_length]
+                
+                X.append(sequence)
+                y.append(target)
+                
+    return np.array(X), np.array(y)
+
+def build_lstm_model(input_shape):
+    """
+    Builds and compiles a simple LSTM model for regression.
+    """
+    model = tf.keras.Sequential([
+        # LSTM layer to process the sequence of seasons
+        tf.keras.layers.LSTM(units=50, return_sequences=True, input_shape=input_shape),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.LSTM(units=50),
+        tf.keras.layers.Dropout(0.2),
+        # A standard dense layer for processing
+        tf.keras.layers.Dense(25, activation='relu'),
+        # The output layer: 1 neuron to predict the single market value
+        tf.keras.layers.Dense(1)
+    ])
+    
+    # Compile the model for a regression task
+    model.compile(optimizer='adam', loss='mean_squared_error')
+    return model
+
+def plot_training_history(history):
+    """
+    Plots the model's training and validation loss over epochs.
+    """
+    plt.figure(figsize=(10, 6))
+    plt.plot(history.history['loss'], label='Training Loss')
+    plt.plot(history.history['val_loss'], label='Validation Loss')
+    plt.title('Model Training History (Loss per Epoch)')
+    plt.ylabel('Loss (Mean Squared Error)')
+    plt.xlabel('Epoch')
+    plt.legend()
+    plt.grid(True)
+    
+    # Save the plot to a file
+    output_folder = "model_evaluation"
+    os.makedirs(output_folder, exist_ok=True)
+    plot_path = os.path.join(output_folder, "training_loss_plot.png")
+    plt.savefig(plot_path)
+    print(f"\nSaved training history plot to '{plot_path}'")
+
+if __name__ == "__main__":
+    # --- 1. LOAD AND PREPARE DATA ---
+    try:
+        df = pd.read_csv("/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/final_master_dataset.csv")
+    except FileNotFoundError:
+        print("Error: 'final_master_dataset.csv' not found.")
+        exit()
+
+    print("Preparing data for LSTM model...")
+    # Define the features to be used for prediction and the target variable
+    feature_columns = [
+        'age_clean', 'goals_per_match', 'assists_per_match', 'shots_per_match', 
+        'xG_per_match', 'xG_performance', 'goals_yoy_change', 'assists_yoy_change',
+        'total_days_missed', 'injury_count', 'average_sentiment', 'post_count',
+        'pos_Defender', 'pos_Forward', 'pos_Goalkeeper', 'pos_Midfielder'
+    ]
+    target_column = 'market_value_eur'
+
+    # Ensure all selected features exist in the DataFrame
+    feature_columns = [col for col in feature_columns if col in df.columns]
+    
+    df_model = df[['player_id', 'season_name'] + feature_columns + [target_column]].copy()
+    df_model.dropna(inplace=True)
+
+    # --- 2. SCALE FEATURES ---
+    feature_scaler = MinMaxScaler()
+    target_scaler = MinMaxScaler()
+
+    df_model[feature_columns] = feature_scaler.fit_transform(df_model[feature_columns])
+    df_model[target_column] = target_scaler.fit_transform(df_model[[target_column]])
+
+    # --- 3. CREATE SEQUENCES ---
+    SEQUENCE_LENGTH = 3 
+    X, y = create_sequences(df_model, feature_columns, target_column, SEQUENCE_LENGTH)
+
+    if len(X) == 0:
+        print("Error: Not enough data to create sequences. Try a smaller SEQUENCE_LENGTH.")
+        exit()
+
+    print(f"Created {len(X)} sequences for training.")
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # --- 4. BUILD AND TRAIN THE MODEL ---
+    input_shape = (X_train.shape[1], X_train.shape[2])
+    model = build_lstm_model(input_shape)
+    model.summary()
+
+    print("\nStarting model training...")
+    history = model.fit(
+        X_train, y_train,
+        epochs=50,
+        batch_size=32,
+        validation_split=0.2,
+        verbose=1
+    )
+    
+    # --- 5. EVALUATE THE MODEL ---
+    print("\nEvaluating model performance...")
+    
+    # Get predictions on the test set (they will be scaled)
+    predictions_scaled = model.predict(X_test)
+    
+    # Inverse transform the scaled predictions and actual values to get real Euros
+    predictions_euros = target_scaler.inverse_transform(predictions_scaled)
+    y_test_euros = target_scaler.inverse_transform(y_test.reshape(-1, 1))
+
+    # Calculate Root Mean Squared Error (RMSE) in Euros
+    rmse = np.sqrt(np.mean((predictions_euros - y_test_euros)**2))
+    
+    print("\n" + "="*50)
+    print(f"Model Evaluation Complete.")
+    print(f"Root Mean Squared Error (RMSE) on Test Data: €{rmse:,.2f}")
+    print("="*50)
+
+    # --- 6. VISUALIZE TRAINING ---
+    plot_training_history(history)
+
