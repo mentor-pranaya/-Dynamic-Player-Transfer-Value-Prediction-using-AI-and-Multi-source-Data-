@@ -10,15 +10,15 @@ import mysql.connector
 # =========================
 MYSQL_CFG = dict(
     host="localhost",
-    user="himanshu",
+    user="root",
     password="yahoonet",
     database="AIProject",
     autocommit=False,
 )
 
 REDDIT_CFG = dict(
-    client_id="O-8pbql513rmZav78DBzeA",
-    client_secret="igz2dgdaBnYVg8xDMuE07-J9K52uew",
+    client_id="##",
+    client_secret="##",
     user_agent="AIProject by u/phoenixeuphoric"
 )
 REDDIT_PER_PLAYER = 300
@@ -102,13 +102,14 @@ if __name__ == "__main__":
     #players = ["Erling Haaland", "Bukayo Saka"]  # test set
     db = get_db()
     cur = db.cursor()
-    cur.execute("SELECT DISTINCT player FROM transfermrkt")
+    cur.execute("SELECT DISTINCT player FROM transfermrkt_new18sep where player not in (SELECT DISTINCT player FROM transfermrkt);")
     players = [r[0] for r in cur.fetchall()]
     cur.close()
     db.close()
-
+    plrcnt=1
     for p in players:
         rows = fetch_reddit(p)
         upsert_bulk(rows)
-        logging.info(f"✅ {p}: {len(rows)} reddit posts saved")
+        logging.info(f"✅ {p}: {len(rows)} reddit posts saved. Record # {plrcnt}")
+        plrcnt=plrcnt+1
 
