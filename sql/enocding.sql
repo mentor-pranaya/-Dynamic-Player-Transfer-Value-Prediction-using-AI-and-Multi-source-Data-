@@ -10,3 +10,5 @@ update transfermrkt_new18sep p, clubs_trfrmrkt t set p.clubid=t.id where t.name 
 update transfermrkt_new18sep p, competitions_trfrmrkt t set p.compid=t.id where t.name = p.competition;
 select count(*) from transfermrkt_new18sep where clubid is null;
 select count(*) from transfermrkt_new18sep where compid is null;
+
+select count(*), transfermarkt_id from players_trfrmrkt group by transfermarkt_id having count(*)>1;
