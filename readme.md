@@ -141,4 +141,16 @@
 
   Also found that the lazy load script would not let the grid load at times, till the page is scrolled till the grid, added scroll
   
+**18th September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Had to re-scrape transfer data as the fee amount was not converted to appropriate figures and I did not save the raw column values
   
+**19th September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Completed data validation, one hot encoding (replaced clubs, competions etc with ids, in place of names)
+
+  Scraped social media profiles for additional 294 players found during re-scraping the transfermarkt players list
+
+  Scraped injury data for freshly added players list
+
+  Updated script to add placeholder '1990-01-01' in case of ongoing injuries where the date was not avaible and database inserts failed previously
