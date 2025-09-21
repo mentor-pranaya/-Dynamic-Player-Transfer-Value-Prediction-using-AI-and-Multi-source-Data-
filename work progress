@@ -1,0 +1,16 @@
+Date: 2025-08-18
+Work Summary
+ StatsBomb Open Data
+	 Retrieved the full StatsBomb Open Data ZIP from their official GitHub repo.
+	 Unpacked the archive and organized datasets in local storagae.
+	 Confirmed folder structure and checked availability of essential files:
+	competitions.json → details of competitions & seasons
+	 matches/ → match-level metadata
+	 lineups/ → squad and player participation info
+	 events/ → in-game actions (passes, shots, fouls, pressures, etc.)
+	 three-sixty/ → freeze-frame player positioning
+ Transfermarkt Data
+	Downloaded player transfer datasets from Transfermarkt (ZIP format).
+	Extracted files and placed them in local directories for preprocessing.
+	Verified accessibility of all extracted files.
+
