@@ -154,3 +154,11 @@
   Scraped injury data for freshly added players list
 
   Updated script to add placeholder '1990-01-01' in case of ongoing injuries where the date was not avaible and database inserts failed previously
+
+**20th September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Mapped newly fetched players
+
+  Also mapped transfermrkt names with statsbomb "nick names" (got additional 267 matches)
+
+  Total players in Transfermrkt master list: 1512, Total matched: 763
