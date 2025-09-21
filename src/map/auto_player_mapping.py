@@ -6,7 +6,7 @@ from rapidfuzz import process, fuzz
 # -----------------------
 DB_CFG = dict(
     host="localhost",
-    user="himanshu",
+    user="root",
     password="yahoonet",
     database="AIProject"
 )
@@ -26,17 +26,16 @@ def normalize(name):
     name = re.sub(r"[^a-z\s]", "", name)
     return re.sub(r"\s+", " ", name).strip()
 
-def save_mapping(canonical, trf_id, sb_id, inj_id):
+def save_mapping(canonical, trf_id, sb_id):
     db = get_db()
     cur = db.cursor()
     cur.execute("""
-        INSERT INTO player_mapping (canonical_name, trfrmrkt_player_id, statsbomb_player_id, injury_player_id)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO player_mapping (canonical_name, transfermarkt_id, statsbomb_player_id)
+        VALUES (%s, %s, %s)
         ON DUPLICATE KEY UPDATE
-        trfrmrkt_player_id=VALUES(trfrmrkt_player_id),
-        statsbomb_player_id=VALUES(statsbomb_player_id),
-        injury_player_id=VALUES(injury_player_id)
-    """, (canonical, trf_id, sb_id, inj_id))
+        transfermarkt_id=VALUES(transfermarkt_id),
+        statsbomb_player_id=VALUES(statsbomb_player_id)
+    """, (canonical, trf_id, sb_id))
     db.commit()
     cur.close()
     db.close()
@@ -49,22 +48,22 @@ def main():
     cur = db.cursor()
 
     # Load data
-    cur.execute("SELECT id, name FROM players_trfrmrkt")
+    cur.execute("SELECT transfermarkt_id, name FROM players_trfrmrkt")
     trf = [(r[0], r[1]) for r in cur.fetchall()]
 
     cur.execute("SELECT player_id, player_name FROM players")
     sb = [(r[0], r[1]) for r in cur.fetchall()]
 
-    cur.execute("SELECT id, name FROM player_injuries")
-    inj = [(r[0], r[1]) for r in cur.fetchall()]
+    #cur.execute("SELECT id, name FROM player_injuries")
+    #inj = [(r[0], r[1]) for r in cur.fetchall()]
 
     cur.close()
     db.close()
 
     sb_lookup = {normalize(name): (pid, name) for pid, name in sb}
-    inj_lookup = {normalize(name): (pid, name) for pid, name in inj}
+    #inj_lookup = {normalize(name): (pid, name) for pid, name in inj}
     sb_names = [normalize(n) for _, n in sb]
-    inj_names = [normalize(n) for _, n in inj]
+    #inj_names = [normalize(n) for _, n in inj]
 
     auto_count = 0
     for trf_id, trf_name in trf:
@@ -77,16 +76,17 @@ def main():
             sb_match = sb_lookup[sb_best[0]]
             sb_id = sb_match[0]
 
+        """
         # Find best match in Injuries
         inj_best = process.extractOne(trf_norm, inj_names, scorer=fuzz.token_sort_ratio)
         inj_id = None
         if inj_best and inj_best[1] >= 90:
             inj_match = inj_lookup[inj_best[0]]
             inj_id = inj_match[0]
-
+        """
         # If we have at least one confident match
-        if sb_id or inj_id:
-            save_mapping(trf_name, trf_id, sb_id, inj_id)
+        if sb_id :
+            save_mapping(trf_name, trf_id, sb_id)
             auto_count += 1
 
     print(f"✅ Auto-mapping complete: {auto_count} players inserted into player_mapping")
