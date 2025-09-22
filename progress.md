@@ -213,3 +213,20 @@ Marked as a holiday due to **Ganesh Chaturthi**.
 - How to handle imbalanced data?   
 
 - What is PCA and LDA?   
+
+---
+
+## Week 4
+1. Discussed **PCA** (Principal Component Analysis) and **LDA** (Linear Discriminant Analysis) in depth.  
+2. Understood the differences between **covariance**, **correlation**, and **variance** in the context of PCA and LDA.  
+3. Learned about **eigenvalues** and **eigenvectors** and their role in dimensionality reduction.  
+4. Completed work with **ensemble models**.  
+5. Prepared to start **hyperparameter tuning**.  
+
+---
+
+## Week 5
+1. Learned about **standardization** and **normalization** techniques.  
+2. Started working on **hyperparameter tuning** for the **multivariate LSTM** model.  
+3. Took a **3-day leave** due to ongoing mid-semester exams.  
+4. Pending: Hyperparameter tuning of the **ensemble models**.  

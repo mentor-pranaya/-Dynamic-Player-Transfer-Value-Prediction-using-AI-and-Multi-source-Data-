@@ -15,4 +15,9 @@ Data_Featuring/features_scaled.parquet
 Data_Featuring/scaler.joblib
 
 # models
-models/
+models/Ensemble_Model/
+models/Hyperparam_Tuning/
+models/LSTM_Models/
+
+# Hyperparameter_tuning
+Hyperparameter_Tuning/
