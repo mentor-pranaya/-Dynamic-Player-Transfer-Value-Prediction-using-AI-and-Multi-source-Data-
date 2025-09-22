@@ -81,3 +81,15 @@ SELECT start_date, if(end_date<>'1990-01-01',end_date,curdate()) as end_date, da
 ;
 
 alter table player_transfer_history change market_value market_value bigint;
+
+update player_features set total_injuries = 0 where total_injuries is null;
+update player_features set avg_days_out = 0 where avg_days_out is null;
+update player_features set sentiment_mean = 0 where sentiment_mean is null;
+update player_features set sentiment_trend = 0 where sentiment_trend is null;
+update player_features set sentiment_positive_ratio = 0 where sentiment_positive_ratio is null;
+update player_features set avg_cards_per_match = 0 where avg_cards_per_match is null;
+update player_features set days_since_last_injury = 999999 where days_since_last_injury is null;
+update player_features set positions_played = '' where positions_played is null;
+update player_features set primary_position = '' where primary_position is null;
+update player_features set current_club_id = 0 where current_club_id is null;
+update player_features set last_injury_date = '1900-01-01' where last_injury_date is null;
