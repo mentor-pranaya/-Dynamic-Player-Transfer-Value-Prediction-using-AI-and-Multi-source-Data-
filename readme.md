@@ -162,3 +162,11 @@
   Also mapped transfermrkt names with statsbomb "nick names" (got additional 267 matches)
 
   Total players in Transfermrkt master list: 1512, Total matched: 763
+
+**21st September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Visuablisation and EDA on player_features db table:
+
+  <img width="1500" height="1000" alt="feature_histograms" src="https://github.com/user-attachments/assets/4346353d-1917-47be-8686-71525a1e50fb" />
+
+  <img width="1200" height="800" alt="feature_correlation_heatmap" src="https://github.com/user-attachments/assets/182718b8-4b30-4d2c-ad18-81447fd94d23" />
