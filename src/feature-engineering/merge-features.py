@@ -7,7 +7,7 @@ from datetime import datetime
 # -----------------------
 db = mysql.connector.connect(
     host="localhost",
-    user="himanshu",
+    user="root",
     password="yahoonet",
     database="AIProject"
 )
@@ -43,9 +43,7 @@ CREATE TABLE IF NOT EXISTS player_features (
     sentiment_trend FLOAT,
     avg_cards_per_match FLOAT,
     positions_played VARCHAR(200),
-    current_club_id INT,
-    FOREIGN KEY (player_id) REFERENCES players_trfrmrkt(id),
-    FOREIGN KEY (current_club_id) REFERENCES clubs_trfrmrkt(id)
+    current_club_id INT
 ) ENGINE=InnoDB;
 """)
 
@@ -57,56 +55,54 @@ db.commit()
 
 # Market Value Features
 cursor.execute("""
-SELECT mv.player_id,
+SELECT mv.transfermarkt_id,
        MAX(mv.market_value) AS latest_value,
-       (MAX(mv.market_value) - MIN(mv.market_value)) / NULLIF(MIN(mv.market_value),0) AS growth
-FROM market_values_trfrmrkt mv
-GROUP BY mv.player_id
+       (MAX(mv.market_value) - MIN(mv.market_value)) / if(ifnull(MIN(mv.market_value),0)=0,1,ifnull(MIN(mv.market_value),0)) AS growth
+FROM player_transfer_history mv
+GROUP BY mv.transfermarkt_id
 """)
 market_df = pd.DataFrame(cursor.fetchall(), columns=["player_id", "latest_value", "growth"])
 
 # Injury Features
 cursor.execute("""
-SELECT pi.player_id,
+SELECT pi.transfermarkt_id,
        COUNT(*) AS total_injuries,
        AVG(days_out) AS avg_days_out,
        MAX(start_date) AS last_injury
 FROM player_injuries_trfrmrkt pi
-GROUP BY pi.player_id
+GROUP BY pi.transfermarkt_id
 """)
 injury_df = pd.DataFrame(cursor.fetchall(), columns=["player_id", "total_injuries", "avg_days_out", "last_injury"])
 
 # Transfer History
 cursor.execute("""
-SELECT player_id,
+SELECT transfermarkt_id,
        COUNT(*) AS total_transfers,
        SUM(fee) AS total_fees,
        SUM(CASE WHEN reason='Free Transfer' THEN 1 ELSE 0 END) AS free_transfers
-FROM player_transfers_trfrmrkt
-GROUP BY player_id
+FROM player_transfer_history
+GROUP BY transfermarkt_id
 """)
 transfer_df = pd.DataFrame(cursor.fetchall(), columns=["player_id", "total_transfers", "total_fees", "free_transfers"])
 
-# Sentiment (Twitter + Reddit)
+# Sentiment (Reddit)
 cursor.execute("""
-SELECT player_name, AVG(polarity) AS avg_polarity,
+SELECT transfermarkt_id, AVG(polarity) AS avg_polarity,
        SUM(CASE WHEN sentiment='positive' THEN 1 ELSE 0 END) / COUNT(*) AS positive_ratio
 FROM (
-    SELECT player_name, polarity, sentiment FROM twitter_sentiments
-    UNION ALL
-    SELECT player_name, polarity, sentiment FROM reddit_sentiments
+    SELECT transfermarkt_id, polarity, sentiment FROM reddit_sentiments
 ) s
-GROUP BY player_name
+GROUP BY transfermarkt_id
 """)
-sentiment_df = pd.DataFrame(cursor.fetchall(), columns=["player_name", "avg_polarity", "positive_ratio"])
+sentiment_df = pd.DataFrame(cursor.fetchall(), columns=["player_id", "avg_polarity", "positive_ratio"])
 
 # Cards per match
 cursor.execute("""
-SELECT pc.player_id,
+SELECT p.transfermarkt_id,
        COUNT(*) / NULLIF(COUNT(DISTINCT m.match_id),0) AS avg_cards
 FROM player_cards pc
-JOIN matches m ON pc.team_id IN (m.competition_id)
-GROUP BY pc.player_id
+JOIN matches m ON pc.team_id IN (m.competition_id) join player_mapping p on p.statsbomb_player_id=pc.player_id
+GROUP BY p.transfermarkt_id;
 """)
 cards_df = pd.DataFrame(cursor.fetchall(), columns=["player_id", "avg_cards"])
 
@@ -115,14 +111,16 @@ cards_df = pd.DataFrame(cursor.fetchall(), columns=["player_id", "avg_cards"])
 # -----------------------
 features = pd.merge(market_df, injury_df, on="player_id", how="left")
 features = pd.merge(features, transfer_df, on="player_id", how="left")
+features = pd.merge(features, sentiment_df, on="player_id", how="left")
 features = pd.merge(features, cards_df, on="player_id", how="left")
 
-# Sentiment needs mapping via player_mapping
-cursor.execute("SELECT player_id_trfrmrkt, player_name_trfrmrkt FROM player_mapping WHERE is_confirmed=1")
+"""
+# Player Cards needs mapping via player_mapping
+cursor.execute("SELECT transfermarkt_id, canonical_name FROM player_mapping")
 mapping = dict(cursor.fetchall())
-sentiment_df["player_id"] = sentiment_df["player_name"].map({v:k for k,v in mapping.items()})
-
-features = pd.merge(features, sentiment_df, on="player_id", how="left")
+cards_df["player_id"] = cards_df["player_name"].map({v:k for k,v in mapping.items()})
+"""
+features = pd.merge(features, cards_df, on="player_id", how="left")
 
 # -----------------------
 # Save into DB
