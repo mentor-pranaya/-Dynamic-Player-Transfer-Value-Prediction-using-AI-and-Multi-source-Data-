@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TransferIQ</title>
+</head>
+<body>
+  <h1>⚽ TransferIQ – Player Transfer Value Prediction</h1>
+  
+  <label>Performance (comma-separated):</label>
+  <input id="performance" type="text"><br><br>
+  
+  <label>Sentiment:</label>
+  <input id="sentiment" type="number" step="0.1"><br><br>
+  
+  <label>Injury Count:</label>
+  <input id="injury" type="number"><br><br>
+  
+  <label>Contract Duration (months):</label>
+  <input id="contract" type="number"><br><br>
+  
+  <button onclick="predict()">Predict</button>
+  
+  <h2 id="result"></h2>
+
+  <script>
+    async function predict() {
+      let performance = document.getElementById("performance").value
+                        .split(",").map(Number);
+      let sentiment = parseFloat(document.getElementById("sentiment").value);
+      let injury = parseInt(document.getElementById("injury").value);
+      let contract = parseInt(document.getElementById("contract").value);
+
+      let response = await fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          performance: performance,
+          sentiment: sentiment,
+          injury: injury,
+          contract: contract
+        })
+      });
+
+      let result = await response.json();
+      document.getElementById("result").innerText =
+        "Predicted Transfer Value: €" + result.predicted_value.toFixed(2) + "M";
+    }
+  </script>
+</body>
+</html>

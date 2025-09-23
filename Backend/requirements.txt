@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+jinja2
+pydantic
+scikit-learn
+xgboost
+lightgbm
+tensorflow
+torch
+numpy
+pandas
+nltk
+textblob
+vaderSentiment
+plotly
+requests
