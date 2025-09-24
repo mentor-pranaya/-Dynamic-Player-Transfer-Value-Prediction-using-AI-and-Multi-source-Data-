@@ -183,8 +183,8 @@
 ----------------------------------------------------------------------------------------------------------  
   Univariate LSTM was predicting very different values on each run for same player:
 
-    -- Added random seed values.
+    -- Added random initail seed values.
 
     -- Trained model on entire players list, instead of the selected player.
-    
+
     -- Getting stabalized predictions now.
