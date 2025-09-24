@@ -188,3 +188,7 @@
     -- Trained model on entire players list, instead of the selected player.
 
     -- Getting stabalized predictions now.
+  
+  Added multiplayer prediction loop to univariate LSTM script. Keeps prompting and predicting till a numeric id is passed.
+
+  Also added a list of historical values with prediction for the selected player id 
