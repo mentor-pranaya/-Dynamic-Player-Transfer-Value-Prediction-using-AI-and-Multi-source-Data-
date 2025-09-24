@@ -7,14 +7,8 @@ from streamlit_option_menu import option_menu
 import pickle
 import os
 
-# -------------------------------
-# Page Config
-# -------------------------------
 st.set_page_config(page_title="TransferIQ", layout="wide")
 
-# -------------------------------
-# Load Prediction Model
-# -------------------------------
 model = None
 model_path = os.path.join("..", "Backend", "transferiq_model.pkl")
 try:
@@ -27,9 +21,6 @@ except Exception as e:
     model = None
 
 
-# -------------------------------
-# Custom Dynamic CSS Injector
-# -------------------------------
 def inject_dynamic_css(primary_color, accent_color, bg_color, card_color, text_color,
                        font_family, base_font_size, border_radius, shadow_value,
                        gradient_overlay, container_width, center_content):
@@ -155,9 +146,6 @@ inject_dynamic_css(
 )
 
 
-# -------------------------------
-# Sidebar Navigation
-# -------------------------------
 with st.sidebar:
     selected = option_menu(
         "",
@@ -169,9 +157,7 @@ with st.sidebar:
     )
 
 
-# -------------------------------
-# Home Section
-# -------------------------------
+
 if selected == "🏠 Home":
     st.markdown('<div class="header-card"><h1>✨ TransferIQ Dashboard</h1><p>Welcome to your interactive real-time data platform.</p></div>', unsafe_allow_html=True)
 
@@ -184,9 +170,6 @@ if selected == "🏠 Home":
     st.line_chart(data)
 
 
-# -------------------------------
-# Prediction Section
-# -------------------------------
 elif selected == "⚽ Prediction":
     st.markdown('<div class="header-card"><h2>⚽ Transfer Value Prediction</h2></div>', unsafe_allow_html=True)
 
@@ -314,9 +297,6 @@ elif selected == "⚽ Prediction":
                 st.error(f"Error: {e}")
 
 
-# -------------------------------
-# Analysis Section
-# -------------------------------
 elif selected == "📊 Analysis":
     st.markdown('<div class="header-card"><h2>📊 Data Analysis & Visualization</h2></div>', unsafe_allow_html=True)
 
@@ -356,9 +336,6 @@ elif selected == "📊 Analysis":
         st.info("⬆️ Upload a CSV file to start analysis.")
 
 
-# -------------------------------
-# Settings Section
-# -------------------------------
 elif selected == "⚙️ Settings":
     st.markdown('<div class="header-card"><h2>⚙️ Settings</h2></div>', unsafe_allow_html=True)
     theme = st.radio("Choose Theme", ["Light", "Dark", "Gradient"], index=2)
@@ -377,3 +354,4 @@ elif selected == "⚙️ Settings":
                            "linear-gradient(135deg, #667eea, #764ba2)", 1300, True)
 
     st.success("✅ Settings applied in real-time!")
+
