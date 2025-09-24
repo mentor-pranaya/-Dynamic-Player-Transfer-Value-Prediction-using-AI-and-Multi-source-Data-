@@ -178,3 +178,13 @@
 **23rd September 2025:**
 ----------------------------------------------------------------------------------------------------------  
   Working on Univariate LSTM
+
+**24rd September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Univariate LSTM was predicting very different values on each run for same player:
+
+    -- Added random seed values.
+
+    -- Trained model on entire players list, instead of the selected player.
+    
+    -- Getting stabalized predictions now.
