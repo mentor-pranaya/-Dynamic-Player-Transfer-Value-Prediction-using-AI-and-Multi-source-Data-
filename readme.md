@@ -193,6 +193,6 @@
 
   Also added a list of historical values with prediction for the selected player id 
 
-**24rd September 2025:**
+**25rd September 2025:**
 ----------------------------------------------------------------------------------------------------------  
   Worknig on Multivariate LSTM
