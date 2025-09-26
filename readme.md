@@ -206,10 +206,10 @@
 
   Eg.: Output for player id: 51152
     
-    Initial
+  Initial
     
-    ![Initial plot for 51152](LSTM/51152.png)
+  ![Initial plot for 51152](LSTM/51152.png)
   
-    More Features
-    
-    ![Plot for 51152 with added featres](LSTM/51152_more_features.png)
+  More Features
+
+  ![Plot for 51152 with added featres](LSTM/51152_more_features.png)
