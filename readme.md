@@ -204,7 +204,7 @@
   Added more features and compared the outputs of both the models. Features for new model: 
     market_value, total_injuries, sentiment_mean, avg_cards_per_match, avg_days_out, recent_injury, days_since_last_injury, season_id, minutes_played, shots_per90, pressures_per90
 
-  Eg.: Output for player id: 51152
+  Eg.: Output for player id: 33812
     
   Initial
     
