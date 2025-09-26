@@ -200,3 +200,10 @@
 **26th September 2025:**
 ----------------------------------------------------------------------------------------------------------  
   Completed and tested Multivariate LSTM with features total_injuries, sentiment_mean, avg_cards_per_match, market_value
+
+  Added more features and compared the outputs of both the models. Features for new model: 
+    market_value, total_injuries, sentiment_mean, avg_cards_per_match, avg_days_out, recent_injury, days_since_last_injury, season_id, minutes_played, shots_per90, pressures_per90
+
+  Eg.: Output for player id: 51152
+    ![Initial plot for 51152](LSTM/51152.png)
+    ![Plot for 51152 with added featres](LSTM/51152_more_features.png)
