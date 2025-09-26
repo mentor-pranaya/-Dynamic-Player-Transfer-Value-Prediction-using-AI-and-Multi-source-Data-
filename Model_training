@@ -1,74 +1,49 @@
+# better results using this model
+
+
+'''
 import pandas as pd
 import numpy as np
-import tensorflow as tf
+import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import os
 
-def create_sequences(data, feature_cols, target_col, sequence_length=3):
+def prepare_data_for_xgboost(data, feature_cols, target_col):
     """
-    Transforms the player data into sequences for the LSTM model.
-    For each player, we create sequences of 'sequence_length' seasons.
+    Prepares the data for a standard supervised learning model like XGBoost.
+    For each player, it uses one season's stats to predict the next season's value.
     """
     X, y = [], []
-    # Group by player_id to handle each player's career as a separate timeline
-    for player_id, group in data.groupby('player_id'):
-        # Ensure the data is sorted by season for chronological order
-        player_seasons_features = group.sort_values('season_name')[feature_cols].values
-        player_seasons_target = group.sort_values('season_name')[target_col].values
-        
-        if len(player_seasons_features) > sequence_length:
-            for i in range(len(player_seasons_features) - sequence_length):
-                # The sequence of features (X) is the data from the past N seasons
-                sequence = player_seasons_features[i:i + sequence_length]
-                # The target (y) is the market value of the following season
-                target = player_seasons_target[i + sequence_length]
-                
-                X.append(sequence)
-                y.append(target)
-                
-    return np.array(X), np.array(y)
-
-def build_lstm_model(input_shape):
-    """
-    Builds and compiles a simple LSTM model for regression.
-    """
-    model = tf.keras.Sequential([
-        # LSTM layer to process the sequence of seasons
-        tf.keras.layers.LSTM(units=50, return_sequences=True, input_shape=input_shape),
-        tf.keras.layers.Dropout(0.2),
-        tf.keras.layers.LSTM(units=50),
-        tf.keras.layers.Dropout(0.2),
-        # A standard dense layer for processing
-        tf.keras.layers.Dense(25, activation='relu'),
-        # The output layer: 1 neuron to predict the single market value
-        tf.keras.layers.Dense(1)
-    ])
+    data = data.sort_values(['player_id', 'season_name'])
     
-    # Compile the model for a regression task
-    model.compile(optimizer='adam', loss='mean_squared_error')
-    return model
-
-def plot_training_history(history):
-    """
-    Plots the model's training and validation loss over epochs.
-    """
-    plt.figure(figsize=(10, 6))
-    plt.plot(history.history['loss'], label='Training Loss')
-    plt.plot(history.history['val_loss'], label='Validation Loss')
-    plt.title('Model Training History (Loss per Epoch)')
-    plt.ylabel('Loss (Mean Squared Error)')
-    plt.xlabel('Epoch')
-    plt.legend()
-    plt.grid(True)
+    # Create a target variable: the market value of the next season
+    data['next_season_value'] = data.groupby('player_id')[target_col].shift(-1)
     
-    # Save the plot to a file
+    # Drop rows where there is no next season to predict
+    data.dropna(subset=['next_season_value'], inplace=True)
+    
+    X = data[feature_cols]
+    y = data['next_season_value']
+    
+    return X, y
+
+def plot_feature_importance(model, feature_names):
+    """
+    Plots the feature importance from the trained XGBoost model.
+    """
+    plt.figure(figsize=(12, 8))
+    xgb.plot_importance(model, height=0.8, max_num_features=15)
+    plt.title('XGBoost Feature Importance')
+    plt.xlabel('F-score')
+    plt.ylabel('Features')
+    
     output_folder = "model_evaluation"
     os.makedirs(output_folder, exist_ok=True)
-    plot_path = os.path.join(output_folder, "training_loss_plot.png")
-    plt.savefig(plot_path)
-    print(f"\nSaved training history plot to '{plot_path}'")
+    plot_path = os.path.join(output_folder, "xgboost_feature_importance.png")
+    plt.savefig(plot_path, bbox_inches='tight')
+    print(f"\nSaved feature importance plot to '{plot_path}'")
 
 if __name__ == "__main__":
     # --- 1. LOAD AND PREPARE DATA ---
@@ -78,8 +53,7 @@ if __name__ == "__main__":
         print("Error: 'final_master_dataset.csv' not found.")
         exit()
 
-    print("Preparing data for LSTM model...")
-    # Define the features to be used for prediction and the target variable
+    print("Preparing data for XGBoost model...")
     feature_columns = [
         'age_clean', 'goals_per_match', 'assists_per_match', 'shots_per_match', 
         'xG_per_match', 'xG_performance', 'goals_yoy_change', 'assists_yoy_change',
@@ -87,64 +61,270 @@ if __name__ == "__main__":
         'pos_Defender', 'pos_Forward', 'pos_Goalkeeper', 'pos_Midfielder'
     ]
     target_column = 'market_value_eur'
-
-    # Ensure all selected features exist in the DataFrame
     feature_columns = [col for col in feature_columns if col in df.columns]
     
-    df_model = df[['player_id', 'season_name'] + feature_columns + [target_column]].copy()
+    df_model = df[['player_id', 'season_name', 'player_name'] + feature_columns + [target_column]].copy()
     df_model.dropna(inplace=True)
 
-    # --- 2. SCALE FEATURES ---
-    feature_scaler = MinMaxScaler()
-    target_scaler = MinMaxScaler()
-
-    df_model[feature_columns] = feature_scaler.fit_transform(df_model[feature_columns])
-    df_model[target_column] = target_scaler.fit_transform(df_model[[target_column]])
-
-    # --- 3. CREATE SEQUENCES ---
-    SEQUENCE_LENGTH = 3 
-    X, y = create_sequences(df_model, feature_columns, target_column, SEQUENCE_LENGTH)
-
-    if len(X) == 0:
-        print("Error: Not enough data to create sequences. Try a smaller SEQUENCE_LENGTH.")
-        exit()
-
-    print(f"Created {len(X)} sequences for training.")
+    # --- 2. LOG-TRANSFORM TARGET and PREPARE DATA ---
+    # Log transformation is still a best practice
+    df_model[target_column] = np.log1p(df_model[target_column])
     
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X, y = prepare_data_for_xgboost(df_model, feature_columns, target_column)
 
-    # --- 4. BUILD AND TRAIN THE MODEL ---
-    input_shape = (X_train.shape[1], X_train.shape[2])
-    model = build_lstm_model(input_shape)
-    model.summary()
+    print(f"Created {len(X)} samples for training.")
+    
+    # --- 3. SCALE FEATURES AND SPLIT DATA ---
+    feature_scaler = MinMaxScaler()
+    X_scaled = feature_scaler.fit_transform(X)
+    
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 
-    print("\nStarting model training...")
-    history = model.fit(
+    # --- 4. BUILD AND TRAIN THE XGBOOST MODEL ---
+    # These are robust starting parameters for XGBoost
+    xgboost_model = xgb.XGBRegressor(
+        objective='reg:squarederror',
+        n_estimators=1000,
+        learning_rate=0.05,
+        max_depth=5,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        n_jobs=-1,
+        early_stopping_rounds=50 # Prevents overfitting
+    )
+
+    print("\nStarting XGBoost model training...")
+    xgboost_model.fit(
         X_train, y_train,
-        epochs=50,
-        batch_size=32,
-        validation_split=0.2,
-        verbose=1
+        eval_set=[(X_test, y_test)],
+        verbose=False
     )
     
     # --- 5. EVALUATE THE MODEL ---
     print("\nEvaluating model performance...")
     
-    # Get predictions on the test set (they will be scaled)
-    predictions_scaled = model.predict(X_test)
+    predictions_log = xgboost_model.predict(X_test)
     
-    # Inverse transform the scaled predictions and actual values to get real Euros
-    predictions_euros = target_scaler.inverse_transform(predictions_scaled)
-    y_test_euros = target_scaler.inverse_transform(y_test.reshape(-1, 1))
+    # Convert predictions back from log scale to Euros
+    predictions_euros = np.expm1(predictions_log)
+    y_test_euros = np.expm1(y_test)
 
-    # Calculate Root Mean Squared Error (RMSE) in Euros
+    predictions_euros[predictions_euros < 0] = 0
+
+    # Calculate metrics
     rmse = np.sqrt(np.mean((predictions_euros - y_test_euros)**2))
+    mape = np.mean(np.abs((y_test_euros - predictions_euros) / (y_test_euros + 1e-8))) * 100
+    tolerance = 0.20
+    within_tolerance = np.sum(np.abs(predictions_euros - y_test_euros) <= tolerance * y_test_euros)
+    accuracy_within_20_percent = (within_tolerance / len(y_test_euros)) * 100
     
     print("\n" + "="*50)
-    print(f"Model Evaluation Complete.")
-    print(f"Root Mean Squared Error (RMSE) on Test Data: €{rmse:,.2f}")
+    print(f"XGBoost Model Evaluation Complete.")
+    print(f"Root Mean Squared Error (RMSE): €{rmse:,.2f}")
+    print(f"Mean Absolute Percentage Error (MAPE): {mape:.2f}%")
+    print(f"Accuracy (predictions within 20% of actual): {accuracy_within_20_percent:.2f}%")
     print("="*50)
 
-    # --- 6. VISUALIZE TRAINING ---
-    plot_training_history(history)
+    # --- 6. VISUALIZE FEATURE IMPORTANCE ---
+    plot_feature_importance(xgboost_model, feature_columns)
+
+'''
+
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+import xgboost as xgb
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+import warnings
+
+# Suppress verbose TensorFlow logging
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+warnings.filterwarnings('ignore', category=UserWarning, module='xgboost')
+
+# --- LSTM Helper Functions ---
+
+def create_sequences(data, feature_cols, target_col, sequence_length=3):
+    X, y, player_ids, season_names = [], [], [], []
+    for player_id, group in data.groupby('player_id'):
+        player_seasons_features = group.sort_values('season_name')[feature_cols].values
+        player_seasons_target = group.sort_values('season_name')[target_col].values
+        
+        if len(player_seasons_features) > sequence_length:
+            for i in range(len(player_seasons_features) - sequence_length):
+                sequence = player_seasons_features[i:i + sequence_length]
+                target = player_seasons_target[i + sequence_length]
+                X.append(sequence)
+                y.append(target)
+                player_ids.append(player_id)
+                season_names.append(group.sort_values('season_name').iloc[i + sequence_length]['season_name'])
+
+    return np.array(X), np.array(y), player_ids, season_names
+
+def build_lstm_model(input_shape):
+    model = tf.keras.Sequential([
+        tf.keras.layers.LSTM(units=100, return_sequences=True, input_shape=input_shape),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.LSTM(units=50),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dense(25, activation='relu'),
+        tf.keras.layers.Dense(1)
+    ])
+    model.compile(optimizer='adam', loss='mean_squared_error')
+    return model
+
+# --- Visualization Helper Functions ---
+
+def plot_feature_importance(model, feature_names):
+    plt.figure(figsize=(12, 8))
+    importance = model.get_booster().get_score(importance_type='weight')
+    used_features = {f: importance.get(f, 0.) for f in feature_names}
+    sorted_features = sorted(used_features.items(), key=lambda x: x[1], reverse=True)
+    features_to_plot = [item[0] for item in sorted_features[:15]]
+    scores_to_plot = [item[1] for item in sorted_features[:15]]
+    plt.barh(features_to_plot, scores_to_plot)
+    plt.gca().invert_yaxis()
+    plt.title('Stacked Model (XGBoost) Feature Importance')
+    plt.xlabel('F-score (Feature Importance)')
+    output_folder = "model_evaluation"
+    os.makedirs(output_folder, exist_ok=True)
+    plot_path = os.path.join(output_folder, "stacked_model_feature_importance.png")
+    plt.savefig(plot_path, bbox_inches='tight')
+    print(f"\nSaved feature importance plot to '{plot_path}'")
+
+def plot_correlation_heatmap(df, feature_cols):
+    """
+    Generates and saves a heatmap of the feature correlation matrix.
+    """
+    plt.figure(figsize=(16, 12))
+    correlation_matrix = df[feature_cols].corr()
+    sns.heatmap(correlation_matrix, cmap='viridis', annot=False) # Annot is false for readability with many features
+    plt.title('Feature Correlation Heatmap')
+    
+    output_folder = "model_evaluation"
+    os.makedirs(output_folder, exist_ok=True)
+    plot_path = os.path.join(output_folder, "feature_correlation_heatmap.png")
+    plt.savefig(plot_path, bbox_inches='tight')
+    print(f"Saved feature correlation heatmap to '{plot_path}'")
+
+
+if __name__ == "__main__":
+    # --- 1. LOAD AND PREPARE DATA ---
+    try:
+        df = pd.read_csv("/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/final_master_dataset.csv")
+    except FileNotFoundError:
+        print("Error: 'final_master_dataset.csv' not found.")
+        exit()
+
+    print("Preparing data and performing feature engineering...")
+    feature_columns = [
+        'age_clean', 'goals_per_match', 'assists_per_match', 'shots_per_match', 
+        'xG_per_match', 'xG_performance', 'goals_yoy_change', 'assists_yoy_change',
+        'total_days_missed', 'injury_count', 'average_sentiment', 'post_count',
+        'pos_Defender', 'pos_Forward', 'pos_Goalkeeper', 'pos_Midfielder'
+    ]
+    target_column = 'market_value_eur'
+    df_model = df[['player_id', 'season_name'] + feature_columns + [target_column]].copy().dropna()
+    df_model['age_x_goals'] = df_model['age_clean'] * df_model['goals_per_match']
+    df_model['age_squared'] = df_model['age_clean']**2
+    df_model['attack_contribution'] = df_model['goals_per_match'] + df_model['assists_per_match']
+    
+    engineered_features = ['age_x_goals', 'age_squared', 'attack_contribution']
+    lstm_feature_columns = feature_columns + engineered_features
+
+    # --- NEW: Generate and save the heatmap before modeling ---
+    plot_correlation_heatmap(df_model, lstm_feature_columns)
+
+    # --- 2. TRAIN THE BASE LSTM MODEL ---
+    print("\n--- STAGE 1: Training the Base LSTM Model ---")
+    
+    # Scale features and log-transform target for the LSTM
+    feature_scaler_lstm = MinMaxScaler()
+    df_lstm = df_model.copy()
+    df_lstm[lstm_feature_columns] = feature_scaler_lstm.fit_transform(df_lstm[lstm_feature_columns])
+    df_lstm[target_column] = np.log1p(df_lstm[target_column])
+
+    X_seq, y_seq, _, _ = create_sequences(df_lstm, lstm_feature_columns, target_column)
+    
+    if len(X_seq) == 0:
+        print("Not enough data to create sequences for LSTM. Exiting.")
+        exit()
+        
+    X_train_lstm, _, y_train_lstm, _ = train_test_split(X_seq, y_seq, test_size=0.2, random_state=42)
+    
+    lstm_model = build_lstm_model((X_train_lstm.shape[1], X_train_lstm.shape[2]))
+    lstm_model.fit(X_train_lstm, y_train_lstm, epochs=50, batch_size=32, verbose=0)
+
+    # --- 3. GENERATE LSTM PREDICTIONS AS A NEW FEATURE ---
+    print("\n--- STAGE 2: Generating LSTM Predictions as a Feature ---")
+    
+    # Create a dataframe to store the LSTM predictions
+    _, _, pred_player_ids, pred_season_names = create_sequences(df_lstm, lstm_feature_columns, target_column)
+    lstm_predictions_log = lstm_model.predict(X_seq, verbose=0)
+    
+    df_predictions = pd.DataFrame({
+        'player_id': pred_player_ids,
+        'season_name': pred_season_names,
+        'lstm_prediction': lstm_predictions_log.flatten()
+    })
+
+    # Merge these predictions back into the main dataframe
+    df_model = pd.merge(df_model, df_predictions, on=['player_id', 'season_name'], how='left')
+    
+    # --- 4. TRAIN THE META XGBOOST MODEL ---
+    print("\n--- STAGE 3: Training the Meta XGBoost Model ---")
+    
+    # Prepare data for XGBoost (this creates the 'next_season_value' target)
+    df_xgb = df_model.copy()
+    df_xgb[target_column] = np.log1p(df_xgb[target_column])
+    
+    final_feature_columns = lstm_feature_columns + ['lstm_prediction']
+    
+    df_xgb.dropna(subset=['lstm_prediction'], inplace=True)
+    df_xgb = df_xgb.sort_values(['player_id', 'season_name'])
+    df_xgb['next_season_value'] = df_xgb.groupby('player_id')[target_column].shift(-1)
+    df_xgb.dropna(subset=['next_season_value'], inplace=True)
+    
+    X = df_xgb[final_feature_columns]
+    y = df_xgb['next_season_value']
+
+    print(f"Created {len(X)} samples for the stacked model.")
+
+    feature_scaler_xgb = MinMaxScaler()
+    X_scaled = feature_scaler_xgb.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+    
+    param_grid = {'max_depth': [5, 7], 'learning_rate': [0.05, 0.1], 'n_estimators': [500, 1000]}
+    xgboost_model = xgb.XGBRegressor(objective='reg:squarederror', subsample=0.8, colsample_bytree=0.8, random_state=42, n_jobs=-1)
+    
+    grid_search = GridSearchCV(estimator=xgboost_model, param_grid=param_grid, cv=3, scoring='neg_mean_squared_error', verbose=1, n_jobs=-1)
+    grid_search.fit(X_train, y_train)
+
+    print(f"\nBest parameters found: {grid_search.best_params_}")
+    best_model = grid_search.best_estimator_
+
+    # --- 5. EVALUATE THE STACKED MODEL ---
+    print("\nEvaluating stacked model performance...")
+    predictions_log = best_model.predict(X_test)
+    predictions_euros = np.expm1(predictions_log)
+    y_test_euros = np.expm1(y_test)
+    predictions_euros[predictions_euros < 0] = 0
+
+    rmse = np.sqrt(np.mean((predictions_euros - y_test_euros)**2))
+    mape = np.mean(np.abs((y_test_euros - predictions_euros) / (y_test_euros + 1e-8))) * 100
+    accuracy_within_20_percent = (np.sum(np.abs(predictions_euros - y_test_euros) <= 0.20 * y_test_euros) / len(y_test_euros)) * 100
+    
+    print("\n" + "="*50)
+    print(f"Stacked Model Evaluation Complete.")
+    print(f"Root Mean Squared Error (RMSE): €{rmse:,.2f}")
+    print(f"Mean Absolute Percentage Error (MAPE): {mape:.2f}%")
+    print(f"Accuracy (predictions within 20% of actual): {accuracy_within_20_percent:.2f}%")
+    print("="*50)
+
+    # --- 6. VISUALIZE FEATURE IMPORTANCE ---
+    plot_feature_importance(best_model, list(X.columns))
 
