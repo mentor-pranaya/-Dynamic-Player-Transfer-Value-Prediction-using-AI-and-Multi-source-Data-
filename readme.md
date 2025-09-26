@@ -179,7 +179,7 @@
 ----------------------------------------------------------------------------------------------------------  
   Working on Univariate LSTM
 
-**24rd September 2025:**
+**24th September 2025:**
 ----------------------------------------------------------------------------------------------------------  
   Univariate LSTM was predicting very different values on each run for same player:
 
@@ -193,6 +193,10 @@
 
   Also added a list of historical values with prediction for the selected player id 
 
-**25rd September 2025:**
+**25th September 2025:**
 ----------------------------------------------------------------------------------------------------------  
   Worknig on Multivariate LSTM
+
+**26th September 2025:**
+----------------------------------------------------------------------------------------------------------  
+  Completed and tested Multivariate LSTM with features total_injuries, sentiment_mean, avg_cards_per_match, market_value
