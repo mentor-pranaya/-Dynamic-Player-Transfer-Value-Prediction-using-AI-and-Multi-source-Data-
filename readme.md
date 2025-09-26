@@ -208,8 +208,8 @@
     
   Initial
     
-  ![Initial plot for 51152](LSTM/51152.png)
+  ![Initial plot for 33812](LSTM/33812.png)
   
   More Features
 
-  ![Plot for 51152 with added featres](LSTM/51152_more_features.png)
+  ![Plot for 33812 with added featres](LSTM/33812_more_features.png)
