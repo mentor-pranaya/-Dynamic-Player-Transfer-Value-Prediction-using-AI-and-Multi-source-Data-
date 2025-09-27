@@ -143,3 +143,7 @@ Working on the Multrivariate LSTM Model as some part is left in it also working 
 
 Day 26 Progress (23.09.2025)
 The Multrivariate LSTM Model is about to finish currently focusing on the accuracy of the model.
+
+
+Day 27 Progress (24.09.2025)
+Completed the Multivariate LSTM Model.
