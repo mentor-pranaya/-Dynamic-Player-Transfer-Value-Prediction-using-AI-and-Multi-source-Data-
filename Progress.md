@@ -147,3 +147,7 @@ The Multrivariate LSTM Model is about to finish currently focusing on the accura
 
 Day 27 Progress (24.09.2025)
 Completed the Multivariate LSTM Model.
+
+
+Day 28 Progress (25.09.2025)
+Currently working on the ensemble models using XGBoost or LightGBM.
