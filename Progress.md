@@ -151,3 +151,7 @@ Completed the Multivariate LSTM Model.
 
 Day 28 Progress (25.09.2025)
 Currently working on the ensemble models using XGBoost or LightGBM.
+
+
+Day 29 Progress (27.09.2025)
+I have started integrating the LSTM Models results with XGBoost to create an ensemble model.
