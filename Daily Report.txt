@@ -104,3 +104,33 @@ Day-16
 Built a complete prediction pipeline in Python that handles preprocessing (scaling and encoding), automatic feature selection, and outputs transfer value predictions for new player data.
 Day-17
 I implemented a univariate LSTM model using TensorFlow/Keras to analyze the historical trend of market values. The model focused only on past transfer values to predict future ones. This provided a baseline for how well time-series information alone could explain transfer value changes.
+Day-18
+Started implementation of a Multivariate LSTM model.
+Loaded cleaned_features.npy and cleaned_target.npy files.
+Designed an LSTM network with multiple input features (performance, injury, sentiment, etc.).
+Defined hyperparameters such as sequence length = 5 and batch size.
+Ran initial training and validated that the model architecture was functioning correctly.
+Day-19
+Focused on Hyperparameter Tuning for the LSTM.
+Experimented with different learning rates, hidden units, and dropout values.
+Compared performance across models using validation loss and RMSE.
+Identified an optimal configuration for stable training.
+Documented all results for reproducibility.
+Day-20
+Integrated Early Stopping and Model Checkpointing into the training loop.
+Prevented overfitting by monitoring validation loss.
+Saved the best model automatically during training.
+Verified improvements in training stability compared to baseline runs.
+Started generating predictions and saving them for analysis.
+Day-21
+Conducted Model Evaluation and Comparison.
+Evaluated multivariate LSTM predictions using RMSE, MAE, and R² metrics.
+Compared LSTM performance against Random Forest, Linear Regression, and XGBoost results.
+Observed that the LSTM captured time-series trends better than traditional models.
+Created visualizations (actual vs predicted curves) for selected players.
+Day-22
+Finalized Model Development Phase (Week 4).
+Cleaned and organized code for reproducibility.
+Exported final trained multivariate LSTM model.
+Documented experimental setup, tuning parameters, and evaluation results.
+Prepared summary for transitioning into the next stage: deployment and interpretability (feature attribution, SHAP, attention mechanisms).
