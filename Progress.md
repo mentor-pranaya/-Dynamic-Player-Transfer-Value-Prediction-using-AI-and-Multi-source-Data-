@@ -155,3 +155,8 @@ Currently working on the ensemble models using XGBoost or LightGBM.
 
 Day 29 Progress (27.09.2025)
 I have started integrating the LSTM Models results with XGBoost to create an ensemble model. Rest everything i have uploaded in github.
+
+
+Day 30 Progress (29.09.2025)
+The ensemble model was created and  I have uploaded that on github now I am just working on the enhancing the model results through ensemble techniques, after that I will start with Hyperparameter tuning.
+
