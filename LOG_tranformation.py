@@ -19,7 +19,7 @@ N_EPOCHS = 20  # Increased epochs for better learning
 # --- 1. Data Loading and Preprocessing with LOG TRANSFORMATION ---
 
 # Load the dataset
-df = pd.read_csv(r"D:\Pythonproject\datasets\pythonProject\final_data(punaya_murthy).csv")
+df = pd.read_csv(r"D:\Pythonproject\datasets\pythonProject\final_data.csv")
 df_model = df[NUMERICAL_COLS].dropna().copy()
 
 # *** CRITICAL FIX: LOG TRANSFORM THE TARGET VARIABLE ***
@@ -169,4 +169,5 @@ print(f"\nDeliverable 1: Best trained model saved to: {best_model_path}")
 # Deliverable 2: Prediction results saved to CSV
 results_file_path_new = 'log_transformed_lstm_prediction_results.csv'
 results_df_new.to_csv(results_file_path_new, index=False)
+
 print(f"Deliverable 2: Full prediction results saved to: {results_file_path_new}")
