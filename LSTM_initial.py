@@ -17,7 +17,7 @@ TRAIN_SPLIT_RATIO = 0.8
 # --- 1. Data Loading and Preprocessing ---
 
 # Load the dataset
-df = pd.read_csv(r"D:\Pythonproject\datasets\pythonProject\final_data(punaya_murthy).csv")
+df = pd.read_csv(r"D:\Pythonproject\datasets\pythonProject\final_data.csv")
 df_model = df[NUMERICAL_COLS].dropna().copy()
 
 # Scale the data
@@ -122,4 +122,5 @@ print(results_df.head(10).to_markdown(index=False))
 # Save the predictions to a CSV file (Deliverable part)
 results_file_path = 'lstm_prediction_results.csv'
 results_df.to_csv(results_file_path, index=False)
+
 print(f"\nFull prediction results saved to: {results_file_path}")
