@@ -16,7 +16,7 @@ TEST_SIZE = 0.2
 # --- 1. Data Loading and Preparation ---
 
 # Load the dataset
-df = pd.read_csv(r"D:\Pythonproject\datasets\pythonProject\final_data(punaya_murthy).csv")
+df = pd.read_csv(r"D:\Pythonproject\datasets\pythonProject\final_data.csv")
 df.columns = df.columns.str.strip() # Fix for KeyError
 
 # Prepare data with Log Transformation
@@ -105,4 +105,5 @@ comparison_data = pd.DataFrame({
     'Model': ['Multivariate LSTM', 'Random Forest (Baseline)', 'Random Forest (Final Tuned)'],
     'R-squared Score': [lstm_r2, rf_baseline_r2, final_r2]
 })
+
 print(comparison_data.to_markdown(index=False))
