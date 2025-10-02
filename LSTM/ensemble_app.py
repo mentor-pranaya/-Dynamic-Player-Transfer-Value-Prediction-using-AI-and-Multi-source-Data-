@@ -10,6 +10,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 import xgboost as xgb
 import matplotlib.pyplot as plt
 import mysql.connector
+from tensorflow.keras.callbacks import Callback
 
 def make_multivariate_multistep(array, n_steps, n_future=3):
     X, y = [], []
@@ -86,115 +87,131 @@ player_choice = st.sidebar.selectbox("Select Player", player_options)
 # Extract numeric player_id from choice
 pid = int(player_choice.split("(")[-1].replace(")", ""))
 
+if st.sidebar.button("Click here to start training and evaluation"):
+    # Prepare sequences
+    X_list, y_list, player_index = [], [], []
+    scaler = MinMaxScaler()
 
-# Prepare sequences
-X_list, y_list, player_index = [], [], []
-scaler = MinMaxScaler()
+    for p, group in df.groupby("transfermarkt_id"):
+        features = group[
+            [
+                "market_value",
+                "total_injuries",
+                "sentiment_mean",
+                "avg_cards_per_match",
+                "avg_days_out",
+                "recent_injury",
+                "days_since_last_injury",
+                "minutes_played",
+                "shots_per90",
+                "pressures_per90",
+            ]
+        ].fillna(0).values
 
-for p, group in df.groupby("transfermarkt_id"):
-    features = group[
-        [
-            "market_value",
-            "total_injuries",
-            "sentiment_mean",
-            "avg_cards_per_match",
-            "avg_days_out",
-            "recent_injury",
-            "days_since_last_injury",
-            "minutes_played",
-            "shots_per90",
-            "pressures_per90",
-        ]
-    ].fillna(0).values
+        scaled = scaler.fit_transform(features)
+        Xp, yp = make_multivariate_multistep(scaled, n_steps, n_future)
+        if len(Xp) == 0:
+            continue
+        X_list.append(Xp)
+        y_list.append(yp)
+        player_index.extend([p] * len(yp))
 
-    scaled = scaler.fit_transform(features)
-    Xp, yp = make_multivariate_multistep(scaled, n_steps, n_future)
-    if len(Xp) == 0:
-        continue
-    X_list.append(Xp)
-    y_list.append(yp)
-    player_index.extend([p] * len(yp))
+    X = np.vstack(X_list)
+    y = np.vstack(y_list)
+    player_index = np.array(player_index)
 
-X = np.vstack(X_list)
-y = np.vstack(y_list)
-player_index = np.array(player_index)
-
-# Train/Validation split
-X_train, X_val, y_train, y_val, idx_train, idx_val = train_test_split(
-    X, y, player_index, test_size=0.2, shuffle=True, random_state=42
-)
-
-# LSTM Training
-st.subheader("🔹 Training LSTM")
-n_features = X.shape[2]
-model = build_lstm(n_steps, n_features, n_future)
-es = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
-
-history = model.fit(
-    X_train,
-    y_train,
-    epochs=epochs,
-    batch_size=32,
-    validation_data=(X_val, y_val),
-    verbose=0,
-    callbacks=[es],
-)
-
-# Plot loss curve
-fig, ax = plt.subplots()
-ax.plot(history.history["loss"], label="Train Loss")
-ax.plot(history.history["val_loss"], label="Val Loss")
-ax.legend()
-ax.set_title("Loss Curves")
-st.pyplot(fig)
-
-# Predictions
-y_val_pred_lstm = model.predict(X_val)
-
-# Ensemble with XGBoost
-st.subheader("🔹 Ensemble: LSTM + XGBoost")
-
-# Flatten sequences for meta-features
-X_train_flat = X_train.reshape(X_train.shape[0], -1)
-X_val_flat = X_val.reshape(X_val.shape[0], -1)
-
-y_train_pred_lstm = model.predict(X_train)
-
-train_meta = np.hstack([X_train_flat, y_train_pred_lstm])
-val_meta = np.hstack([X_val_flat, y_val_pred_lstm])
-
-rmses = []
-for step in range(n_future):
-    y_train_step = y_train[:, step]
-    y_val_step = y_val[:, step]
-
-    model_xgb = xgb.XGBRegressor(
-        n_estimators=300,
-        learning_rate=0.05,
-        max_depth=6,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
+    # Train/Validation split
+    X_train, X_val, y_train, y_val, idx_train, idx_val = train_test_split(
+        X, y, player_index, test_size=0.2, shuffle=True, random_state=42
     )
-    model_xgb.fit(train_meta, y_train_step)
 
-    y_val_pred_xgb = model_xgb.predict(val_meta)
+    # LSTM Training
+    st.subheader("🔹 Training LSTM")
+    n_features = X.shape[2]
+    model = build_lstm(n_steps, n_features, n_future)
+    
+    progress_bar = st.progress(0)
+    epoch_log = st.empty()
+    
+    class StreamlitLogger(Callback):
+        def __init__(self, total_epochs):
+            super().__init__()
+            self.total_epochs = total_epochs
 
-    rmse_lstm = np.sqrt(mean_squared_error(y_val_step, y_val_pred_lstm[:, step]))
-    rmse_xgb = np.sqrt(mean_squared_error(y_val_step, y_val_pred_xgb))
+        def on_epoch_end(self, epoch, logs=None):
+            logs = logs or {}
+            loss = logs.get("loss")
+            val_loss = logs.get("val_loss")
+            epoch_log.text(f"Epoch {epoch+1}/{self.total_epochs} - Loss: {loss:.4f}, Val Loss: {val_loss:.4f}")
+            progress_bar.progress((epoch+1)/self.total_epochs)
+    
+    es = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
 
-    rmses.append((rmse_lstm, rmse_xgb))
+    history = model.fit(
+        X_train,
+        y_train,
+        epochs=epochs,
+        batch_size=32,
+        validation_data=(X_val, y_val),
+        #verbose=0,
+        callbacks=[es, StreamlitLogger(epochs)],
+    )
 
+    # Plot loss curve
     fig, ax = plt.subplots()
-    ax.plot(y_val_step[:50], label="True", color="black")
-    ax.plot(y_val_pred_lstm[:50, step], label="LSTM", alpha=0.7)
-    ax.plot(y_val_pred_xgb[:50], label="Ensemble", alpha=0.7)
-    ax.set_title(f"Step+{step+1} Forecast")
+    ax.plot(history.history["loss"], label="Train Loss")
+    ax.plot(history.history["val_loss"], label="Val Loss")
     ax.legend()
+    ax.set_title("Loss Curves")
     st.pyplot(fig)
 
-# RMSE Summary
-rmse_df = pd.DataFrame(rmses, columns=["RMSE_LSTM", "RMSE_Ensemble"])
-rmse_df.index = [f"Step+{i+1}" for i in range(n_future)]
-st.write("### RMSE Comparison")
-st.dataframe(rmse_df)
+    # Predictions
+    y_val_pred_lstm = model.predict(X_val)
+
+    # Ensemble with XGBoost
+    st.subheader("🔹 Ensemble: LSTM + XGBoost")
+
+    # Flatten sequences for meta-features
+    X_train_flat = X_train.reshape(X_train.shape[0], -1)
+    X_val_flat = X_val.reshape(X_val.shape[0], -1)
+
+    y_train_pred_lstm = model.predict(X_train)
+
+    train_meta = np.hstack([X_train_flat, y_train_pred_lstm])
+    val_meta = np.hstack([X_val_flat, y_val_pred_lstm])
+
+    rmses = []
+    for step in range(n_future):
+        y_train_step = y_train[:, step]
+        y_val_step = y_val[:, step]
+
+        model_xgb = xgb.XGBRegressor(
+            n_estimators=300,
+            learning_rate=0.05,
+            max_depth=6,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            random_state=42,
+        )
+        model_xgb.fit(train_meta, y_train_step)
+
+        y_val_pred_xgb = model_xgb.predict(val_meta)
+
+        rmse_lstm = np.sqrt(mean_squared_error(y_val_step, y_val_pred_lstm[:, step]))
+        rmse_xgb = np.sqrt(mean_squared_error(y_val_step, y_val_pred_xgb))
+
+        rmses.append((rmse_lstm, rmse_xgb))
+
+        fig, ax = plt.subplots()
+        ax.plot(y_val_step[:50], label="True", color="black")
+        ax.plot(y_val_pred_lstm[:50, step], label="LSTM", alpha=0.7)
+        ax.plot(y_val_pred_xgb[:50], label="Ensemble", alpha=0.7)
+        ax.set_title(f"Step+{step+1} Forecast")
+        ax.legend()
+        st.pyplot(fig)
+
+    # RMSE Summary
+    rmse_df = pd.DataFrame(rmses, columns=["RMSE_LSTM", "RMSE_Ensemble"])
+    rmse_df.index = [f"Step+{i+1}" for i in range(n_future)]
+    st.write("### RMSE Comparison")
+    st.dataframe(rmse_df)
