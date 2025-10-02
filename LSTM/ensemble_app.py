@@ -132,19 +132,34 @@ if st.sidebar.button("Click here to start training and evaluation"):
     
     progress_bar = st.progress(0)
     epoch_log = st.empty()
-    
+    chart_placeholder = st.empty()
+    # Initialize line chart
+    loss_chart = chart_placeholder.line_chart({"Train Loss": [], "Val Loss": []})
+
     class StreamlitLogger(Callback):
         def __init__(self, total_epochs):
             super().__init__()
             self.total_epochs = total_epochs
-
+            self.history = {"loss": [], "val_loss": []}
+            
         def on_epoch_end(self, epoch, logs=None):
             logs = logs or {}
-            loss = logs.get("loss")
-            val_loss = logs.get("val_loss")
-            epoch_log.text(f"Epoch {epoch+1}/{self.total_epochs} - Loss: {loss:.4f}, Val Loss: {val_loss:.4f}")
+            #loss = logs.get("loss")
+            #val_loss = logs.get("val_loss")
+            self.history["loss"].append(logs.get("loss"))
+            self.history["val_loss"].append(logs.get("val_loss"))
+            #epoch_log.text(f"Epoch {epoch+1}/{self.total_epochs} - Loss: {loss:.4f}, Val Loss: {val_loss:.4f}")
+            epoch_log.text(
+                f"Epoch {epoch+1}/{self.total_epochs} - "
+                f"Loss: {logs.get('loss'):.4f}, "
+                f"Val Loss: {logs.get('val_loss'):.4f}"
+            )
             progress_bar.progress((epoch+1)/self.total_epochs)
-    
+            new_data = {
+                "Train Loss": self.history["loss"][-1:],
+                "Val Loss": self.history["val_loss"][-1:]
+            }
+            loss_chart.add_rows(new_data)
     es = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
 
     history = model.fit(
@@ -153,9 +168,11 @@ if st.sidebar.button("Click here to start training and evaluation"):
         epochs=epochs,
         batch_size=32,
         validation_data=(X_val, y_val),
-        #verbose=0,
+        verbose=0,
         callbacks=[es, StreamlitLogger(epochs)],
     )
+    # Final static chart (for reference after training finishes)
+    st.line_chart(history.history)
 
     # Plot loss curve
     fig, ax = plt.subplots()
