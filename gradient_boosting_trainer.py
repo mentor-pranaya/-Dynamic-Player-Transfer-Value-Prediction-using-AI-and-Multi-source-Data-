@@ -8,7 +8,7 @@ from lightgbm import LGBMRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
 # --- CONFIGURATION ---
-DATA_PATH = r'D:\Pythonproject\datasets\pythonProject\final_data(punaya_murthy).csv'  # Ensure this file is in the same directory
+DATA_PATH = r'D:\Pythonproject\datasets\pythonProject\final_data.csv'  # Ensure this file is in the same directory
 TARGET_COL = 'current_value'
 FEATURE_COLS = ['age', 'appearance', 'goals', 'assists', 'yellow cards', 'red cards',
                 'minutes played', 'days_injured', 'games_injured',
@@ -119,3 +119,4 @@ joblib.dump(scaler, SCALER_FILENAME)
 print(f"✅ Scaler saved to {SCALER_FILENAME}")
 
 print("\nModel tuning complete. You can now use the saved files for deployment.")
+
