@@ -225,3 +225,9 @@
   Making final code modular
 
   Created streamlit for ensemble script
+
+**2nd October 2025:**
+----------------------------------------------------------------------------------------------------------  
+  3 step forcasting comparision for choosen player with inverse transform so values are in real € millions
+  
+  ![alt text](image-1.png)
