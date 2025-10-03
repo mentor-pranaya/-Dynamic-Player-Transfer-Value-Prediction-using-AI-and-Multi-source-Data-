@@ -257,7 +257,7 @@ if st.sidebar.button("Click here to start training and evaluation"):
         ax.plot(y_val_seq_lstm_inv[:n_show], label="Seq2Seq LSTM", color="orange", linestyle="--")
         ax.plot(y_val_xgb_inv[:n_show], label="XGBoost", color="green", linestyle="--")
         ax.plot(y_val_ensemble_inv[:n_show], label="Ensemble (avg)", color="red", linestyle=":")
-        ax.set_title("Validation Forecast (Step+1) - Seq2Seq + XGBoost Ensemble")
+        ax.set_title(f"Validation Forecast (Step+{step+1}) - Seq2Seq + XGBoost Ensemble")
         ax.set_xlabel("Validation Samples")
         ax.set_ylabel("Transfer Value (€ millions)")
         ax.legend()
