@@ -235,5 +235,9 @@
   Created Encorder - Decoder LSTM
 
   Created XGBoost ensemble for multi-step forecasts, ensemble of encoder-decoder LSTM + XGBoost for player-specific multi-step prediction.
+  ![alt text](image-4.png)
+  
+  ![alt text](image-3.png)
 
   Full encoder-decoder LSTM (seq2seq) with recursive multi-step forecast
+  ![alt text](image-2.png)
