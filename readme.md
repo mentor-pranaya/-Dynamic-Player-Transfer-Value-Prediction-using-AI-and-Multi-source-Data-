@@ -231,3 +231,7 @@
   3 step forcasting comparision for choosen player with inverse transform so values are in real € millions
   
   ![alt text](image-1.png)
+
+  Created Encorder - Decoder LSTM
+
+  Created XGBoost ensemble for multi-step forecasts, ensemble of encoder-decoder LSTM + XGBoost for player-specific multi-step prediction.
