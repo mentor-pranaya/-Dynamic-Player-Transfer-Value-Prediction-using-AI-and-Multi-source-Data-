@@ -236,6 +236,33 @@ if st.sidebar.button("Click here to start training and evaluation"):
         model_xgb.fit(X_meta_train, y_train[:, step])
         xgb_models.append(model_xgb)
         y_val_pred_xgb_all[:, step] = model_xgb.predict(X_meta_val)
+        # Ensemble predictions
+        y_val_ensemble = (y_val_seq_pred + y_val_pred_xgb_all) / 2
+        st.subheader("Validation Results Comparison")
+         # Validation plotting ----------
+        def inverse_transform_col(col_scaled, scaler, n_features_total):
+            col_scaled = np.array(col_scaled).reshape(-1, 1)
+            expanded = np.zeros((len(col_scaled), n_features_total))
+            expanded[:, 0] = col_scaled.flatten()
+            return scaler.inverse_transform(expanded)[:, 0]
+
+        y_val_true_inv = inverse_transform_col(y_val[:, 0], scaler, X.shape[2])
+        y_val_seq_lstm_inv = inverse_transform_col(y_val_seq_pred[:, 0], scaler, X.shape[2])
+        y_val_xgb_inv = inverse_transform_col(y_val_pred_xgb_all[:, 0], scaler, X.shape[2])
+        y_val_ensemble_inv = inverse_transform_col(y_val_ensemble[:, 0], scaler, X.shape[2])
+
+        fig, ax = plt.subplots(figsize=(12,6))
+        n_show = min(50, len(y_val_true_inv))
+        ax.plot(y_val_true_inv[:n_show], label="Actual", color="blue")
+        ax.plot(y_val_seq_lstm_inv[:n_show], label="Seq2Seq LSTM", color="orange", linestyle="--")
+        ax.plot(y_val_xgb_inv[:n_show], label="XGBoost", color="green", linestyle="--")
+        ax.plot(y_val_ensemble_inv[:n_show], label="Ensemble (avg)", color="red", linestyle=":")
+        ax.set_title("Validation Forecast (Step+1) - Seq2Seq + XGBoost Ensemble")
+        ax.set_xlabel("Validation Samples")
+        ax.set_ylabel("Transfer Value (€ millions)")
+        ax.legend()
+        st.pyplot(fig)
+        st.write("Validation forecast (first step) comparison for Seq2Seq LSTM, XGBoost, and Ensemble.")
 
     # ---------- Player-specific recursive forecast ----------
     st.write(f"### {n_future}-Step Forecast for Player: {player_choice}")
