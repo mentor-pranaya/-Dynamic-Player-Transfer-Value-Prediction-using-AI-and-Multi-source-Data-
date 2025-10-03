@@ -163,3 +163,11 @@ The ensemble model was created and  I have uploaded that on github now I am just
 
 Day 31 Progress (30.09.2025)
 I have successfully completed the enhancement of the model result through ensemble techniques, now will start with hyperparameter tuning. 
+
+
+Day 32 Progress (01.10.2025)
+Started my work on hyperparameter tuning.
+
+
+Day 33 Progress (03.10.2025)
+Currently working on hyperparameter tuning and optimizating the LSTM and ensemble models.
