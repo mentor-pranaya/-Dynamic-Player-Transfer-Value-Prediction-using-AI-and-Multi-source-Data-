@@ -370,3 +370,173 @@ Date: 01/09/2025 (Monday)
 - What is overfitting vs underfitting? How do you prevent overfitting?  
 - Architecture of LSTM.  
 
+---
+
+# Day 23  
+**Date:** 17/09/2025  
+
+### Daily Work  
+- Continued work on **Univariate LSTM**.  
+- Tuned hyperparameters (epochs, batch size).  
+- Documented notes on sequence memory and vanishing gradient issues.  
+
+---
+
+# Day 24  
+**Date:** 18/09/2025  
+
+### Daily Work  
+- Implemented **Multivariate LSTM** with multiple input features.  
+- Resolved shape mismatch errors in training pipeline.  
+- Compared loss curves of Univariate vs. Multivariate models.  
+
+---
+
+# Day 25  
+**Date:** 19/09/2025  
+
+### Daily Work  
+- Analyzed results of LSTM models.  
+- Added **Dropout regularization** to reduce overfitting.  
+- Documented findings in `lstm_results.md`.  
+
+---
+
+# Day 26  
+**Date:** 20/09/2025  
+
+### Daily Work  
+- Studied theory of **Ensemble methods**: Bagging, Boosting, Stacking.  
+- Outlined plan to implement **LightGBM**.  
+
+---
+
+# Day 27  
+**Date:** 21/09/2025  
+
+### Daily Work  
+- Started preliminary coding for **LightGBM Regressor**.  
+- Cleaned dataset and created train-test splits.  
+- Ran initial model → baseline accuracy achieved.  
+
+---
+
+# Day 28  
+**Date:** 22/09/2025  
+
+### Meeting Minutes (5:30–6:30 PM)  
+- **Agenda:** Ensemble methods, GitHub updates.  
+- Action Items: Complete LSTM work, explore Ensemble approaches.  
+- Updated repository with LSTM files.  
+
+### Daily Work  
+- Reviewed Ensemble approaches in detail.  
+- Logged key doubts and clarifications from meeting.  
+
+---
+
+# Day 29  
+**Date:** 23/09/2025  
+
+### Daily Work  
+- Tuned **LightGBM hyperparameters** (max_depth, num_leaves).  
+- Improved accuracy by ~6%.  
+- Recorded experiments in `ensemble_notes.md`.  
+
+---
+
+# Day 30  
+**Date:** 24/09/2025  
+
+### Daily Work  
+- Integrated **LightGBM** with existing pipeline.  
+- Compared results with LSTM baselines.  
+- Prepared interim progress notes.  
+
+---
+
+# Day 31  
+**Date:** 25/09/2025  
+
+### Daily Work  
+- Worked on **ensemble integration** (LSTM + LightGBM).  
+- Refined prediction visualization (loss plots, prediction curves).  
+
+---
+
+# Day 32  
+**Date:** 26/09/2025  
+
+### Daily Work  
+- Team meeting was **rescheduled to 27th Sep**.  
+- Focused on further LightGBM tuning.  
+- Noted overfitting issues on subsets of data.  
+
+---
+
+# Day 33  
+**Date:** 27/09/2025  
+
+### Meeting Minutes (Rescheduled Team Call)  
+- Shared progress on **LightGBM integration**.  
+- Team agreed on milestone direction.  
+- Next focus: Stacking-based ensembles.  
+
+### Daily Work  
+- Documented meeting summary and updated tasks.  
+
+---
+
+# Day 34  
+**Date:** 28/09/2025  
+
+### Daily Work  
+- Experimented with **weighted averaging of LSTM + LightGBM outputs**.  
+- Logged improved results.  
+- Added findings to `ensemble_progress.md`.  
+
+---
+
+# Day 35  
+**Date:** 29/09/2025  
+
+### Daily Work  
+- Structured draft of **Milestone 5: Ensemble Models + Integration**.  
+- Focused on documentation and report formatting.  
+
+---
+
+# Day 36  
+**Date:** 30/09/2025  
+
+### Daily Work  
+- Final testing of integrated ensemble model.  
+- Achieved stable performance improvement.  
+- Prepared plots and tables for milestone report.  
+
+---
+
+# Day 37  
+**Date:** 01/10/2025  
+
+### Daily Work  
+- **Milestone 5: Ensemble Models + Integration ✅ Completed**  
+- Submitted results and updated GitHub with code + documentation.  
+
+---
+
+# Day 38  
+**Date:** 02/10/2025  
+
+### Daily Work  
+- **Leave (Holiday)**  
+
+---
+
+# Day 39  
+**Date:** 03/10/2025  
+
+### Daily Work  
+- Reviewed feedback on milestone submission.  
+- Drafted plan for next phase (Hybrid/Advanced methods).  
+- Organized notes and prepared upcoming tasks.  
