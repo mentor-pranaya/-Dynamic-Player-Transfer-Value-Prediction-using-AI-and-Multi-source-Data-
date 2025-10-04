@@ -19,3 +19,221 @@ DAY 4 21.08.2025 :
 DAY 5 22.08.2025 :
 1. Organized all files.
 2.Weekm 1 tasks completed.
+
+Week 2 (25.08.2025 – 29.08.2025)
+
+Day 6 – 25.08.2025 (Mon)
+
+Preprocessed match data from StatsBomb.
+
+Created structured CSV with match IDs, teams, and dates.
+
+Day 7 – 26.08.2025 (Tue)
+
+Normalized JSON files (competitions, matches).
+
+Verified schema for Bundesliga dataset.
+
+Day 8 – 27.08.2025 (Wed)
+
+Loaded event-level data from StatsBomb.
+
+Extracted player actions like shots, passes, dribbles.
+
+Day 9 – 28.08.2025 (Thu)
+
+Conducted data validation checks for missing values.
+
+Mapped competitions and season IDs correctly.
+
+Day 10 – 29.08.2025 (Fri)
+
+Finalized Week 2 preprocessing pipeline.
+
+Prepared data for feature extraction in Week 3.
+
+Week 3 (01.09.2025 – 05.09.2025)
+
+Day 11 – 01.09.2025 (Mon)
+
+Began feature engineering from event data.
+
+Extracted player-level statistics (passes, goals, assists).
+
+Day 12 – 02.09.2025 (Tue)
+
+Worked on expected goals (xG) calculation.
+
+Verified shot outcomes and xG distribution.
+
+Day 13 – 03.09.2025 (Wed)
+
+Identified key passes and linked with assists.
+
+Created structured dataframe for top contributors.
+
+Day 14 – 04.09.2025 (Thu)
+
+Combined player statistics into summary tables.
+
+Validated by comparing with match reports.
+
+Day 15 – 05.09.2025 (Fri)
+
+Saved Week 3 outputs: Events dataset & Features CSV.
+
+Verified outputs against milestone requirements.
+
+Week 4 (08.09.2025 – 12.09.2025)
+
+Day 16 – 08.09.2025 (Mon)
+
+Implemented pass completion metric.
+
+Ranked top passers of the season.
+
+Day 17 – 09.09.2025 (Tue)
+
+Enhanced xG model with player aggregation.
+
+Generated player-level xG scores.
+
+Day 18 – 10.09.2025 (Wed)
+
+Integrated assists detection using key passes.
+
+Cross-checked assist stats with official records.
+
+Day 19 – 11.09.2025 (Thu)
+
+Compiled player summary table (passes, xG, assists).
+
+Verified consistency across matches.
+
+Day 20 – 12.09.2025 (Fri)
+
+Exported Week 4 outputs: passes.csv, xg.csv, assists.csv, player_summary.csv.
+
+Completed Week 4 milestone tasks.
+
+Week 5 (15.09.2025 – 19.09.2025)
+
+Day 21 – 15.09.2025 (Mon)
+
+Loaded sentiment analysis dataset (Twitter-based).
+
+Cleaned unwanted columns & standardized date formats.
+
+Day 22 – 16.09.2025 (Tue)
+
+Performed sentiment scoring on tweets.
+
+Categorized tweets into positive, neutral, and negative.
+
+Day 23 – 17.09.2025 (Wed)
+
+Merged sentiment results with player profiles.
+
+Validated sentiment distribution.
+
+Day 24 – 18.09.2025 (Thu)
+
+Conducted exploratory analysis of public sentiment trends.
+
+Noted correlations with player market value fluctuations.
+
+Day 25 – 19.09.2025 (Fri)
+
+Saved sentiment_cleaned_week5.csv.
+
+Completed Week 5 deliverables.
+
+Week 6 (22.09.2025 – 26.09.2025)
+
+Day 26 – 22.09.2025 (Mon)
+
+Set up TensorFlow & Keras environment.
+
+Verified GPU availability and installed missing dependencies.
+
+Day 27 – 23.09.2025 (Tue)
+
+Developed univariate LSTM model for predicting player market values.
+
+Trained using historical transfer values dataset.
+
+Day 28 – 24.09.2025 (Wed)
+
+Expanded to multivariate LSTM by including features like Age & Sentiment scores.
+
+Normalized all input features using MinMaxScaler.
+
+Day 29 – 25.09.2025 (Thu)
+
+Designed and trained an Encoder-Decoder LSTM model for multi-step forecasting.
+
+Validated short-term forecasts with test dataset.
+
+Day 30 – 26.09.2025 (Fri)
+
+Implemented Ensemble Model (XGBoost + LSTM outputs).
+
+Trained XGBoost with engineered features (performance, sentiment, injuries).
+
+Compared ensemble vs. standalone LSTM results → ensemble showed competitive accuracy.
+
+Saved models:
+
+week6_lstm_model.h5
+
+week6_xgboost_model.pkl
+
+Predictions in week6_predictions.csv
+
+Week 6 milestone “Development of Ensemble Models and Integration” completed.
+
+Week 7 (29.09.2025 – 03.10.2025)
+
+Day 30 – 29.09.2025 (Mon)
+
+Began model evaluation phase.
+
+Collected baseline metrics (RMSE, MAE, R²) for initial LSTM model.
+
+Prepared comparison sheet between univariate, multivariate, and encoder-decoder models.
+
+Day 31 – 30.09.2025 (Tue)
+
+Integrated KerasTuner for hyperparameter tuning of LSTM.
+
+Tuned parameters: number of units, dropout, learning rate.
+
+Ran multiple trials and selected best-performing configuration.
+
+Day 32 – 01.10.2025 (Wed)
+
+Best LSTM found: units = 96, dropout = 0.0, learning_rate = 0.0001.
+
+Evaluated tuned LSTM → RMSE ≈ 0.1079, MAE ≈ 0.0621, R² ≈ 0.0006.
+
+Compared tuned vs. untuned models and confirmed performance improvement.
+
+Day 33 – 02.10.2025 (Thu)
+
+Applied hyperparameter tuning to XGBoost ensemble model.
+
+Tuned depth, learning rate, and estimators.
+
+Best ensemble model achieved RMSE ≈ 0.1080, close to tuned LSTM.
+
+Day 34 – 03.10.2025 (Fri)
+
+Compiled all model results (baseline + tuned) into comparison CSV → week7_model_comparison.csv.
+
+Documented evaluation insights:
+
+LSTM slightly better for capturing temporal dynamics.
+
+Ensemble competitive with tabular features.
+
+Completed Week 7 milestone: “Model Evaluation and Hyperparameter Tuning.”
