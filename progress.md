@@ -230,3 +230,31 @@ Marked as a holiday due to **Ganesh Chaturthi**.
 2. Started working on **hyperparameter tuning** for the **multivariate LSTM** model.  
 3. Took a **3-day leave** due to ongoing mid-semester exams.  
 4. Pending: Hyperparameter tuning of the **ensemble models**.  
+
+---
+
+## Week 6
+1. Worked on hyperparameter tuning of the Multivariate LSTM model.  
+2. Initial multivariate lstm model performance results:  
+   - **RMSE** = 0.7744  
+   - **MAE** = 0.6337  
+   - **R² Score** = 0.1382  
+3. Learned about different ensemble methods: **Bagging, Boosting, and Stacking**.  
+
+---
+
+## Week 7
+1. Completed hyperparameter tuning of the Multivariate LSTM model with improved performance:  
+   - **RMSE** = 0.6592  
+   - **MAE** = 0.4930  
+   - **R² Score** = 0.3756  
+2. Learned about what hyperparameters are and different tuning methods.  
+3. Started hyperparameter tuning of the XGBoost Ensemble model.  
+   - Initial results:  
+     - **RMSE** = 0.8513  
+     - **MAE** = 0.6564  
+     - **R² Score** = -0.0415  
+   - Final results after tuning:  
+     - **RMSE** = 0.7716  
+     - **MAE** = 0.6146  
+     - **R² Score** = 0.1444  
