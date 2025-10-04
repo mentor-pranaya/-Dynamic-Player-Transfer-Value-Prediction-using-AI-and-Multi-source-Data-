@@ -226,8 +226,9 @@
 
   Created streamlit for ensemble script
 
-**2nd October 2025:**
+**3rd October 2025:**
 ----------------------------------------------------------------------------------------------------------  
+  
   3 step forcasting comparision for choosen player with inverse transform so values are in real € millions
   
   ![alt text](image-1.png)
@@ -236,8 +237,25 @@
 
   Created XGBoost ensemble for multi-step forecasts, ensemble of encoder-decoder LSTM + XGBoost for player-specific multi-step prediction.
   ![alt text](image-4.png)
-  
+
   ![alt text](image-3.png)
 
   Full encoder-decoder LSTM (seq2seq) with recursive multi-step forecast
   ![alt text](image-2.png)
+
+**4th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  Hyper Parameter Tuning
+  
+  ![alt text](image-10.png)
+  
+  ![alt text](image-5.png)
+
+  ![alt text](image-6.png)
+
+  ![alt text](image-7.png)
+
+  ![alt text](image-8.png)
+
+  ![alt text](image-9.png)

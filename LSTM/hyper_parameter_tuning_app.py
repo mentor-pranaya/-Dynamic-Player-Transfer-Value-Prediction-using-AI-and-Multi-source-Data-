@@ -9,6 +9,10 @@ from tensorflow.keras.callbacks import EarlyStopping, Callback
 import xgboost as xgb
 import matplotlib.pyplot as plt
 import mysql.connector
+import random
+import time
+from tensorflow.keras.optimizers import Adam
+
 
 # ---------- Helper Functions ----------
 
@@ -41,8 +45,10 @@ def build_seq2seq_train(n_steps, n_features, n_future, latent_dim=64):
     decoder_outputs = decoder_dense(decoder_outputs)
 
     model = Model([encoder_inputs, decoder_inputs], [decoder_outputs, state_h, state_c])
+    #model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
     model.compile(optimizer="adam", loss="mse")
     return model
+
 
 # ---------- Build Seq2Seq Inference Models ----------
 def build_seq2seq_inference_models(train_model, n_steps, n_features, latent_dim=64):
@@ -86,6 +92,11 @@ def predict_seq2seq_recursive(input_seq_scaled, encoder_model, decoder_model, n_
         decoder_input = np.array([[[pred_val]]])
     return np.array(preds)
 
+
+# ---------- Initialize session state ----------
+st.session_state.lstm_results = []
+st.session_state.xgb_results = []
+
 # ---------- Streamlit UI ----------
 st.title("Training Encoder-Decoder LSTM")
 st.write("Forecast multi-step player transfer market values using an Encoder-Decoder LSTM.")
@@ -93,6 +104,16 @@ st.write("Forecast multi-step player transfer market values using an Encoder-Dec
 n_steps = st.sidebar.slider("Past windows (n_steps)", 2, 10, 3)
 n_future = st.sidebar.slider("Future horizons (n_future)", 1, 5, 3)
 epochs = st.sidebar.slider("Epochs", 10, 100, 50)
+
+# ---------- Hyperparameter Tuning Controls ----------
+st.sidebar.subheader("Hyperparameter Tuning Options")
+tune_lstm = st.sidebar.checkbox("Tune LSTM Hyperparameters")
+tune_xgb = st.sidebar.checkbox("Tune XGBoost Hyperparameters")
+
+lstm_search_size = st.sidebar.slider("LSTM Random Search Iterations", 1, 21, 3)
+lstm_search_epoches = st.sidebar.slider("LSTM Random Search Epoch Count", 5, 50, 10)
+xgb_search_size = st.sidebar.slider("XGBoost Random Search Iterations", 1, 21, 3)
+
 
 # DB Connection
 db = mysql.connector.connect(
@@ -202,9 +223,11 @@ if st.sidebar.button("Click here to start training and evaluation"):
     history = seq2seq.fit(
         [X_train, decoder_input_train],
         [y_train[..., np.newaxis], dummy_train, dummy_train],
+        #y_train[..., np.newaxis],
         epochs=epochs,
         batch_size=32,
         validation_data=([X_val, decoder_input_val], [y_val[..., np.newaxis], dummy_val, dummy_val]),
+        #validation_data=([X_val, decoder_input_val], y_val[..., np.newaxis]),
         verbose=0,
         callbacks=[es, StreamlitLogger(epochs)]
     )
@@ -306,5 +329,305 @@ if st.sidebar.button("Click here to start training and evaluation"):
         st.pyplot(fig)
     else:
         st.warning("Not enough data for recursive forecasting for this player.")
+    
+    # ---------- Hyperparameter Tuning ----------
+    #if st.sidebar.button("Run Hyperparameter Tuning"):
+    ## Init session state for LSTM
+    #if "lstm_results" not in st.session_state:
+    #    st.session_state.lstm_results = []
+    #if "lstm_step" not in st.session_state:
+    #    st.session_state.lstm_step = 0
 
+    ## Init session state for XGBoost
+    #if "xgb_results" not in st.session_state:
+    #    st.session_state.xgb_results = []
+    #if "xgb_step" not in st.session_state:
+    #    st.session_state.xgb_step = 0
+
+    # ---------- Hyperparameter Tuning XGB ----------
+    if tune_xgb:
+        st.subheader("XGBoost Hyperparameter Tuning")
+        def random_search_xgb(X_meta_train, y_train_step, X_meta_val, y_val_step):
+            progress_bar = st.progress(0)
+            table_placeholder = st.empty()
+            chart_placeholder = st.empty()
+            rmse_list = []
+
+            best_rmse = float("inf")
+            best_params = {}
+
+            n_estimators_options = [100, 300, 500]
+            max_depth_options = [4, 6, 8]
+            lr_options = [0.01, 0.05, 0.1]
+            subsample_options = [0.7, 0.8, 1.0]
+            colsample_options = [0.7, 0.8, 1.0]
+
+            for i in range(xgb_search_size):
+                n_estimators = random.choice(n_estimators_options)
+                max_depth = random.choice(max_depth_options)
+                learning_rate = random.choice(lr_options)
+                subsample = random.choice(subsample_options)
+                colsample_bytree = random.choice(colsample_options)
+
+                model = xgb.XGBRegressor(
+                    n_estimators=n_estimators,
+                    max_depth=max_depth,
+                    learning_rate=learning_rate,
+                    subsample=subsample,
+                    colsample_bytree=colsample_bytree,
+                    random_state=42
+                )
+                model.fit(X_meta_train, y_train_step)
+                preds = model.predict(X_meta_val)
+                rmse = np.sqrt(((preds - y_val_step)**2).mean())
+
+                rmse_list.append(rmse)
+                
+                if rmse < best_rmse:
+                    best_rmse = rmse
+                    best_params = {
+                        "n_estimators": n_estimators,
+                        "max_depth": max_depth,
+                        "learning_rate": learning_rate,
+                        "subsample": subsample,
+                        "colsample_bytree": colsample_bytree
+                    }
+                
+                # Update session results
+                st.session_state.xgb_results.append({
+                    "iteration": i+1,
+                    "n_estimators": n_estimators,
+                    "max_depth": max_depth,
+                    "learning_rate": learning_rate,
+                    "subsample": subsample,
+                    "colsample_bytree": colsample_bytree,
+                    "rmse": rmse
+                })
+
+                # Update table and chart
+                df_table = pd.DataFrame(st.session_state.xgb_results)
+                table_placeholder.dataframe(df_table)
+                chart_placeholder.line_chart(df_table.set_index("iteration")["rmse"])
+
+                # Progress bar
+                progress_bar.progress((i+1)/xgb_search_size)
+            return best_params, best_rmse
+     
+        st.write("Running random search for XGBoost hyperparameters...")
+        # Prepare meta-train for first step as example
+        X_train_flat = X_train.reshape(X_train.shape[0], -1)
+        X_val_flat = X_val.reshape(X_val.shape[0], -1)
+        y_train_seq_pred = seq2seq.predict([X_train, decoder_input_train])[0].squeeze(-1)
+        y_val_seq_pred = seq2seq.predict([X_val, decoder_input_val])[0].squeeze(-1)
+        X_meta_train = np.hstack([X_train_flat, y_train_seq_pred[:, 0].reshape(-1,1)])
+        X_meta_val = np.hstack([X_val_flat, y_val_seq_pred[:, 0].reshape(-1,1)])
+        
+        best_xgb_params, best_xgb_rmse = random_search_xgb(
+            X_meta_train, y_train[:, 0], X_meta_val, y_val[:, 0]
+        )
+        st.success(f"Best XGBoost params: {best_xgb_params} | RMSE: {best_xgb_rmse:.4f}")
+
+    # ---------- Hyperparameter Tuning LSTM ----------
+    if tune_lstm:
+        st.subheader("LSTM Hyperparameter Tuning")
+        st.write("Running random search for LSTM hyperparameters...")
+        progress_bar_epoch = st.progress(0)
+        epoch_log_hyper = st.empty()
+        class UpdateEpochProgress(Callback):
+            def __init__(self, total_epochs):
+                super().__init__()
+                self.total_epochs = total_epochs
+                #self.epoch_progress = st.progress(0)
+
+            def on_epoch_end(self, epoch, logs=None):
+                #self.epoch_progress.progress((epoch + 1) / self.total_epochs)
+                progress_bar_epoch.progress((epoch + 1) / self.total_epochs)
+                epoch_log_hyper.text(f"Epoch {epoch+1}/{self.total_epochs} - Loss: {logs.get('loss'):.4f}, Val Loss: {logs.get('val_loss'):.4f}")
+
+        def random_search_lstm(X_train, decoder_input_train, y_train, X_val, decoder_input_val, y_val, dummy_train, dummy_val, n_steps, n_future, n_features):
+            best_val_loss = float("inf")
+            best_params = {}
+            progress_bar = st.progress(0)
+            table_placeholder = st.empty()
+            chart_placeholder = st.empty()
+            
+            latent_options = [32, 64, 128]
+            batch_options = [16, 32, 64]
+            lr_options = [0.001, 0.005, 0.01]
+
+            losses = []
+
+            for i in range(lstm_search_size):
+                latent_dim = random.choice(latent_options)
+                batch_size = random.choice(batch_options)
+                lr = random.choice(lr_options)
+                progress_bar_epoch.progress(0)
+                model = build_seq2seq_train(n_steps, n_features, n_future, latent_dim=latent_dim)
+                model.compile(optimizer="adam", loss="mse")  # optionally modify optimizer with lr
+                
+                dummy_train = np.zeros((X_train.shape[0], latent_dim))
+                dummy_val = np.zeros((X_val.shape[0], latent_dim))
+                
+                history = model.fit(
+                    [X_train, decoder_input_train],
+                    [y_train[..., np.newaxis], dummy_train, dummy_train],
+                    #y_train[..., np.newaxis],
+                    epochs=lstm_search_epoches,  # keep short for tuning
+                    batch_size=batch_size,
+                    validation_data=([X_val, decoder_input_val], [y_val[..., np.newaxis], dummy_val, dummy_val]),
+                    #validation_data=([X_val, decoder_input_val], y_val[..., np.newaxis]),
+                    verbose=0,
+                    callbacks=[EarlyStopping(monitor="val_loss", patience=3, restore_best_weights=True), 
+                            UpdateEpochProgress(lstm_search_epoches)]
+                )
+                val_loss = min(history.history["val_loss"])
+
+                losses.append(val_loss)
+
+                if val_loss < best_val_loss:
+                    best_val_loss = val_loss
+                    best_params = {"latent_dim": latent_dim, "batch_size": batch_size, "learning_rate": lr}
+                
+                # Update session results
+                st.session_state.lstm_results.append({
+                    "iteration": i+1,
+                    "latent_dim": latent_dim,
+                    "batch_size": batch_size,
+                    "learning_rate": lr,
+                    "rmse": val_loss
+                })
+
+                # Update table
+                df_table = pd.DataFrame(st.session_state.lstm_results)
+                table_placeholder.dataframe(df_table)
+                # Update chart
+                chart_placeholder.line_chart(df_table.set_index("iteration")["rmse"])
+                # Update progress bar
+                progress_bar.progress((i+1)/lstm_search_size)
+                epoch_log_hyper.text(f"Completed {i+1}/{lstm_search_size} iterations")
+
+            return best_params, best_val_loss
+    
+        best_lstm_params, best_lstm_loss = random_search_lstm(
+            X_train, decoder_input_train, y_train,
+            X_val, decoder_input_val, y_val,
+            dummy_train, dummy_val,
+            n_steps, n_future, X.shape[2]
+        )
+        st.success(f"Best LSTM params: {best_lstm_params} | Val Loss: {best_lstm_loss:.4f}")
+
+        
+        #tab1, tab2 = st.tabs(["🔵 LSTM Random Search", "🟠 XGBoost Random Search"])
+        #tab1, tab2 = st.columns(2)
+
+        ##with tab1:
+        #st.markdown("### 🔵 LSTM Random Search")
+        #run_random_search(
+        #    "lstm",
+        #    param_grid={
+        #        "units": [32, 64, 128],
+        #        "dropout": [0.1, 0.2, 0.3],
+        #        "batch_size": [16, 32, 64]
+        #    },
+        #    n_iter=10
+        #)
+
+        ##with tab2:
+        #st.markdown("### 🟠 XGBoost Random Search")
+        #run_random_search(
+        #    "xgb",
+        #    param_grid={
+        #        "max_depth": [3, 5, 7],
+        #        "learning_rate": [0.01, 0.05, 0.1],
+        #        "n_estimators": [100, 200, 300]
+        #    },
+        #    n_iter=10
+        #)
+
+    
+
+    # --- Progress visualisation for Hyper Parameter Tuning ---
+    def run_random_search(model_name, param_grid, n_iter=10):
+        results_key = f"{model_name}_results"
+        step_key = f"{model_name}_step"
+
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        table_placeholder = st.empty()
+        chart_placeholder = st.empty()
+
+        st.session_state[results_key] = []
+
+        for i in range(n_iter):
+            # pick random params
+            params = {k: np.random.choice(v) for k, v in param_grid.items()}
+
+            # --- Train model & get RMSE ---
+            # Replace this dummy line with actual model training + validation
+            rmse = np.random.uniform(0.5, 2.0)
+
+            # store result
+            st.session_state[results_key].append({"iteration": i+1, "params": params, "rmse": rmse})
+            st.session_state[step_key] = i+1
+
+            # update progress
+            progress_bar.progress((i+1)/n_iter)
+            status_text.text(f"{model_name.upper()} Iteration {i+1}/{n_iter} | RMSE: {rmse:.4f}")
+
+            # update results table
+            df = pd.DataFrame(st.session_state[results_key])
+            table_placeholder.dataframe(df)
+
+            # update graph
+            fig, ax = plt.subplots()
+            ax.plot(df["iteration"], df["rmse"], marker="o", color="blue" if model_name=="lstm" else "orange")
+            ax.set_xlabel("Iteration")
+            ax.set_ylabel("RMSE")
+            ax.set_title(f"{model_name.upper()} Random Search Progress")
+            chart_placeholder.pyplot(fig)
+
+            #time.sleep(1)  # simulate long training
+    # Check if we have results for both models
+    if st.session_state.lstm_results and st.session_state.xgb_results:
+
+        st.subheader("📊 LSTM vs XGBoost Random Search Comparison")
+
+        # Convert to DataFrames
+        df_lstm = pd.DataFrame(st.session_state.lstm_results)
+        df_xgb = pd.DataFrame(st.session_state.xgb_results)
+
+        # Fill missing iterations if different
+        max_iter = max(len(df_lstm), len(df_xgb))
+        df_lstm = df_lstm.reindex(range(max_iter), fill_value=np.nan)
+        df_xgb = df_xgb.reindex(range(max_iter), fill_value=np.nan)
+
+        # Side-by-side columns
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown("### 🔵 LSTM RMSE")
+            st.line_chart(df_lstm["rmse"])
+
+        with col2:
+            st.markdown("### 🟠 XGBoost RMSE")
+            st.line_chart(df_xgb["rmse"])
+
+        # Combined comparison plot
+        st.markdown("### Combined Comparison")
+        fig, ax = plt.subplots(figsize=(10,5))
+        ax.plot(df_lstm["iteration"], df_lstm["rmse"], marker="o", color="blue", label="LSTM")
+        ax.plot(df_xgb["iteration"], df_xgb["rmse"], marker="o", color="orange", label="XGBoost")
+        ax.set_xlabel("Iteration")
+        ax.set_ylabel("RMSE / Loss")
+        ax.set_title("Random Search Progress Comparison")
+        ax.legend()
+        st.pyplot(fig)
+
+        best_lstm_idx = df_lstm["rmse"].idxmin()
+        best_xgb_idx = df_xgb["rmse"].idxmin()
+        st.write(f"✅ Best LSTM RMSE: {df_lstm.loc[best_lstm_idx, 'rmse']:.4f} at iteration {best_lstm_idx+1}")
+        st.write(f"✅ Best XGBoost RMSE: {df_xgb.loc[best_xgb_idx, 'rmse']:.4f} at iteration {best_xgb_idx+1}")
+
+
+# Close DB connection
 db.close()
