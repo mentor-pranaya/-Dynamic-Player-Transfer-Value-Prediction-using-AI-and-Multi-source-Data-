@@ -1,0 +1,1 @@
+Week 5 LSTM RMSE (Validation Set): 0.1094
