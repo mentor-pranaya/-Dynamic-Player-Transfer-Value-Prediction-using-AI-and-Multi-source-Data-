@@ -249,7 +249,7 @@
   Hyper Parameter Tuning
   
   ![alt text](image-10.png)
-  
+
   ![alt text](image-5.png)
 
   ![alt text](image-6.png)
@@ -259,3 +259,10 @@
   ![alt text](image-8.png)
 
   ![alt text](image-9.png)
+
+**4th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  Dashboard created for integration of LSTM results with XGBoost and comparison between models on validation datasets.
+
+  Downloading of trained datasets available through dashboard
