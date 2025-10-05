@@ -263,6 +263,6 @@
 **5th October 2025:**
 ----------------------------------------------------------------------------------------------------------  
 
-  Dashboard created for integration of LSTM results with XGBoost and comparison between models on validation datasets.
-
+  Dashboard created for Hyperparameter tuning, Optimization of LSTM and ensemble models.
+  
   Downloading of trained datasets available through dashboard
