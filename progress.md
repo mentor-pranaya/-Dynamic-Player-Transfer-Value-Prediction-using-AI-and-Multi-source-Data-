@@ -258,3 +258,42 @@ Marked as a holiday due to **Ganesh Chaturthi**.
      - **RMSE** = 0.7716  
      - **MAE** = 0.6146  
      - **R² Score** = 0.1444  
+
+---
+
+## Week 8
+
+1. Developed Final_Predictions.csv  
+- Generated final predictions using the improved Multivariate LSTM model.  
+- Combined predicted and true market values into a single CSV file for final evaluation.  
+- Verified data integrity and ensured consistent formatting for visualization and app integration.  
+
+2. Visualization on Final Data  
+- Created interactive visualizations using **Plotly** and **Matplotlib**.  
+- Compared predicted vs actual transfer values and observed performance trends.  
+- Highlighted strong correlation patterns between true and predicted values.  
+
+3. Prepared Final Project Report  
+- Compiled a detailed 2-page report covering project background, methodology, experiments, and outcomes.  
+- Included final performance metrics (RMSE, MAE, R²) and discussed improvements achieved through hyperparameter tuning.  
+
+4. Prepared PPT for Final Presentation  
+- Designed a 6-slide presentation summarizing the project journey:  
+  - Title & Overview  
+  - Problem Statement & Objectives 
+  - Data Collection & Preprocessing
+  - Model Development & Optimization
+  - Results & Visualizations
+  - Deployment & Conclusion
+- Added visuals and metrics for clarity and better presentation flow.  
+
+5. Developed Streamlit App  
+- Built an interactive **Streamlit web application** integrating the final Multivariate LSTM model.  
+- App allows users to input features like player stats, injury level, and sentiment to predict transfer value in real-time.  
+- Implemented visual dashboards and metrics display using **Plotly** and **Streamlit components**.  
+
+---
+
+## Summary
+
+The project is now **deployment-ready** and concludes the internship with a complete, functional, and documented AI-driven **Player Transfer Value Prediction System**.

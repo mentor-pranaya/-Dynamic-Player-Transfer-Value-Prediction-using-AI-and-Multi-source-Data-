@@ -20,7 +20,6 @@ models/Hyperparam_Tuning/
 models/LSTM_Models/
 
 # Hyperparameter_tuning
-Hyperparameter_Tuning/Improved_Multivariate_lstm_model.h5
 Hyperparameter_Tuning/Improved_Multivariate_lstm_model.keras
 Hyperparameter_Tuning/xgb_ensemble_final.pkl
 Hyperparameter_Tuning/X_meta_test.npy
@@ -29,9 +28,3 @@ Hyperparameter_Tuning/X_meta_val.npy
 Hyperparameter_Tuning/y_meta_test.npy
 Hyperparameter_Tuning/y_meta_train.npy
 Hyperparameter_Tuning/y_meta_val.npy
-
-# Final report
-Final_Report/
-
-# streamlit app
-app.py
