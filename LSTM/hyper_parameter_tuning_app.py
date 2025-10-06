@@ -127,6 +127,13 @@ df_f = pd.read_sql(
     "SELECT distinct p.*, t.name as player_name FROM player_features p, players_trfrmrkt t where p.player_id=t.transfermarkt_id", db
 )
 
+cursor = db.cursor()
+# create table to save the best hyperparameter tuning results
+cursor.execute("""
+create table if not exists hyper_parameter_results (id int primary key auto_increment, 
+run_date datetime default(now()), n_steps int, n_future int, LSTM_Iterations int, LSTM_Epoch_Count int, 
+XGBoost_Iterations int, Best_XGBoost_params varchar (200), XGBoost_RSME float, Best_LSTM_params varchar(200), Val_Loss float);""")
+db.commit()
 df = df_t.merge(
     df_f[
         [
@@ -628,6 +635,17 @@ if st.sidebar.button("Click here to start training and evaluation"):
         st.write(f"✅ Best LSTM RMSE: {df_lstm.loc[best_lstm_idx, 'rmse']:.4f} at iteration {best_lstm_idx+1}")
         st.write(f"✅ Best XGBoost RMSE: {df_xgb.loc[best_xgb_idx, 'rmse']:.4f} at iteration {best_xgb_idx+1}")
 
+        # Save best results to DB
+        try:
+            cursor.execute("""
+            INSERT INTO hyper_parameter_results (`n_steps`, `n_future`, `LSTM_Iterations`, `LSTM_Epoch_Count`, `XGBoost_Iterations`, `Best_XGBoost_params`, `XGBoost_RSME`, `Best_LSTM_params`, `Val_Loss`) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (n_steps, n_future, lstm_search_size, lstm_search_epoches, xgb_search_size,
+            str(best_xgb_params), best_xgb_rmse, str(best_lstm_params), best_lstm_loss))
+            db.commit()
+            st.success("Best hyperparameter tuning results saved to database.")
+        except Exception as e:
+            st.error(f"Error saving results to database: {e}")
 
 # Close DB connection
 db.close()

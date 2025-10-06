@@ -162,6 +162,14 @@ df_f = pd.read_sql(
     "SELECT distinct p.*, t.name as player_name FROM player_features p, players_trfrmrkt t where p.player_id=t.transfermarkt_id", db
 )
 
+cursor = db.cursor()
+# create table to save the best hyperparameter tuning results
+cursor.execute("""
+create table if not exists hyper_parameter_results (id int primary key auto_increment, 
+run_date datetime default(now()), n_steps int, n_future int, LSTM_Iterations int, LSTM_Epoch_Count int, 
+XGBoost_Iterations int, Best_XGBoost_params varchar (200), XGBoost_RSME float, Best_LSTM_params varchar(200), Val_Loss float);""")
+db.commit()
+
 df = df_t.merge(
     df_f[
         [

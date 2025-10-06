@@ -264,5 +264,12 @@
 ----------------------------------------------------------------------------------------------------------  
 
   Dashboard created for Hyperparameter tuning, Optimization of LSTM and ensemble models.
-  
+
   Downloading of trained datasets available through dashboard
+
+**6th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  Save Hyper Parameter Tuning results to database
+
+  Integrating Hyper Parameter Tuning and dashboard scripts (will load best results from database, re-run random hyper parameter tuning if requested or required and then apply the best result out of current or past hyper parameter tuning parameters).
