@@ -171,3 +171,7 @@ Started my work on hyperparameter tuning.
 
 Day 33 Progress (03.10.2025)
 Currently working on hyperparameter tuning and optimizating the LSTM and ensemble models.
+
+
+Day 34 Progress (06.10.2025)
+Project has been completed and it is working on local host and can run projecton live host on streamlit.
