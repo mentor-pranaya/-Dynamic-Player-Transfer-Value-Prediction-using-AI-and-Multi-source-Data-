@@ -273,3 +273,8 @@
   Save Hyper Parameter Tuning results to database
 
   Integrating Hyper Parameter Tuning and dashboard scripts (will load best results from database, re-run random hyper parameter tuning if requested or required and then apply the best result out of current or past hyper parameter tuning parameters).
+
+**7th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  Completed Hyper Parameter Tuning load from database for ensemble 

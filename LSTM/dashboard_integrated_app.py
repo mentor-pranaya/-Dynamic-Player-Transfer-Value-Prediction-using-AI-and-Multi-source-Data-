@@ -12,6 +12,7 @@ import mysql.connector
 from tensorflow.keras.optimizers import Adam
 import joblib, tempfile
 import streamlit_ext as ste
+import json
 
 #To track script re-run
 st.write("Script re-run at:", pd.Timestamp.now())
@@ -162,14 +163,26 @@ df_f = pd.read_sql(
     "SELECT distinct p.*, t.name as player_name FROM player_features p, players_trfrmrkt t where p.player_id=t.transfermarkt_id", db
 )
 
-cursor = db.cursor()
-# create table to save the best hyperparameter tuning results
-cursor.execute("""
-create table if not exists hyper_parameter_results (id int primary key auto_increment, 
-run_date datetime default(now()), n_steps int, n_future int, LSTM_Iterations int, LSTM_Epoch_Count int, 
-XGBoost_Iterations int, Best_XGBoost_params varchar (200), XGBoost_RSME float, Best_LSTM_params varchar(200), Val_Loss float);""")
-db.commit()
+df_params = pd.read_sql("select run_date, XGBoost_RSME, Val_Loss as `LSTM_Loss`, Best_XGBoost_params, Best_LSTM_params from hyper_parameter_results order by id;", db)
+st.subheader("Saved Hyperparameter Tuning Results in DB")
+st.write(df_params)
+#st.session_state.xgb_results= df_params[['LSTM_Loss', 'Best_XGBoost_params']].sort_values(by='LSTM_Loss').head(1)
+rs_best_lstm = df_params[['LSTM_Loss', 'Best_LSTM_params']].sort_values(by='LSTM_Loss').head(1) #['Best_LSTM_params','LSTM_Loss'].head(1).values)
 
+rs_best_lstm_str='{"iteration": 1,' + str(rs_best_lstm['Best_LSTM_params'].values[0].replace("'", '"').replace("}", "").replace("{", "")) + ',"rmse":' + str(rs_best_lstm['LSTM_Loss'].values[0]) + '}'
+#st.write(rs_best_lstm_str)
+#rs_best_lstm = str(df_params.sort_values(by='LSTM_Loss')['Best_LSTM_params'].head(1).values[0]).replace("'", '"')
+#, []
+rs_best_xgb = df_params[['XGBoost_RSME','Best_XGBoost_params']].sort_values(by='XGBoost_RSME').head(1)
+rs_best_xgb_str='{"iteration": 1,' + str(rs_best_xgb['Best_XGBoost_params'].values[0].replace("'", '"').replace("}", "").replace("{", "")) + ',"rmse":' + str(rs_best_xgb['XGBoost_RSME'].values[0]) + '}'
+#st.write(rs_best_xgb_str)
+st.write("Best LSTM Params:", rs_best_lstm, "  \nBest XGB Params:", rs_best_xgb)
+rs_best_lstm_json=json.loads(rs_best_lstm_str)
+rs_best_xgb_json=json.loads(rs_best_xgb_str)
+#st.json(rs_best_lstm_json)
+#st.json(rs_best_xgb_json)
+st.session_state.lstm_results=rs_best_lstm_json
+st.session_state.xgb_results=rs_best_xgb_json
 df = df_t.merge(
     df_f[
         [
@@ -398,9 +411,10 @@ def retrain_final_xgboost_per_step(X_train_flat, y_train, X_val_flat, y_val, bes
 # we prefer to use predictions from the "train_model" used previously. To avoid confusion, we'll derive LSTM preds below.
 
 # 1) Get best hyperparams from tuning results (if available).
-best_lstm_row, df_lstm_results, best_lstm_idx = get_best_from_results(st.session_state.get("lstm_results", []), "rmse")
-best_xgb_row, df_xgb_results, best_xgb_idx = get_best_from_results(st.session_state.get("xgb_results", []), "rmse")
-
+best_lstm_row, df_lstm_results, best_lstm_idx = get_best_from_results((st.session_state.get("lstm_results"),), "rmse")
+best_xgb_row, df_xgb_results, best_xgb_idx = get_best_from_results((st.session_state.get("xgb_results"),), "rmse")
+st.write(best_lstm_row, df_lstm_results, best_lstm_idx)
+st.write(best_xgb_row, df_xgb_results, best_xgb_idx)
 st.subheader("Final model training & comparison")
 progress_bar = st.progress(0)
 epoch_log = st.empty()
