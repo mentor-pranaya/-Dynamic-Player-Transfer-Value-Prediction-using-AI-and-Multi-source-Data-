@@ -1,0 +1,274 @@
+
+import os
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split, TimeSeriesSplit
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import joblib
+
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+
+import xgboost as xgb
+import lightgbm as lgb
+
+from sklearn.ensemble import StackingRegressor
+from sklearn.linear_model import Ridge
+
+SEED = 42
+np.random.seed(SEED)
+tf.random.set_seed(SEED)
+
+#1) LOAD & PREPROCESS
+
+# Expected input: one CSV where each row is a time-step for a (player, date)
+# with columns: ['player_id','date','feature1',...,'featureN','market_value']
+DATA_PATH = 'data/players_timeseries.csv'  # <-- change to your path
+TARGET_COL = 'market_value'
+PLAYER_COL = 'player_id'
+DATE_COL = 'date'
+
+if not os.path.exists(DATA_PATH):
+    raise FileNotFoundError(f"Put your cleaned timeseries CSV at: {DATA_PATH}")
+
+df = pd.read_csv(DATA_PATH, parse_dates=[DATE_COL])
+# sort
+df = df.sort_values([PLAYER_COL, DATE_COL]).reset_index(drop=True)
+
+# Example: drop obvious non-numeric cols besides player/date
+feat_cols = [c for c in df.columns if c not in [PLAYER_COL, DATE_COL, TARGET_COL]]
+
+# Fill missing values (simple strategy; replace with your logic)
+for c in feat_cols + [TARGET_COL]:
+    if df[c].isna().any():
+        df[c] = df[c].fillna(method='ffill').fillna(method='bfill').fillna(0)
+
+# Standardize numeric features (per-player scaling can also be used)
+scaler_X = StandardScaler()
+df[feat_cols] = scaler_X.fit_transform(df[feat_cols])
+
+# Save scaler
+os.makedirs('models', exist_ok=True)
+joblib.dump(scaler_X, 'models/scaler_X.joblib')
+
+# 2) CREATE SEQUENCES FOR LSTM
+
+# We'll build sequences per player. Choose a lookback window.
+LOOKBACK = 8  # number of past time steps to use per training sample
+
+X_seqs = []
+Y_vals = []
+meta_rows = []  # store metadata to map sequences back to player/date
+
+# Create sliding windows per player
+for pid, g in df.groupby(PLAYER_COL):
+    g = g.sort_values(DATE_COL)
+    feats = g[feat_cols].values
+    target = g[TARGET_COL].values
+    dates = g[DATE_COL].values
+    for i in range(LOOKBACK, len(g)):
+        X_seqs.append(feats[i-LOOKBACK:i])
+        Y_vals.append(target[i])
+        meta_rows.append({'player_id': pid, 'date': dates[i]})
+
+X_seqs = np.array(X_seqs)
+Y_vals = np.array(Y_vals)
+meta_df = pd.DataFrame(meta_rows)
+
+print('X_seqs shape:', X_seqs.shape)
+print('Y_vals shape:', Y_vals.shape)
+
+# Train/val/test split - maintain time-based split (important for forecasting)
+# We'll split by index (since sequences are chronological per player)
+train_idx, test_idx = train_test_split(range(len(Y_vals)), test_size=0.2, random_state=SEED, shuffle=True)
+train_idx, val_idx = train_test_split(train_idx, test_size=0.15, random_state=SEED, shuffle=True)
+
+X_train, X_val, X_test = X_seqs[train_idx], X_seqs[val_idx], X_seqs[test_idx]
+y_train, y_val, y_test = Y_vals[train_idx], Y_vals[val_idx], Y_vals[test_idx]
+
+
+# 3) BUILD & TRAIN LSTM
+
+input_shape = (X_train.shape[1], X_train.shape[2])
+
+lstm_model = Sequential([
+    LSTM(64, return_sequences=False, input_shape=input_shape),
+    Dropout(0.2),
+    Dense(32, activation='relu'),
+    Dropout(0.1),
+    Dense(1)
+])
+
+lstm_model.compile(optimizer='adam', loss='mse')
+print(lstm_model.summary())
+
+es = EarlyStopping(monitor='val_loss', patience=8, restore_best_weights=True)
+ckpt = ModelCheckpoint('models/lstm_best.h5', monitor='val_loss', save_best_only=True)
+
+history = lstm_model.fit(
+    X_train, y_train,
+    validation_data=(X_val, y_val),
+    epochs=100,
+    batch_size=32,
+    callbacks=[es, ckpt],
+    verbose=2
+)
+
+# Save final model
+lstm_model.save('models/lstm_final.h5')
+
+# LSTM predictions (used later as features)
+pred_train_lstm = lstm_model.predict(X_train).ravel()
+pred_val_lstm = lstm_model.predict(X_val).ravel()
+pred_test_lstm = lstm_model.predict(X_test).ravel()
+
+# Evaluate LSTM baseline
+def evaluate(y_true, y_pred, prefix=''):
+    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
+    mae = mean_absolute_error(y_true, y_pred)
+    r2 = r2_score(y_true, y_pred)
+    print(f"{prefix} RMSE: {rmse:.4f} | MAE: {mae:.4f} | R2: {r2:.4f}")
+    return {'rmse': rmse, 'mae': mae, 'r2': r2}
+
+print('\nLSTM baseline performance:')
+evaluate(y_train, pred_train_lstm, 'Train')
+evaluate(y_val, pred_val_lstm, 'Val')
+evaluate(y_test, pred_test_lstm, 'Test')
+
+
+# 4) BUILD FEATURE TABLES FOR GBM MODELS
+
+# We will create tabular features by taking the last time-step's static features for the
+# sequence (i.e., the most recent row in the LOOKBACK window) and add the LSTM prediction
+# as an extra feature. Optionally add engineered features like mean/median/std across the window.
+
+def build_tabular_features(X_seq_array, meta_subdf):
+    # X_seq_array shape: (n_samples, LOOKBACK, n_feats)
+    last_step = X_seq_array[:, -1, :]
+    mean_feat = X_seq_array.mean(axis=1)
+    std_feat = X_seq_array.std(axis=1)
+    # concat
+    X_tab = np.hstack([last_step, mean_feat, std_feat])
+    return X_tab
+
+X_train_tab = build_tabular_features(X_train, meta_df.iloc[train_idx])
+X_val_tab = build_tabular_features(X_val, meta_df.iloc[val_idx])
+X_test_tab = build_tabular_features(X_test, meta_df.iloc[test_idx])
+
+# Append LSTM prediction as a feature
+X_train_tab = np.hstack([X_train_tab, pred_train_lstm.reshape(-1,1)])
+X_val_tab = np.hstack([X_val_tab, pred_val_lstm.reshape(-1,1)])
+X_test_tab = np.hstack([X_test_tab, pred_test_lstm.reshape(-1,1)])
+
+print('Tabular shapes:', X_train_tab.shape, X_val_tab.shape, X_test_tab.shape)
+
+
+# 5) TRAIN XGBoost and LightGBM
+
+# Simple default params - replace with tuning later
+xgb_reg = xgb.XGBRegressor(
+    n_estimators=500,
+    learning_rate=0.05,
+    max_depth=6,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=SEED,
+    n_jobs=-1
+)
+
+lgb_reg = lgb.LGBMRegressor(
+    n_estimators=500,
+    learning_rate=0.05,
+    num_leaves=31,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=SEED,
+    n_jobs=-1
+)
+
+print('\nTraining XGBoost...')
+xgb_reg.fit(X_train_tab, y_train, eval_set=[(X_val_tab, y_val)], early_stopping_rounds=30, verbose=20)
+joblib.dump(xgb_reg, 'models/xgb_reg.joblib')
+
+print('\nTraining LightGBM...')
+lgb_reg.fit(X_train_tab, y_train, eval_set=[(X_val_tab, y_val)], early_stopping_rounds=30, verbose=20)
+joblib.dump(lgb_reg, 'models/lgb_reg.joblib')
+
+# Predictions
+pred_xgb_test = xgb_reg.predict(X_test_tab)
+pred_lgb_test = lgb_reg.predict(X_test_tab)
+
+# Evaluate
+print('\nXGBoost test performance:')
+evaluate(y_test, pred_xgb_test, 'XGB Test')
+print('\nLightGBM test performance:')
+evaluate(y_test, pred_lgb_test, 'LGB Test')
+
+# 6) SIMPLE ENSEMBLES
+
+# Weighted average ensemble between LSTM, XGB and LGB
+w_lstm, w_xgb, w_lgb = 0.2, 0.4, 0.4
+ensemble_pred = (w_lstm * pred_test_lstm) + (w_xgb * pred_xgb_test) + (w_lgb * pred_lgb_test)
+print('\nWeighted ensemble performance:')
+evaluate(y_test, ensemble_pred, 'Weighted Ensemble')
+
+# Stacking: Use Ridge as a meta-learner on validation predictions
+# First build train-level predictions for meta training
+meta_X_train = np.vstack([pred_train_lstm, xgb_reg.predict(X_train_tab), lgb_reg.predict(X_train_tab)]).T
+meta_X_val = np.vstack([pred_val_lstm, xgb_reg.predict(X_val_tab), lgb_reg.predict(X_val_tab)]).T
+meta_X_test = np.vstack([pred_test_lstm, pred_xgb_test, pred_lgb_test]).T
+
+meta_model = Ridge(alpha=1.0)
+meta_model.fit(meta_X_val, y_val)  # fit on val predictions -> prevents leakage
+meta_pred = meta_model.predict(meta_X_test)
+print('\nStacking (meta Ridge) performance:')
+evaluate(y_test, meta_pred, 'Stacking Meta')
+joblib.dump(meta_model, 'models/meta_ridge.joblib')
+
+
+# 7) HYPERPARAMETER TUNING (example using Randomized Search)
+
+from sklearn.model_selection import RandomizedSearchCV
+
+param_dist_xgb = {
+    'n_estimators': [100, 300, 500],
+    'learning_rate': [0.01, 0.03, 0.05],
+    'max_depth': [3, 5, 6, 8],
+    'subsample': [0.6, 0.8, 1.0],
+    'colsample_bytree': [0.6, 0.8, 1.0]
+}
+
+# NOTE: RandomizedSearchCV on large datasets can be slow; run with caution.
+# Uncomment to run tuning.
+# xgb_rs = RandomizedSearchCV(xgb_reg, param_dist_xgb, n_iter=20, cv=3, scoring='neg_root_mean_squared_error', n_jobs=-1, random_state=SEED)
+# xgb_rs.fit(X_train_tab, y_train)
+# print('Best XGB params:', xgb_rs.best_params_)
+# joblib.dump(xgb_rs.best_estimator_, 'models/xgb_best_tuned.joblib')
+
+# 8) SAVE PREDICTIONS & EVALUATION REPORT
+
+results_df = pd.DataFrame({
+    'y_true': y_test,
+    'lstm_pred': pred_test_lstm,
+    'xgb_pred': pred_xgb_test,
+    'lgb_pred': pred_lgb_test,
+    'ensemble_pred': ensemble_pred,
+    'stack_meta_pred': meta_pred
+})
+results_df.to_csv('models/test_predictions_comparison.csv', index=False)
+
+# Print summary metrics for inclusion in deliverables
+metrics = {
+    'lstm': evaluate(y_test, pred_test_lstm, 'LSTM Test'),
+    'xgb': evaluate(y_test, pred_xgb_test, 'XGB Test'),
+    'lgb': evaluate(y_test, pred_lgb_test, 'LGB Test'),
+    'ensemble': evaluate(y_test, ensemble_pred, 'Weighted Ensemble'),
+    'stacking': evaluate(y_test, meta_pred, 'Stacking Meta')
+}
+
+joblib.dump(metrics, 'models/eval_metrics.joblib')
+
+print('\nAll models and artifacts saved inside ./models/')
