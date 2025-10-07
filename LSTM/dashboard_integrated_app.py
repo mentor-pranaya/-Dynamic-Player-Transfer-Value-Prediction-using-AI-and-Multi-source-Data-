@@ -118,9 +118,9 @@ st.session_state.xgb_results = []
 st.title("Training Encoder-Decoder LSTM")
 st.write("Forecast multi-step player transfer market values using an Encoder-Decoder LSTM.")
 
-n_steps = st.sidebar.slider("Past windows (n_steps)", 2, 10, 3)
-n_future = st.sidebar.slider("Future horizons (n_future)", 1, 5, 3)
-epochs = st.sidebar.slider("Epochs", 10, 100, 50)
+n_steps = 3 #st.sidebar.slider("Past windows (n_steps)", 2, 10, 3)
+n_future = st.sidebar.slider("Future horizons (n_future)", 1, 5, 5)
+epochs = 50 #st.sidebar.slider("Epochs", 10, 100, 50)
 if st.session_state.trained:
     if hasattr(st.session_state, 'n_steps') and hasattr(st.session_state, 'n_future'):
         if st.session_state.n_steps != n_steps or st.session_state.n_future < n_future:
@@ -142,13 +142,13 @@ if hasattr(st.session_state, 'n_future'):
 else:
     st.session_state.n_future = n_future
 # ---------- Hyperparameter Tuning Controls ----------
-st.sidebar.subheader("Hyperparameter Tuning Options")
-tune_lstm = st.sidebar.checkbox("Tune LSTM Hyperparameters")
-tune_xgb = st.sidebar.checkbox("Tune XGBoost Hyperparameters")
+#st.sidebar.subheader("Hyperparameter Tuning Options")
+#tune_lstm = st.sidebar.checkbox("Tune LSTM Hyperparameters")
+#tune_xgb = st.sidebar.checkbox("Tune XGBoost Hyperparameters")
 
-lstm_search_size = st.sidebar.slider("LSTM Random Search Iterations", 1, 21, 3)
-lstm_search_epoches = st.sidebar.slider("LSTM Random Search Epoch Count", 5, 50, 10)
-xgb_search_size = st.sidebar.slider("XGBoost Random Search Iterations", 1, 21, 3)
+#lstm_search_size = st.sidebar.slider("LSTM Random Search Iterations", 1, 21, 3)
+#lstm_search_epoches = st.sidebar.slider("LSTM Random Search Epoch Count", 5, 50, 10)
+#xgb_search_size = st.sidebar.slider("XGBoost Random Search Iterations", 1, 21, 3)
 
 
 # DB Connection
@@ -413,8 +413,8 @@ def retrain_final_xgboost_per_step(X_train_flat, y_train, X_val_flat, y_val, bes
 # 1) Get best hyperparams from tuning results (if available).
 best_lstm_row, df_lstm_results, best_lstm_idx = get_best_from_results((st.session_state.get("lstm_results"),), "rmse")
 best_xgb_row, df_xgb_results, best_xgb_idx = get_best_from_results((st.session_state.get("xgb_results"),), "rmse")
-st.write(best_lstm_row, df_lstm_results, best_lstm_idx)
-st.write(best_xgb_row, df_xgb_results, best_xgb_idx)
+st.write(df_lstm_results)
+st.write(df_xgb_results)
 st.subheader("Final model training & comparison")
 progress_bar = st.progress(0)
 epoch_log = st.empty()
@@ -602,10 +602,12 @@ if st.session_state.trained:
     col1, col2 = st.columns(2)
 
     with col1:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".h5") as temp_lstm_file:
+            seq2seq.save(temp_lstm_file.name)
         ste.download_button(
             label="Download LSTM Seq2Seq Model",
-            data=open("lstm_seq2seq_model.h5", "rb").read() if st.session_state.trained else None,
-            file_name="lstm_seq2seq_model.h5"
+            data=open(temp_lstm_file.name, "rb").read(),
+            file_name="lstm_seq2seq_model_ex.h5"
         )
 
     with col2:

@@ -141,13 +141,13 @@ if hasattr(st.session_state, 'n_future'):
 else:
     st.session_state.n_future = n_future
 # ---------- Hyperparameter Tuning Controls ----------
-st.sidebar.subheader("Hyperparameter Tuning Options")
-tune_lstm = st.sidebar.checkbox("Tune LSTM Hyperparameters")
-tune_xgb = st.sidebar.checkbox("Tune XGBoost Hyperparameters")
+#st.sidebar.subheader("Hyperparameter Tuning Options")
+#tune_lstm = st.sidebar.checkbox("Tune LSTM Hyperparameters")
+#tune_xgb = st.sidebar.checkbox("Tune XGBoost Hyperparameters")
 
-lstm_search_size = st.sidebar.slider("LSTM Random Search Iterations", 1, 21, 3)
-lstm_search_epoches = st.sidebar.slider("LSTM Random Search Epoch Count", 5, 50, 10)
-xgb_search_size = st.sidebar.slider("XGBoost Random Search Iterations", 1, 21, 3)
+#lstm_search_size = st.sidebar.slider("LSTM Random Search Iterations", 1, 21, 3)
+#lstm_search_epoches = st.sidebar.slider("LSTM Random Search Epoch Count", 5, 50, 10)
+#xgb_search_size = st.sidebar.slider("XGBoost Random Search Iterations", 1, 21, 3)
 
 
 # DB Connection
@@ -580,10 +580,13 @@ if st.session_state.trained:
     col1, col2 = st.columns(2)
 
     with col1:
+        #seq2seq.save("lstm_seq2seq_model.h5")
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".h5") as temp_lstm_file:
+            seq2seq.save(temp_lstm_file.name)
         ste.download_button(
             label="Download LSTM Seq2Seq Model",
-            data=open("lstm_seq2seq_model.h5", "rb").read() if st.session_state.trained else None,
-            file_name="lstm_seq2seq_model.h5"
+            data=open(temp_lstm_file.name, "rb").read(),
+            file_name="lstm_seq2seq_model_ex.h5"
         )
 
     with col2:

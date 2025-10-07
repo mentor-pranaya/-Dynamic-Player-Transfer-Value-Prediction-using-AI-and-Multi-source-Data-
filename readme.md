@@ -278,3 +278,8 @@
 ----------------------------------------------------------------------------------------------------------  
 
   Completed Hyper Parameter Tuning load from database for ensemble 
+
+  Final touch-ups for initial dashboard. 
+  
+  Predictions for existing players live at: https://predictions-hpt.streamlit.app/
+  with database hosted at shared hosting server.
