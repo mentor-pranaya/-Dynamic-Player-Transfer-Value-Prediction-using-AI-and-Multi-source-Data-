@@ -1,0 +1,657 @@
+Name,Age,Team Name,Position,Season,FIFA rating,Injury,Date of Injury,Date of return,days_out,Position_y,Injury Status
+jamaal lascelles,,Newcastle,Center Back,2019/20,77,Knee injury,2019-11-09,2020-01-13,65.0,,
+fabian schär,,Newcastle,Center Back,2019/20,79,Knee injury,2019-10-20,2019-11-24,35.0,,
+fabian schär,,Newcastle,Center Back,2019/20,79,Hamstring strain,2020-01-02,2020-01-17,15.0,,
+fabian schär,,Newcastle,Center Back,2019/20,79,Shoulder injury,2020-07-16,2020-09-28,74.0,,
+paul dummett,,Newcastle,Center Back,2019/20,75,Groin injury,2019-12-22,2020-01-10,19.0,,
+ciaran clark,34.0,Newcastle,Center Back,2019/20,75,Calf injury,2019-12-09,2020-01-10,32.0,Defender,Fully Fit
+ciaran clark,34.0,Newcastle,Center Back,2019/20,75,Ankle injury,2020-02-16,2020-09-14,211.0,Defender,Fully Fit
+jetro willems,,Newcastle,Left Back,2019/20,77,Knee injury,2019-09-22,2019-10-05,13.0,,
+jetro willems,,Newcastle,Left Back,2019/20,77,Knee injury,2019-12-15,2019-12-25,10.0,,
+jetro willems,,Newcastle,Left Back,2019/20,77,Cruciate ligament tear,2020-01-18,2020-09-20,246.0,,
+deandre yedlin,,Newcastle,Right Back,2019/20,74,Groin problems,2019-04-28,2019-09-28,153.0,,
+deandre yedlin,,Newcastle,Right Back,2019/20,74,Hip injury,2019-11-27,2019-12-10,13.0,,
+deandre yedlin,,Newcastle,Right Back,2019/20,74,Hand injury,2020-01-05,2020-01-23,18.0,,
+emil krafth,,Newcastle,Right Back,2019/20,75,Ankle injury,2020-01-21,2020-06-20,151.0,,
+emil krafth,,Newcastle,Right Back,2019/20,75,Ankle injury,2020-07-21,2020-09-11,52.0,,
+javier manquillo,,Newcastle,Right Back,2019/20,75,Hamstring strain,2020-01-02,2020-02-28,57.0,,
+isaac hayden,,Newcastle,Defensive Midfielder,2019/20,78,Hamstring strain,2020-07-05,2020-07-25,20.0,,
+sean longstaff,,Newcastle,Central Midfielder,2019/20,74,Ankle injury,2019-09-01,2019-09-28,27.0,,
+sean longstaff,,Newcastle,Central Midfielder,2019/20,74,Hamstring injury,2020-07-01,2020-07-25,24.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2019/20,79,Hamstring injury,2019-09-22,2019-10-05,13.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2019/20,79,Calf injury,2019-12-09,2019-12-20,11.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2019/20,79,Hamstring strain,2020-01-18,2020-02-28,41.0,,
+matt ritchie,,Newcastle,Right Midfielder,2019/20,76,Ankle injury,2019-08-28,2020-01-03,128.0,,
+allan saint-maximin,28.0,Newcastle,Left winger,2019/20,79,Hamstring strain,2019-09-22,2019-09-28,6.0,Winger,Fully Fit
+miguel almirón,,Newcastle,Right winger,2019/20,76,Hamstring injury,2019-12-09,2019-12-20,11.0,,
+dwight gayle,,Newcastle,Center Forward,2019/20,75,Calf injury,2019-08-08,2019-10-05,58.0,,
+dwight gayle,,Newcastle,Center Forward,2019/20,75,Hamstring strain,2020-01-02,2020-01-10,8.0,,
+andy carroll,34.0,Newcastle,Center Forward,2019/20,74,Groin injury,2019-10-20,2019-11-01,12.0,Forward,Minor Injury
+andy carroll,34.0,Newcastle,Center Forward,2019/20,74,Bruised ribs,2019-11-26,2019-12-03,7.0,Forward,Minor Injury
+andy carroll,34.0,Newcastle,Center Forward,2019/20,74,Knock,2020-01-15,2020-06-15,152.0,Forward,Minor Injury
+andy carroll,34.0,Newcastle,Center Forward,2019/20,74,Muscle injury,2020-07-06,2020-07-17,11.0,Forward,Minor Injury
+jamaal lascelles,,Newcastle,Center Back,2020/21,77,Hip injury,2020-09-28,2020-10-16,18.0,,
+jamaal lascelles,,Newcastle,Center Back,2020/21,77,Muscle fatigue,2020-11-22,2021-01-17,56.0,,
+jamaal lascelles,,Newcastle,Center Back,2020/21,77,Hamstring strain,2021-01-31,2021-02-14,14.0,,
+jamaal lascelles,,Newcastle,Center Back,2020/21,77,Foot injury,2021-04-04,2021-06-01,58.0,,
+fabian schär,,Newcastle,Center Back,2020/21,79,Virus,2020-11-29,2020-12-25,26.0,,
+fabian schär,,Newcastle,Center Back,2020/21,79,Knee injury,2021-02-07,2021-04-25,77.0,,
+ciaran clark,34.0,Newcastle,Center Back,2020/21,76,Calf injury,2021-01-19,2021-01-29,10.0,Defender,Fully Fit
+ciaran clark,34.0,Newcastle,Center Back,2020/21,76,Knock,2021-02-04,2021-02-14,10.0,Defender,Fully Fit
+javier manquillo,,Newcastle,Right Back,2020/21,75,Ankle injury,2021-02-07,2021-03-10,31.0,,
+isaac hayden,,Newcastle,Defensive Midfielder,2020/21,78,Coronavirus,2020-11-25,2020-12-11,16.0,,
+isaac hayden,,Newcastle,Defensive Midfielder,2020/21,87,Knee injury,2021-03-20,2021-06-01,73.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2020/21,78,Groin injury,2020-10-19,2020-11-20,32.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2020/21,78,Hamstring injury,2021-01-04,2021-01-17,13.0,,
+matt ritchie,,Newcastle,Right Midfielder,2020/21,76,Shoulder injury,2020-09-27,2020-11-25,59.0,,
+allan saint-maximin,28.0,Newcastle,Left winger,2020/21,79,Ankle injury,2020-09-21,2020-10-01,10.0,Winger,Fully Fit
+allan saint-maximin,28.0,Newcastle,Left winger,2020/21,79,Calf injury,2020-11-22,2021-01-22,61.0,Winger,Fully Fit
+allan saint-maximin,28.0,Newcastle,Left winger,2020/21,79,Groin injury,2021-02-28,2021-04-04,35.0,Winger,Fully Fit
+miguel almirón,,Newcastle,Right winger,2020/21,76,Knee injury,2021-02-28,2021-03-15,15.0,,
+dwight gayle,,Newcastle,Center Forward,2020/21,75,Inner ligament injury,2020-09-05,2020-12-11,97.0,,
+jamal lewis,,Newcastle,Left Back,2020/21,75,Knee problems,2020-12-31,2021-01-15,15.0,,
+ryan fraser,,Newcastle,Left winger,2020/21,77,Hamstring injury,2020-11-02,2020-12-15,43.0,,
+ryan fraser,,Newcastle,Left winger,2020/21,77,Groin injury,2021-04-01,2021-05-31,60.0,,
+callum wilson,33.0,Newcastle,Center Forward,2020/21,79,Hamstring strain,2020-11-07,2020-11-26,19.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2020/21,79,Hamstring injury,2021-02-07,2021-04-04,56.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2020/21,79,Hamstring injury,2021-05-08,2021-05-25,17.0,Forward,Fully Fit
+jamaal lascelles,,Newcastle,Center Back,2021/22,77,Ill,2022-02-11,2022-02-16,5.0,,
+paul dummett,,Newcastle,Center Back,2021/22,75,Calf injury,2021-07-28,2022-01-01,157.0,,
+joelinton,,Newcastle,Central Midfielder,2021/22,79,Knock,2022-03-07,2022-03-15,8.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2021/22,77,Calf injury,2021-08-15,2021-10-15,61.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2021/22,77,Muscle injury,2021-12-17,2021-12-26,9.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2021/22,77,Calf problems,2022-05-01,2022-05-25,24.0,,
+allan saint-maximin,28.0,Newcastle,Left winger,2021/22,79,Ill & knock,2022-02-14,2022-03-12,26.0,Winger,Fully Fit
+joe willock,,Newcastle,Central Midfielder,2021/22,75,Coronavirus,2021-12-21,2021-12-31,10.0,,
+joe willock,,Newcastle,Central Midfielder,2021/22,75,Knee injury,2022-04-04,2022-04-10,6.0,,
+joe willock,,Newcastle,Central Midfielder,2021/22,75,Knee injury,2022-05-01,2022-05-25,24.0,,
+ryan fraser,,Newcastle,Left winger,2021/22,77,Hamstring injury,2022-04-08,2022-05-09,31.0,,
+callum wilson,33.0,Newcastle,Center Forward,2021/22,78,Hamstring injury,2021-08-30,2021-10-17,48.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2021/22,78,Calf injury,2021-12-27,2022-05-01,125.0,Forward,Fully Fit
+kieran trippier,35.0,Newcastle,Right Back,2021/22,81,Metatarsal fracture,2022-02-13,2022-05-01,77.0,Defender,Fully Fit
+chris wood,33.0,Newcastle,Center Forward,2021/22,77,Hip injury,2022-05-09,2022-05-20,11.0,Forward,Fully Fit
+fabian schär,,Newcastle,Center Back,2022/23,80,concussion,2023-02-27,2023-03-05,6.0,,
+joelinton,,Newcastle,Central Midfielder,2022/23,80,Knock,2023-05-22,2023-05-31,9.0,,
+sean longstaff,,Newcastle,Central Midfielder,2022/23,77,Outer ligament problems,2023-04-27,2023-05-20,23.0,,
+jonjo shelvey,,Newcastle,Central Midfielder,2022/23,77,Hamstring injury,2022-07-26,2022-10-10,76.0,,
+allan saint-maximin,28.0,Newcastle,Left winger,2022/23,79,Hamstring injury,2022-08-29,2022-10-05,37.0,Winger,Fully Fit
+allan saint-maximin,28.0,Newcastle,Left winger,2022/23,79,Muscle injury,2022-10-14,2022-10-26,12.0,Winger,Fully Fit
+allan saint-maximin,28.0,Newcastle,Left winger,2022/23,79,Hamstring injury,2023-04-06,2023-05-05,29.0,Winger,Fully Fit
+miguel almirón,,Newcastle,Right winger,2022/23,78,Thigh problems,2023-03-15,2023-04-15,31.0,,
+joe willock,,Newcastle,Central Midfielder,2022/23,76,Hamstring injury,2023-05-18,2023-06-05,18.0,,
+callum wilson,33.0,Newcastle,Center Forward,2022/23,79,Hamstring injury,2022-08-21,2022-09-25,35.0,Forward,Fully Fit
+bruno guimarães,27.0,Newcastle,Defensive Midfielder,2022/23,81,Hamstring injury,2022-08-25,2022-09-16,22.0,Midfielder,Fully Fit
+bruno guimarães,27.0,Newcastle,Defensive Midfielder,2022/23,81,Ankle injury,2023-02-01,2023-02-20,19.0,Midfielder,Fully Fit
+nick pope,,Newcastle,Goalkeeper,2022/23,83,Hand injury,2023-05-23,2023-06-20,28.0,,
+anthony gordon,24.0,Newcastle,Left winger,2022/23,77,Ankle injury,2023-03-10,2023-04-01,22.0,Winger,Fully Fit
+alexander isak,25.0,Newcastle,Center Forward,2022/23,80,Thigh problems,2022-09-20,Unknown,26.0,Forward,Fully Fit
+jamaal lascelles,,Newcastle,Center Back,2023/24,76,unknown injury,2023-12-23,2024-01-01,9.0,,
+fabian schär,,Newcastle,Center Back,2023/24,82,Hamstring injury,2024-04-27,2024-05-15,18.0,,
+joelinton,,Newcastle,Central Midfielder,2023/24,82,Hamstring injury,2023-09-13,2023-10-15,32.0,,
+joelinton,,Newcastle,Central Midfielder,2023/24,82,Hamstring injury,2023-12-16,2023-12-25,9.0,,
+joelinton,,Newcastle,Central Midfielder,2023/24,82,Groin surgery,2024-01-06,2024-05-03,118.0,,
+sean longstaff,,Newcastle,Central Midfielder,2023/24,77,Ankle injury,2023-11-11,2023-12-08,27.0,,
+miguel almirón,,Newcastle,Right winger,2023/24,79,Knee injury,2024-03-30,2024-05-03,34.0,,
+joe willock,,Newcastle,Central Midfielder,2023/24,78,Hamstring injury,2023-08-01,2023-10-23,83.0,,
+joe willock,,Newcastle,Central Midfielder,2023/24,78,Achilles tendon problems,2023-11-24,2024-02-23,91.0,,
+joe willock,,Newcastle,Central Midfielder,2023/24,78,Achilles tendon problems,2024-04-06,2024-05-20,44.0,,
+elliot anderson,,Newcastle,Central Midfielder,2023/24,74,Back injury,2023-10-23,2024-02-25,125.0,,
+callum wilson,33.0,Newcastle,Center Forward,2023/24,82,Hamstring injury,2023-09-24,2023-10-07,13.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2023/24,82,Hamstring injury,2023-11-07,2023-12-08,31.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2023/24,82,Calf injury,2023-12-26,2024-02-01,37.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2023/24,82,Chest injury,2024-02-11,2024-04-15,64.0,Forward,Fully Fit
+callum wilson,33.0,Newcastle,Center Forward,2023/24,82,Ill,2024-05-06,2024-05-17,11.0,Forward,Fully Fit
+dan burn,,Newcastle,Center Back,2023/24,78,Back injury,2023-11-04,2023-12-11,37.0,,
+kieran trippier,35.0,Newcastle,Right Back,2023/24,85,Groin injury,2023-12-26,2024-01-05,10.0,Defender,Fully Fit
+kieran trippier,35.0,Newcastle,Right Back,2023/24,85,Calf injury,2024-03-02,2024-05-10,69.0,Defender,Fully Fit
+sven botman,,Newcastle,Center Back,2023/24,83,Ankle injury,2023-08-27,2023-09-15,19.0,,
+sven botman,,Newcastle,Center Back,2023/24,83,Knee injury,2023-09-28,2023-12-15,78.0,,
+sven botman,,Newcastle,Center Back,2023/24,83,Cruciate ligament surgery,2024-03-20,2024-12-02,257.0,,
+lewis miley,,Newcastle,Central Midfielder,2023/24,70,Fever,2023-10-16,2023-11-01,16.0,,
+lewis miley,,Newcastle,Central Midfielder,2023/24,70,ack injury,2024-03-25,2024-05-20,56.0,,
+anthony gordon,24.0,Newcastle,Left winger,2023/24,80,Ankle injury,2024-05-15,2024-05-27,12.0,Winger,Fully Fit
+alexander isak,25.0,Newcastle,Center Forward,2023/24,83,Groin injury,2023-10-25,2023-11-24,30.0,Forward,Fully Fit
+alexander isak,25.0,Newcastle,Center Forward,2023/24,83,Groin injury,2024-01-30,2024-02-23,24.0,Forward,Fully Fit
+tino livramento,22.0,Newcastle,Right Back,2023/24,74,Ill,2024-01-12,2024-01-20,8.0,Defender,Fully Fit
+tino livramento,22.0,Newcastle,Right Back,2023/24,74,Ankle injury,2024-03-11,2024-04-12,32.0,Defender,Fully Fit
+tino livramento,22.0,Newcastle,Right Back,2023/24,74,Ankle injury,2024-05-14,2024-05-27,13.0,Defender,Fully Fit
+harvey barnes,27.0,Newcastle,Left winger,2023/24,80,Foot injury,2023-09-24,2024-02-01,130.0,Winger,Fully Fit
+harvey barnes,27.0,Newcastle,Left winger,2023/24,80,Hamstring injury,2024-03-02,2024-03-30,28.0,Winger,Fully Fit
+fabian schär,,Newcastle,Center Back,2023/24,82,concussion,2023-02-27,2023-03-05,6.0,,
+nick pope,,Newcastle,Goalkeeper,2023/24,84,Shoulder injury,2023-12-02,2024-05-02,152.0,,
+bernd leno,33.0,Arsenal,Goalkeeper,2019/20,83,Ligament stretching,2020-06-21,2020-08-27,67.0,Goalkeeper,Fully Fit
+sead kolasinac,,Arsenal,Center Back,2019/20,80,Hamstring injury,2019-11-17,2019-11-30,13.0,,
+sead kolasinac,,Arsenal,Center Back,2019/20,80,Arm injury,2020-02-24,2020-06-15,112.0,,
+sead kolasinac,,Arsenal,Center Back,2019/20,80,Muscle strain,2020-01-15,2020-02-15,31.0,,
+sead kolasinac,,Arsenal,Center Back,2019/20,90,Ankle injury,2019-12-16,2019-12-30,14.0,,
+sokratis papastathopoulos,,Arsenal,Center Back,2019/20,83,concussion,2019-12-27,2019-12-30,3.0,,
+calum chambers,30.0,Arsenal,Center Back,2019/20,75,Cruciate ligament tear,2019-12-29,2020-11-08,315.0,Defender,Fully Fit
+shkodran mustafi,,Arsenal,Center Back,2019/20,81,Muscle strain,2020-02-29,2020-03-15,15.0,,
+kieran tierney,,Arsenal,Left Back,2019/20,75,Shoulder injury,2019-12-09,2020-03-14,96.0,,
+kieran tierney,,Arsenal,Left Back,2019/20,75,Groin injury,2020-09-13,2020-09-27,14.0,,
+kieran tierney,,Arsenal,Left Back,2019/20,75,Knee injury,2021-01-19,2021-02-16,28.0,,
+kieran tierney,,Arsenal,Left Back,2019/20,75,Knee injury,2021-04-03,2021-05-05,32.0,,
+héctor bellerín,,Arsenal,Right Back,2019/20,81,Hamstring injury,2019-12-06,2020-01-14,39.0,,
+cédric soares,33.0,Arsenal,Right Back,2019/20,77,Broken Nose and Knee Injury,2020-01-21,2020-06-26,157.0,Defender,Fully Fit
+lucas torreira,,Arsenal,Defensive Midfielder,2019/20,83,Ankle injury,2020-03-03,2020-07-03,122.0,,
+granit xhaka,33.0,Arsenal,Defensive Midfielder,2019/20,83,Back injury,2019-08-12,2019-08-23,11.0,Midfielder,Fully Fit
+granit xhaka,33.0,Arsenal,Defensive Midfielder,2019/20,83,concussion,2019-12-09,2019-12-17,8.0,Midfielder,Fully Fit
+granit xhaka,33.0,Arsenal,Defensive Midfielder,2019/20,83,Ankle injury,2020-06-18,2020-06-24,6.0,Midfielder,Fully Fit
+mattéo guendouzi,,Arsenal,Central Midfielder,2019/20,74,Fitness,2020-06-25,2020-10-07,104.0,,
+dani ceballos,,Arsenal,Central Midfielder,2019/20,80,Torn muscle bundle,2019-11-07,2019-12-31,54.0,,
+mesut özil,,Arsenal,Attacking Midfielder,2019/20,85,Ankle injury,2019-12-16,2019-12-26,10.0,,
+gabriel martinelli,,Arsenal,Left winger,2019/20,72,Hamstring injury,2019-12-23,2020-01-06,14.0,,
+nicolas pépé,,Arsenal,Right winger,2019/20,81,Muscle fatigue,2020-07-02,2020-07-06,4.0,,
+reiss nelson,,Arsenal,Right winger,2019/20,73,Hamstring injury,2020-01-09,2020-02-24,46.0,,
+alexandre lacazette,34.0,Arsenal,Center Forward,2019/20,85,Ankle injury,2019-09-02,2019-10-20,48.0,Forward,Fully Fit
+shkodran mustafi,,Arsenal,Center Back,2020/21,80,Muscle injury,2020-07-19,2020-10-24,97.0,,
+david luiz,,Arsenal,Center Back,2020/21,82,Hamstring injury,2020-10-26,2020-11-03,8.0,,
+david luiz,,Arsenal,Center Back,2020/21,82,Neck injury,2020-09-11,2020-09-18,7.0,,
+david luiz,,Arsenal,Center Back,2020/21,82,Ill,2020-12-25,2021-01-01,7.0,,
+david luiz,,Arsenal,Center Back,2020/21,82,Head injury,2020-12-25,2021-01-01,7.0,,
+rob holding,,Arsenal,Center Back,2020/21,74,Hamstring injury,2020-10-16,2020-12-15,60.0,,
+pablo marí,,Arsenal,Center Back,2020/21,75,Ankle injury,2020-06-15,2020-12-03,171.0,,
+pablo marí,,Arsenal,Center Back,2020/21,75,Calf injury,2021-01-14,2021-02-08,25.0,,
+granit xhaka,33.0,Arsenal,Defensive Midfielder,2020/21,83,Ill,2021-04-01,2021-04-04,3.0,Midfielder,Fully Fit
+granit xhaka,33.0,Arsenal,Defensive Midfielder,2020/21,83,Groin injury,2021-05-06,2021-05-16,10.0,Midfielder,Fully Fit
+dani ceballos,,Arsenal,Central Midfielder,2020/21,80,Calf injury,2021-01-15,2021-02-01,17.0,,
+gabriel martinelli,,Arsenal,Left winger,2020/21,72,Ankle injury,2021-01-09,2021-01-17,8.0,,
+bukayo saka,24.0,Arsenal,Right winger,2020/21,72,Hip problems,2021-01-28,2021-01-31,3.0,Winger,Fully Fit
+pierre-emerick aubameyang,,Arsenal,Center Forward,2020/21,87,Calf injury,2020-12-17,2020-12-28,11.0,,
+pierre-emerick aubameyang,,Arsenal,Center Forward,2020/21,87,Knock,2021-01-18,2021-02-01,14.0,,
+pierre-emerick aubameyang,,Arsenal,Center Forward,2020/21,87,malaria,2021-04-08,2021-04-26,18.0,,
+alexandre lacazette,34.0,Arsenal,Center Forward,2020/21,84,Dead leg,2021-04-18,2021-05-06,18.0,Forward,Fully Fit
+gabriel magalhães,27.0,Arsenal,Center Back,2020/21,80,Coronavirus,2020-12-26,2021-01-13,18.0,Defender,Fully Fit
+thomas partey,,Arsenal,Defensive Midfielder,2020/21,84,Muscle injury,2020-11-09,2020-12-03,24.0,,
+thomas partey,,Arsenal,Defensive Midfielder,2020/21,84,Hip injury,2020-12-03,2021-01-11,39.0,,
+thomas partey,,Arsenal,Defensive Midfielder,2020/21,84,Hamstring injury,2021-02-04,2021-02-22,18.0,,
+mohamed elneny,,Arsenal,Defensive Midfielder,2020/21,76,Virus,2020-11-16,2020-11-28,12.0,,
+martin ødegaard,,Arsenal,Attacking Midfielder,2020/21,75,Ankle injury,2021-04-05,2021-04-20,15.0,,
+willian,,Arsenal,Left winger,2020/21,85,Calf injury,2020-11-23,2020-11-28,5.0,,
+willian,,Arsenal,Left winger,2020/21,85,Ill,2020-12-25,2021-01-01,7.0,,
+kieran tierney,,Arsenal,Left Back,2021/22,79,Ankle problems,2021-10-21,2021-11-06,16.0,,
+kieran tierney,,Arsenal,Left Back,2021/22,79,Knee surgery,2022-03-31,2022-07-07,98.0,,
+granit xhaka,33.0,Arsenal,Defensive Midfielder,2021/22,83,Inner ligament injury,2021-09-27,2021-12-05,69.0,Midfielder,Fully Fit
+pierre-emerick aubameyang,,Arsenal,Center Forward,2021/22,87,Coronavirus,2021-08-02,2021-08-16,14.0,,
+alexandre lacazette,34.0,Arsenal,Center Forward,2021/22,84,Coronavirus,2022-04-14,2022-04-19,5.0,Forward,Fully Fit
+gabriel magalhães,27.0,Arsenal,Center Back,2021/22,80,Knee injury,2021-07-06,2021-08-25,50.0,Defender,Fully Fit
+thomas partey,,Arsenal,Defensive Midfielder,2021/22,84,Ankle injury,2021-07-29,2021-08-30,32.0,,
+thomas partey,,Arsenal,Defensive Midfielder,2021/22,84,Knock,2022-04-04,2022-07-25,112.0,,
+ben white,,Arsenal,Right Back,2021/22,76,Hamstring injury,2022-04-25,2022-05-15,20.0,,
+takehiro tomiyasu,,Arsenal,Right Back,2021/22,78,Calf injury,2022-02-20,2022-04-21,60.0,,
+gabriel martinelli,,Arsenal,Left winger,2022/23,81,Ankle injury,2023-05-14,2023-06-01,18.0,,
+eddie nketiah,,Arsenal,Center Forward,2022/23,75,Ankle injury,2023-03-02,2023-04-13,42.0,,
+william saliba,24.0,Arsenal,Center Back,2022/23,82,Back injury,2023-03-16,2023-07-01,107.0,Defender,Fully Fit
+thomas partey,,Arsenal,Defensive Midfielder,2022/23,85,Thigh problems,2022-08-25,2022-09-15,21.0,,
+mohamed elneny,,Arsenal,Defensive Midfielder,2022/23,77,Thigh problems,2022-08-27,2022-11-01,66.0,,
+mohamed elneny,,Arsenal,Defensive Midfielder,2022/23,77,Knee injury,2023-01-14,2023-09-20,249.0,,
+takehiro tomiyasu,,Arsenal,Right Back,2022/23,79,muscular problems,2022-11-03,2022-11-15,12.0,,
+takehiro tomiyasu,,Arsenal,Right Back,2022/23,79,Knee surgery,2023-03-16,2023-07-01,107.0,,
+oleksandr zinchenko,,Arsenal,Left Back,2022/23,82,Knee problems and Calf injury,2022-08-26,2022-11-01,67.0,,
+oleksandr zinchenko,,Arsenal,Left Back,2022/23,82,unknown injury,2023-04-14,2023-04-17,3.0,,
+oleksandr zinchenko,,Arsenal,Left Back,2022/23,82,Calf muscle tear,2023-05-07,2023-08-18,103.0,,
+gabriel jesus,,Arsenal,Center Forward,2022/23,85,Knee injury,2022-12-02,2023-03-11,99.0,,
+gabriel martinelli,,Arsenal,Left winger,2023/24,83,Hamstring injury,2023-09-17,2023-10-07,20.0,,
+gabriel martinelli,,Arsenal,Left winger,2023/24,83,Foot injury,2024-03-05,2024-03-29,24.0,,
+bukayo saka,24.0,Arsenal,Right winger,2023/24,86,unknown injury,2024-03-21,2024-04-06,16.0,Winger,Fully Fit
+bukayo saka,24.0,Arsenal,Right winger,2023/24,86,Thigh problems,2023-10-03,2023-10-21,18.0,Winger,Fully Fit
+thomas partey,,Arsenal,Defensive Midfielder,2023/24,84,Groin injury,2023-09-02,2023-10-03,31.0,,
+thomas partey,,Arsenal,Defensive Midfielder,2023/24,84,Hamstring injury,2023-11-09,2024-02-29,112.0,,
+martin ødegaard,,Arsenal,Attacking Midfielder,2023/24,88,Hip problems,2023-11-03,2023-11-22,19.0,,
+ben white,,Arsenal,Right Back,2023/24,82,Knee injury,2023-11-09,2023-11-20,11.0,,
+takehiro tomiyasu,,Arsenal,Right Back,2023/24,78,Calf injury,2023-12-03,2024-03-20,108.0,,
+oleksandr zinchenko,,Arsenal,Left Back,2023/24,80,Calf problems,2023-12-30,2024-01-18,19.0,,
+gabriel jesus,,Arsenal,Center Forward,2023/24,82,Hamstring injury,2023-10-24,2023-11-19,26.0,,
+gabriel jesus,,Arsenal,Center Forward,2023/24,82,Knee injury,2024-01-05,2024-01-18,13.0,,
+tyrone mings,,Aston Villa,Center Back,2019/20,75,Muscle strain,2019-12-09,2019-12-31,22.0,,
+jed steer,,Aston Villa,Goalkeeper,2019/20,70,Calf injury,2019-11-11,2020-06-15,217.0,,
+anwar el ghazi,28.0,Aston Villa,Right winger,2019/20,75,Knee injury,2019-12-02,2019-12-07,5.0,Winger,Fully Fit
+matt targett,,Aston Villa,Left Back,2019/20,75,Muscle strain,2020-06-28,2020-07-11,13.0,,
+matt targett,,Aston Villa,Left Back,2019/20,75,Hamstring injury,2019-12-31,2020-01-17,17.0,,
+matt targett,,Aston Villa,Left Back,2019/20,75,Hamstring injury,2019-08-29,2019-09-24,26.0,,
+jack grealish,30.0,Aston Villa,Left winger,2019/20,80,Calf injury,2019-10-27,2019-11-24,28.0,Winger,Fully Fit
+neil taylor,,Aston Villa,Left Back,2019/20,70,Hamstring injury,2020-07-13,2020-07-25,12.0,,
+björn engels,30.0,Aston Villa,Center Back,2019/20,76,Groin injury,2019-11-03,2019-11-30,27.0,Defender,Fully Fit
+tom heaton,,Aston Villa,Goalkeeper,2019/20,83,Cruciate ligament injury,2020-01-01,2020-11-07,311.0,,
+tom heaton,,Aston Villa,Goalkeeper,2019/20,83,Calf strain,2019-11-10,2019-11-25,15.0,,
+matty cash,,Aston Villa,Right Back,2020/21,77,Hamstring injury,2021-02-18,Unknown,26.0,,
+ezri konsa,,Aston Villa,Center Back,2020/21,77,bruise,2020-12-13,2020-12-25,12.0,,
+kortney hause,,Aston Villa,Center Back,2020/21,74,Ankle injury,2021-01-03,2021-04-05,92.0,,
+bertrand traoré,29.0,Aston Villa,Right winger,2020/21,76,Bruised ribs,2020-11-02,2020-11-20,18.0,Winger,Fully Fit
+douglas luiz,27.0,Aston Villa,Central Midfielder,2020/21,76,Hamstring injury,2020-10-25,2020-11-25,31.0,Midfielder,Fully Fit
+mahmoud trezeguet,,Aston Villa,Left winger,2020/21,75,Head injury,2020-12-01,2021-01-21,51.0,,
+morgan sanson,,Aston Villa,Central Midfielder,2020/21,77,Knee problems,2021-04-09,2021-08-29,142.0,,
+ross barkley,,Aston Villa,Central Midfielder,2020/21,78,Hamstring injury,2020-11-21,2021-01-19,59.0,,
+emiliano martínez,,Aston Villa,Goalkeeper,2021/22,84,Knee problems,2022-05-20,2022-05-29,9.0,,
+ezri konsa,,Aston Villa,Center Back,2021/22,79,Knee injury,2022-05-15,2022-07-10,56.0,,
+lucas digne,32.0,Aston Villa,Left Back,2021/22,84,Shoulder injury,2022-04-09,2022-04-25,16.0,Defender,Fully Fit
+lucas digne,32.0,Aston Villa,Left Back,2021/22,84,Hamstring injury,2022-03-14,2022-03-21,7.0,Defender,Fully Fit
+leon bailey,27.0,Aston Villa,Right winger,2021/22,81,Thigh problems,2021-12-05,2022-02-10,67.0,Winger,Fully Fit
+marvelous nakamba,,Aston Villa,Defensive Midfielder,2021/22,75,Knee injury,2021-12-11,2022-03-31,110.0,,
+morgan sanson,,Aston Villa,Central Midfielder,2021/22,76,Knock,2022-04-10,2022-05-08,28.0,,
+morgan sanson,,Aston Villa,Central Midfielder,2021/22,76,Ill,2021-10-30,2021-11-06,7.0,,
+morgan sanson,,Aston Villa,Central Midfielder,2021/22,76,Coronavirus,2021-12-12,2021-12-25,13.0,,
+matty cash,,Aston Villa,Right Back,2022/23,79,Calf injury,2023-03-29,2023-05-03,35.0,,
+matty cash,,Aston Villa,Right Back,2022/23,79,Tendon rupture,2022-09-03,2022-09-28,25.0,,
+diego carlos,,Aston Villa,Center Back,2022/23,82,Achilles tendon rupture,2022-08-11,2023-03-12,213.0,,
+john mcginn,,Aston Villa,Central Midfielder,2022/23,78,Hamstring strain,2023-01-01,2023-02-04,34.0,,
+lucas digne,32.0,Aston Villa,Left Back,2022/23,82,Shoulder injury,2023-01-14,2023-02-03,20.0,Defender,Fully Fit
+lucas digne,32.0,Aston Villa,Left Back,2022/23,82,Ankle injury,2022-09-17,2022-10-27,40.0,Defender,Fully Fit
+álex moreno,,Aston Villa,Left Back,2022/23,80,Hamstring injury,2023-05-20,2023-09-15,118.0,,
+acob ramsey,,Aston Villa,Attacking Midfielder,2022/23,76,Hamstring injury,2022-11-23,2023-01-08,46.0,,
+boubacar kamara,25.0,Aston Villa,Defensive Midfielder,2022/23,80,Ankle injury,2023-03-12,2023-03-18,6.0,Midfielder,Fully Fit
+boubacar kamara,25.0,Aston Villa,Defensive Midfielder,2022/23,80,Knee injury,2022-09-15,2022-10-31,46.0,Midfielder,Fully Fit
+matty cash,,Aston Villa,Defensive Midfielder,2023/24,79,Calf injury,2024-05-12,2024-06-12,31.0,,
+matty cash,,Aston Villa,Right Back,2023/24,79,Hamstring injury,2024-03-21,2024-04-12,22.0,,
+matty cash,,Aston Villa,Right Back,2023/24,79,Ill,2023-12-29,2023-12-31,2.0,,
+diego carlos,,Aston Villa,Center Back,2023/24,81,Hamstring injury,2024-02-14,2024-03-05,20.0,,
+ezri konsa,,Aston Villa,Center Back,2023/24,80,Knee injury,2024-02-04,2024-03-01,26.0,,
+youri tielemans,,Aston Villa,Central Midfielder,2023/24,81,Groin injury,2024-04-27,2024-06-10,44.0,,
+youri tielemans,,Aston Villa,Central Midfielder,2023/24,81,Calf injury,2023-12-13,2024-01-12,30.0,,
+lucas digne,32.0,Aston Villa,Left Back,2023/24,79,Hamstring injury,2023-12-26,2024-02-06,42.0,Defender,Fully Fit
+pau torres,,Aston Villa,Center Back,2023/24,82,Ankle injury,2024-01-05,2024-02-04,30.0,,
+pau torres,,Aston Villa,Center Back,2023/24,82,unknown injury,2023-12-18,2023-12-23,5.0,,
+álex moreno,,Aston Villa,Left Back,2023/24,80,minor knock,2024-04-15,2024-05-31,46.0,,
+jhon durán,,Aston Villa,Center Forward,2023/24,68,unknown injury,2023-08-11,2023-08-13,2.0,,
+jhon durán,,Aston Villa,Center Forward,2023/24,68,infection,2023-10-21,2023-10-23,2.0,,
+jhon durán,,Aston Villa,Center Forward,2023/24,68,infection,2023-10-28,2023-11-06,9.0,,
+jhon durán,,Aston Villa,Center Forward,2023/24,68,Hamstring injury,2024-01-25,2024-03-08,43.0,,
+morgan rogers,,Aston Villa,Attacking Midfielder,2023/24,67,Hamstring injury,2024-05-06,2024-06-01,26.0,,
+leon bailey,27.0,Aston Villa,Right winger,2023/24,80,Ill,2024-05-18,2024-05-31,13.0,Winger,Fully Fit
+jacob ramsey,,Aston Villa,Attacking Midfielder,2023/24,78,Metatarsal fracture,2023-07-02,2023-09-20,80.0,,
+jacob ramsey,,Aston Villa,Attacking Midfielder,2023/24,78,Foot injury,2023-10-04,2023-11-24,51.0,,
+jacob ramsey,,Aston Villa,Attacking Midfielder,2023/24,78,Hamstring injury,2024-01-13,2024-01-29,16.0,,
+jacob ramsey,,Aston Villa,Attacking Midfielder,2023/24,78,Toe injury,2024-03-03,Unknown,26.0,,
+boubacar kamara,25.0,Aston Villa,Defensive Midfielder,2023/24,80,Knee injury,2024-02-11,Unknown,26.0,Midfielder,Fully Fit
+philippe coutinho,,Aston Villa,Attacking Midfielder,2023/24,79,Hamstring injury,2023-08-20,2023-09-25,36.0,,
+joel pereria,,Man United,Goalkeeper,2019/20,66,Back injury,2019-08-02,2019-08-16,14.0,,
+harry maguire,,Man United,Center Back,2020/21,80,Ankle injury,2021-05-09,2021-06-13,35.0,,
+harry maguire,,Man United,Center Back,2021/22,80,Calf injury,2021-09-25,2021-10-15,20.0,,
+harry maguire,,Man United,Center Back,2021/22,80,Chest injury,2022-01-01,2022-01-14,13.0,,
+harry maguire,,Man United,Center Back,2021/22,80,Knee problems,2022-04-26,2022-05-03,7.0,,
+harry maguire,,Man United,Center Back,2022/23,80,Hamstring injury,2022-09-26,2022-10-25,29.0,,
+victor lindelof,,Man United,Center Back,2019/20,78,Ill,2020-01-20,2020-01-25,5.0,,
+victor lindelof,,Man United,Center Back,2020/21,78,Back injury,2020-12-27,2021-01-06,10.0,,
+victor lindelof,,Man United,Center Back,2021/22,78,Coronavirus,2021-12-26,2022-01-05,10.0,,
+victor lindelof,,Man United,Center Back,2021/22,78,Ill,2022-01-31,2022-02-07,7.0,,
+victor lindelof,,Man United,Center Back,2022/23,78,Back problems,2022-08-07,2022-08-31,24.0,,
+eric bailly,,Man United,Center Back,2019/20,77,Knee surgery,2019-07-25,2020-01-10,169.0,,
+eric bailly,,Man United,Center Back,2019/20,77,Neck injury,2020-07-20,2020-07-25,5.0,,
+eric bailly,,Man United,Center Back,2020/21,77,Muscle injury,2020-10-18,2020-12-01,44.0,,
+eric bailly,,Man United,Center Back,2020/21,77,Knock,2021-01-21,2021-03-25,63.0,,
+eric bailly,,Man United,Center Back,2020/21,77,Coronavirus,2021-03-31,2021-04-20,20.0,,
+eric bailly,,Man United,Center Back,2021/22,77,Ankle injury,2022-02-03,2022-02-16,13.0,,
+axel tuanzebe,,Man United,Center Back,2019/20,73,Hip injury,2019-10-19,2019-11-23,35.0,,
+axel tuanzebe,,Man United,Center Back,2019/20,73,Hamstring strain,2019-12-18,2020-03-05,78.0,,
+axel tuanzebe,,Man United,Center Back,2020/21,73,Ankle injury,2020-06-18,2020-10-19,123.0,,
+axel tuanzebe,,Man United,Center Back,2022/23,73,unknown injury,2022-07-13,2023-01-23,194.0,,
+phil jones,,Man United,Center Back,2019/20,70,Knock,2019-09-26,2019-10-19,23.0,,
+phil jones,,Man United,Center Back,2019/20,70,Knee injury,2020-06-12,2021-09-09,454.0,,
+luke shaw,30.0,Man United,Left Back,2019/20,83,Hamstring injury,2019-08-24,2019-10-07,44.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2019/20,83,Muscle injury,2019-10-18,2019-11-27,40.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2020/21,83,Ankle injury,2020-07-14,2020-09-11,59.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2020/21,83,Hamstring injury,2020-11-07,2020-12-07,30.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2021/22,83,Head injury,2021-11-20,2021-12-07,17.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2021/22,83,Hamstring injury,2022-01-18,2022-01-31,13.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2021/22,83,Coronavirus,2022-03-02,2022-03-16,14.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2021/22,83,Leg injury,2022-04-02,2022-05-13,41.0,Defender,Fully Fit
+luke shaw,30.0,Man United,Left Back,2022/23,83,unknown injury,2023-04-06,2023-04-19,13.0,Defender,Fully Fit
+brandon williams,24.0,Man United,Left Back,2019/20,72,Head injury,2020-07-14,2020-07-18,4.0,Defender,Fully Fit
+aaron wan-bissaka,25.0,Man United,Right Back,2019/20,80,Tonsillitis,2019-09-27,2019-10-19,22.0,Defender,Fully Fit
+aaron wan-bissaka,25.0,Man United,Right Back,2021/22,80,Hand injury,2021-11-29,2021-12-04,5.0,Defender,Fully Fit
+aaron wan-bissaka,25.0,Man United,Right Back,2021/22,80,Ill,2022-01-14,2022-01-23,9.0,Defender,Fully Fit
+aaron wan-bissaka,25.0,Man United,Right Back,2022/23,80,Back problems,2022-09-12,2022-10-25,43.0,Defender,Fully Fit
+nemanja matic,,Man United,Defensive Midfielder,2019/20,80,unknown injury,2019-10-20,2019-12-11,52.0,,
+nemanja matic,,Man United,Defensive Midfielder,2021/22,80,Shin injury,2022-02-10,2022-02-18,8.0,,
+paul pogba,,Man United,Central Midfielder,2019/20,85,Ankle problems,2019-09-30,2019-12-23,84.0,,
+paul pogba,,Man United,Central Midfielder,2019/20,85,Ankle problems,2019-12-26,2020-06-08,165.0,,
+paul pogba,,Man United,Central Midfielder,2020/21,85,Ankle injury,2020-11-16,2020-12-03,17.0,,
+paul pogba,,Man United,Central Midfielder,2020/21,85,Hamstring injury,2021-02-04,2021-03-18,42.0,,
+paul pogba,,Man United,Central Midfielder,2021/22,85,Hamstring injury,2021-11-08,2022-02-03,87.0,,
+paul pogba,,Man United,Central Midfielder,2021/22,85,Calf injury,2022-04-18,2022-05-23,35.0,,
+scott mctominay,,Man United,Central Midfielder,2019/20,79,Knee injury,2019-11-11,2019-12-04,23.0,,
+scott mctominay,,Man United,Central Midfielder,2019/20,79,Knee injury,2019-12-27,2020-02-22,57.0,,
+scott mctominay,,Man United,Central Midfielder,2020/21,79,bruise,2020-11-22,2020-12-01,9.0,,
+scott mctominay,,Man United,Central Midfielder,2020/21,79,Knock,2021-02-18,2021-02-26,8.0,,
+scott mctominay,,Man United,Central Midfielder,2021/22,79,Groin injury,2021-08-26,2021-09-16,21.0,,
+scott mctominay,,Man United,Central Midfielder,2021/22,79,Foot injury,2022-04-06,2022-04-18,12.0,,
+scott mctominay,,Man United,Central Midfielder,2022/23,79,unknown injury,2023-01-27,2023-02-18,22.0,,
+scott mctominay,,Man United,Central Midfielder,2022/23,79,unknown injury,2023-04-09,2023-05-11,32.0,,
+fred,,Man United,Central Midfielder,2021/22,79,Coronavirus,2022-02-07,2022-02-14,7.0,,
+fred,,Man United,Central Midfielder,2021/22,79,Hip flexor problems,2022-04-09,2022-04-30,21.0,,
+bruno fernandes,30.0,Man United,Attacking Midfielder,2021/22,88,Ill,2022-03-12,2022-03-14,2.0,Midfielder,Fully Fit
+jesse lingard,,Man United,Attacking Midfielder,2019/20,78,Ill,2019-09-07,2019-09-18,11.0,,
+jesse lingard,,Man United,Attacking Midfielder,2019/20,78,Hamstring injury,2019-10-04,2019-10-23,19.0,,
+jesse lingard,,Man United,Attacking Midfielder,2019/20,78,Ill,2020-01-09,2020-01-14,5.0,,
+juan mata,,Man United,Attacking Midfielder,2020/21,78,Muscle injury,2021-02-25,2021-04-03,37.0,,
+marcus rashford,27.0,Man United,Left winger,2019/20,85,Back injury,2020-01-16,2020-06-05,141.0,Forward,Fully Fit
+marcus rashford,27.0,Man United,Left winger,2021/22,85,Shoulder injury,2021-07-14,2021-10-15,93.0,Forward,Fully Fit
+marcus rashford,27.0,Man United,Left winger,2021/22,85,Dead leg,2022-01-13,2022-01-17,4.0,Forward,Fully Fit
+marcus rashford,27.0,Man United,Left winger,2021/22,85,bronchitis,2022-05-04,2022-05-19,15.0,Forward,Fully Fit
+marcus rashford,27.0,Man United,Left winger,2022/23,85,Muscle injury,2023-04-08,2023-04-19,11.0,Forward,Fully Fit
+marcus rashford,27.0,Man United,Left winger,2022/23,85,Leg injury,2023-05-11,2023-05-24,13.0,Forward,Fully Fit
+mason greenwood,,Man United,Right winger,2019/20,78,Tonsillitis,2019-09-20,2019-09-23,3.0,,
+mason greenwood,,Man United,Right winger,2020/21,78,bruise,2020-10-17,2020-11-23,37.0,,
+mason greenwood,,Man United,Right winger,2021/22,78,Coronavirus,2021-11-19,2021-11-27,8.0,,
+daniel james,,Man United,Right winger,2019/20,77,Knock,2020-02-28,2020-03-07,8.0,,
+daniel james,,Man United,Right winger,2020/21,77,unknown injury,2021-04-30,2021-05-21,21.0,,
+anthony martial,29.0,Man United,Center Forward,2019/20,79,Hamstring strain,2019-08-25,2019-10-20,56.0,Forward,Fully Fit
+anthony martial,29.0,Man United,Center Forward,2020/21,79,Torn knee ligaments,2021-03-29,2021-08-02,126.0,Forward,Fully Fit
+anthony martial,29.0,Man United,Center Forward,2021/22,79,Fitness,2021-10-15,2021-10-29,14.0,Forward,Fully Fit
+anthony martial,29.0,Man United,Center Forward,2021/22,79,Knee injury,2021-12-04,2021-12-13,9.0,Forward,Fully Fit
+anthony martial,29.0,Man United,Center Forward,2022/23,79,Achilles tendon irritation,2022-08-23,2022-09-26,34.0,Forward,Fully Fit
+anthony martial,29.0,Man United,Center Forward,2022/23,79,Back injury,2022-10-10,2022-10-31,21.0,Forward,Fully Fit
+anthony martial,29.0,Man United,Center Forward,2022/23,79,Hip injury,2023-02-02,2023-03-08,34.0,Forward,Fully Fit
+donny van de beek,,Man United,Central Midfielder,2020/21,77,Muscle injury,2021-03-01,2021-03-15,14.0,,
+donny van de beek,,Man United,Central Midfielder,2022/23,77,Shingles,2022-09-03,2022-10-24,51.0,,
+edinson cavani,,Man United,Center Forward,2020/21,81,Knock,2020-12-06,2020-12-18,12.0,,
+edinson cavani,,Man United,Center Forward,2020/21,81,Muscle injury,2021-02-15,2021-03-01,14.0,,
+edinson cavani,,Man United,Center Forward,2020/21,81,Knock,2021-03-05,2021-03-21,16.0,,
+edinson cavani,,Man United,Center Forward,2021/22,81,Tendon irritation,2021-11-04,2021-12-22,48.0,,
+edinson cavani,,Man United,Center Forward,2021/22,81,Groin problems,2022-02-11,2022-03-07,24.0,,
+edinson cavani,,Man United,Center Forward,2021/22,81,Calf injury,2022-04-01,2022-04-30,29.0,,
+raphael varane,,Man United,Center Back,2021/22,85,Groin injury,2021-10-11,2021-10-26,15.0,,
+raphael varane,,Man United,Center Back,2021/22,85,Hamstring injury,2021-11-02,2021-12-22,50.0,,
+raphael varane,,Man United,Center Back,2021/22,85,abdominal problems,2022-02-14,2022-02-18,4.0,,
+raphael varane,,Man United,Center Back,2021/22,85,muscular problems,2022-04-03,2022-04-21,18.0,,
+raphael varane,,Man United,Center Back,2022/23,85,Leg injury,2022-10-22,2022-11-14,23.0,,
+raphael varane,,Man United,Center Back,2022/23,85,Foot injury,2023-04-14,2023-05-08,24.0,,
+christiano ronaldo,40.0,Man United,Center Forward,2021/22,90,Hip flexor problems,2022-01-10,2022-01-17,7.0,Forward,Fully Fit
+christiano ronaldo,40.0,Man United,Center Forward,2021/22,90,Hip flexor problems,2022-03-03,2022-03-07,4.0,Forward,Fully Fit
+lisandro martinez,,Man United,Center Back,2022/23,84,Metatarsal fracture,2023-04-14,2023-06-30,77.0,,
+christian eriksen,33.0,Man United,Central Midfielder,2022/23,83,Ankle injury,2023-01-29,2023-04-06,67.0,Midfielder,Fully Fit
+marcel sabitzer,,Man United,Central Midfielder,2022/23,81,unknown injury,2023-03-06,2023-03-14,8.0,,
+marcel sabitzer,,Man United,Central Midfielder,2022/23,81,Groin problems,2023-04-16,2023-04-19,3.0,,
+marcel sabitzer,,Man United,Central Midfielder,2022/23,81,Meniscus injury,2023-05-10,2023-06-15,36.0,,
+jadon sancho,,Man United,Left winger,2021/22,82,Tonsillitis,2022-04-26,2022-05-08,12.0,,
+jadon sancho,,Man United,Left winger,2022/23,82,depression,2022-12-26,2023-01-31,36.0,,
+david raya,,Brentford,Goalkeeper,2021/22,80,Knee injury,2021-10-25,2022-02-04,102.0,,
+kristoffer ajer,,Brentford,Center Back,2021/22,76,Hamstring injury,2022-07-09,2022-08-31,53.0,,
+kristoffer ajer,,Brentford,Center Back,2023/24,76,Foot injury,2023-12-02,2024-01-16,45.0,,
+kristoffer ajer,,Brentford,Center Back,2023/24,76,Calf strain,2024-04-06,2024-04-20,14.0,,
+ethan pinnock,,Brentford,Center Back,2023/24,79,Ankle injury,2024-02-10,2024-04-13,63.0,,
+rico henry,,Brentford,Left Back,2023/24,75,Knee injury,2023-09-16,2024-10-05,385.0,,
+christian norgaard,30.0,Brentford,Defensive Midfielder ,2023/24,77,Foot injury,2024-01-05,2024-01-30,25.0,Midfielder,Fully Fit
+christian norgaard,30.0,Brentford,Defensive Midfielder ,2023/24,77,Back injury,2024-03-09,2024-04-16,38.0,Midfielder,Fully Fit
+vitaly janelt,,Brentford,Defensive Midfielder ,2022/23,76,Knee injury,2023-03-15,2023-04-06,22.0,,
+christian eriksen,33.0,Brentford,Central Midfielder,2021/22,81,Fitness,2022-01-31,2022-02-25,25.0,Midfielder,Fully Fit
+mathias jensen,,Brentford,Central Midfielder,2021/22,77,Leg injury,2021-07-07,2021-08-31,55.0,,
+josh dasilva,,Brentford,Central Midfielder,2023/24,73,Hamstring injury,2023-08-19,2024-01-04,138.0,,
+josh dasilva,,Brentford,Central Midfielder,2023/24,73,Ankle injury,2023-12-06,2024-03-30,115.0,,
+josh dasilva,,Brentford,Central Midfielder,2023/24,73,Knee surgery,2024-02-05,2025-03-15,404.0,,
+frank onyeka,,Brentford,Central Midfielder,2021/22,73,Ankle injury,2022-03-25,2022-05-16,52.0,,
+frank onyeka,,Brentford,Central Midfielder,2022/23,73,Thigh problems,2023-03-25,2023-04-09,15.0,,
+shandon baptiste,,Brentford,Central Midfielder,2023/24,70,Shoulder injury,2023-08-25,2023-11-11,78.0,,
+samman ghoddos,,Brentford,Attacking Midfielder,2021/22,71,Coronavirus,2022-03-19,2022-03-26,7.0,,
+bryan mbeumo,26.0,Brentford,Right winger,2023/24,80,Ankle injury,2023-12-07,2024-03-12,96.0,Forward,Fully Fit
+sergi canos,,Brentford,Right winger,2022/23,72,Hamstring injury,2022-08-01,2022-09-05,35.0,,
+yoane wissa,,Brentford,Center Forward,2023/24,79,Ankle injury,2024-09-14,2024-11-30,77.0,,
+ben mee,,Brentford,Center Back,2023/24,79,Muscle injury,2023-09-26,2023-10-20,24.0,,
+ben mee,,Brentford,Center Back,2023/24,79,Ankle injury,2024-02-26,2024-06-30,125.0,,
+aaron hickey,22.0,Brentford,Right Back,2022/23,76,Ankle injury,2022-10-10,2022-12-31,82.0,Defender,Fully Fit
+aaron hickey,22.0,Brentford,Right Back,2023/24,76,Hamstring injury,2023-11-02,2025-04-02,517.0,Defender,Fully Fit
+kevin schade,,Brentford,Left winger,2023/24,72,Adductor injury,2023-09-23,2024-04-10,200.0,,
+mikkel damsgaard,,Brentford,Left winger,2023/24,73,Knee surgery,2023-09-29,2023-12-05,67.0,,
+mikkel damsgaard,,Brentford,Left winger,2023/24,73,Adductor pain,2023-08-26,2023-09-27,32.0,,
+keane lewis-potter,,Brentford,Left winger,2022/23,73,Knee injury,2023-03-05,2023-05-02,58.0,,
+keane lewis-potter,,Brentford,Left winger,2022/23,73,Fitness,2022-10-11,2022-10-31,20.0,,
+keane lewis-potter,,Brentford,Left winger,2022/23,73,Ligament injury,2022-09-05,2022-10-10,35.0,,
+mark flekken,,Brentford,Goalkeeper,2023/24,79,cold,2023-10-03,2023-10-19,16.0,,
+nathan collins,,Brentford,Center Back,2023/24,75,Injury to the ankle,2023-11-18,2023-12-15,27.0,,
+nathan collins,,Brentford,Center Back,2023/24,75,unknown injury,2024-05-17,2024-06-26,40.0,,
+richarlison,,Tottenham,Center Forward,2021/22,81,Calf injury,Unknown,Unknown,26.0,,
+richarlison,,Tottenham,Center Forward,2022/23,81,Hamstring injury,Unknown,Unknown,26.0,,
+richarlison,,Tottenham,Center Forward,2022/23,81,Groin Surgery,Unknown,Unknown,26.0,,
+sergio reguilon,,Tottenham,Left Back,2020/21,82,Ankle sprain,Unknown,Unknown,26.0,,
+sergio reguilon,,Tottenham,Left Back,2020/21,82,Muscle injury,Unknown,Unknown,26.0,,
+sergio reguilon,,Tottenham,Left Back,2021/22,80,Coronavirus,Unknown,Unknown,26.0,,
+sergio reguilon,,Tottenham,Left Back,2021/22,80,Groin Surgery,Unknown,Unknown,26.0,,
+ben davies,,Tottenham,Center Back,2019/20,79,Groin Surgery,Unknown,Unknown,26.0,,
+ben davies,,Tottenham,Center Back,2019/20,79,Ankle sprain,Unknown,Unknown,26.0,,
+ben davies,,Tottenham,Center Back,2020/21,79,Shin injury,Unknown,Unknown,26.0,,
+ben davies,,Tottenham,Center Back,2022/23,76,Shin injury,Unknown,Unknown,26.0,,
+heungmin son,,Tottenham,Left winger,2019/20,87,Broken arm,Unknown,Unknown,26.0,,
+heungmin son,,Tottenham,Left winger,2020/21,89,Hamstring injury,Unknown,Unknown,26.0,,
+heungmin son,,Tottenham,Left winger,2021/22,89,Calf injury,Unknown,Unknown,26.0,,
+heungmin son,,Tottenham,Left winger,2021/22,89,Hamstring injury,Unknown,Unknown,26.0,,
+heungmin son,,Tottenham,Left winger,2022/23,88,Facial fracture,Unknown,Unknown,26.0,,
+oliver skipp,,Tottenham,Defensive Midfielder,2019/20,67,Hip injury,Unknown,Unknown,26.0,,
+oliver skipp,,Tottenham,Defensive Midfielder,2021/22,77,Inflammation bone,Unknown,Unknown,26.0,,
+oliver skipp,,Tottenham,Defensive Midfielder,2022/23,77,Foot injury,Unknown,Unknown,26.0,,
+harry winks,,Tottenham,Defensive Midfielder,2020/21,80,Ankle sprain,Unknown,Unknown,26.0,,
+harry winks,,Tottenham,Defensive Midfielder,2019/20,78,Knock,Unknown,Unknown,26.0,,
+moussa sissoko,,Tottenham,Central Midfielder,2019/20,81,Knee Surgery,Unknown,Unknown,26.0,,
+lucas moura,,Tottenham,Right winger,2021/22,81,Ankle sprain,Unknown,Unknown,26.0,,
+lucas moura,,Tottenham,Right winger,2021/22,81,Dead leg,Unknown,Unknown,26.0,,
+lucas moura,,Tottenham,Right winger,2022/23,77,Calf injury,Unknown,Unknown,26.0,,
+dele alli,,Tottenham,Attacking Midfielder,2019/20,86,Hamstring injury,Unknown,Unknown,26.0,,
+dele alli,,Tottenham,Attacking Midfielder,2019/20,83,Muscle injury,Unknown,Unknown,26.0,,
+dele alli,,Tottenham,Attacking Midfielder,2020/21,80,Tendon irritation,Unknown,Unknown,26.0,,
+harry kane,,Tottenham,Center Forward,2019/20,89,Ill,Unknown,Unknown,26.0,,
+harry kane,,Tottenham,Center Forward,2019/20,89,Torn thigh muscle,Unknown,Unknown,26.0,,
+harry kane,,Tottenham,Center Forward,2019/20,89,Fitness,Unknown,Unknown,26.0,,
+harry kane,,Tottenham,Center Forward,2020/21,89,Ankle sprain,Unknown,Unknown,26.0,,
+harry kane,,Tottenham,Center Forward,2020/21,89,Ankle sprain,Unknown,Unknown,26.0,,
+hugo lloris,,Tottenham,Goalkeeper,2019/20,88,Elbow injury,Unknown,Unknown,26.0,,
+hugo lloris,,Tottenham,Goalkeeper,2019/20,88,Groin Strain,Unknown,Unknown,26.0,,
+hugo lloris,,Tottenham,Goalkeeper,2022/23,84,Knee injury,Unknown,Unknown,26.0,,
+hugo lloris,,Tottenham,Goalkeeper,2022/23,84,Thigh Problems,Unknown,Unknown,26.0,,
+davinson sanchez,,Tottenham,Center Back,2019/20,84,Ankle sprain,Unknown,Unknown,26.0,,
+davinson sanchez,,Tottenham,Center Back,2021/22,81,Quarantine,Unknown,Unknown,26.0,,
+eric dier,,Tottenham,Center Back,2019/20,79,Hip injury,Unknown,Unknown,26.0,,
+eric dier,,Tottenham,Center Back,2020/21,79,Muscle injury,Unknown,Unknown,26.0,,
+eric dier,,Tottenham,Center Back,2021/22,80,Thigh Problems,Unknown,Unknown,26.0,,
+eric dier,,Tottenham,Center Back,2021/22,80,Thigh Problems,Unknown,Unknown,26.0,,
+ryan sessegnon,,Tottenham,Left Back,2021/22,74,Bruise,Unknown,Unknown,26.0,,
+ryan sessegnon,,Tottenham,Left Back,2021/22,74,Muscle injury,Unknown,Unknown,26.0,,
+ryan sessegnon,,Tottenham,Left Back,2021/22,75,Hamstring injury,Unknown,Unknown,26.0,,
+ryan sessegnon,,Tottenham,Left Back,2022/23,76,Hamstring injury,Unknown,Unknown,26.0,,
+emerson royal,26.0,Tottenham,Right Back,2021/22,78,Unknown surgery,Unknown,Unknown,26.0,Defender,Fully Fit
+emerson royal,26.0,Tottenham,Right Back,2022/23,78,Knee injury,Unknown,Unknown,26.0,Defender,Fully Fit
+matt doherty,,Tottenham,Right Back,2020/21,74,Coronavirus,Unknown,Unknown,26.0,,
+matt doherty,,Tottenham,Right Back,2020/21,81,Unknown injury,Unknown,Unknown,26.0,,
+matt doherty,,Tottenham,Right Back,2020/21,81,Muscle injury,Unknown,Unknown,26.0,,
+matt doherty,,Tottenham,Right Back,2021/22,81,Unknown injury,Unknown,Unknown,26.0,,
+matt doherty,,Tottenham,Right Midfielder,2021/22,77,Internal ligament tear,Unknown,Unknown,26.0,,
+pierre emile hojberg,,Tottenham,Defensive Midfielder,2022/23,84,Bruise,Unknown,Unknown,26.0,,
+rodrigo bentacur,,Tottenham,Defensive Midfielder,2021/22,79,Ankle injury,Unknown,Unknown,26.0,,
+rodrigo bentacur,,Tottenham,Defensive Midfielder,2022/23,79,Head injury,Unknown,Unknown,26.0,,
+rodrigo bentacur,,Tottenham,Defensive Midfielder,2022/23,79,Adductor pain,Unknown,Unknown,26.0,,
+rodrigo bentacur,,Tottenham,Defensive Midfielder,2022/23,82,Cruciate ligament tear,Unknown,Unknown,26.0,,
+rodrigo bentacur,,Tottenham,Defensive Midfielder,2023/24,82,Torn ankle ligaments,Unknown,Unknown,26.0,,
+tanguy ndombele,28.0,Tottenham,Central Midfielder ,2019/20,81,Hamstring injury,Unknown,Unknown,26.0,Midfielder,Fully Fit
+tanguy ndombele,28.0,Tottenham,Central Midfielder ,2019/20,81,Groin Strain,Unknown,Unknown,26.0,Midfielder,Fully Fit
+tanguy ndombele,28.0,Tottenham,Central Midfielder ,2019/20,81,Groin Strain,Unknown,Unknown,26.0,Midfielder,Fully Fit
+tanguy ndombele,28.0,Tottenham,Central Midfielder ,2019/20,80,Groin Strain,Unknown,Unknown,26.0,Midfielder,Fully Fit
+tanguy ndombele,28.0,Tottenham,Central Midfielder ,2019/20,80,Knock,Unknown,Unknown,26.0,Midfielder,Fully Fit
+tanguy ndombele,28.0,Tottenham,Central Midfielder ,2020/21,80,Unknown injury,Unknown,Unknown,26.0,Midfielder,Fully Fit
+giovani lo celso,,Tottenham,Central Midfielder ,2019/20,82,Hip injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2020/21,82,Hamstring injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2020/21,82,Muscle Strain,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2020/21,82,Hamstring injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2021/22,88,Quarantine,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2021/22,88,Knee injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2021/22,88,Shin injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2023/24,81,Hamstring injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2023/24,81,Unknown injury,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2023/24,80,Muscle Strain,Unknown,Unknown,26.0,,
+giovani lo celso,,Tottenham,Central Midfielder ,2023/24,80,Knee injury,Unknown,Unknown,26.0,,
+bryan gil,24.0,Tottenham,Left winger,2021/22,66,Hamstring injury,Unknown,Unknown,26.0,Winger,Fully Fit
+bryan gil,24.0,Tottenham,Left winger,2021/22,73,Coronavirus,Unknown,Unknown,26.0,Winger,Fully Fit
+bryan gil,24.0,Tottenham,Left winger,2022/23,77,Knock,Unknown,Unknown,26.0,Winger,Fully Fit
+bryan gil,24.0,Tottenham,Left winger,2023/24,77,Inflammation of pubic bone,Unknown,Unknown,26.0,Winger,Fully Fit
+bryan gil,24.0,Tottenham,Left winger,2020/21,66,Knock,Unknown,Unknown,26.0,Winger,Fully Fit
+nick pope,,Burnley,Goalkeeper,2020/21,82,head injury,2020-11-27,2020-12-04,7.0,,
+nick pope,,Burnley,Goalkeeper,2020/21,82,knee surgery,2021-05-12,2021-06-30,49.0,,
+nick pope,,Burnley,Goalkeeper,2021/22,82,Coronavirus,2021-12-29,2022-01-06,8.0,,
+james tarkowski,,Burnley,Center Back,2020/21,81,toe injury,2020-09-16,2020-09-29,13.0,,
+ben mee,,Burnley,Center Back,2019/20,78,hamstring strain,2020-07-03,2020-11-05,125.0,,
+ben mee,,Burnley,Center Back,2020/21,79,head injury,2021-02-14,2021-02-21,7.0,,
+ben mee,,Burnley,Center Back,2021/22,79,hairline fracture,2022-03-01,2022-06-30,121.0,,
+erik pieters,,Burnley,Center Back,2020/21,74,calf injury,2020-10-20,2020-11-22,33.0,,
+erik pieters,,Burnley,Center Back,2021/22,73,knee injury,2022-02-26,2022-05-02,65.0,,
+charlie taylor,30.0,Burnley,Left Back,2019/20,76,hamstring strain,2019-12-01,2019-12-20,19.0,Defender,Fully Fit
+charlie taylor,30.0,Burnley,Left Back,2019/20,76,hamstring strain,2020-02-03,2020-02-14,11.0,Defender,Fully Fit
+charlie taylor,30.0,Burnley,Left Back,2020/21,76,hamstring strain,2020-07-16,2020-09-16,62.0,Defender,Fully Fit
+charlie taylor,30.0,Burnley,Left Back,2020/21,76,hamstring strain,2020-12-30,2021-02-15,47.0,Defender,Fully Fit
+charlie taylor,30.0,Burnley,Left Back,2021/22,76,Bruise on ankle,2022-01-07,2022-02-25,49.0,Defender,Fully Fit
+matthew lowton,,Burnley,Right Back,2019/20,75,knee injury,2020-02-03,2020-06-10,128.0,,
+matthew lowton,,Burnley,Right Back,2019/20,75,ankle and knee injury,2020-06-28,2020-10-25,119.0,,
+phil bardsley,,Burnley,Right Back,2019/20,72,knock,2019-12-05,2019-12-13,8.0,,
+phil bardsley,,Burnley,Right Back,2019/20,72,back injury,2020-01-20,2020-02-01,12.0,,
+jack cork,,Burnley,Defensive Midfielder,2019/20,76,shoulder injury,2019-09-29,2019-10-25,26.0,,
+jack cork,,Burnley,Defensive Midfielder,2020/21,77,broken foot,2020-06-30,2020-12-13,166.0,,
+ashley westwood,33.0,Burnley,Defensive Midfielder,2019/20,77,groin injury,2019-11-24,2019-12-13,19.0,Midfielder,Fully Fit
+ashley westwood,33.0,Burnley,Defensive Midfielder,2021/22,77,broken ankle,2022-04-17,2022-12-31,258.0,Midfielder,Fully Fit
+josh brownhill,,Burnley,Central Midfielder,2020/21,76,ankle injury,2021-01-28,2021-02-12,15.0,,
+josh brownhill,,Burnley,Central Midfielder,2021/22,75,Coronavirus,2021-12-13,2022-01-06,24.0,,
+robbie brady,,Burnley,Left Midfielder,2020/21,74,chest injury,2020-09-21,2020-10-02,11.0,,
+robbie brady,,Burnley,Left Midfielder,2020/21,74,hamstring injury,2020-11-24,2020-12-04,10.0,,
+robbie brady,,Burnley,Left Midfielder,2020/21,74,hamstring injury,2020-12-22,2020-12-28,6.0,,
+robbie brady,,Burnley,Left Midfielder,2020/21,74,calf injury,2021-02-01,2021-02-12,11.0,,
+dwight mcneil,,Burnley,Left winger,2020/21,77,groin injury,2020-12-22,2021-01-11,20.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2019/20,77,calf strain,2019-08-26,2019-09-27,32.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2019/20,77,hamstring strain,2019-10-13,2019-12-25,73.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2019/20,77,hamstring strain,2020-01-05,2020-07-04,181.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2020/21,77,knee injury,2020-09-18,2020-10-02,14.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2020/21,77,hamstring strain,2020-10-28,2020-11-05,8.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2020/21,77,hamstring strain,2020-11-29,2021-01-11,43.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2020/21,77,groin strain,2021-02-18,2021-03-04,14.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2021/22,73,appendectomy and calf injury,2022-01-24,2022-08-21,209.0,,
+jóhann berg gudmundsson,,Burnley,Right winger,2023/24,72,muscle injury,2023-09-23,2023-10-22,29.0,,
+aaron lennon,36.0,Burnley,Right winger,2019/20,74,ill,2019-12-22,2020-01-10,19.0,Winger,Fully Fit
+chris wood,33.0,Burnley,Center Forward,2019/20,78,hamstring injury,2019-10-20,2019-11-08,19.0,Forward,Fully Fit
+chris wood,33.0,Burnley,Center Forward,2019/20,78,hamstring strain,2020-02-16,2020-02-28,12.0,Forward,Fully Fit
+chris wood,33.0,Burnley,Center Forward,2019/20,78,calf injury,2020-06-05,2020-07-04,29.0,Forward,Fully Fit
+chris wood,33.0,Burnley,Center Forward,2020/21,78,hamstring strain,2021-02-01,2021-02-18,17.0,Forward,Fully Fit
+ashley barnes,34.0,Burnley,Center Forward,2019/20,78,groin injury,2019-10-17,2019-10-25,8.0,Forward,Fully Fit
+ashley barnes,34.0,Burnley,Center Forward,2019/20,78,groin injury,2019-12-05,2019-12-13,8.0,Forward,Fully Fit
+ashley barnes,34.0,Burnley,Center Forward,2019/20,78,groin surgery,2020-01-02,2020-09-29,271.0,Forward,Fully Fit
+ashley barnes,34.0,Burnley,Center Forward,2020/21,75,bruise,2021-01-27,2021-02-05,9.0,Forward,Fully Fit
+ashley barnes,34.0,Burnley,Center Forward,2021/22,73,groin injury,2021-11-18,2022-02-06,80.0,Forward,Fully Fit
+jay rodríguez,,Burnley,Center Forward,2019/20,76,ill,2020-01-05,2020-01-18,13.0,,
+jay rodríguez,,Burnley,Center Forward,2019/20,76,hamstring strain,2020-06-26,2020-07-04,8.0,,
+jay rodríguez,,Burnley,Center Forward,2020/21,75,ankle injury,2020-09-23,2020-10-18,25.0,,
+jay rodríguez,,Burnley,Center Forward,2020/21,75,knee injury,2020-12-28,2021-01-11,14.0,,
+jay rodríguez,,Burnley,Center Forward,2021/22,74,hamstring injury,2020-04-29,2020-08-07,100.0,,
+matej vydra,,Burnley,Center Forward,2019/20,73,hip injury,2019-11-03,2019-12-03,30.0,,
+matej vydra,,Burnley,Center Forward,2020/21,74,back injury,2020-12-18,2020-01-11,0.0,,
+matej vydra,,Burnley,Center Forward,2020/21,74,hamstring injury,2021-02-10,2021-02-18,8.0,,
+matej vydra,,Burnley,Center Forward,2021/22,73,groin surgery and elbow injury,2022-02-03,2022-02-28,25.0,,
+dale stephens,,Burnley,Central Midfielder,2020/21,74,hamstring injury,2020-11-19,2020-12-13,24.0,,
+dale stephens,,Burnley,Central Midfielder,2020/21,74,knock,2021-02-14,2021-02-18,4.0,,
+connor roberts,28.0,Burnley,Right Back,2021/22,75,infection,2021-12-08,2022-01-09,32.0,Defender,Fully Fit
+maxwel cornet,,Burnley,Left winger,2021/22,75,hamstring injury,2021-12-04,2021-12-31,27.0,,
+maxwel cornet,,Burnley,Left winger,2021/22,75,knee problems,2022-04-22,2022-05-05,13.0,,
+jordan beyer,,Burnley,Center Back,2023/24,75,meniscus injury,2023-10-04,2023-10-30,26.0,,
+jordan beyer,,Burnley,Center Back,2023/24,75,knee injury,2024-01-08,Unknown,26.0,,
+hjalmar ekdal,,Burnley,Center Back,2023/24,73,knee injury,2023-08-30,2023-11-18,80.0,,
+mike trésor,,Burnley,Left winger,2023/24,78,hamstring injury,2023-08-10,2023-09-17,38.0,,
+luca koleosho,,Burnley,Right winger,2023/24,68,knee injury,2023-12-06,2024-06-17,194.0,,
+nathan redmond,,Burnley,Right winger,2023/24,75,unknown injur,2023-09-10,2023-10-15,35.0,,
+lyle foster,,Burnley,Center Forward,2023/24,69,depression,2023-11-09,2023-12-10,31.0,,
+ameen al-dakhil,21.0,Burnley,Center Back,2023/24,72,muscle injury,2024-02-08,2024-09-23,228.0,Defender,Fully Fit
+vitinho,,Burnley,Right Back,2023/24,71,knee injury,2023-08-30,2023-09-25,26.0,,
+jordan pickford,,Everton,Goalkeeper,2020/21,80,chest injury,2021-01-28,2021-02-18,21.0,,
+jordan pickford,,Everton,Goalkeeper,2021/22,81,shoulder injury,2021-09-13,2021-09-27,14.0,,
+jordan pickford,,Everton,Goalkeeper,2022/23,82,thigh problems,2022-09-09,2022-09-27,18.0,,
+michael keane,,Everton,Center Back,2019/20,79,neck injury,2020-01-17,2020-01-20,3.0,,
+yerry mina,,Everton,Center Back,2019/20,79,knee injury,2019-10-20,2019-11-02,13.0,,
+yerry mina,,Everton,Center Back,2019/20,79,bruise,2019-12-06,2019-12-14,8.0,,
+yerry mina,,Everton,Center Back,2019/20,79,muscle injury,2020-06-02,Unknown,26.0,,
+yerry mina,,Everton,Center Back,2019/20,79,muscle injury,2020-07-13,2020-09-12,61.0,,
+yerry mina,,Everton,Center Back,2020/21,79,calf injury,2021-02-18,2021-03-12,22.0,,
+yerry mina,,Everton,Center Back,2021/22,79,thigh problems,2021-10-22,2021-11-30,39.0,,
+yerry mina,,Everton,Center Back,2021/22,79,hamstring injury,2022-02-08,2022-04-11,62.0,,
+yerry mina,,Everton,Center Back,2022/23,76,ankle injury,2022-08-06,2022-10-31,86.0,,
+mason holgate,,Everton,Center Back,2019/20,77,calf injury,2020-07-07,2020-07-15,8.0,,
+mason holgate,,Everton,Center Back,2020/21,77,ankle injury,2020-09-18,2020-11-06,49.0,,
+mason holgate,,Everton,Center Back,2022/23,75,knee injury,2022-08-27,2022-10-16,50.0,,
+lucas digne,32.0,Everton,Left Back,2019/20,83,calf injury,2020-02-09,2020-03-07,27.0,Defender,Fully Fit
+lucas digne,32.0,Everton,Left Back,2020/21,84,ankle injury,2020-11-26,2021-01-11,46.0,Defender,Fully Fit
+djibril sidibé,,Everton,Right Back,2019/20,78,unknown injury,2019-12-15,2019-12-18,3.0,,
+djibril sidibé,,Everton,Right Back,2019/20,78,foot injury,2020-06-21,2020-07-01,10.0,,
+séamus coleman,,Everton,Right Back,2019/20,78,hamstring injury,2019-11-24,2019-12-14,20.0,,
+séamus coleman,,Everton,Right Back,2019/20,78,hamstring strain,2020-03-02,2020-06-14,104.0,,
+séamus coleman,,Everton,Right Back,2020/21,79,muscle injury,2020-10-17,2020-12-18,62.0,,
+séamus coleman,,Everton,Right Back,2021/22,78,hamstring injury,2021-09-17,2021-10-15,28.0,,
+séamus coleman,,Everton,Right Back,2022/23,75,knee injury,2023-05-01,2023-11-23,206.0,,
+jean-philippe gbamin,,Everton,Defensive Midfielder,2019/20,79,"hamstring injury, archilles tendon rupture and inner ligament injury",2019-08-18,2021-06-30,682.0,,
+morgan schneiderlin,,Everton,Defensive Midfielder,2019/20,76,calf strain,2019-12-08,2020-01-04,27.0,,
+morgan schneiderlin,,Everton,Defensive Midfielder,2019/20,76,knee injury,2020-02-24,2020-08-22,180.0,,
+andré gomes,32.0,Everton,Central Midfielder,2019/20,80,bruised ribs,2019-09-02,2019-10-04,32.0,Midfielder,Fully Fit
+andré gomes,32.0,Everton,Central Midfielder,2019/20,80,ankle injury,2019-11-04,2020-02-21,109.0,Midfielder,Fully Fit
+andré gomes,32.0,Everton,Central Midfielder,2020/21,79,bruise,2020-09-27,2020-10-16,19.0,Midfielder,Fully Fit
+andré gomes,32.0,Everton,Central Midfielder,2021/22,76,calf injury,2021-09-21,2021-12-05,75.0,Midfielder,Fully Fit
+andré gomes,32.0,Everton,Central Midfielder,2023/24,77,fitness,2023-08-13,2023-12-03,112.0,Midfielder,Fully Fit
+tom davies,,Everton,Central Midfielder,2019/20,75,ill,2020-01-30,2020-02-04,5.0,,
+tom davies,,Everton,Central Midfielder,2020/21,75,bruise,2020-10-28,2020-11-04,7.0,,
+tom davies,,Everton,Central Midfielder,2021/22,75,knee injury,2021-11-19,2022-06-30,223.0,,
+fabian delph,,Everton,Central Midfielder,2019/20,77,calf injury,2019-08-03,2019-08-31,28.0,,
+fabian delph,,Everton,Central Midfielder,2019/20,77,muscle injury,2019-10-06,2019-10-24,18.0,,
+fabian delph,,Everton,Central Midfielder,2019/20,77,muscle injury,2019-11-04,2019-12-20,46.0,,
+fabian delph,,Everton,Central Midfielder,2019/20,77,calf injury,2020-06-02,2020-09-23,113.0,,
+fabian delph,,Everton,Central Midfielder,2020/21,75,bruise,2020-11-02,2020-11-27,25.0,,
+fabian delph,,Everton,Central Midfielder,2020/21,75,hamstring injury,2020-12-06,2021-02-03,59.0,,
+fabian delph,,Everton,Central Midfielder,2021/22,75,shoulder injury,2021-08-27,2021-10-25,59.0,,
+fabian delph,,Everton,Central Midfielder,2021/22,75,hamstring injury,2022-01-21,2022-04-05,74.0,,
+gylfi sigurdsson,,Everton,Attacking Midfielder,2019/20,80,knock,2019-12-08,2019-12-20,12.0,,
+gylfi sigurdsson,,Everton,Attacking Midfielder,2019/20,80,groin injury,2020-01-12,2020-01-31,19.0,,
+alex iwobi,27.0,Everton,Left winger,2019/20,77,hamstring injury,2019-12-23,2020-01-27,35.0,Midfielder,Fully Fit
+alex iwobi,27.0,Everton,Left winger,2021/22,76,calf injury,2021-10-01,2021-10-13,12.0,Midfielder,Fully Fit
+alex iwobi,27.0,Everton,Left winger,2023/24,76,hamstring injury,2023-08-20,2023-09-15,26.0,Midfielder,Fully Fit
+bernard,31.0,Everton,Left winger,2019/20,78,ill,2019-09-26,2019-10-04,8.0,Winger,Fully Fit
+bernard,31.0,Everton,Left winger,2019/20,78,knee injury,2019-10-27,2019-11-30,34.0,Winger,Fully Fit
+bernard,31.0,Everton,Left winger,2019/20,78,knee injury,2020-01-01,2020-01-04,3.0,Winger,Fully Fit
+anthony gordon,24.0,Everton,Left winger,2022/23,74,ill,2022-12-29,2023-01-04,6.0,Winger,Fully Fit
+theo walcott,,Everton,Right winger,2019/20,76,head injury,2019-09-09,2019-10-18,39.0,,
+theo walcott,,Everton,Right winger,2019/20,76,knock,2019-11-24,2019-12-04,10.0,,
+theo walcott,,Everton,Right winger,2019/20,76,calf strain,2019-12-08,2019-12-25,17.0,,
+theo walcott,,Everton,Right winger,2019/20,76,knee injury,2020-02-09,2020-02-28,19.0,,
+theo walcott,,Everton,Right winger,2019/20,76,abdominal muscle strain,2020-06-08,2020-07-08,30.0,,
+richarlison,,Everton,Center Forward,2019/20,81,knee injury,2020-01-12,2020-01-30,18.0,,
+richarlison,,Everton,Center Forward,2020/21,81,head injury,2020-12-05,2020-12-31,26.0,,
+richarlison,,Everton,Center Forward,2021/22,81,knee injury,2021-09-13,2021-10-22,39.0,,
+richarlison,,Everton,Center Forward,2021/22,81,calf injury,2021-12-12,2022-01-12,31.0,,
+moise kean,,Everton,Center Forward,2019/20,75,knee injury,2020-07-17,2020-07-25,8.0,,
+dominic calvert-lewin,28.0,Everton,Center Forward,2020/21,80,muscle injury,2021-01-02,2021-01-26,24.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2020/21,80,hamstring injury,2021-02-11,2021-02-19,8.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2021/22,81,broken toe,2021-08-28,2021-12-31,125.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2021/22,81,hamstring injury,2022-04-12,2022-04-30,18.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2022/23,78,knee injury,2022-08-04,2022-10-03,60.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2022/23,78,hamstring injury,2022-11-05,2022-12-28,53.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2022/23,78,hamstring injury,2023-02-04,2023-04-20,75.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2022/23,78,hamstring injury,2023-05-20,2023-06-20,31.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2023/24,77,fitness and broken cheekbone,2023-08-01,2023-09-14,44.0,Forward,Fully Fit
+dominic calvert-lewin,28.0,Everton,Center Forward,2023/24,77,ill,2024-04-25,2024-05-01,6.0,Forward,Fully Fit
+cenk tosun,32.0,Everton,Center Forward,2019/20,77,groin injury,2019-10-18,2019-10-27,9.0,Forward,Fully Fit
+cenk tosun,32.0,Everton,Center Forward,2019/20,77,cruciate ligament surgery,2020-03-02,2020-10-26,238.0,Forward,Fully Fit
+ben godfrey,,Everton,Center Back,2020/21,75,hamstring injury,2020-10-26,2020-11-06,11.0,,
+ben godfrey,,Everton,Center Back,2022/23,76,broken fibula,2022-08-06,2022-11-05,91.0,,
+ben godfrey,,Everton,Center Back,2022/23,76,adductor injury,2023-04-30,2023-05-30,30.0,,
+allan,32.0,Everton,Defensive Midfielder,2020/21,83,groin injury,2020-10-02,2020-10-16,14.0,Midfielder,Fully Fit
+allan,32.0,Everton,Defensive Midfielder,2020/21,83,muscle injury,2020-12-17,2021-02-13,58.0,Midfielder,Fully Fit
+abdoulaye doucouré,30.0,Everton,Central Midfielder,2020/21,79,foot injury,2021-03-04,2021-05-07,64.0,Midfielder,Fully Fit
+abdoulaye doucouré,30.0,Everton,Central Midfielder,2021/22,79,stress reaction of the bone,2021-10-17,2021-11-28,42.0,Midfielder,Fully Fit
+abdoulaye doucouré,30.0,Everton,Central Midfielder,2022/23,77,hamstring injury,2022-08-13,2022-10-03,51.0,Midfielder,Fully Fit
+abdoulaye doucouré,30.0,Everton,Central Midfielder,2023/24,77,thigh problems,2023-12-17,2024-01-12,26.0,Midfielder,Fully Fit
+james rodríguez,,Everton,Attacking Midfielder,2020/21,82,groin injury,2020-10-26,2020-11-06,11.0,,
+james rodríguez,,Everton,Attacking Midfielder,2020/21,82,calf strain,2020-12-06,2020-12-31,25.0,,
+james rodríguez,,Everton,Attacking Midfielder,2020/21,82,calf injury,2021-02-22,2021-04-01,38.0,,
+james rodríguez,,Everton,Attacking Midfielder,2020/21,82,calf injury,2021-05-01,2021-05-14,13.0,,
+vitaliy mykolenko,,Everton,Left Back,2021/22,76,Coronavirus,2022-02-07,2022-02-16,9.0,,
+vitaliy mykolenko,,Everton,Left Back,2022/23,76,muscle fatigue,2023-05-13,2023-06-05,23.0,,
+vitaliy mykolenko,,Everton,Left Back,2023/24,75,groin injury,2023-12-15,2023-12-22,7.0,,
+vitaliy mykolenko,,Everton,Left Back,2023/24,75,cold,2024-03-28,2024-04-01,4.0,,
+vitaliy mykolenko,,Everton,Left Back,2023/24,75,ankle injury,2024-04-25,2024-06-04,40.0,,
+nathan patterson,,Everton,Right Back,2022/23,69,ankle injury,2022-09-21,2022-10-26,35.0,,
+nathan patterson,,Everton,Right Back,2023/24,72,hamstring injury,2024-04-15,2024-06-11,57.0,,
+donny van de beek,,Everton,Central Midfielder,2021/22,80,thigh problems,2022-03-31,2022-05-16,46.0,,
+andros townsend,32.0,Everton,Right winger,2021/22,77,broken foot,2021-12-14,2022-01-06,23.0,Winger,Fully Fit
+amadou onana,24.0,Everton,Defensive Midfielder,2022/23,75,leg injury,2023-04-14,2023-04-24,10.0,Midfielder,Fully Fit
+amadou onana,24.0,Everton,Defensive Midfielder,2023/24,77,calf injury,2023-11-11,2023-12-08,27.0,Midfielder,Fully Fit
+james garner,,Everton,Defensive Midfielder,2022/23,72,back injury,2022-11-12,2023-02-09,89.0,,
+dwight mcneil,,Everton,Left winger,2023/24,76,ankle injury,Unknown,2023-09-01,26.0,,
+ashley young,38.0,Everton,Left Back,2023/24,75,muscle injury,2023-12-11,2024-01-25,45.0,Defender,Fully Fit
+jack harrison,,Everton,Right winger,2023/24,76,hip injury,2023-07-01,2023-09-21,82.0,,
+beto,26.0,Everton,Center Forward,2023/24,81,knee injury,2023-11-23,2023-11-28,5.0,Forward,Fully Fit
