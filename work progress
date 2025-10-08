@@ -14,3 +14,135 @@ Work Summary
 	Extracted files and placed them in local directories for preprocessing.
 	Verified accessibility of all extracted files.
 
+Date: 2025-08-19
+Collected tweets related to major football transfers using the Twitter API. Cleaned text data and removed non-English and duplicate entries.
+
+Date: 2025-08-20
+Performed initial exploration of tweet data and basic sentiment scoring using VADER. Saved results for further analysis.
+
+Date: 2025-08-21
+Began collecting player injury history from online databases and structured the data by player ID and season.
+
+Date: 2025-08-22
+Merged injury data with player profiles and verified consistency of name formats and date fields.
+
+Date: 2025-08-23
+Started initial exploratory data analysis (EDA) on StatsBomb datasets—checked distributions and missing values.
+
+Date: 2025-08-24
+Visualized player performance stats such as goals, assists, and passes using matplotlib for trend understanding.
+
+Date: 2025-08-25
+Cleaned and standardized all datasets—handled null values, removed duplicates, and aligned data formats.
+
+Date: 2025-08-26
+Applied one-hot encoding for categorical columns like player position and team. Scaled numerical variables.
+
+Date: 2025-08-27
+Engineered new features like average match rating, injury frequency, and contract duration.
+
+Date: 2025-08-28
+Completed preprocessing and stored cleaned datasets ready for modeling. Documented feature details.
+
+Date: 2025-08-29
+Processed sentiment data—applied VADER and TextBlob for score computation on tweet text.
+
+Date: 2025-08-30
+Aggregated sentiment results by player and visualized positive vs negative sentiment trends.
+
+Date: 2025-09-01
+Refined sentiment analysis results and merged them with player performance data.
+
+Date: 2025-09-02
+Created combined dataset with performance, injury, sentiment, and market value features.
+
+Date: 2025-09-03
+Started univariate LSTM model setup using player value as the target variable.
+
+Date: 2025-09-04
+Trained the univariate LSTM model and analyzed training vs validation loss curves.
+
+Date: 2025-09-05
+Expanded the LSTM to a multivariate model including injury and sentiment features.
+
+Date: 2025-09-06
+Ran multivariate LSTM experiments and fine-tuned sequence length and learning rate.
+
+Date: 2025-09-08
+Evaluated LSTM outputs using RMSE and MAE metrics; noted overfitting tendencies.
+
+Date: 2025-09-09
+Worked on data resampling and normalization to improve model performance.
+
+Date: 2025-09-10
+Began building XGBoost regression model with same features for comparison.
+
+Date: 2025-09-11
+Trained and validated XGBoost model, achieving stable baseline accuracy.
+
+Date: 2025-09-12
+Integrated outputs from LSTM and XGBoost models to create a combined ensemble structure. Began initial testing of hybrid predictions.
+
+Date: 2025-09-13
+Evaluated ensemble performance on validation data; results showed better generalization than standalone models.
+
+Date: 2025-09-15
+Reviewed feature importance from XGBoost—form trends and sentiment scores showed strong influence on predicted values.
+
+Date: 2025-09-16
+Carried out grid search tuning for XGBoost parameters to minimize RMSE. Recorded improvements in prediction stability.
+
+Date: 2025-09-17
+Adjusted LSTM hyperparameters including learning rate and dropout rate. Observed smoother loss curve in training.
+
+Date: 2025-09-18
+Ran multiple comparative experiments between univariate, multivariate, and ensemble models. Collected performance logs.
+
+Date: 2025-09-19
+Summarized key metrics (RMSE, MAE, R²) across models for analysis. Prepared visualization of comparative performance.
+
+Date: 2025-09-20
+Generated plots for predicted vs actual transfer values. Identified slight overfitting in early LSTM runs.
+
+Date: 2025-09-22
+Refined ensemble integration scripts and automated model training pipeline for smoother experimentation.
+
+
+Date: 2025-09-23
+Tested model robustness using unseen player data from different leagues. Noted variations in transfer value predictions.
+
+Date: 2025-09-24
+Refined preprocessing scripts and improved data merging consistency. Adjusted normalization for new player data.
+
+Date: 2025-09-25
+Started preparing evaluation scripts to compare LSTM and XGBoost model outputs. Generated preliminary plots.
+
+Date: 2025-09-26
+Analyzed model error metrics and created initial visual comparisons for predicted vs actual values.
+
+Date: 2025-09-27
+Worked on interpreting sentiment-related feature effects on market value predictions. Documented early observations.
+
+Date: 2025-09-29
+Continued training ensemble model with updated parameters. Evaluated performance improvements over previous runs.
+
+Date: 2025-09-30
+Visualized model predictions for selected players across recent seasons. Fine-tuned parameters for stability.
+
+Date: 2025-10-01
+Ran additional training cycles for the multivariate LSTM. Focused on improving validation accuracy.
+
+Date: 2025-10-02
+Tested different input sequence lengths for time-series predictions. Observed changes in loss convergence.
+
+Date: 2025-10-03
+Compared recent model runs and documented metrics for further tuning. Prepared notes for ensemble refinement.
+
+Date: 2025-10-04
+Experimented with hybrid model integration and parameter adjustments. Tracked results in structured logs.
+
+Date: 2025-10-06
+Reviewed model outputs and worked on refining feature scaling and loss functions. Performance slightly improved.
+
+Date: 2025-10-07
+Analyzed ensemble predictions and checked consistency across validation sets. Planned final optimization steps
