@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer IQ Predictor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <!-- Set Inter font as default -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117; /* Dark background */
+        }
+        /* Custom scrollbar for the sidebar */
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #2e3b4a #1f2a37;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #1f2a37;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #2e3b4a;
+            border-radius: 20px;
+            border: 2px solid #1f2a37;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-gray-100">
+
+    <div class="flex h-screen">
+        
+        <!-- LEFT COLUMN (Sidebar: Manual Input & Predict Button) -->
+        <div class="sidebar w-full lg:w-1/4 bg-[#161b22] p-6 shadow-xl overflow-y-auto">
+            <h1 class="text-3xl font-extrabold text-[#4CAF50] mb-6">Transfer IQ</h1>
+            <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Manual Feature Input</h2>
+            
+            <form id="manual-predict-form" class="space-y-4">
+
+                <!-- Helper function for standard text/number inputs -->
+                <script>
+                    function createInput(label, id, type = 'number', defaultValue = 0.0) {
+                        return `
+                            <div class="space-y-1">
+                                <label for="${id}" class="block text-sm font-medium text-gray-400">${label}</label>
+                                <input type="${type}" id="${id}" name="${id}" value="${defaultValue}" 
+                                       class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#4CAF50] focus:border-[#4CAF50] text-gray-100"
+                                       ${type === 'number' ? 'step="0.1"' : ''}>
+                            </div>
+                        `;
+                    }
+                </script>
+
+                <!-- Key Inputs for Model (including Age, Club Name, and Sentiment) -->
+                ${createInput('Age', 'age', 'number', 25.0)}
+                
+                <div class="space-y-1">
+                    <label for="position" class="block text-sm font-medium text-gray-400">Position</label>
+                    <select id="position" name="position" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#4CAF50] focus:border-[#4CAF50] text-gray-100">
+                        <option value="Attack">Attack</option>
+                        <option value="Midfield">Midfield</option>
+                        <option value="Defence">Defence</option>
+                        <option value="Goalkeeper">Goalkeeper</option>
+                    </select>
+                </div>
+                
+                <div class="space-y-1">
+                    <label for="foot" class="block text-sm font-medium text-gray-400">Foot</label>
+                    <select id="foot" name="foot" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#4CAF50] focus:border-[#4CAF50] text-gray-100">
+                        <option value="right">Right</option>
+                        <option value="left">Left</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+                </div>
+
+                <!-- NEW INPUT: current_club_name -->
+                ${createInput('Current Club Name', 'current_club_name', 'text', 'FC Bayern Munich')}
+                
+                <!-- NEW INPUT: sentiment -->
+                <div class="space-y-1">
+                    <label for="sentiment" class="block text-sm font-medium text-gray-400">Sentiment</label>
+                    <select id="sentiment" name="sentiment" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#4CAF50] focus:border-[#4CAF50] text-gray-100">
+                        <option value="Positive">Positive</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Negative">Negative</option>
+                    </select>
+                </div>
+
+                <!-- Specific Performance Stats -->
+                ${createInput('Min. Played (Min)', 'Min', 'number', 2500.0)}
+                ${createInput('Pass Comp. Pct (PasTotCmp%)', 'PasTotCmp%', 'number', 85.0)}
+                ${createInput('Touches Attacking Pen (TouAttPen)', 'TouAttPen', 'number', 50.0)}
+                ${createInput('Total Goals', 'total_goals', 'number', 15.0)}
+                ${createInput('Total Assists', 'total_assists', 'number', 8.0)}
+
+                <!-- Other Required Features (Hidden fields for model prediction integrity) -->
+                <input type="hidden" id="current_club_domestic_competition_id" name="current_club_domestic_competition_id" value="GB1">
+                <input type="hidden" id="contract_years_remaining" name="contract_years_remaining" value="3.0">
+                <input type="hidden" id="height_in_cm" name="height_in_cm" value="180.0">
+                <input type="hidden" id="total_games_missed" name="total_games_missed" value="0.0">
+                <input type="hidden" id="total_days_missed" name="total_days_missed" value="0.0">
+                <input type="hidden" id="experience_years" name="experience_years" value="5.0">
+                <input type="hidden" id="yellow_cards" name="yellow_cards" value="2.0">
+                <input type="hidden" id="red_cards" name="red_cards" value="0.0">
+                <input type="hidden" id="highest_market_value_in_eur" name="highest_market_value_in_eur" value="10000000.0">
+                <input type="hidden" id="current_club_id" name="current_club_id" value="1.0">
+                <input type="hidden" id="last_season" name="last_season" value="2023.0">
+                <input type="hidden" id="time_step" name="time_step" value="0.0">
+                <input type="hidden" id="country_of_birth" name="country_of_birth" value="France">
+                <input type="hidden" id="score" name="score" value="7.5">
+                <input type="hidden" id="sub_position" name="sub_position" value="CM">
+                <input type="hidden" id="country_of_citizenship" name="country_of_citizenship" value="Germany">
+                <input type="hidden" id="total_injuries" name="total_injuries" value="0.0">
+
+                <!-- Manual Predict Button -->
+                <button type="submit" id="manual-predict-button"
+                        class="w-full mt-6 py-3 bg-[#4CAF50] hover:bg-[#45a049] text-white font-bold rounded-lg shadow-md transition duration-300 ease-in-out">
+                    MANUALLY PREDICT VALUE
+                </button>
+                <div id="manual-error-message" class="text-red-400 text-sm mt-2 hidden"></div>
+            </form>
+        </div>
+
+        <!-- RIGHT COLUMN (Main Content: Lookup, Prediction & Charts) -->
+        <div class="flex-1 p-6 overflow-y-auto space-y-8">
+            
+            <!-- Player Lookup Search Bar (Right Side) -->
+            <div class="bg-[#1f2a37] p-4 rounded-xl shadow-lg">
+                <h2 class="text-xl font-semibold mb-3 text-gray-50">Player Lookup</h2>
+                <div class="flex space-x-3">
+                    <input type="text" id="player-name-input" 
+                           list="player-list-suggestions" placeholder="Enter player name (e.g., Joshua Kimmich)"
+                           class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#4CAF50] focus:border-[#4CAF50] text-gray-100">
+                    
+                    <!-- Datalist for suggestions -->
+                    <datalist id="player-list-suggestions"></datalist>
+
+                    <button id="lookup-predict-button"
+                            class="px-6 py-2 bg-[#1E88E5] hover:bg-[#1565C0] text-white font-bold rounded-lg shadow-md transition duration-300 ease-in-out">
+                        LOOKUP & PREDICT
+                    </button>
+                </div>
+                <div id="lookup-error-message" class="text-red-400 text-sm mt-2 hidden"></div>
+            </div>
+
+            <!-- Prediction Result Card (Main Focus) -->
+            <div id="prediction-card-container" class="bg-[#1f2a37] p-8 rounded-xl shadow-2xl transition duration-500 transform scale-100 hover:scale-[1.01]">
+                <h2 class="text-lg font-medium text-gray-400">Predicted Market Value</h2>
+                <div id="prediction-value" class="text-6xl font-extrabold text-[#4CAF50] mt-1">
+                    €--,--
+                </div>
+                <p class="text-sm text-gray-500 mt-4">Model R²: 0.6414 (XGBoost)</p>
+            </div>
+
+            <!-- NEW: Player Details Card -->
+            <div id="player-details-card" class="bg-[#1f2a37] p-6 rounded-xl shadow-lg border-l-4 border-[#1E88E5] hidden">
+                <h2 class="text-xl font-semibold mb-4 text-gray-50 flex justify-between items-center">
+                    Player Profile
+                </h2>
+                <p id="detail-player-name" class="text-3xl font-extrabold text-[#1E88E5] mb-4">--</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+                    <div class="space-y-1 p-2 bg-gray-700 rounded-lg">
+                        <p class="text-gray-400">Age</p>
+                        <p id="detail-age" class="font-bold text-gray-100">--</p>
+                    </div>
+                    <div class="space-y-1 p-2 bg-gray-700 rounded-lg">
+                        <p class="text-gray-400">Nationality</p>
+                        <p id="detail-country-of-citizenship" class="font-bold text-gray-100">--</p>
+                    </div>
+                    <div class="space-y-1 p-2 bg-gray-700 rounded-lg">
+                        <p class="text-gray-400">Sentiment Score</p>
+                        <p id="detail-sentiment" class="font-bold text-gray-100">--</p>
+                    </div>
+                    <div class="space-y-1 p-2 bg-gray-700 rounded-lg">
+                        <p class="text-gray-400">Current Club</p>
+                        <p id="detail-current-club-name" class="font-bold text-gray-100">--</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Charts and Insights -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                
+                <!-- Feature Importance Chart -->
+                <div class="bg-[#1f2a37] p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Feature Importance</h2>
+                    <p class="text-sm text-gray-400 mb-4">Relative impact of the top 4 features on the prediction.</p>
+                    <div id="feature-importance-container" class="space-y-4">
+                        <!-- Dynamic bars will be rendered here -->
+                        <div class="text-center text-gray-500">Run a prediction to see feature insights.</div>
+                    </div>
+                </div>
+
+                <!-- Player Performance Chart (Mockup) -->
+                <div class="bg-[#1f2a37] p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Player Performance Metrics</h2>
+                    <p class="text-sm text-gray-400 mb-4">Goals, Assists, and Pass Completion over time (Mock Data).</p>
+                    <div class="h-64">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Placeholder for Future Dynamic Content -->
+            <div class="bg-[#1f2a37] p-6 rounded-xl shadow-lg">
+                <h2 class="text-xl font-semibold mb-2">Further Analysis</h2>
+                <p class="text-gray-400">Space reserved for season comparisons, transfer history, and advanced metrics.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        // CRITICAL: Hardcoded API URL to avoid 'file://' errors
+        const API_BASE_URL = 'http://127.0.0.1:5000'; 
+        
+        let performanceChartInstance = null;
+        let availablePlayers = []; // Global store for player names
+
+        // --- Utility Functions ---
+
+        // Simple utility to format the Euro value
+        const formatEuro = (value) => {
+            if (value === 0 || value === null || isNaN(value)) return '€--,--';
+            return new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        };
+
+        // Handles displaying errors
+        const displayError = (message, isLookup = true) => {
+            const elementId = isLookup ? 'lookup-error-message' : 'manual-error-message';
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = `PREDICTION FAILED: ${message}`;
+            errorElement.classList.remove('hidden');
+            document.getElementById('prediction-value').textContent = 'Error';
+            // Clear feature importance on error
+            document.getElementById('feature-importance-container').innerHTML = `<div class="text-red-400 text-center">${message}</div>`;
+        };
+
+        // CORRECTED: Collects all relevant inputs from the sidebar
+        const getManualInputData = () => {
+            const data = {};
+            const formElements = document.getElementById('manual-predict-form').elements;
+
+            // Iterate over all form elements (inputs, selects, hidden fields)
+            for (let i = 0; i < formElements.length; i++) {
+                const element = formElements[i];
+                if (element.name) {
+                    let value = element.value;
+
+                    // Convert numeric values to float, keep strings as is
+                    if (element.type === 'number' || (element.type === 'hidden' && !isNaN(parseFloat(value)) && element.name !== 'current_club_name')) {
+                        data[element.name] = parseFloat(value);
+                    } else {
+                        data[element.name] = value;
+                    }
+                }
+            }
+
+            return data;
+        };
+
+
+        // --- Chart & Visualization Updates ---
+
+        const updateFeatureImportance = (importanceData) => {
+            const container = document.getElementById('feature-importance-container');
+            container.innerHTML = ''; // Clear previous content
+
+            if (!importanceData || importanceData.length === 0) {
+                container.innerHTML = `<div class="text-gray-500 text-center">No feature importance data received.</div>`;
+                return;
+            }
+
+            // Find max score for relative scaling
+            const maxScore = Math.max(...importanceData.map(item => item.score));
+
+            importanceData.forEach(item => {
+                const relativeWidth = (item.score / maxScore) * 100;
+                const scoreDisplay = item.score.toFixed(2);
+
+                const html = `
+                    <div class="text-sm">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium text-gray-300">${item.name}</span>
+                            <span class="text-xs text-gray-400">${scoreDisplay}</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5">
+                            <div class="bg-[#4CAF50] h-2.5 rounded-full transition-all duration-700" 
+                                 style="width: ${relativeWidth}%;"></div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        };
+
+        // NEW: Function to update player details card
+        const updatePlayerDetails = (data) => {
+            const card = document.getElementById('player-details-card');
+            
+            // NOTE: Assuming the backend response for lookup includes 
+            // player_name, age, country_of_citizenship, sentiment, and current_club_name
+            document.getElementById('detail-player-name').textContent = data.player_name || 'N/A';
+            document.getElementById('detail-age').textContent = data.age ? `${data.age} years` : 'N/A';
+            document.getElementById('detail-country-of-citizenship').textContent = data.country_of_citizenship || 'N/A';
+            document.getElementById('detail-sentiment').textContent = data.sentiment || 'N/A';
+            document.getElementById('detail-current-club-name').textContent = data.current_club_name || 'N/A';
+            
+            card.classList.remove('hidden'); // Show the card
+        };
+        
+        const createMockPerformanceChart = () => {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            
+            // Destroy previous chart instance if it exists
+            if (performanceChartInstance) {
+                performanceChartInstance.destroy();
+            }
+
+            performanceChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2020/21', '2021/22', '2022/23', '2023/24'],
+                    datasets: [{
+                        label: 'Goals',
+                        data: [5, 12, 18, 25],
+                        borderColor: '#FFC107',
+                        tension: 0.4
+                    }, {
+                        label: 'Assists',
+                        data: [2, 5, 10, 8],
+                        borderColor: '#2196F3',
+                        tension: 0.4
+                    }, {
+                        label: 'Pass Comp. %',
+                        data: [82, 85, 87, 86],
+                        borderColor: '#4CAF50',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: 'rgb(209, 213, 219)' }
+                        },
+                        title: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'rgb(156, 163, 175)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: 'rgb(156, 163, 175)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+        };
+
+
+        // --- Core Fetch Logic ---
+
+        const runPredictionFetch = async (endpoint, payload) => {
+            document.getElementById('prediction-value').textContent = 'Calculating...';
+            document.getElementById('lookup-error-message').classList.add('hidden');
+            document.getElementById('manual-error-message').classList.add('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    const errorMessage = result.error || `Server returned status ${response.status}`;
+                    throw new Error(errorMessage);
+                }
+
+                // Success
+                document.getElementById('prediction-value').textContent = formatEuro(result.predicted_value);
+                updateFeatureImportance(result.feature_importance);
+
+                // Update player details only if it was a lookup
+                if (endpoint.includes('lookup')) {
+                    // CRITICAL: We pass the whole result object, assuming the backend (app.py)
+                    // has been updated to include the player's features (age, country_of_citizenship, etc.)
+                    // in the JSON response for the lookup endpoint.
+                    updatePlayerDetails(result); 
+                } else {
+                    // Hide details card for manual prediction
+                    document.getElementById('player-details-card').classList.add('hidden');
+                }
+
+            } catch (error) {
+                console.error("Prediction Error:", error);
+                const isLookup = endpoint.includes('lookup');
+                displayError(error.message, isLookup);
+                // Also hide/reset player details on error
+                document.getElementById('player-details-card').classList.add('hidden');
+            }
+        };
+
+        // --- Event Listeners and Initialization ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize the mock chart
+            createMockPerformanceChart();
+            
+            // 2. Hide player details card on load
+            document.getElementById('player-details-card').classList.add('hidden');
+
+            // 3. Fetch player list for search suggestions
+            fetch(`${API_BASE_URL}/`)
+                .then(res => res.json())
+                .then(data => {
+                    availablePlayers = data.lookup_players || [];
+                    const datalist = document.getElementById('player-list-suggestions');
+                    availablePlayers.forEach(player => {
+                        const option = document.createElement('option');
+                        option.value = player;
+                        datalist.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching player list:", error);
+                    // Inform the user if the backend connection is down
+                    document.getElementById('lookup-error-message').textContent = `Connection error: Could not fetch player list from ${API_BASE_URL}. Is Flask running?`;
+                    document.getElementById('lookup-error-message').classList.remove('hidden');
+                });
+
+
+            // 4. Setup Manual Prediction Listener
+            document.getElementById('manual-predict-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const data = getManualInputData();
+                runPredictionFetch('predict/manual', data);
+            });
+
+            // 5. Setup Lookup Prediction Listener
+            document.getElementById('lookup-predict-button').addEventListener('click', () => {
+                const playerName = document.getElementById('player-name-input').value;
+                if (playerName) {
+                    runPredictionFetch('predict/lookup', { player_name: playerName });
+                } else {
+                    displayError("Please enter a player name for lookup.", true);
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
