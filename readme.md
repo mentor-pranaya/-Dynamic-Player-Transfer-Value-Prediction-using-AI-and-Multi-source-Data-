@@ -283,3 +283,18 @@
   
   Predictions for existing players live at: https://predictions-hpt.streamlit.app/
   with database hosted at shared hosting server.
+
+**8th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  UI enhancements for predictions
+
+  Added comparison graphs and table for player features v/s Maximum and Mean feature values
+
+**9th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  New Player Prediction Integrated
+
+  Working on presentation
+
