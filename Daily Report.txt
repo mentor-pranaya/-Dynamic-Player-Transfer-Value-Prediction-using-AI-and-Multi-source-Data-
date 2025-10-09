@@ -129,7 +129,7 @@ Compared LSTM performance against Random Forest, Linear Regression, and XGBoost 
 Observed that the LSTM captured time-series trends better than traditional models.
 Created visualizations (actual vs predicted curves) for selected players.
 Day-22
-Finalized Model Development Phase (Week 4).
+Finalized Model Development Phase.
 Cleaned and organized code for reproducibility.
 Exported final trained multivariate LSTM model.
 Documented experimental setup, tuning parameters, and evaluation results.
