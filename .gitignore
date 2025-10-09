@@ -1,2 +1,4 @@
 models/*.pkl
 data/predictions/*.pkl
+models/*.pkl
+data/predictions/*.pkl
