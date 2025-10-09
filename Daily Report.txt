@@ -134,3 +134,44 @@ Cleaned and organized code for reproducibility.
 Exported final trained multivariate LSTM model.
 Documented experimental setup, tuning parameters, and evaluation results.
 Prepared summary for transitioning into the next stage: deployment and interpretability (feature attribution, SHAP, attention mechanisms).
+Day 23: Versioning the Data
+Snapped CSV versions for datasets. Logged changes: new players added, features updated, bugs fixed. Version control saves sanity.
+
+Day 24: Digging into Sentiment's Role
+Checked how sentiment affects value—heatmaps showed positive buzz boosts it a tad. Cool insight; fans matter.
+
+Day 25: Injury Deep Dive
+Correlated total_days_missed with value, plotted by position (forwards miss more games?). Trends per role were eye-opening—time to refine.
+
+Day 26: Picking the Best Features
+Used RF importances for top 20 features, dropped the rest. Faster training, clearer insights. Less is more.
+
+Day 27: Ensemble Magic
+Averaged RF + XGBoost predictions. Ensemble RMSE beat solos slightly—teamwork makes the dream work.
+
+Day 28: Prepping Time-Series for LSTM
+Made sequences with 5-match windows, normalized, split train/val/test. LSTM's ready to learn patterns.
+
+Day 29: Bidirectional LSTM Test
+Tried bidirectional vs unidirectional—marginal RMSE win for bi. Small gains add up.
+
+Day 30: Normalizing for LSTM
+MinMaxScaler on numerics, one-hot on categories. Shapes match now—no input errors.
+
+Day 31: Adding Attention to LSTM
+Slapped on an attention layer to spotlight key timesteps. Visuals showed recent matches dominate—makes sense for market values.
+
+Day 32: SHAP for Explainability
+SHAP on RF highlighted performance, contract risk, injuries as big influencers, varying by position. Summary plots for the win—stakeholders love this.
+
+Day 33: Stress-Testing Models
+Ran on unseen data; stability was solid, but noted some variance. Errors documented—robustness is key.
+
+Day 34: Final LSTM Train
+Retrained multivariate on full data, saved as multivariate_lstm_model.keras. Reproducible across runs—phew.
+
+Day 35: Generating Predictions
+Predicted values for the whole master list, saved to predicted_transfer_values.csv. Top 50 viz was fun—Mbappé-level stars topping it.
+
+Day 36: Wrapping It Up with Documentation
+Compiled scripts, data, results into a final report: methodology, EDA, features, models, evals, viz. Structured for easy reuse or deployment. What a month—learned tons, from data wrangling to LSTMs. If you're building something similar, hit me up!
