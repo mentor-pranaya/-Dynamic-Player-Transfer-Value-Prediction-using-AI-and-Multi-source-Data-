@@ -1,7 +1,6 @@
-'''
+
 import pandas as pd
 
-# market value dataset and data retrieval
 market_value_df = pd.read_csv('/Users/nishantgupta/Downloads/Internship Dataset/Market Value Data.csv')
 print("\n--------------------------------------- Market Value Data -----------------------------------------------")
 
@@ -11,12 +10,10 @@ market_value_df.info()
 print("\n Description of the Dataset : \n ")
 print(market_value_df.describe())
 
-'''
 
-#Adding id coloumn and updating its value from transfermrkt website through scraping
-'''
-# File: fill_missing_ids.py
-# Run this on your local machine to find and fill missing player IDs.
+
+
+# for adding ids of missing id players
 
 import pandas as pd
 import os
@@ -29,7 +26,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 def setup_driver():
-    """Sets up the Selenium Chrome driver."""
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
@@ -41,7 +37,6 @@ def setup_driver():
     return driver
 
 def handle_consent_screen(driver):
-    """Handles the 'Welcome to Transfermarkt' consent screen."""
     try:
         wait = WebDriverWait(driver, 10)
         iframe = wait.until(EC.presence_of_element_located((By.XPATH, "//iframe[@title='Privacy Manager']")))
@@ -56,7 +51,6 @@ def handle_consent_screen(driver):
         driver.switch_to.default_content()
 
 def get_transfermarkt_id(driver, player_name):
-    """Searches for a player and returns their ID."""
     search_query = player_name.replace(' ', '+')
     search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
     try:
@@ -73,7 +67,6 @@ def get_transfermarkt_id(driver, player_name):
         return None
 
 def fill_missing_ids(input_file):
-    """Finds players with missing IDs and retrieves them from Transfermarkt."""
     if not os.path.exists(input_file):
         print(f"Error: The file '{input_file}' was not found.")
         return
@@ -103,7 +96,7 @@ def fill_missing_ids(input_file):
 
     driver.quit()
 
-    # Update the DataFrame with the newly found IDs
+
     if retrieved_ids:
         id_map = pd.Series(retrieved_ids)
         df.set_index('Name', inplace=True)
@@ -125,65 +118,52 @@ if __name__ == "__main__":
     input_csv = "/Users/nishantgupta/Desktop/Internship Project/market_value_with_ids.csv"
     fill_missing_ids(input_csv)
 
-    
-'''
 
-#updating missing id from statsbomb data
-'''
+
+# updating missing id from statsbomb data
+
 import pandas as pd
 import os
 
 def fill_missing_statsbomb_ids():
-    """
-    Reads a market value file with missing IDs and fills them in by matching
-    player names with a complete StatsBomb data file.
-    """
-    # --- 1. DEFINE FILE PATHS ---
+
     market_value_file = "/Users/nishantgupta/Desktop/Internship Project/market_value_with_all_ids.csv"
     statsbomb_file = "/Users/nishantgupta/Desktop/Internship Project/complete_statsbomb_data.csv"
     output_file = "/Users/nishantgupta/Desktop/Internship Project/market_value_fully_updated.csv"
 
-    # --- Check if required files exist ---
     for f in [market_value_file, statsbomb_file]:
         if not os.path.exists(f):
             print(f"Error: Required input file '{f}' not found.")
             return
 
-    # --- 2. LOAD DATASETS ---
+
     print("Loading datasets...")
     df_market = pd.read_csv(market_value_file)
     df_statsbomb = pd.read_csv(statsbomb_file)
 
-    # --- 3. CREATE A CLEAN PLAYER NAME TO ID MAP ---
     print("Creating a map of player names to StatsBomb IDs...")
-    # Select only the necessary columns and drop duplicates for a unique mapping
     player_map = df_statsbomb[['player_name', 'player_id']].drop_duplicates()
-    # Create a dictionary for fast lookups: {player_name: player_id}
     name_to_id_map = dict(zip(player_map.player_name, player_map.player_id))
     print(f"Created a map for {len(name_to_id_map)} unique players.")
 
-    # --- 4. FILL IN MISSING IDS ---
+
     print("Finding and filling missing IDs...")
-    # Identify rows where player_id is null (empty)
     missing_ids_mask = df_market['player_id'].isnull()
     
-    # Get the names of players with missing IDs
     names_to_fill = df_market.loc[missing_ids_mask, 'Name']
     
-    # Use the map to find the corresponding IDs for these names
+
     ids_to_fill = names_to_fill.map(name_to_id_map)
     
-    # Update the original DataFrame's 'player_id' column where it was null
     df_market.loc[missing_ids_mask, 'player_id'] = ids_to_fill
     
-    # --- 5. SAVE THE UPDATED FILE ---
+
     df_market.to_csv(output_file, index=False)
 
     print("\n" + "="*50)
     print(f"Update complete. Final dataset saved to '{output_file}'")
     print("="*50)
 
-    # --- SUMMARY ---
     original_missing = missing_ids_mask.sum()
     final_missing = df_market['player_id'].isnull().sum()
     filled_count = original_missing - final_missing
@@ -197,8 +177,7 @@ def fill_missing_statsbomb_ids():
 if __name__ == "__main__":
     fill_missing_statsbomb_ids()
 
-    
-'''
+
 
 #Data cleaning and feature engineering
 
@@ -207,11 +186,6 @@ import numpy as np
 import os
 
 def clean_and_engineer_market_data(input_file):
-    """
-    Cleans the market value dataset and engineers new features for age
-    and position.
-    """
-    try:
         print(f"Reading market value data from '{input_file}'...")
         df = pd.read_csv(input_file)
     except FileNotFoundError:
@@ -220,17 +194,12 @@ def clean_and_engineer_market_data(input_file):
 
     print("\n--- Starting Data Cleaning ---")
 
-    # --- 1. DATA CLEANING ---
-    # a) Clean and convert 'Market Value' and 'Fee' to numeric values.
-    # Assuming the values are in millions, we'll convert them to actual numbers.
-    # We'll handle non-numeric values by turning them into NaN (Not a Number).
     df['market_value_eur'] = pd.to_numeric(df['Market Value'], errors='coerce') * 1_000_000
     df['fee_eur'] = pd.to_numeric(df['Fee'], errors='coerce') * 1_000_000
 
-    # b) Clean 'Age' column and ensure it's numeric
+
     df['age_clean'] = pd.to_numeric(df['Age'], errors='coerce')
 
-    # c) Fill missing values for key numeric columns with the median or 0
     df['market_value_eur'].fillna(df['market_value_eur'].median(), inplace=True)
     df['fee_eur'].fillna(0, inplace=True) # Assume missing fee is a free transfer
     df.dropna(subset=['age_clean'], inplace=True) # Drop players with no age
@@ -241,16 +210,14 @@ def clean_and_engineer_market_data(input_file):
     # --- 2. FEATURE ENGINEERING ---
     print("\n--- Starting Feature Engineering ---")
 
-    # a) Create Age Categories
-    # Bin players into different career stages.
+
     age_bins = [0, 22, 29, 100] # Bins for <23 (Prospect), 23-29 (Peak), >29 (Veteran)
     age_labels = ['Prospect', 'Peak', 'Veteran']
     df['age_category'] = pd.cut(df['age_clean'], bins=age_bins, labels=age_labels, right=True)
 
     print("Created 'age_category' feature.")
 
-    # b) Create Simplified Positional Roles
-    # Group detailed positions into broader categories.
+
     def simplify_position(pos):
         pos = str(pos)
         if 'Forward' in pos or 'Winger' in pos or 'Striker' in pos:
@@ -265,8 +232,7 @@ def clean_and_engineer_market_data(input_file):
 
     df['simple_position'] = df['Position'].apply(simplify_position)
 
-    # c) One-Hot Encode Positional Roles for the model
-    # This creates new columns like 'pos_Forward', 'pos_Midfielder', etc.
+
     position_dummies = pd.get_dummies(df['simple_position'], prefix='pos')
     df = pd.concat([df, position_dummies], axis=1)
 
@@ -275,15 +241,14 @@ def clean_and_engineer_market_data(input_file):
     # --- 3. SAVE THE FINAL ENGINEERED DATASET ---
     output_file = "market_value_engineered.csv"
     
-    # Select and reorder columns for clarity
+
     final_cols = [
         'player_id', 'Name', 'age_clean', 'age_category', 'Position', 'simple_position',
         'Player Nationality', 'Club', 'League', 'market_value_eur', 'fee_eur'
     ]
-    # Add the new one-hot encoded position columns
+
     final_cols.extend(position_dummies.columns)
     
-    # Ensure all selected columns exist in the DataFrame
     final_cols_exist = [col for col in final_cols if col in df.columns]
     df_final = df[final_cols_exist]
 
@@ -299,6 +264,5 @@ def clean_and_engineer_market_data(input_file):
 
 
 if __name__ == "__main__":
-    # The file you uploaded from the previous step
     market_value_file = "/Users/nishantgupta/Desktop/Internship Project/market_value_fully_updated.csv"
     clean_and_engineer_market_data(market_value_file)
