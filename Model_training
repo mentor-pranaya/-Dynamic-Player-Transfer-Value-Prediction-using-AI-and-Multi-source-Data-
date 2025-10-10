@@ -12,7 +12,7 @@ import seaborn as sns
 import os
 import warnings
 
-# Suppress verbose TensorFlow logging
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 warnings.filterwarnings('ignore', category=UserWarning, module='xgboost')
 
@@ -67,9 +67,7 @@ def plot_feature_importance(model, feature_names):
     print(f"\nSaved feature importance plot to '{plot_path}'")
 
 def plot_correlation_heatmap(df, feature_cols):
-    """
-    Generates and saves a heatmap of the feature correlation matrix.
-    """
+    
     plt.figure(figsize=(16, 12))
     correlation_matrix = df[feature_cols].corr()
     sns.heatmap(correlation_matrix, cmap='viridis', annot=False) # Annot is false for readability with many features
@@ -83,7 +81,7 @@ def plot_correlation_heatmap(df, feature_cols):
 
 
 if __name__ == "__main__":
-    # --- 1. LOAD AND PREPARE DATA ---
+
     try:
         df = pd.read_csv("/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/final_master_dataset.csv")
     except FileNotFoundError:
@@ -106,13 +104,13 @@ if __name__ == "__main__":
     engineered_features = ['age_x_goals', 'age_squared', 'attack_contribution']
     lstm_feature_columns = feature_columns + engineered_features
 
-    # --- NEW: Generate and save the heatmap before modeling ---
+
     plot_correlation_heatmap(df_model, lstm_feature_columns)
 
     # --- 2. TRAIN THE BASE LSTM MODEL ---
     print("\n--- STAGE 1: Training the Base LSTM Model ---")
     
-    # Scale features and log-transform target for the LSTM
+   
     feature_scaler_lstm = MinMaxScaler()
     df_lstm = df_model.copy()
     df_lstm[lstm_feature_columns] = feature_scaler_lstm.fit_transform(df_lstm[lstm_feature_columns])
