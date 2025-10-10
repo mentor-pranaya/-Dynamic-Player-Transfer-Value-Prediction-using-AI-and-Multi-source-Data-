@@ -3,10 +3,7 @@ import pandas as pd
 import os
 
 def combine_engineered_datasets():
-    """
-    Combines the four engineered datasets (performance, market value, injury,
-    and sentiment) into a single master file ready for model training.
-    """
+   
     # --- 1. DEFINE FILE PATHS ---
     performance_file = "/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/player_performance_engineered.csv"
     market_value_file = "/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/market_value_engineered.csv"
@@ -14,65 +11,64 @@ def combine_engineered_datasets():
     sentiment_file = "/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/player_sentiment_summary.csv"
     output_file = "/Users/nishantgupta/Desktop/Internship Project/Cleaned and Adv. Feature Analysis/final_master_dataset.csv"
 
-    # Check if all required files exist
+    
     for f in [performance_file, market_value_file, injury_file, sentiment_file]:
         if not os.path.exists(f):
             print(f"Error: Required input file '{f}' not found.")
             return
 
-    # --- 2. LOAD ALL ENGINEERED DATASETS ---
+    
     print("Loading all engineered datasets...")
     df_perf = pd.read_csv(performance_file)
     df_market = pd.read_csv(market_value_file)
     df_injury = pd.read_csv(injury_file)
     df_sentiment = pd.read_csv(sentiment_file)
 
-    # --- 3. MERGE THE DATASETS ---
+   
     print("Merging datasets into a single master file...")
 
-    # Start with the performance data as the base, as it is season-specific
+    
     df_master = df_perf.copy()
 
-    # --- FIX: Merge using player names as the primary key ---
-    # Rename 'Name' in market data to 'player_name' to allow for a clean merge
+    
     if 'Name' in df_market.columns:
         df_market.rename(columns={'Name': 'player_name'}, inplace=True)
 
-    # Select only the columns we need from the market data to avoid duplicates
+    
     profile_cols = ['player_name', 'age_clean', 'age_category', 'simple_position', 'market_value_eur',
                     'pos_Defender', 'pos_Forward', 'pos_Goalkeeper', 'pos_Midfielder']
     
-    # Ensure all selected profile columns exist before merging
+    
     profile_cols_exist = [col for col in profile_cols if col in df_market.columns]
     df_master = pd.merge(df_master, df_market[profile_cols_exist], on='player_name', how='left')
 
-    # Merge the injury summary data. We'll match 'player_name' to 'Player'
+    
     if 'Player' in df_injury.columns:
         df_master = pd.merge(df_master, df_injury, left_on='player_name', right_on='Player', how='left')
 
-    # Merge the sentiment summary data on 'player_name'
+    
     if 'player_name' in df_sentiment.columns:
         df_master = pd.merge(df_master, df_sentiment, on='player_name', how='left')
 
-    # --- 4. FINAL CLEANING ---
+    
     print("Performing final cleaning on the master dataset...")
 
-    # Fill any missing values for players who didn't have injury or sentiment data with 0
+    
     merge_fill_cols = ['total_days_missed', 'injury_count', 'avg_days_per_injury',
                        'average_sentiment', 'post_count']
     
-    # --- FIX: Correct way to fill NaNs to avoid FutureWarning ---
+    
     fill_values = {col: 0 for col in merge_fill_cols if col in df_master.columns}
     df_master.fillna(value=fill_values, inplace=True)
             
-    # Drop rows where the merge failed to find a market value (our target variable)
+    
     df_master.dropna(subset=['market_value_eur'], inplace=True)
     
-    # Drop redundant 'Player' column from the injury merge
+    
     if 'Player' in df_master.columns:
         df_master.drop(columns=['Player'], inplace=True)
         
-    # --- 5. SAVE THE FINAL MASTER DATASET ---
+    
     df_master.to_csv(output_file, index=False)
     
     print("\n" + "="*50)
