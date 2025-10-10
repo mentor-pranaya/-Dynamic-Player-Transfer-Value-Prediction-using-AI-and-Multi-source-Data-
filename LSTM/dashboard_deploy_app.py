@@ -1004,100 +1004,215 @@ if st.session_state.trained:
         else:
             st.warning("Not enough data for recursive forecasting for this player.")
     # ---------- Custom Player Forecast ----------
-if generate_custom_forecast:
-    st.success(f"Generating {n_future}-Step Forecast for Custom Player: {new_player_name}")
+if 'generate_custom_forecast' in globals():
+    if generate_custom_forecast:
+        st.success(f"Generating {n_future}-Step Forecast for Custom Player: {new_player_name}")
 
-    # Prepare a synthetic last sequence (n_steps long)
-    feature_vector = np.array(list(custom_features.values()))
-    last_seq = np.tile(feature_vector, (n_steps, 1))  # repeat same values n_steps times
+        # Prepare a synthetic last sequence (n_steps long)
+        feature_vector = np.array(list(custom_features.values()))
+        last_seq = np.tile(feature_vector, (n_steps, 1))  # repeat same values n_steps times
 
-    # Apply same scaling as training data
-    scaled_last_seq = scaler.transform(last_seq)[np.newaxis, :, :]
+        # Apply same scaling as training data
+        scaled_last_seq = scaler.transform(last_seq)[np.newaxis, :, :]
 
-    # --- Recursive forecasting (same as existing logic) ---
-    preds_seq_scaled = predict_seq2seq_recursive(scaled_last_seq, encoder_model, decoder_model, n_future)
-    preds_seq_inv = inverse_transform_col_series(preds_seq_scaled, scaler, X.shape[2])
+        # --- Recursive forecasting (same as existing logic) ---
+        preds_seq_scaled = predict_seq2seq_recursive(scaled_last_seq, encoder_model, decoder_model, n_future)
+        preds_seq_inv = inverse_transform_col_series(preds_seq_scaled, scaler, X.shape[2])
 
-    X_seq_flat = scaled_last_seq.reshape(1, -1)
-    preds_xgb = []
-    for step in range(n_future):
-        meta_input = np.hstack([X_seq_flat, np.array(preds_seq_scaled[step]).reshape(1,1)])
-        preds_xgb.append(st.session_state.xgb_models_final[step].predict(meta_input)[0])
-    preds_xgb_inv = inverse_transform_col_series(np.array(preds_xgb), scaler, X.shape[2])
-    preds_ensemble_inv = (preds_seq_inv + preds_xgb_inv) / 2
-    forecast_placeholder.empty()
-    with forecast_placeholder.container():
-        prog_ui.progress(6/7)
-            #st.write("")
-        # --- Display Results in Tabs (same structure as existing player logic) ---
-        #tab1, tab2, tab3, tab4 = st.tabs([
-        #    f"🎱 {n_future}-Step Forecast for {new_player_name}",
-        #    f"🔍 Feature Comparison",
-        #    f"📊 Feature Comparison Graph",
-        #    f"⌛ Historical Data"
-        #])
-        tab1, tab2,  = st.tabs([
-            f"🎱 {n_future}-Step Forecast for {new_player_name}",
-            f"🔍 Feature Comparison"
-        ])
-        custom_df = pd.DataFrame([custom_features])
-        # --- Tab 1: Forecast Table & Graph ---
-        with tab1:
-            st.write(f"### {n_future}-Step Forecast for Player: {new_player_name}")
-            steps = np.arange(1, n_future + 1)
-            preds_seq_inv_m = np.array(preds_seq_inv) / 1e6
-            preds_xgb_inv_m = np.array(preds_xgb_inv) / 1e6
-            preds_ensemble_inv_m = np.array(preds_ensemble_inv) / 1e6
+        X_seq_flat = scaled_last_seq.reshape(1, -1)
+        preds_xgb = []
+        for step in range(n_future):
+            meta_input = np.hstack([X_seq_flat, np.array(preds_seq_scaled[step]).reshape(1,1)])
+            preds_xgb.append(st.session_state.xgb_models_final[step].predict(meta_input)[0])
+        preds_xgb_inv = inverse_transform_col_series(np.array(preds_xgb), scaler, X.shape[2])
+        preds_ensemble_inv = (preds_seq_inv + preds_xgb_inv) / 2
+        forecast_placeholder.empty()
+        with forecast_placeholder.container():
+            prog_ui.progress(6/7)
+                #st.write("")
+            # --- Display Results in Tabs (same structure as existing player logic) ---
+            #tab1, tab2, tab3, tab4 = st.tabs([
+            #    f"🎱 {n_future}-Step Forecast for {new_player_name}",
+            #    f"🔍 Feature Comparison",
+            #    f"📊 Feature Comparison Graph",
+            #    f"⌛ Historical Data"
+            #])
+            tab1, tab2 = st.tabs([
+                f"🎱 {n_future}-Step Forecast for {new_player_name}",
+                f"🔍 Feature Comparison"
+            ])
+            custom_df = pd.DataFrame([custom_features])
+            # --- Tab 1: Forecast Table & Graph ---
+            with tab1:
+                st.write(f"### {n_future}-Step Forecast for Player: {new_player_name}")
+                steps = np.arange(1, n_future + 1)
+                preds_seq_inv_m = np.array(preds_seq_inv) / 1e6
+                preds_xgb_inv_m = np.array(preds_xgb_inv) / 1e6
+                preds_ensemble_inv_m = np.array(preds_ensemble_inv) / 1e6
 
-            forecast_df = pd.DataFrame({
-                "Step Ahead": steps,
-                "Player": new_player_name,
-                "Prediction": preds_ensemble_inv_m
-            }).round(2)
-            st.dataframe(
-                        forecast_df.style.format({
-                            "Step Ahead": lambda x: f"Transfer {x}",
-                            "Prediction": lambda x: f"€{x:.2f}M" if pd.notna(x) else ""
-                        }), 
-                        hide_index=True
-                    )
-            #st.dataframe(forecast_df, hide_index=True, use_container_width=True)
+                forecast_df = pd.DataFrame({
+                    "Step Ahead": steps,
+                    "Player": new_player_name,
+                    "Prediction": preds_ensemble_inv_m
+                }).round(2)
+                st.dataframe(
+                            forecast_df.style.format({
+                                "Step Ahead": lambda x: f"Transfer {x}",
+                                "Prediction": lambda x: f"€{x:.2f}M" if pd.notna(x) else ""
+                            }), 
+                            hide_index=True
+                        )
+                #st.dataframe(forecast_df, hide_index=True, use_container_width=True)
 
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(x=steps, y=preds_seq_inv_m, mode='lines+markers', name='Seq2Seq LSTM', line=dict(color='orange')))
-            fig.add_trace(go.Scatter(x=steps, y=preds_xgb_inv_m, mode='lines+markers', name='XGBoost refined', line=dict(color='green')))
-            fig.add_trace(go.Scatter(x=steps, y=preds_ensemble_inv_m, mode='lines+markers', name='Ensemble (avg)', line=dict(color='red', dash='dot')))
-            fig.update_layout(
-                title=f"{n_future}-Step Forecast for {new_player_name}",
-                xaxis_title="Steps Ahead",
-                yaxis_title="Transfer Value (€ Millions)",
-                template="plotly_white",
-                legend_title="Models",
-                hovermode='x unified',
-                height=600
-            )
-            st.plotly_chart(fig, use_container_width=True)
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(x=steps, y=preds_seq_inv_m, mode='lines+markers', name='Seq2Seq LSTM', line=dict(color='orange')))
+                fig.add_trace(go.Scatter(x=steps, y=preds_xgb_inv_m, mode='lines+markers', name='XGBoost refined', line=dict(color='green')))
+                fig.add_trace(go.Scatter(x=steps, y=preds_ensemble_inv_m, mode='lines+markers', name='Ensemble (avg)', line=dict(color='red', dash='dot')))
+                fig.update_layout(
+                    title=f"{n_future}-Step Forecast for {new_player_name}",
+                    xaxis_title="Steps Ahead",
+                    yaxis_title="Transfer Value (€ Millions)",
+                    template="plotly_white",
+                    legend_title="Models",
+                    hovermode='x unified',
+                    height=600
+                )
+                st.plotly_chart(fig, use_container_width=True)
 
-        # --- Tab 2: Feature Comparison Table ---
-        with tab2:
-            feature_df = pd.DataFrame({
-                "Feature": list(custom_features.keys()),
-                "Value": list(custom_features.values()),
-                "Mean (Dataset)": [feature_means[f] for f in custom_features.keys()],
-                "Max (Dataset)": [feature_max[f] for f in custom_features.keys()]
-            })
-            st.dataframe(feature_df, hide_index=True, use_container_width=True)
+            # --- Tab 2: Feature Comparison Table ---
+            with tab2:
+                feature_df = pd.DataFrame({
+                    "Feature": list(custom_features.keys()),
+                    "Value": list(custom_features.values()),
+                    "Mean (Dataset)": [feature_means[f] for f in custom_features.keys()],
+                    "Max (Dataset)": [feature_max[f] for f in custom_features.keys()]
+                })
+                st.dataframe(feature_df, hide_index=True, use_container_width=True)
 
-        # --- Tab 3: Normalized Comparison Graph (empty, no dataset baseline) ---
-        #with tab3:
-        #    #st.info("Feature comparison graph unavailable (no reference dataset for new player).")
-        #    st.bar_chart(feature_df.set_index("Feature")[["Value", "Mean (Dataset)", "Max (Dataset)"]])
+            # --- Tab 3: Normalized Comparison Graph (empty, no dataset baseline) ---
+            #with tab3:
+            #    norm_compare = feature_df.copy()
+            #    # Normalize values for plotting (for proportional visualization)
+            #    for col in ["Value", "Mean (Dataset)", "Max (Dataset)"]:
+            #        norm_compare[col] = norm_compare[col] / norm_compare[col].max()
 
-        # --- Tab 4: Historical Data ---
-        #with tab4:
-        #    st.info("No transfer history available for a custom player.")
-        with placeholder:
-            st.empty()
+            #    fig = go.Figure()
+            #    fig.add_trace(go.Bar(
+            #        x=norm_compare["Feature"], y=norm_compare["Value"],
+            #        name="Custom Player", marker_color="orange"
+            #    ))
+            #    fig.add_trace(go.Bar(
+            #        x=norm_compare["Feature"], y=norm_compare["Mean (Dataset)"],
+            #        name="Mean (Dataset)", marker_color="blue"
+            #    ))
+            #    fig.add_trace(go.Bar(
+            #        x=norm_compare["Feature"], y=norm_compare["Max (Dataset)"],
+            #        name="Max (Dataset)", marker_color="green"
+            #    ))
+
+            #    fig.update_layout(
+            #        title="📊 Feature Comparison (Normalized)",
+            #        xaxis_title="Features",
+            #        yaxis_title="Normalized Value (0–1)",
+            #        barmode='group',
+            #        legend_title="Category",
+            #        height=500,
+            #    )
+            #    st.plotly_chart(fig, use_container_width=True)
+
+            #   # --- Forecast section ---
+            #   st.markdown("### 🔮 Forecast Results")
+
+            #    # Prepare the input for the LSTM
+            #    #input_seq = np.array(last_3_values).reshape(1, 3, 1)
+
+            #    # Predict using trained models
+            #    #preds_seq = st.session_state.final_seq_model.predict(input_seq)
+
+            #    # Prepare encoder and decoder inputs
+            #    encoder_input = np.array(last_3_values).reshape(1, 3, 1).astype(np.float32)
+
+            #    # Usually, decoder input starts with zeros or last known timestep repeated
+            #    decoder_input = np.zeros((1, n_future, 1), dtype=np.float32)
+
+            #    # Predict using the trained seq2seq model
+            #    preds_seq = st.session_state.final_seq_model.predict([encoder_input, decoder_input])
+
+            #    preds_seq_inv = scaler.inverse_transform(preds_seq)
+
+                # Prepare XGBoost input using features
+            #    xgb_input = pd.DataFrame([custom_features])
+            #    xgb_pred = st.session_state.xgb_models_final.predict(xgb_input)
+            #    preds_xgb_inv = scaler.inverse_transform(xgb_pred.reshape(-1, 1))
+
+                # Ensemble (average)
+            #    preds_ensemble_inv = (preds_seq_inv + preds_xgb_inv) / 2
+
+                # Display all predictions
+            #    col1, col2, col3 = st.columns(3)
+            #    col1.metric("Seq2Seq LSTM Forecast", f"€{preds_seq_inv[0][0]:,.2f}")
+            #    col2.metric("XGBoost Forecast", f"€{preds_xgb_inv[0][0]:,.2f}")
+            #    col3.metric("Ensemble (Avg)", f"€{preds_ensemble_inv[0][0]:,.2f}")
+
+                # --- Forecast Visualization ---
+            #    st.markdown("### 📈 Forecast Visualization")
+            #    steps = np.arange(1, 5)  # show next 3 + ensemble
+            #    fig2 = go.Figure()
+
+                # Add bars for last 3 known values
+            #    fig2.add_trace(go.Scatter(
+            #        x=[-2, -1, 0],
+            #        y=last_3_values,
+            #        mode="lines+markers+text",
+            #        name="Last 3 Actual Values",
+            #        text=[f"€{v:.2f}M" for v in last_3_values],
+            #        textposition="top center",
+            #        line=dict(color="blue", width=2)
+            #    ))
+
+                # Add predictions
+            #    fig2.add_trace(go.Scatter(
+            #        x=[1],
+            #        y=preds_seq_inv.flatten(),
+            #        mode="markers+text",
+            #        name="Seq2Seq LSTM",
+            #        text=[f"€{preds_seq_inv[0][0]:.2f}M"],
+            #        textposition="top center",
+            #        marker=dict(color="orange", size=10)
+            #    ))
+            #    fig2.add_trace(go.Scatter(
+            #        x=[1],
+            #        y=preds_xgb_inv.flatten(),
+            #        mode="markers+text",
+            #        name="XGBoost refined",
+            #        text=[f"€{preds_xgb_inv[0][0]:.2f}M"],
+            #        textposition="bottom center",
+            #        marker=dict(color="green", size=10)
+            #    ))
+            #    fig2.add_trace(go.Scatter(
+            #        x=[1],
+            #        y=preds_ensemble_inv.flatten(),
+            #        mode="markers+text",
+            #        name="Ensemble (avg)",
+            #        text=[f"€{preds_ensemble_inv[0][0]:.2f}M"],
+            #        textposition="middle right",
+            #        marker=dict(color="red", size=12, symbol="star")
+            #    ))
+
+            #    fig2.update_layout(
+            #        title=f"📊 Market Value Forecast for {player_name}",
+            #        xaxis_title="Timeline (Last 3 → Forecast)",
+            #        yaxis_title="Market Value (€ millions)",
+            #        legend_title="Model",
+            #        height=500,
+            #    )
+            #    st.plotly_chart(fig2, use_container_width=True)
+
+            # --- Tab 4: Historical Data ---
+            #with tab4:
+            #    st.info("No transfer history available for a custom player.")
+            with placeholder:
+                st.empty()
     prog_ui.progress(7/7)
 
 # Close DB connection
