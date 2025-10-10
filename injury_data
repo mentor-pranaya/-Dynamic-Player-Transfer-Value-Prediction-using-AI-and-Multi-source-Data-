@@ -11,11 +11,6 @@ print(player_injury_df.describe())
 
 '''
 
-'''
-# File: bulk_injury_scraper_final.py
-# This script scrapes injury data for ALL players in your summary file
-# and can be safely stopped and restarted.
-
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -24,7 +19,6 @@ import time
 import random
 
 def search_for_player_url(player_name, headers):
-    """Searches Transfermarkt and returns the URL of the top search result."""
     search_query = player_name.replace(' ', '+')
     search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={search_query}"
     
@@ -45,7 +39,6 @@ def search_for_player_url(player_name, headers):
     return None
 
 def scrape_injury_history(player_url, player_name_from_file, headers):
-    """Scrapes the full injury history from a player's profile."""
     try:
         injury_url = player_url.replace('/profil/', '/verletzungen/')
         response = requests.get(injury_url, headers=headers, timeout=20)
@@ -82,7 +75,6 @@ if __name__ == "__main__":
 
     try:
         df_players = pd.read_csv(PLAYER_LIST_FILE)
-        # --- THIS NOW USES THE ENTIRE LIST OF PLAYERS ---
         player_names_to_scrape = df_players['player_name'].unique()
         print(f"Found {len(player_names_to_scrape)} unique players to process.")
     except FileNotFoundError:
@@ -100,7 +92,6 @@ if __name__ == "__main__":
     for i, name in enumerate(player_names_to_scrape):
         
         if name in processed_players:
-            # This part is now handled by the logic above, but we can keep it as a quick check
             continue
 
         print(f"Processing ({i+1}/{total_players}): {name}...")
@@ -124,18 +115,12 @@ if __name__ == "__main__":
     print("="*50) 
 
     
-'''
-
 # Data Cleaning and feature engineering
 
 import pandas as pd
 import os
 
 def engineer_injury_features(input_file):
-    """
-    Reads the raw injury history log and engineers aggregated features
-    to summarize each player's injury profile.
-    """
     try:
         print(f"Reading raw injury data from '{input_file}'...")
         df = pd.read_csv(input_file)
@@ -149,33 +134,22 @@ def engineer_injury_features(input_file):
     # a) Remove rows where there are no recorded injuries
     df_cleaned = df[df['Injury'] != 'No recorded injuries'].copy()
 
-    # b) Clean the 'Days Missed' column and convert it to a number.
-    # It currently has text like "11 days". We need to extract the number.
-    # We use .str.extract('(\d+)') to get the digits and convert to a numeric type.
-    # 'errors='coerce'' will turn any non-numeric values into NaN (Not a Number).
     df_cleaned['days_missed_numeric'] = pd.to_numeric(
         df_cleaned['Days Missed'].str.extract('(\d+)', expand=False),
         errors='coerce'
     )
-    # Fill any resulting missing values with 0
+
     df_cleaned['days_missed_numeric'].fillna(0, inplace=True)
 
 
     # --- 2. FEATURE ENGINEERING ---
-    # Now we aggregate the cleaned data to create summary statistics for each player.
-    
-    # a) Group the data by player
-    # b) Use .agg() to calculate multiple new features at once:
-    #    - total_days_missed: The sum of all days missed.
-    #    - injury_count: The total number of separate injuries.
-    #    - avg_days_per_injury: The average duration of an injury.
+
     injury_summary = df_cleaned.groupby('Player').agg(
         total_days_missed=('days_missed_numeric', 'sum'),
         injury_count=('Injury', 'count'),
         avg_days_per_injury=('days_missed_numeric', 'mean')
     ).reset_index()
 
-    # Round the average to make it cleaner
     injury_summary['avg_days_per_injury'] = injury_summary['avg_days_per_injury'].round(1)
 
 
@@ -193,6 +167,5 @@ def engineer_injury_features(input_file):
 
 
 if __name__ == "__main__":
-    # The file you uploaded with the raw injury log
     raw_injury_file = "/Users/nishantgupta/Desktop/Internship Project/all_players_injury_history.csv"
     engineer_injury_features(raw_injury_file)
