@@ -600,4 +600,4 @@ Date: 01/09/2025 (Monday)
 - Presented the project titled *“Player Market Value Prediction using AI-Driven Ensemble Models”* before mentors and peers.  
 - Received positive feedback on model performance, workflow clarity, and deployment.  
 
-✅ **Milestone 6: Model Evaluation, Deployment & Presentation Completed! 🎉**  
+✅ **Milestone 6 & 7: Model Evaluation,Hyperparameter Tuning, Deployment & Presentation Completed! 🎉**  
