@@ -308,4 +308,4 @@
 **11th October 2025:**
 ----------------------------------------------------------------------------------------------------------  
 
-  Comprehensive Technical Report - TransferIQ - Updated
+  Comprehensive Technical Report - TransferIQ - Final
