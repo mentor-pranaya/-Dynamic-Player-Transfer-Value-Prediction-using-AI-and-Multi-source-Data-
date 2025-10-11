@@ -419,8 +419,11 @@ Date: 01/09/2025 (Monday)
 - Cleaned dataset and created train-test splits.  
 - Ran initial model → baseline accuracy achieved.  
 
----
+--------
 
+# WEEK 5
+
+---
 # Day 28  
 **Date:** 22/09/2025  
 
@@ -495,8 +498,11 @@ Date: 01/09/2025 (Monday)
 - Logged improved results.  
 - Added findings to `ensemble_progress.md`.  
 
----
+--------
 
+# WEEK 6
+
+---
 # Day 35  
 **Date:** 29/09/2025  
 
@@ -513,6 +519,10 @@ Date: 01/09/2025 (Monday)
 - Final testing of integrated ensemble model.  
 - Achieved stable performance improvement.  
 - Prepared plots and tables for milestone report.  
+
+--------
+
+# WEEK 7
 
 ---
 
@@ -540,3 +550,54 @@ Date: 01/09/2025 (Monday)
 - Reviewed feedback on milestone submission.  
 - Drafted plan for next phase (Hybrid/Advanced methods).  
 - Organized notes and prepared upcoming tasks.  
+
+# Week 6 Progress Report  
+
+---
+
+## Day 29  
+**Date:** 04/10/2025  
+
+### Daily Work  
+- Began **model evaluation and validation** phase for both LSTM and Ensemble models.  
+- Computed key performance metrics — **MAE**, **RMSE**, and **R² score**.  
+- Compared results between standalone models and integrated ensemble outputs.  
+- Recorded evaluation summary in `model_evaluation.md`.  
+
+--------
+
+# WEEK 8
+
+---
+## Day 30  
+**Date:** 06/10/2025  
+
+### Daily Work  
+- Conducted **hyperparameter tuning** using Grid Search and Bayesian Optimization.  
+- Optimized parameters for both **LSTM** (learning rate, batch size, dropout) and **LightGBM** (num_leaves, max_depth, learning_rate).  
+- Achieved improved model stability and reduced validation error.  
+- Generated updated performance graphs for the final report.  
+
+---
+
+## Day 31  
+**Date:** 07/10/2025  
+
+### Daily Work  
+- Deployed the finalized **AI-ML prediction model** using **Streamlit** for an interactive web interface.  
+- Used **ngrok** to create a secure public URL for external access and testing.  
+- Integrated trained models into the Streamlit app for dynamic prediction and visualization.  
+- Documented deployment process and results in `deployment_notes.md`.  
+
+---
+
+## Day 32  
+**Date:** 08/10/2025  
+
+### Daily Work  
+- Prepared **project presentation slides** and **final internship report** summarizing all milestones.  
+- Conducted internal review to refine presentation flow and technical accuracy.  
+- Presented the project titled *“Player Market Value Prediction using AI-Driven Ensemble Models”* before mentors and peers.  
+- Received positive feedback on model performance, workflow clarity, and deployment.  
+
+✅ **Milestone 6: Model Evaluation, Deployment & Presentation Completed! 🎉**  
