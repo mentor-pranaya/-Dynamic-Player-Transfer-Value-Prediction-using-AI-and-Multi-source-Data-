@@ -298,9 +298,14 @@
 
   Working on presentation
 
-**9th October 2025:**
+**10th October 2025:**
 ----------------------------------------------------------------------------------------------------------  
 
   TransferIQ Presentation upload
 
   Comprehensive Technical Report - TransferIQ - First Draft
+
+**11th October 2025:**
+----------------------------------------------------------------------------------------------------------  
+
+  Comprehensive Technical Report - TransferIQ - Updated
