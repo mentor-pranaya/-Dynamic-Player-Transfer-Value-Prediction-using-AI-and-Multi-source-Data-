@@ -555,7 +555,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-## Day 29  
+## Day 40  
 **Date:** 04/10/2025  
 
 ### Daily Work  
@@ -569,7 +569,7 @@ Date: 01/09/2025 (Monday)
 # WEEK 8
 
 ---
-## Day 30  
+## Day 41  
 **Date:** 06/10/2025  
 
 ### Daily Work  
@@ -580,7 +580,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-## Day 31  
+## Day 42  
 **Date:** 07/10/2025  
 
 ### Daily Work  
@@ -591,7 +591,7 @@ Date: 01/09/2025 (Monday)
 
 ---
 
-## Day 32  
+## Day 43  
 **Date:** 08/10/2025  
 
 ### Daily Work  
