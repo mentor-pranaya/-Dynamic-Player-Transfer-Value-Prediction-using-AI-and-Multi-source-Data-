@@ -1,0 +1,966 @@
+﻿Club,Name,Fee
+Man City,Erling Haaland,60
+Chelsea,Enzo Fernández,121
+Man Utd,Antony,95
+Chelsea,Wesley Fofana,80.4
+Real Madrid,Aurélien Tchouaméni,80
+Man Utd,Casemiro,70.65
+Chelsea,Mykhaylo Mudryk,70
+Newcastle,Alexander Isak,70
+Bayern Munich,Matthijs de Ligt,67
+Chelsea,Raheem Sterling,56.2
+Bayern Munich,Sadio Mané,32
+Chelsea,Marc Cucurella,65.3
+Juventus,Federico Chiesa,42.5
+Barcelona,Jules Koundé,50
+Liverpool,Cody Gakpo,42
+Barcelona,Raphinha,58
+Tottenham,Richarlison,58
+Man Utd,Lisandro Martínez,57.37
+Liverpool,Darwin Núñez,80
+Paris SG,Fabián Ruiz,23
+Arsenal,Gabriel Jesus,52.2
+Tottenham,Cristian Romero,50
+Man City,Kalvin Phillips,49
+Paris SG,Carlos Soler,18
+Newcastle,Anthony Gordon,45.6
+Barcelona,Robert Lewandowski,45
+Wolves,Matheus Nunes,45
+Benfica,Enzo Fernández,44.25
+West Ham,Lucas Paquetá,42.95
+Rennes,Amine Gouiri,28
+Paris SG,Vitinha,41.5
+Juventus,Bremer,41
+Paris SG,Nuno Mendes,38
+Chelsea,Benoît Badiashile,38
+Wolves,Gonçalo Guedes,32.6
+Aston Villa,Diego Carlos,31
+Chelsea,Kalidou Koulibaly,38
+Newcastle,Sven Botman,37
+West Ham,Gianluca Scamacca,36
+Arsenal,Fábio Vieira,35
+Arsenal,Oleksandr Zinchenko,35
+Everton,Amadou Onana,35
+West Ham,Nayef Aguerd,35
+Chelsea,Noni Madueke,35
+Bor. Dortmund,Sébastien Haller,31
+Bor. Dortmund,Karim Adeyemi,30
+Tottenham,Yves Bissouma,29.2
+RB Leipzig,Timo Werner,20
+Bayern Munich,Ryan Gravenberch,18.5
+Arsenal,Jorginho,11.3
+Bor. Dortmund,Nico Schlotterbeck,20
+Leeds,Brenden Aaronson,32.84
+Marseille,Vitinha,32
+Ajax,Steven Bergwijn,31.25
+AC Milan,Charles De Ketelaere,35.5
+Chelsea,Malo Gusto,30
+Arsenal,Leandro Trossard,24
+Man City,Manuel Akanji,17.5
+SSC Napoli,Frank Anguissa,16
+Galatasaray,Nicolò Zaniolo,15
+Nottm Forest,Morgan Gibbs-White,29.5
+Aston Villa,Leander Dendoncker,15
+Paris SG,Renato Sanches,15
+Monaco,Mohamed Camara,15
+RB Leipzig,Xaver Schlager,12
+RB Leipzig,David Raum,26
+Arsenal,Jakub Kiwior,25
+Southampton,Kamaldeen Sulemana,25
+Leeds,Luis Sinisterra,25
+Atalanta BC,Merih Demiral,21
+Nottm Forest,Danilo,20
+Fulham,João Palhinha,20
+Wolves,Sasa Kalajdzic,18
+Marseille,Mattéo Guendouzi,11
+Sporting CP,Pedro Porro,8.77
+Rayo Vallecano,Raúl de Tomás,8
+Wolves,Nathan Collins,24.3
+Juventus,Filip Kostic,13
+Inter,Joaquín Correa,27.3
+Ajax,Calvin Bassey,23
+Bournemouth,Ilya Zabarnyi,22.7
+OGC Nice,Sofiane Diop,22
+Atalanta BC,Jérémie Boga,22
+West Ham,Thilo Kehrer,12
+Marseille,Cengiz Ünder,8.4
+Girona,Viktor Tsygankov,5
+West Ham,Maxwel Cornet,20.7
+Nottm Forest,Taiwo Awoniyi,20.5
+FC Porto,David Carmo,20.28
+Atlético Madrid,Nahuel Molina,20
+Bayern Munich,Mathys Tel,20
+Rennes,Arnaud Kalimuendo,20
+Aston Villa,Philippe Coutinho,20
+Real Sociedad,Umar Sadiq,20
+Nottm Forest,Neco Williams,20
+Brighton,Pervis Estupiñán,17.8
+Benfica,David Neres,15.3
+Fiorentina,Dodô,14.5
+Aston Villa,Álex Moreno,13.5
+B. Leverkusen,Adam Hlozek,13
+Paris SG,Nordi Mukiele,12
+Nottm Forest,Remo Freuler,9
+Galatasaray,Lucas Torreira,6
+Wolves,Pablo Sarabia,5
+Atlético Madrid,Memphis Depay,3
+Fiorentina,Antonin Barak,
+Rennes,Arthur Theate,19
+Udinese Calcio,Hassane Kamara,19
+Brentford,Keane Lewis-Potter,19
+Wolves,João Gomes,18.7
+SSC Napoli,Min-jae Kim,18.05
+Tottenham,Destiny Udogie,18
+Southampton,Paul Onuachu,18
+Chelsea,Carney Chukwuemeka,18
+Everton,Dwight McNeil,17
+Brentford,Aaron Hickey,16.5
+OGC Nice,Gaëtan Laborde,15
+Flamengo,Gerson,15
+Real Sociedad,Brais Méndez,14
+Everton,Neal Maupay,11.8
+Nottm Forest,Moussa Niakhaté,10
+Lazio,Mattia Zaccagni,7.1
+AS Roma,Zeki Celik,7
+Fulham,Issa Diop,17.8
+Newcastle,Matt Targett,17.5
+Leeds,Tyler Adams,17
+Leicester,Harry Souttar,17
+Leicester,Wout Faes,17
+Club Brugge,Roman Yaremchuk,17
+Man Utd,Tyrell Malacia,15
+Bournemouth,Marcos Senesi,15
+Marseille,Jordan Veretout,11
+Hellas Verona,Giovanni Simeone,10.5
+Udinese Calcio,Destiny Udogie,4
+Udinese Calcio,Destiny Udogie,
+Wolves,Hee-chan Hwang,16.7
+Aston Villa,Jhon Durán,16.64
+SSC Napoli,Mathías Olivera,16.5
+Ajax,Brian Brobbey,16.35
+Leeds,Georginio Rutter,28
+Sevilla FC,Tanguy Nianzou,16
+West Ham,Danny Ings,12
+Sporting CP,Jerry St. Juste,10
+Southampton,Duje Caleta-Car,8
+Marseille,Arkadiusz Milik,8
+Crystal Palace,Cheick Doucouré,22.6
+Monaco,Takumi Minamino,15
+Brentford,Mikkel Damsgaard,15
+Chelsea U21,Cesare Casadei,15
+Flamengo,Everton,14
+Leeds,Rasmus Kristensen,13
+Nottm Forest,Orel Mangala,13
+Monaco,Breel Embolo,12.5
+Chelsea,Pierre-Emerick Aubameyang,12
+Newcastle,Nick Pope,11.5
+SSC Napoli,Khvicha Kvaratskhelia,11.5
+Real Sociedad,Mohamed-Ali Cho,11
+VfL Wolfsburg,Mattias Svanberg,9
+Marseille,Azzedine Ounahi,8
+Marseille,Jonathan Clauss,7.5
+Bologna,Arthur Theate,6.75
+VfB Stuttgart,Konstantinos Mavropanos,3.2
+Sporting CP,Héctor Bellerín,1
+Nottm Forest,Emmanuel Dennis,14.8
+Tottenham,Djed Spence,14.7
+Fenerbahce,Diego Rossi,5.5
+West Ham,Emerson,15.4
+Southampton,Gavin Bazunu,14
+Leicester,Victor Kristiansen,14
+LOSC Lille,Mohamed Bayo,14
+Sevilla FC,Marcão,12
+Southampton,Carlos Alcaraz,13.65
+Atalanta BC,Éderson,21.4
+Southampton,Sékou Mara,13
+Man City,Sergio Gómez,13
+Benfica,Fredrik Aursnes,13
+RB Salzburg,Lucas Gourna-Douath,13
+OGC Nice,Mattia Viti,13
+Fulham,Sasa Lukic,9.8
+Bor. Dortmund,Salih Özcan,5
+Chelsea,Andrey Santos,12.5
+Southampton,Roméo Lavia,12.3
+Tigres UANL,Fernando Gorriarán,12.2
+Marseille,Pau López,12
+Leeds,Maximilian Wöber,12
+Leeds,Marc Roca,12
+OGC Nice,Alexis Beka Beka,12
+TSG Hoffenheim,Stanley Nsoki,12
+Chelsea,David Datro Fofana,12
+Crystal Palace,Naouirou Ahamada,12
+Crystal Palace,Chris Richards,12
+Sassuolo,Agustín Álvarez,12
+Lazio,Luís Maximiano,10.26
+FC Porto,Gabriel Veron,10.25
+Real Betis,Willian José,10
+Ajax,Owen Wijndal,10
+FC Porto,Marko Grujic,9
+Torino,Samuele Ricci,8.5
+Fiorentina,Antonin Barak,8.5
+Brighton,Billy Gilmour,8.33
+Real Betis,Luiz Henrique,8
+1.FSV Mainz 05,Angelo Fulgini,6
+Liverpool,Fábio Carvalho,5.9
+Fenerbahce,João Pedro,4.68
+Everton,Idrissa Gueye,4
+Galatasaray,Sérgio Oliveira,3
+Trabzonspor,Maxi Gómez,3
+Bournemouth,Marcus Tavernier,11.9
+Lens,Loïs Openda,11.8
+Brighton,Julio Enciso,11.6
+OGC Nice,Youssouf Ndayishimiye,11.5
+Man City,Máximo Perrone,11
+Wolves,Mario Lemina,11
+Olympique Lyon,Amin Sarr,11
+Burnley,Lyle Foster,11
+Bologna,Joshua Zirkzee,8.5
+Sassuolo,Matheus Henrique,7
+1.FSV Mainz 05,Ludovic Ajorque,6
+Olympique Lyon,Nicolás Tagliafico,4.2
+West Ham,Flynn Downes,10.65
+Norwich,Gabriel Sara,10.5
+Everton,James Garner,10.4
+Bournemouth,Antoine Semenyo,10.25
+Tigres UANL,Nicolás Ibáñez,10.1
+Bournemouth,Dango Ouattara,22.5
+Southampton,Armel Bella-Kotchap,11
+VfL Wolfsburg,Jakub Kaminski,10
+Marseille,Luis Suárez,10
+Sporting CP,Rúben Vinagre,10
+Nottm Forest,Giulian Biancone,10
+Olympique Lyon,Jeffinho,10
+Stade Reims,Junya Ito,10
+Getafe,Borja Mayoral,10
+Atalanta BC,Ademola Lookman,9.2
+FC Empoli,Guglielmo Vicario,8.5
+Fiorentina,Rolando Mandragora,8.2
+Ajax,Gerónimo Rulli,8
+Palmeiras,Artur,8
+Southampton,Joe Aribo,7.1
+Udinese Calcio,Beto,7
+TSG Hoffenheim,Ozan Kabak,7
+Al-Rayyan SC,Sofiane Boufal,6
+Southampton,Mislav Orsic,5.75
+Hellas Verona,Gianluca Caprari,5
+Leeds,Wilfried Gnonto,4.5
+Trabzonspor,Mahmoud Trezeguet,4
+Valencia,Hugo Duro,4
+Fenerbahce,Michy Batshuayi,3.5
+E. Frankfurt,Mario Götze,3
+Galatasaray,Léo Dubois,2.5
+Columbus,Cucho Hernández,9.55
+Benfica,João Victor,9.5
+Ajax,Ahmetcan Kaplan,9.5
+Fulham,Andreas Pereira,9.5
+Palmeiras,José Manuel López,9.5
+Portland,Evander,9.5
+Nottm Forest,Lewis O'Brien,9.4
+West Ham,Alphonse Areola,9.3
+Chelsea,Gabriel Slonina,9.09
+Bor. M'gladbach,Jonas Omlin,9
+Rennes,Christopher Wooh,9
+Benfica,Andreas Schjelderup,9
+Monza,Andrea Colpani,9
+Union Berlin,Josip Juranovic,8.55
+Bologna,Jhon Lucumí,8
+FC Copenhagen,Andreas Cornelius,6
+Lens,Adam Buksa,6
+Brighton,Facundo Buonanotte,6
+Fulham,Kevin Mbabu,5.5
+RSC Anderlecht,Anders Dreyer,4.2
+Fulham,Bernd Leno,3.6
+E. Frankfurt,Kristijan Jakic,3.5
+PSV Eindhoven,Anwar El Ghazi,2.5
+RCD Mallorca,Predrag Rajkovic,2
+Bor. Dortmund,Julien Duranville,8.5
+SC Freiburg,Ritsu Doan,8.5
+Nottm Forest,Omar Richards,8.5
+Salernitana,Giulio Maggiore,4.5
+E. Frankfurt,Jens Petter Hauge,8.2
+Bor. M'gladbach,Nathan Ngoumou,8
+Benfica,Alexander Bah,8
+Espanyol,César Montes,8
+Watford,Ismaël Koné,8
+Valencia,André Almeida,8
+Brighton,Simon Adingra,8
+UD Almería,El Bilal Touré,8
+Lazio,Marcos Antônio,7.5
+Real Betis,Abner,7
+FC Lorient,Bamba Dieng,7
+UD Almería,Kaiky,7
+E. Frankfurt,Lucas Alario,6
+VfL Wolfsburg,Patrick Wimmer,5
+Salernitana,Flavius Daniliuc,5
+Ajax,Francisco Conceição,5
+FC Midtjylland,Anders Dreyer,5
+Fulham,Carlos Vinícius,5
+Orlando,Martín Ojeda,5
+LAFC,Denis Bouanga,4.55
+Internacional,Wanderson,4.5
+Trabzonspor,Enis Bardhi,3
+BSC Young Boys,Kastriot Imeri,3
+CA Osasuna,Moi Gómez,1.8
+Rangers,Todd Cantwell,1.71
+Getafe,Domingos Duarte,7.5
+Miami,Alejandro Pozuelo,1.36
+FC Lorient,Jean-Victor Makengo,11
+VfL Wolfsburg,Bartol Franjic,7.5
+Sporting CP,Ousmane Diomande,7.5
+Celtic,Jota,7.5
+Lazio,Nicolò Casale,6.56
+Real Sociedad,Takefusa Kubo,6.5
+Bor. Dortmund,Julian Ryerson,5
+PSV Eindhoven,Guus Til,3
+Fiorentina,Josip Brekalo,1.5
+Feyenoord,Quinten Timber,7.4
+Sassuolo,Armand Laurienté,10.1
+Torino,Perr Schuurs,9.4
+RCD Mallorca,Vedat Muriqi,8.02
+Benfica,Casper Tengstedt,7
+Celtic,Cameron Carter-Vickers,7
+Salernitana,Matteo Lovato,7
+RB Salzburg,Oscar Gloukh,7
+RB Salzburg,Strahinja Pavlovic,7
+Flamengo,Ayrton Lucas,7
+UD Almería,Lázaro,7
+Al-Shabab,Aaron Boupendza,7
+Atlético Madrid,Samuel Lino,6.5
+Nottm Forest,Jonjo Shelvey,6.5
+Union Berlin,Jordan,6
+Udinese Calcio,Matheus Martins,6
+São Paulo,Giuliano Galoppo,6
+CSKA Moscow,Jorge Carrascal,6
+Pachuca,Cristian Arango,5.5
+Fenerbahce,Luan Peres,5.23
+Nottm Forest,Ui-jo Hwang,4
+FC Nantes,Fabien Centonze,4
+Royal Antwerp,Toby Alderweireld,4
+Arsenal,Marquinhos,3.5
+Fenerbahce,Willian Arão,3
+Union Berlin,Morten Thorsby,3
+Cruzeiro,Wesley,3
+LOSC Lille,Adam Ounas,3
+Cádiz CF,Théo Bongonda,3
+Rangers,Nicolas Raskin,1.5
+Cagliari Calcio,Raoul Bellanova,7
+Real Valladolid,Kenedy,5
+River Plate,Miguel Borja,6.7
+Troyes,Sávio,6.5
+KRC Genk,Yira Sor,6.5
+Cremonese,Cyriel Dessers,6.5
+Tigres UANL,Samir Caetano,6.5
+LAFC,Stipe Biuk,6.5
+G. Bordeaux,Alberth Elis,6
+Besiktas,Gedson Fernandes,6
+Rangers,Ridvan Yilmaz,4
+Galatasaray,Mostafa Mohamed,3.85
+KRC Genk,Nicolás Castro,3.2
+FC Augsburg,Dion Beljo,3
+Stade Reims,Andreaw Gravillon,3
+Chivas,Víctor Guzmán,3
+Flamengo,Erick Pulgar,2.8
+Real Valladolid,Selim Amallah,1
+Arsenal,Matt Turner,6.36
+Celta de Vigo,Jörgen Strand Larsen,12.4
+AC Milan,Malick Thiaw,8.6
+Fenerbahce,Jayden Oosterwolde,6
+Galatasaray,Yusuf Demir,6
+Corinthians,Fausto Vera,6
+Feyenoord,David Hancko,6
+Lazio,Mario Gila,6
+RB Salzburg,Fernando,6
+Olympiacos,Pep Biel,6
+Montpellier,Kiki Kouyaté,6
+KRC Genk,Matías Galarza,6
+Cremonese,Felix Afena-Gyan,6
+Club Brugge,Bjorn Meijer,6
+Charlotte,Enzo Copetti,6
+AC Milan,Junior Messias,5.5
+D.C. United,Christian Benteke,5.46
+América,Jonathan Rodríguez,5.45
+Besiktas,Valentin Rosier,4.8
+Sheff Utd,Anel Ahmedhodzic,4.5
+Grêmio,Franco Cristaldo,4
+Feyenoord,Javairô Dilrosun,4
+Barça Atlètic,Julián Araujo,4
+Girona,Miguel Gutiérrez,4
+SH Port,Matías Vargas,4
+Galatasaray,Fredrik Midtsjö,3.5
+Celtic,Alistair Johnston,3.5
+Akhmat Grozny,Gamid Agalarov,3.5
+FC Juárez,Darwin Machís,3.5
+Besiktas,Amir Hadziahmetovic,3.2
+Real Valladolid,Gonzalo Plata,3
+Vasco da Gama,Lucas Piton,3
+AZ Alkmaar,Djordje Mihailovic,3
+Nottm Forest,Willy Boly,2.6
+Spezia Calcio,Bartlomiej Dragowski,1.95
+Vasco da Gama,Pedro Raul,1.9
+RSC Anderlecht,Amadou Diawara,1.89
+Bröndby IF,Daniel Wass,1.75
+Trabzonspor,Marc Bartra,1.25
+FC Schalke 04,Florent Mollet,5
+TSG Hoffenheim,John Anthony Brooks,3
+Fenerbahce,Bruma,
+América,Brian Rodríguez,5.97
+Watford,Vakoun Bayo,5.8
+Leeds U21,Darko Gyabi,5.8
+Racing Club,Juan Ignacio Nardoni,5.7
+Toluca,Jean Meneses,5.7
+Toluca,Maximiliano Araújo,5.6
+Club Brugge,Casper Nielsen,7
+Marseille,Isaak Touré,5.5
+Celta de Vigo,Williot Swedberg,5.5
+Villarreal,Johan Mojica,5.5
+Royal Antwerp,Vincent Janssen,5.5
+FC Lorient,Joel Mvuka,5.5
+FC Augsburg,Arne Maier,5
+Al-Jazira,Florin Tanase,3
+Sassuolo,Martin Erlic,3
+AC Milan,Alessandro Florenzi,2.7
+Vasco da Gama,Jair,2.65
+Celtic,Sead Hakšabanović,2.5
+Al-Nassr FC,Abdulrahman Ghareeb,5.25
+Monterrey,Jordi Cortizo,5.23
+Bor. Dortmund,Anthony Modeste,5.1
+Sassuolo,Kristian Thorstvedt,10.15
+Club Brugge,Raphael Onyedika,9.5
+Atalanta BC,Brandon Soppy,9.1
+Bayern Munich,Yann Sommer,9
+Juventus,Andrea Cambiaso,8.8
+Spartak Moscow,Christopher Martins Pereira,7
+Benfica,Petar Musa,5.5
+Girona,Oriol Romeu,5.5
+Bor. M'gladbach,Ko Itakura,5
+Barcelona,Pablo Torre,5
+Feyenoord,Igor Paixão,5
+Hellas Verona,Thomas Henry,5
+Salernitana,Domagoj Bradaric,5
+Salernitana,Federico Bonazzoli,5
+Udinese Calcio,Adam Masina,5
+OGC Nice,Rares Ilie,5
+Ajax,Jorge Sánchez,5
+New York RB,Dante Vanzeir,5
+Olympiacos,Aboubakar Kamara,5
+Lens,Salis Abdul Samed,5
+Lens,Brice Samba,5
+FC Midtjylland,Emiliano Martínez,5
+Palmeiras,Bruno Tabata,5
+Royal Antwerp,Jurgen Ekkelenkamp,5
+Burnley,Ameen Al-Dakhil,5
+KRC Genk,Tolu Arokodare,5
+Club Brugge,Ferran Jutglà,5
+Monza,Davide Bettella,5
+Getafe,Luis Milla,5
+SSC Napoli,Leo Östigard,5
+Liverpool,Calvin Ramsay,4.9
+FC Nantes,Ignatius Ganago,4.4
+Olympique Lyon,Johann Lepenant,4.25
+Boavista,Petar Musa,4.25
+FC Porto,Stephen Eustaquio,4.21
+Lens,Jean Onana,4
+Elche CF,Ezequiel Ponce,4
+Monza,Andrea Carboni,4
+Atlanta,Georgios Giakoumakis,4
+Lens,Adrien Thomasson,3.9
+Vasco da Gama,Luca Orellano,3.72
+Fenerbahce,Lincoln,3.5
+1.FSV Mainz 05,Maxim Leitsch,3.5
+Al-Duhail SC,Rúben Semedo,3.5
+Besiktas,Jackson Muleka,3.35
+Hamburger SV,Mario Vuskovic,3
+KAA Gent,Jordan Torunarigha,3
+RCD Mallorca,Pablo Maffeo,3
+SC Braga,Simon Banza,3
+Troyes,Iké Ugbo,3
+Burnley,Josh Cullen,3
+Elche CF,Roger Martí,3
+Galatasaray,Abdülkerim Bardakci,2.8
+Atlas,Julián Quiñones,2.6
+Espanyol,Tonny Vilhena,2.5
+Stade Brestois,Pierre Lees-Melou,2.3
+FC Copenhagen,Diogo Gonçalves,2
+Trabzonspor,Umut Bozok,2
+Lens,Jimmy Cabot,2
+Pafos FC,Ivica Ivusic,2
+1.FSV Mainz 05,Dominik Kohr,1.5
+R. Strasbourg,Lucas Perrin,1.5
+Fluminense,Guga,1.5
+Olympiacos,Zymer Bytyqi,1
+Toronto,Mark-Anthony Kaye,9.55
+VfL Wolfsburg,Nicolas Cozza,5
+FC Copenhagen,Mathew Ryan,5
+AZ Alkmaar,Mathew Ryan,5
+RB Bragantino,Thiago Borbas,4.8
+Monterrey,Rodrigo Aguirre,4.75
+Troyes,Amar Fatah,4.7
+Al-Batin,Renzo López,4.7
+Ettifaq FC,Berat Özdemir,2.44
+Dynamo Moscow,Nicolas Moumi Ngamaleu,2
+Los Angeles,Julián Aude,4.65
+Atalanta BC,Rasmus Højlund,17.2
+SC Freiburg,Daniel-Kofi Kyereh,4.5
+FC Copenhagen,Denis Vavro,4.5
+Espanyol,Edu Expósito,4.5
+Zenit S-Pb,Mateo Cassierra,4.5
+Hull City,Allahyar Sayyadmanesh,4.5
+Al-Ahli,Marcão,4.5
+Royal Antwerp,Gastón Ávila,4.4
+Torino,Pietro Pellegri,4.2
+E. Frankfurt,Paxten Aaronson,4
+Union Berlin,Jamie Leweling,4
+Bodø/Glimt,Patrick Berg,4
+León,Adonis Frías,3.74
+Panathinaikos,Andraz Sporar,3.5
+EC Bahia,Ademir,2.3
+1.FC Köln,Luca Kilian,2
+Feyenoord,Ezequiel Bullaude,2
+FC Nantes,Moussa Sissoko,2
+EC Bahia,Vitor Hugo,1.8
+Sevilla FC,Federico Gattoni,1.4
+Hellas Verona,Lorenzo Montipò,1.1
+River Plate,David Martínez,1
+Botafogo,Tiquinho Soares,1
+Montpellier,Christopher Jullien,1
+Hertha BSC,Agustín Rogel,4
+VfB Stuttgart,Hiroki Ito,4
+Celtic,Alexandro Bernabéi,4.35
+UNAM Pumas,Gustavo del Prete,4.3
+Fenerbahce,Bruma,4.25
+Dynamo Moscow,Nicolás Marichal,4.2
+River Plate,Pablo Solari,4.2
+Toulouse,Veljko Birmancevic,4.1
+Dinamo Zagreb,Bosko Sutalo,4.05
+Sassuolo,Janis Antiste,5.68
+Werder Bremen,Jens Stage,4
+KAA Gent,Hugo Cuypers,4
+Spartak Moscow,Alexis Duarte,4
+Feyenoord,Santiago Gimenez,4
+Genoa,Filippo Melegoni,4
+Hellas Verona,Juan Cabal,4
+Udinese Calcio,Jaka Bijol,4
+Udinese Calcio,Enzo Ebosse,4
+Bologna,Michel Aebischer,4
+LOSC Lille,Alan Virginius,4
+Burnley,Benson Manuel Hedilazio,4
+Burnley,Anass Zaroury,4
+Brighton,Yasin Ayari,4
+Elche CF,Nicolás Fernández Mercau,4
+Hull City,Dogukan Sinik,4
+CD Cruz Azul,Carlos Salcedo,3.72
+Hellas Verona,Martin Hongla,3.7
+Middlesbrough,Marcus Forss,3.6
+Sporting CP,Hidemasa Morita,3.45
+Toluca,Carlos González,3.3
+Salernitana,Emil Bohinen,3.25
+FC Juárez,Agustín Urzi,3.2
+Rangers,Rabbi Matondo,3
+PSV Eindhoven,Luuk de Jong,3
+UD Almería,Alejandro Pozo,3
+América,Néstor Araújo,3
+São Paulo,Jonathan Calleri,2.9
+San Jose,Carlos Gruezo,2.7
+Union Berlin,Aïssa Laïdouni,2.6
+Bröndby IF,Rasmus Lauritsen,2.5
+Fiorentina,Abdelhamid Sabiri,2.5
+River Plate,Enzo Díaz,2.3
+Montpellier,Benjamin Lecomte,2
+UD Almería,Gonzalo Melero,1.9
+River Plate,Nacho Fernández,1.88
+Chivas,Alan Mozo,1.8
+FC Augsburg,Elvis Rexhbecaj,1.7
+Twente FC,Michal Sadilek,1.5
+Celta de Vigo,Agustín Marchesín,1.05
+Rosenborg,Jayden Nelson,1
+Salernitana,Dylan Bronn,1
+OGC Nice,Kasper Schmeichel,1
+UD Almería,Adrián Embarba,1
+Famalicão,Zaydou Youssouf,1
+Internacional,Braian Romero,9
+Newell's,Willer Ditta,6.65
+BJ Guoan,Arijan Ademi,5
+Adana Demirspor,Emre Akbaba,5
+Defensa,Kevin Gutiérrez,4.84
+Karagümrük,Otabek Shukurov,4.2
+RSC Charleroi,Vakoun Bayo,
+Sampdoria,Abdelhamid Sabiri,
+Coritiba FC,Bruno Gomes,
+FC Midtjylland,Emiliano Martínez,
+Nashville,Jacob Shaffelburg,
+Barça Atlètic,Emre Demir,2
+KRC Genk,Anouar Ait El Hadj,2
+Botafogo,Matías Segovia,1.2
+Al-Ain FC,Matías Palacios,3
+Fortaleza,Calebe,1.1
+Burnley,Scott Twine,2.9
+FC Schalke 04,Rodrigo Zalazar,1.5
+Hellas Verona,Mateusz Praszelik,2
+AZ Alkmaar,Sven Mijnans,2.5
+Lech Poznan,Afonso Sousa,1.2
+Millwall,Zian Flemming,2.5
+Spezia Calcio,Kevin Agudelo,2.8
+Gil Vicente,Kanya Fujimoto,6
+Orenburg,Gabriel Florentín,2.2
+Sundowns,Marcelo Allende,2.9
+Charlotte,Nuno Santos,1
+Hajduk Split,Anthony Kalik,3
+Aris Saloniki,Manu García,3.2
+FC Porto,André Franco,4.07
+Sporting Gijón,Fran Villalba,5
+Bröndby IF,Nicolai Vallys,3
+Ferencváros,Amer Gojak,1
+Sampdoria,Abdelhamid Sabiri,1
+Twente FC,Michel Vlap,2
+Hellas Verona,Ajdin Hrustic,5
+Krasnodar,Kady Borges,2
+New England,Latif Blessing,3.79
+EC Bahia,Cauly,2.3
+VfL Bochum,Philipp Förster,5
+Olympiacos,Philip Zinckernagel,2
+Panathinaikos,László Kleinheisler,5
+KS Samara,Amar Rahmanovic,7.5
+FC Nantes,Florent Mollet,1.5
+VfB Stuttgart,Genki Haraguchi,1
+Nordsjaelland,Zidan Sertdemir,1
+Bor. M'gladbach,Oscar Fraulo,2
+Torino,Emirhan Ilkhan,4.9
+Slavia Prague,Christos Zafeiris,2.6
+B. Leverkusen,Gustavo Puerta,2
+Cremonese,Tommaso Milanese,7.5
+EC Bahia,Diego Rosa,2
+Stade Reims,Amir Richardson,2
+SC Freiburg,Merlin Röhl,2.9
+Sporting CP,Sotiris Alexandropoulos,4
+UD Almería,Gui Guedes,3
+KVC Westerlo,Muhammed Gümüskaya,5
+Coritiba FC,Bruno Gomes,1
+Santos,Zanocelo,2
+Bodø/Glimt,Albert Grönbaek,3
+Norwich,Marcelino Núñez,3.9
+Panathinaikos,Adam Gnezda Cerin,6.5
+Bologna,Lewis Ferguson,3.5
+Benevento,Krzysztof Kubica,1.2
+Rostov,Daniil Utkin,3
+Real Valladolid,Monchu,1.2
+Espanyol,José Gragera,2.8
+Salernitana,Mamadou Coulibaly,3
+Venezia,Magnus Kofod Andersen,5.1
+Atl. Tucumán,Joaquín Pereyra,9.38
+Omonia Nikosia,Moreto Cassamá,1.5
+FC Midtjylland,Emam Ashour,2.76
+Hamburger SV,László Bénes,1.5
+Sassuolo,Abdou Harroui,1
+Burnley,Samuel Bastien,8
+Palermo,Dario Saric,1.8
+Orenburg,Lucas Vera,1.5
+St. Louis CITY,Eduard Löwen,1
+Grêmio,Felipe Carballo,3.7
+Middlesbrough,Dan Barlaser,1.03
+Cremonese,Luca Valzania,3
+Athletico-PR,Alex Santana,2.5
+Pafos FC,Moustapha Name,1.5
+Hull City,Ozan Tufan,3
+Cuiabá-MT,Fernando Sobral,7.5
+EC Bahia,Yago Felipe,1.8
+FC Copenhagen,Lukas Lerager,3.5
+Hansa Rostock,Sebastien Thill,2
+Monza,Mattia Valoti,2.75
+Ulsan Hyundai,Darijan Bojanic,1
+Al-Bataeh CSC,João Novais,2
+Dallas,Sebastian Lletget,5.46
+Atlético-MG,Patrick,1.5
+Cádiz CF,Rubén Alcaraz,1
+Atlético-MG,Edenilson,1.2
+Club Brugge,Joel Ordóñez,3.9
+RB Bragantino,Douglas Mendes,2
+Marseille B,Roggerio Nyakossi,2
+Genoa,Alan Matturro,3
+Angers SCO,Ousmane Camara,2.2
+Feyenoord,Neraysho Kasanwirjo,2
+Troyes,Jackson Porozo,3.5
+FC St. Pauli,David Nemeth,1.3
+E. Frankfurt,Hrvoje Smolcic,2.5
+Cremonese,Emanuel Aiwu,3.5
+Académico Viseu,Arthur Chaves,2.4
+Loko Moscow,Lucas Fasson,3
+Besiktas,Emrecan Uzunhan,2
+Slavia Prague,Igoh Ogbu,2.5
+Sunderland,Daniel Ballard,2.3
+LOSC Lille,Alexsandro,2
+Pisa,Simone Canestrelli,2.6
+Dynamo Moscow,Roberto Fernández,3
+Cádiz CF,Víctor Chust,1
+Besiktas,Tayyip Talha Sanuc,1.5
+Stade Brestois,Achraf Dari,2.7
+Arm. Bielefeld,Andrés Andrade,1.25
+Hellas Verona,Isak Hien,3.2
+Zenit S-Pb,Nuraly Alip,2
+Santos,Joaquim,3
+Burnley,Hjalmar Ekdal,2.8
+Parma,Elias Cobbaut,3
+Rayo Vallecano,Abdul Mumin,1.5
+Basaksehir,Ahmed Touba,2
+Hajduk Split,Ferro,5.5
+Middlesbrough,Matt Clarke,2.6
+Stade Reims,Emmanuel Agbadou,2.6
+1.FSV Mainz 05,Andreas Hanche-Olsen,2.5
+Basaksehir,Léo Duarte,2
+Austin,Leo Väisänen,1.8
+Vasco da Gama,Manuel Capasso,1.4
+São Paulo,Alan Franco,2.85
+RB Bragantino,Lucas Cunha,1.5
+Vasco da Gama,Léo,2.8
+Zenit S-Pb,Rodrigão,3.5
+Rangers,Ben Davies,4.7
+UD Almería,Srdjan Babic,1.1
+CSKA Moscow,Willyan Rocha,2
+Charlotte,Bill Tuiloma,7.5
+Watford,Wesley Hoedt,2
+Angers SCO,Cédric Hountondji,2
+Fenerbahce,Samet Akaydin,3.7
+Colorado,Andreas Maxsö,6.5
+Ural,Silvije Begic,5
+Ettifaq FC,Marcel Tisserand,3
+Maccabi Haifa,Abdoulaye Seck,3.9
+Besiktas,Omar Colley,2.3
+Club Brugge,Dedryck Boyata,2
+Wolves,Craig Dawson,3.75
+Cremonese,Vlad Chiriches,2
+San Lorenzo,Rafael Pérez,6.44
+Nottm Forest,Felipe,2.3
+Olympique Lyon,Dejan Lovren,2
+Chelsea U21,Jimmy-Jay Morgan,3.4
+Udinese U19,Vivaldo,3
+RB Salzburg,Karim Konaté,3.5
+Darmstadt 98,Oscar Vilhelmsson,1.2
+Juventus U19,Tommaso Mancini,2
+UD Almería,Marko Milovanovic,3.5
+Sturm Graz,William Böving,2.2
+Heerenveen,Daniel Karlsbakk,2.5
+Chicago,Georgios Koutsias,2.36
+Estudiantes,Matías Godoy,7.03
+LASK,Marin Ljubicic,2.9
+KAA Gent,Gift Orban,3.3
+Hamburger SV,András Németh,7.5
+Minnesota,Sang-bin Jeong,2.5
+Union SG,Victor Boniface,2
+Middlesbrough,Matthew Hoppe,3
+Toulouse,Thijs Dallinga,2.5
+Greuther Fürth,Jessic Ngankam,1.5
+Hertha BSC,Jessic Ngankam,2
+Spezia Calcio,Raimonds Krollis,1.5
+Celtic,Hyeon-gyu Oh,2.8
+Celta de Vigo,Julen Lobete,1
+Houston,Ibrahim Aliyu,2.1
+Orlando,Ramiro Enrique,1.84
+Toulouse,Saïd Hamulic,2.5
+Amiens SC,Tolu Arokodare,2.5
+VfB Stuttgart,Juan José Perea,2.4
+Salernitana,Diego Valencia,2.5
+Loko Moscow,Marko Rakonjac,2.5
+Philadelphia,Julián Carranza,4.55
+Miami,Leonardo Campana,2.7
+Cuiabá-MT,Isidro Pitta,6
+Salernitana,Mikael,2
+Loko Moscow,Maksim Glushenkov,2.6
+Al-Nasr SC,Dembo Darboe,1.5
+New England,Giacomo Vrioni,3.66
+Huracán,Matías Cóccaro,4.65
+RWDM,Mickaël Biron,2.5
+Hertha BSC,Wilfried Kanga,5
+Tigres UANL,Jordy Caicedo,2.5
+Antalyaspor,Haji Wright,1.88
+RSC Charleroi,Vakoun Bayo,1.5
+Vancouver,Sergio Córdova,2.1
+VfB Stuttgart,Luca Pfeiffer,2.85
+FC Augsburg,Irvin Cardona,5
+Parma,Gennaro Tutino,5
+BSC Young Boys,Cedric Itten,1.82
+St. Louis CITY,João Klauss,3.2
+San Lorenzo,Adam Bareiro,1.9
+Palmeiras,Miguel Merentiel,1.4
+Luton,Carlton Morris,2
+1.FSV Mainz 05,Marcus Ingvartsen,2.3
+KS Samara,Vladimir Pisarskiy,1.35
+Basaksehir,João Figueiredo,6.5
+Venezia,Joel Pohjanpalo,2.5
+Rostov,Nikolay Komlichenko,1.5
+Cincinnati,Sergio Santos,8.41
+Bröndby IF,Ohi Omoijuanfo,1.35
+Angers SCO,Adrien Hunou,1.5
+Molde,Veton Berisha,3
+Qatar SC,Ben Malango,2
+Al-Fayha,Milan Pavkov,1
+Rangers,Antonio Colak,2.5
+Hammarby,Veton Berisha,2
+1.FC Köln,Sargis Adamyan,1.5
+Panathinaikos,Alexander Jeremejeff,2.7
+Pisa,Stefano Moreo,2
+Sanf. Hiroshima,Pieros Sotiriou,2
+Monza,Leonardo Mancuso,2.79
+Pisa,Ernesto Torregrossa,1.8
+Red Star,Aleksandar Pesic,1
+Coritiba FC,Rodrigo Pinho,5
+FC Schalke 04,Sebastian Polter,1.5
+Urawa Reds,Bryan Linssen,1.3
+Seattle,Héber,3.75
+Hertha BSC,Florian Niederlechner,8
+Cagliari Calcio,Gianluca Lapadula,2
+Legia Warszawa,Carlitos,4
+FC Sion,Mario Balotelli,2.62
+Sampdoria,Francesco Caputo,3.5
+Dep. La Coruña,Lucas Pérez,1
+B. Leverkusen,Noah Mbamba,1
+Lecce,Daniel Samek,2
+1.FC Köln,Eric Martel,1.2
+Cincinnati,Marco Angulo,2.83
+Riga,Hrvoje Babec,1.6
+CSKA Moscow,Víctor Méndez,2.5
+Basaksehir,Eden Karzev,2.3
+Trabzonspor,Dogucan Haspolat,1.2
+Philadelphia,Andrés Perea,7.13
+AJ Auxerre,Rayan Raveloson,1.75
+Saint-Étienne,Lamine Fomba,5
+Cremonese,Charles Pickel,3.8
+Partizan,Hamidou Traore,7
+Puebla FC,Fernando Arce,2.8
+Real Valladolid,Mickaël Malsa,5
+Houston,Artur,2.91
+CSKA Moscow,Sasa Zdjelar,5
+R. Strasbourg,Jean-Eudes Aholou,3
+San Luis,Rodrigo Dourado,5
+León,Lucas Romero,5.64
+Damac FC,Adam Maher,1.8
+River Plate,Matías Kranevitter,1.7
+Los Angeles,Gastón Brugman,2.2
+OGC Nice,Marcin Bulka,2
+PAOK Salonika,Dominik Kotarski,2
+Burnley,Arijanet Muric,3
+Monza,Michele Di Gregorio,4.15
+Shakhtar D.,Dmytro Riznyk,3
+Saint-Étienne,Gautier Larsonneur,1.6
+América,Luis Malagón,1.88
+Al-Taawoun,Mailson,5
+Vasco da Gama,Léo Jardim,2
+KAA Gent,Paul Nardi,1.5
+Lazio,Ivan Provedel,2.38
+San Jose,Daniel,6
+Espanyol,Fernando Pacheco,2.2
+Toluca,Tiago Volpi,2.5
+Aston Villa,Robin Olsen,3.5
+NEC Nijmegen,Jasper Cillessen,1
+BSC Young Boys,Filip Ugrinic,2
+OH Leuven,Sofian Kiyine,1.6
+San Luis,Facundo Waller,2
+Puebla FC,Facundo Waller,2.8
+AEK Athens,Mijat Gacinovic,1
+Loko Moscow,Sergey Pinyaev,2.6
+Troyes,Alexis Tibidi,2.6
+FC Lorient,Yoann Cathline,2.7
+G. Bordeaux,Alexi Pitu,2
+Sassuolo,Riccardo Ciervo,2
+Sassuolo,Emil Konradsen Ceide,2.85
+EC Bahia,Biel,1.6
+RB Bragantino,Henry Mosquera,2.3
+Rennes,Ibrahim Salah,3
+Lecce,Lameck Banda,2
+Heerenveen,Osame Sahraoui,1.7
+Botafogo,Diego Hernández,2
+Burnley,Darko Churlinov,3.5
+Pisa,Matteo Tramoni,3
+Loko Moscow,Pedrinho,3.5
+KS Samara,Benjamín Garré,1.7
+Nashville,Jacob Shaffelburg,3
+1.FSV Mainz 05,Delano Burgzorg,2
+Cádiz CF,Brian Ocampo,1.9
+Basaksehir,Mounir Chouiar,1.5
+Colorado,Kévin Cabral,9.5
+Monterrey,Joao Rojas,1.9
+Celtic,Daizen Maeda,1.53
+KV Kortrijk,Didier Lamkel Zé,5
+CD Cruz Azul,Carlos Rotondi,3.9
+Palermo,Francesco Di Mariano,1
+FC Juárez,Mauro Laínez,2.36
+Spartak Moscow,Anton Zinkovskiy,3.2
+Hamburger SV,Jean-Luc Dompé,1.1
+Sporting CP,Rochinha,2
+Coritiba FC,Alef Manga,4
+Lecce,Federico Di Francesco,5
+D.C. United,Cristian Dájome,3.18
+AEK Athens,Steven Zuber,1.6
+Loko Moscow,Mario Mitaj,3
+EC Bahia,Jhoanner Chávez,3.25
+Olympiacos,Doron Leidner,2
+Hellas Verona,Josh Doig,3.6
+Udinese Calcio,Leonardo Buta,2
+FC Basel,Riccardo Calafiori,1
+Olympiacos,Ramon,1.5
+FC Empoli,Liberato Cacace,3
+Parma,Jayden Oosterwolde,3
+Trabzonspor,Eren Elmali,3.6
+Dinamo Zagreb,Robert Ljubicic,3
+Cremonese,Giacomo Quagliata,2
+Pisa,Pietro Beruatto,2.1
+SK Dnipro-1,Yanis Hamache,1
+AZ Alkmaar,Mees de Wit,2.3
+Racing Club,Gabriel Rojas,2.3
+FC Schalke 04,Thomas Ouwejan,2
+Columbus,Malte Amundsen,3.64
+Nottm Forest,Harry Toffolo,2.4
+R. Strasbourg,Eduard Sobol,2.5
+Spezia Calcio,Arkadiusz Reca,3.9
+RSC Anderlecht,Ishaq Abdulrazak,3
+AEK Athens,Niclas Eliasson,2
+Vancouver,Julian Gressel,8.18
+CD Cruz Azul,Ramiro Carrera,1.3
+Salt Lake,Carlos Andrés Gómez,3.49
+Como,Lucas Da Cunha,4
+Birmingham,Tahith Chong,1.75
+Toulouse,Zakaria Aboukhlal,2
+Aalesund,Isaac Atanga,3
+CA Talleres,Ramón Sosa,2.12
+Nottm Forest,Josh Bowler,2.3
+Cremonese,Luca Zanimacchia,3
+AZ Alkmaar,Jens Odgaard,3.59
+Red Star,Osman Bukari,3
+Fenerbahce,Emre Mor,2
+Philadelphia,Joaquín Torres,4.6
+VfB Stuttgart,Gil Dias,1
+Panathinaikos,Daniel Mancini,3
+Shakhtar D.,Oleksandr Zubkov,2
+PAOK Salonika,Khaled Narey,1.5
+Puskás AFC,Jonathan Levi,6
+Ferencváros,Adama Traoré,2
+KVC Westerlo,Halil Akbunar,1
+Machida Zelvia,Erik,1.86
+Eyüpspor,Halil Akbunar,1.2
+Austin,Emiliano Rigoni,3.65
+SH Port,Lei Wu,1.5
+FC Lugano,Renato Steffen,7.5
+Hamburger SV,William Mikelbrencis,7
+Santos,Nathan,2
+Troyes,Thierno Baldé,3
+KRC Genk,Rasmus Carstensen,3
+Watford,João Ferreira,2.5
+Newcastle,Harrison Ashby,3.4
+LOSC Lille,Bafodé Diakité,3
+VfL Wolfsburg,Kilian Fischer,2.5
+VfB Stuttgart,Josha Vagnoman,3.7
+Spartak Moscow,Tomás Tavares,2
+Stade Reims,Maxime Busi,2
+Monza,Samuele Birindelli,1.6
+Parma,Enrico Del Prato,2.75
+Troyes,Andreas Bruus,1.5
+León,Byron Castillo,2.85
+Santos,João Lucas,1.1
+Olympiacos,Pipa,1
+Monza,Pedro Pereira,2.87
+Vasco da Gama,José Luis Rodríguez,1.8
+Ludogorets,Pipa,6
+Montréal,Aarón Herrera,4.71
+Southampton,James Bree,8.5
+Lens,Julien Le Cardinal,2.3
+FC Empoli,Petar Stojanovic,1.2
+Besiktas,Onur Bulut,1
+Villarreal,Kiko Femenía,9.8
